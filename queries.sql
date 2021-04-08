@@ -19,6 +19,10 @@ VALUES ($1, $2, $3, $4, $5, $6, $7, $8); -- $1 returned from Part I query
 'A family-run business that...', 'business bio...', 'Some other things about the co',
 '575 N West St.', '000-867-5309', false);
 
+--VENDOR filter_type UPDATE example (when vendors add or remove special features to their business):
+UPDATE "vendors"
+SET "filter_type" = '{"caterer", "party_supplier", "bipoc_owned", "small_business", "venue_manager"}'
+WHERE "id" = $1;
 
 
 --FILTERING VENDORS based on selected filter_type(s) ex:
