@@ -1,3 +1,5 @@
+// View of all messages related to the logged-in user.
+// Reached by path '/message'
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import io from 'socket.io-client';
@@ -91,7 +93,7 @@ const PartnerMessage = styled.div`
   border-bottom-left-radius: 10%;
 `;
 
-function Chat() {
+function Message() {
   const [yourId, setYourId] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
@@ -159,4 +161,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Message;

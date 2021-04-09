@@ -14,7 +14,7 @@ import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
-import Chat from "../Chat/Chat";
+import Message from "../MessageAll/MessageAll";
 import UserPage from "../UserPage/UserPage";
 import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
@@ -36,7 +36,7 @@ function App() {
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/chat" />
+          <Redirect exact from="/" to="/message" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
@@ -47,8 +47,8 @@ function App() {
             <AboutPage />
           </Route>
 
-          <Route exact path="/chat">
-            <Chat />
+          <Route exact path="/message">
+            <Message />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
