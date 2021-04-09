@@ -45,6 +45,16 @@ Directory Structure:
 
 This code is commented in each individual file with the aim to make it accessible. 
 
+## Authors
+* Dusty Meyers [Dusty's Site](https://)
+* Jason Lin [Jason's Site](https://)
+* John Shands [John's Site](https://)
+* McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
+* William Krug [William's Site](https://)
+
+## License
+
+
 ## Acknowledgement
 
 Thanks to [Prime Digital Academy](https://www.primeacademy.io/) who equipped us with the skills to make this application a reality. 
