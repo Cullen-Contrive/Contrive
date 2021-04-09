@@ -83,8 +83,8 @@ CREATE TABLE "events" (
   "id" SERIAL PRIMARY KEY,
   "plannerUserId" INT REFERENCES "users",
   "dateCreated" TIMESTAMPTZ DEFAULT current_timestamp,
-  "dateOfEvent" TIMESTAMPTZ,
-  "timeOfEvent" 
+  "dateOfEvent" DATE,
+  "timeOfEvent" TIME,
   "address" VARCHAR(256),
   "city" VARCHAR(80),
   "state" VARCHAR(80),
