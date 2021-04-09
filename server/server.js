@@ -29,14 +29,10 @@ app.use(
     region: 'us-east-2', // optional
     // bucket: process.env.AWS_S3_BUCKET,           // required
     // region: process.env.AWS_S3_REGION,           // optional
-<<<<<<< HEAD
-    headers: { 'Access-Control-Allow-Origin': '*' }, // optional
-=======
     headers: {
-      "Access-Control-Allow-Origin": "*"
+      'Access-Control-Allow-Origin': '*',
     }, // optional
->>>>>>> b87285b7293e1c4f12670a548d1117eb30464109
-    // ACL: 'private',                                 // this is the default - set to `public-read` to let anyone view uploads
+    // ACL: 'private', // this is the default - set to `public-read` to let anyone view uploads
     ACL: 'public-read',
     signatureVersion: 'v4',
   })
@@ -44,9 +40,11 @@ app.use(
 
 // Body parser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 // Passport Session Configuration //
 app.use(sessionMiddleware);
@@ -66,7 +64,6 @@ app.use(express.static('build'));
 const PORT = process.env.PORT || 5000;
 
 //Whenever someone connects this gets executed
-<<<<<<< HEAD
 io.on('connection', (socket) => {
   console.log('a user connected!!!!!!!');
 
@@ -86,22 +83,6 @@ io.on('connection', (socket) => {
 
 http.listen(4000, function () {
   console.log('listening on port 4000');
-=======
-io.on("connection", (socket) => {
-  console.log("a user connected!!!!!!!");
-
-  socket.on("disconnect", () => {
-    console.log("User has disconnected!");
-  });
-
-  socket.on("join", ({name, room}) => {
-    console.log("User has joined chat!", name, room);
-  });
-});
-
-http.listen(4000, function() {
-  console.log("listening on port 4000");
->>>>>>> b87285b7293e1c4f12670a548d1117eb30464109
 });
 
 /** Listen * */
