@@ -104,7 +104,7 @@ CREATE TABLE "types_of_event" (
 );
 
 INSERT INTO "types_of_event" ("name")
-VALUES ('retirement'), ('birthday'), ('anniversary'), ('wedding'), ('funeral');
+VALUES ('retirement'), ('birthday'), ('anniversary'), ('wedding'), ('funeral'), ('reunion'), ('other');
 
 
 CREATE TABLE "events_vendors" (
