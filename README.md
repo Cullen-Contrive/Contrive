@@ -10,21 +10,11 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-And 
-
 ## Create database and table
 
-Create a new database called `prime_app` and create a `user` table:
+Create a new postgreSQL database named `contrive_db` and copy all text in the database.sql file saved in the root folder of this repository.  Paste all the copied text as a SQL query (Postico was used for original database creation) and execute the queries sequentially (Note: DROP TABLE queries at the top of the document will not do anything on initial setup since there are no tables yet created, and these DROP TABLE queries should be used carefully, as they permanently delete tables and any stored data therein.)
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
 ## Development Setup Instructions
 
