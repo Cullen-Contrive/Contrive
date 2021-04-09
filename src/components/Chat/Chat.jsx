@@ -32,12 +32,10 @@ function Chat() {
       name: 'Username will go here',
       room: 'room code will go here if need',
     });
-
-    // Clean up on disconnect
-    // return () => {
-    //   socketRef.current.emit('disconnect');
-    //   socketRef.current.off();
-    // };
+    socketRef.current.on('message', (message) => {
+      console.log('here', message);
+      receiveMessage(message);
+    });
   }, []);
 
   useEffect(() => {

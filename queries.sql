@@ -28,7 +28,12 @@ ORDER BY "date";
 
 
 
+
+
+
+
+--------------------STRETCH GOALS--------------------
 --EVENT creation:
-INSERT INTO "events" ("plannerUserId", "dateOfEvent", "address", 
-"city", "state", "zip", "numberOfAttendees", "description")
+INSERT INTO "events" ("plannerUserId", "dateOfEvent", "timeOfEvent", 
+"address", "city", "state", "zip", "numberOfAttendees", "description")
 VALUES ($1, $1, $3, $4, $5, $6, $7, $8);
