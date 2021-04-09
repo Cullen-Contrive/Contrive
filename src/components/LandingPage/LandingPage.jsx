@@ -4,6 +4,7 @@ import './LandingPage.css';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
@@ -16,6 +17,7 @@ function LandingPage() {
   return (
     <div className="container">
       <h2>{heading}</h2>
+      <ImageUpload/>
 
       <div className="grid">
         <div className="grid-col grid-col_8">
