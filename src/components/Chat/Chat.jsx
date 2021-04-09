@@ -95,15 +95,20 @@ function Chat() {
   const [yourId, setYourId] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const ENDPOINT = 'http://localhost:4000'; // Ideall, this value will be set in a .env when deployed
 
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect('http://localhost:4000');
 
+    // Implement retrieving data from //
+
+    socketRef.current = io.connect(ENDPOINT);
     socketRef.current.on('your id', (id) => {
       setYourId(id);
     });
+
+    socketRef.current.emit('join', {name: 'John', room: 1});
 
     socketRef.current.on('message', (message) => {
       console.log('here', message);

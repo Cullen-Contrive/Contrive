@@ -29,7 +29,9 @@ app.use(
     region: "us-east-2", // optional
     // bucket: process.env.AWS_S3_BUCKET,           // required
     // region: process.env.AWS_S3_REGION,           // optional
-    headers: { "Access-Control-Allow-Origin": "*" }, // optional
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }, // optional
     // ACL: 'private',                                 // this is the default - set to `public-read` to let anyone view uploads
     ACL: "public-read",
     signatureVersion: "v4",
@@ -38,7 +40,9 @@ app.use(
 
 // Body parser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Passport Session Configuration //
 app.use(sessionMiddleware);
@@ -59,14 +63,18 @@ const PORT = process.env.PORT || 5000;
 
 //Whenever someone connects this gets executed
 io.on("connection", (socket) => {
-  console.log("a user connected");
-  socket.emit("your id", socket.id);
-  socket.on("send message", (body) => {
-    io.emit("message", body);
+  console.log("a user connected!!!!!!!");
+
+  socket.on("disconnect", () => {
+    console.log("User has disconnected!");
+  });
+
+  socket.on("join", ({name, room}) => {
+    console.log("User has joined chat!", name, room);
   });
 });
 
-http.listen(4000, function () {
+http.listen(4000, function() {
   console.log("listening on port 4000");
 });
 
