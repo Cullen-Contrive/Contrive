@@ -1,161 +1,105 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import io from 'socket.io-client';
 
-const Page = styled.div`
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  align-items: center;
-  background-color: #46516e;
-  flex-direction: column;
-`;
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 500px;
-  max-height: 500px;
-  overflow: auto;
-  width: 400px;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  padding-bottom: 10px;
-  margin-top: 25px;
-`;
-
-const TextArea = styled.textarea`
-  width: 98%;
-  height: 100px;
-  border-radius: 10px;
-  margin-top: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  font-size: 17px;
-  background-color: transparent;
-  border: 1px solid lightgray;
-  outline: none;
-  color: lightgray;
-  letter-spacing: 1px;
-  line-height: 20px;
-  ::placeholder {
-    color: lightgray;
-  }
-`;
-
-const Button = styled.button`
-  background-color: pink;
-  width: 100%;
-  border: none;
-  height: 50px;
-  border-radius: 10px;
-  color: #46516e;
-  font-size: 17px;
-`;
+import Messages from './Messages';
 
 const Form = styled.form`
   width: 400px;
-`;
-
-const MyRow = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-`;
-
-const MyMessage = styled.div`
-  width: 45%;
-  background-color: pink;
-  color: #46516e;
-  padding: 10px;
-  margin-right: 5px;
-  text-align: center;
-  border-top-right-radius: 10%;
-  border-bottom-right-radius: 10%;
-`;
-
-const PartnerRow = styled(MyRow)`
-  justify-content: flex-start;
-`;
-
-const PartnerMessage = styled.div`
-  width: 45%;
-  background-color: transparent;
-  color: lightgray;
-  border: 1px solid lightgray;
-  padding: 10px;
-  margin-left: 5px;
-  text-align: center;
-  border-top-left-radius: 10%;
-  border-bottom-left-radius: 10%;
 `;
 
 function Chat() {
   const [yourId, setYourId] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const socketRef = useRef();
+  const history = useHistory();
 
   useEffect(() => {
-    socketRef.current = io.connect('http://localhost:4000');
-
-    socketRef.current.on('your id', (id) => {
-      setYourId(id);
+    socketRef.current = io.connect(ENDPOINT);
+    socketRef.current.emit('join', {
+      name: 'Username will go here',
+      room: 'room code will go here if need',
     });
 
-    socketRef.current.on('message', (message) => {
-      console.log('here', message);
-      receiveMessage(message);
+    // Clean up on disconnect
+    // return () => {
+    //   socketRef.current.emit('disconnect');
+    //   socketRef.current.off();
+    // };
+  }, []);
+
+  useEffect(() => {
+    socketRef.current.on('send message', (message) => {
+      setMessages((messages) => [...messages, message]);
     });
   }, []);
 
-  function receiveMessage(message) {
-    setMessages((oldMessages) => [...oldMessages, message]);
-  }
-
-  function sendMessage(evt) {
-    evt.preventDefault();
+  const sendMessage = (evt) => {
+    evt.preventDefault(); // prevents the form from refreshing the page
+    // console.log('sending message after form submission');
     const messageObject = {
       body: message,
-      id: yourId,
+      id: yourId, // req.user.id may go here and then we validate on the messages
     };
     setMessage('');
-    socketRef.current.emit('send message', messageObject);
-  }
 
-  function handleChange(evt) {
-    setMessage(evt.target.value);
-  }
+    // console.log('emitting message to server');
+    socketRef.current.emit('send message', messageObject);
+  };
+
+  const goBack = () => {
+    console.log('pushing to a previous page');
+  };
 
   return (
-    <Page>
-      <Container>
-        {messages.map((message, index) => {
-          if (message.id === yourId) {
-            return (
-              <MyRow key={index}>
-                <MyMessage>{message.body}</MyMessage>
-              </MyRow>
-            );
-          }
-          return (
-            <PartnerRow key={index}>
-              <PartnerMessage>{message.body}</PartnerMessage>
-            </PartnerRow>
-          );
-        })}
-      </Container>
-      <Form onSubmit={sendMessage}>
-        <TextArea
-          value={message}
-          onChange={handleChange}
-          placeholder="Say something"
-        ></TextArea>
-        <Button>Send</Button>
-      </Form>
-    </Page>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Button startIcon={<ArrowBackIosIcon />} onClick={goBack}></Button>
+        <span>
+          <Typography variant="h3">Conversation Name Goes Here</Typography>
+        </span>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper
+          style={{
+            backgroundColor: '#fe67',
+            height: 300,
+            marginLeft: 10,
+            marginRight: 10,
+          }}
+        >
+          {/* Messages should eventually come from redux rather than local state */}
+          <Messages messages={messages} />
+        </Paper>
+      </Grid>
+      {/* Form for submitting text to another user */}
+      <Grid item xs={12}>
+        <Form onSubmit={sendMessage}>
+          <TextField
+            value={message}
+            style={{ margin: 8 }}
+            fullWidth
+            onChange={(evt) => setMessage(evt.target.value)}
+            placeholder="Say something"
+          ></TextField>
+          <Button type="submit" color="primary" variant="contained">
+            Send Message
+          </Button>
+        </Form>
+      </Grid>
+    </Grid>
   );
 }
 
