@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS "types_of_event" CASCADE;
 DROP TABLE IF EXISTS "special_features" CASCADE;
 DROP TABLE IF EXISTS "vendors_features" CASCADE;
 DROP TABLE IF EXISTS "service_types" CASCADE;
+DROP TABLE IF EXISTS "vendors_services" CASCADE;
 --Stretch tables:
 DROP TABLE IF EXISTS "events_photos" CASCADE;
 DROP TABLE IF EXISTS "vendors_ratings" CASCADE;
@@ -69,14 +70,20 @@ VALUES ('caterer'), ('venueManager'), ('decorator'), ('partySupplier'),
 CREATE TABLE "vendors_features" (
 	"id" SERIAL PRIMARY KEY,
   "vendorUserId" INT REFERENCES "users",
-  "featureId" INT REFERENCES "special_features",
+  "featureId" INT REFERENCES "special_features"
+);
+
+CREATE TABLE "vendors_services" (
+	"id" SERIAL PRIMARY KEY,
+  "vendorUserId" INT REFERENCES "users",
   "serviceId" INT REFERENCES "service_types"
 );
 
 CREATE TABLE "events" (
   "id" SERIAL PRIMARY KEY,
   "plannerUserId" INT REFERENCES "users",
-  "date" TIMESTAMPTZ DEFAULT current_timestamp,
+  "dateCreated" TIMESTAMPTZ DEFAULT current_timestamp,
+  "dateOfEvent" VARCHAR(256),
   "address" VARCHAR(256),
   "city" VARCHAR(80),
   "state" VARCHAR(80),
@@ -88,7 +95,7 @@ CREATE TABLE "events" (
 CREATE TABLE "events_types" (
   "id" SERIAL PRIMARY KEY,
   "eventId" INT REFERENCES "events" ON DELETE CASCADE,
-  "type" INT REFERENCES "types_of_event" ON DELETE CASCADE
+  "typeId" INT REFERENCES "types_of_event" ON DELETE CASCADE
 );
 
 CREATE TABLE "types_of_event" (
@@ -102,7 +109,7 @@ VALUES ('retirement'), ('birthday'), ('anniversary'), ('wedding'), ('funeral');
 
 CREATE TABLE "events_vendors" (
   "id" SERIAL PRIMARY KEY,
-  "vendorUserId" INT REFERENCES "vendors" ON DELETE CASCADE,
+  "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
   "eventId" INT REFERENCES "events" ON DELETE CASCADE
 );
 
