@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import io from 'socket.io-client';
 
+// Material UI
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
@@ -11,6 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
+// Custom Components
 import Message from './Message';
 
 const Form = styled.form`
@@ -24,6 +27,7 @@ function Chat() {
   const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const socketRef = useRef();
+  const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -36,6 +40,7 @@ function Chat() {
       console.log('here', message);
       receiveMessage(message);
     });
+    dispatch({ type: 'FETCH_MESSAGES' });
   }, []);
 
   useEffect(() => {
