@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import io from 'socket.io-client';
+import DateObject from 'react-date-object';
 
 // Material UI
 import Button from '@material-ui/core/Button';
@@ -22,13 +23,15 @@ const Form = styled.form`
 
 function Chat() {
   const [yourId, setYourId] = useState();
-  const [messages, setMessages] = useState([]);
+  const [outgoingMessages, setOutgoingMessages] = useState([]);
   const [message, setMessage] = useState('');
   const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const socketRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const existingMessages = useSelector((store) => store.chat);
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
@@ -40,25 +43,36 @@ function Chat() {
       console.log('here', message);
       receiveMessage(message);
     });
-    dispatch({ type: 'FETCH_MESSAGES' });
+    fetchMessages();
   }, []);
 
   useEffect(() => {
     socketRef.current.on('send message', (message) => {
-      setMessages((messages) => [...messages, message]);
+      setOutgoingMessages((outgoingMessages) => [...outgoingMessages, message]);
     });
   }, []);
+
+  const fetchMessages = () => {
+    dispatch({ type: 'FETCH_MESSAGES' });
+  };
 
   const sendMessage = (evt) => {
     evt.preventDefault(); // prevents the form from refreshing the page
     // console.log('sending message after form submission');
+    const date = new DateObject();
+    const formattedDate = date.format('YYYY/MM/DD hh:mm:ss.SSS');
+    console.log('sending message', formattedDate);
+
     const messageObject = {
-      body: message,
-      id: yourId, // req.user.id may go here and then we validate on the messages
+      date: formattedDate,
+      fromUser: 2,
+      message: message,
+      // id will be inserted on POST
+      toUser: 3,
     };
     setMessage('');
-
-    // console.log('emitting message to server');
+    console.log('length', outgoingMessages.length);
+    console.log('outgoing', outgoingMessages);
     socketRef.current.emit('send message', messageObject);
   };
 
@@ -84,9 +98,18 @@ function Chat() {
           }}
         >
           {/* Messages should eventually come from redux rather than local state */}
-          {messages.map((singleMessage, index) => {
-            return <Message key={index} message={singleMessage} />;
+          {/* TODO: conditional render if length is greater than 0 */}
+          {existingMessages.map((singleMessage, index) => {
+            return <Message key={index} messageDetails={singleMessage} />;
           })}
+
+          {outgoingMessages.length > 0 ? (
+            outgoingMessages.map((singleMessage, index) => {
+              return <Message key={index} messageDetails={singleMessage} />;
+            })
+          ) : (
+            <h2>nope</h2>
+          )}
         </Paper>
       </Grid>
       {/* Form for submitting text to another user */}
