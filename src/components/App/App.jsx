@@ -1,33 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import { useDispatch } from 'react-redux';
+// AUTHENTICATION:
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
+// CUSTOM COMPONENTS:
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
+import AboutPage from "../AboutPage/AboutPage";
+import Message from "../MessageAll/MessageAll";
+import UserPage from "../UserPage/UserPage";
+import LandingPage from "../LandingPage/LandingPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import DiscoverPage from "../DiscoverPage/DiscoverPage";
+import SearchNetwork from "../SearchNetwork/SearchNetwork";
 import StyleGuide from '../StyleGuide/StyleGuide';
 
-import './App.css';
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
@@ -36,7 +38,7 @@ function App() {
         {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+          <Redirect exact from="/" to="/message" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
@@ -57,6 +59,10 @@ function App() {
             <StyleGuide />
           </Route>
 
+          <Route exact path="/message">
+            <Message />
+          </Route>
+
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -70,11 +76,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows Discover else shows LoginPage
             exact
-            path="/info"
+            path="/discover"
           >
-            <InfoPage />
+            <DiscoverPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Discover else shows LoginPage
+            exact
+            path="/search"
+          >
+            <SearchNetwork />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will
