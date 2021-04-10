@@ -61,8 +61,6 @@ function Chat() {
     // console.log('sending message after form submission');
     const date = new DateObject();
     const formattedDate = date.format('YYYY/MM/DD hh:mm:ss.SSS');
-    console.log('sending message', formattedDate);
-
     const messageObject = {
       date: formattedDate,
       fromUser: 2,
@@ -78,6 +76,15 @@ function Chat() {
 
   const goBack = () => {
     console.log('pushing to a previous page');
+    //
+    dispatch({
+      type: 'POST_OUTGOING_MESSAGES',
+      payload: outgoingMessages,
+      onComplete: () => {
+        console.log('moving pages now!');
+        // history.push('/alldetails') ???
+      },
+    });
   };
 
   return (
