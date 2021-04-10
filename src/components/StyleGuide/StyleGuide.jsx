@@ -65,11 +65,11 @@ function StyleGuide() {
         </Grid>
 
         <Grid item container spacing={2} xs={12}>
-          <Grid item>
+          <Grid item xs={6}>
             <Button color="primary" variant="contained">Primary Button</Button>
           </Grid>
 
-          <Grid item>          
+          <Grid item xs={6}>          
             <Button color="secondary" variant="contained">Secondary Button</Button>
           </Grid>
         </Grid>
