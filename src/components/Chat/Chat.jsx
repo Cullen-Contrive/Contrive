@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-import Messages from './Messages';
+import Message from './Message';
 
 const Form = styled.form`
   width: 400px;
@@ -79,7 +79,9 @@ function Chat() {
           }}
         >
           {/* Messages should eventually come from redux rather than local state */}
-          <Messages messages={messages} />
+          {messages.map((singleMessage, index) => {
+            return <Message key={index} message={singleMessage} />;
+          })}
         </Paper>
       </Grid>
       {/* Form for submitting text to another user */}
