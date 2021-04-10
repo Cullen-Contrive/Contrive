@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import StyleGuide from '../StyleGuide/StyleGuide';
 
 import './App.css';
 
@@ -44,6 +45,16 @@ function App() {
             path="/about"
           >
             <AboutPage />
+          </Route>
+
+          {/* Visiting localhost:3000/styleGuide will show the styleGuide used for this page.
+            This route should be removed/inaccessible by users for production.*/}
+          <Route
+            // shows the StyleGuide for this Project
+            exact
+            path="/styleGuide"
+          >
+            <StyleGuide />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
