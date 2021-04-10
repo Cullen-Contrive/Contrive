@@ -5,21 +5,22 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
 
-import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
-
+// AUTHENTICATION:
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
+// CUSTOM COMPONENTS:
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 import AboutPage from "../AboutPage/AboutPage";
 import Message from "../MessageAll/MessageAll";
 import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
+import DiscoverPage from "../DiscoverPage/DiscoverPage";
+import SearchNetwork from "../SearchNetwork/SearchNetwork";
 
 import "./App.css";
 
@@ -64,11 +65,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows Discover else shows LoginPage
             exact
-            path="/info"
+            path="/discover"
           >
-            <InfoPage />
+            <DiscoverPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Discover else shows LoginPage
+            exact
+            path="/search"
+          >
+            <SearchNetwork />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

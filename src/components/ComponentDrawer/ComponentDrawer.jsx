@@ -1,5 +1,5 @@
 // Slide-out sidebar display navigation options.
-// Reached by path '/drawer'
+// Feeds into footer nav bar, reached by path '/drawer'?
 import React from 'react';
 
 
