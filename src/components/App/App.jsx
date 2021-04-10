@@ -21,6 +21,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import DiscoverPage from "../DiscoverPage/DiscoverPage";
 import SearchNetwork from "../SearchNetwork/SearchNetwork";
+import StyleGuide from '../StyleGuide/StyleGuide';
 
 import "./App.css";
 
@@ -34,7 +35,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/message" />
@@ -46,6 +47,16 @@ function App() {
             path="/about"
           >
             <AboutPage />
+          </Route>
+
+          {/* Visiting localhost:3000/styleGuide will show the styleGuide used for this page.
+            This route should be removed/inaccessible by users for production.*/}
+          <Route
+            // shows the StyleGuide for this Project
+            exact
+            path="/styleGuide"
+          >
+            <StyleGuide />
           </Route>
 
           <Route exact path="/message">
