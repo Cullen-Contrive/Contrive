@@ -11,8 +11,18 @@ function* fetchMessages() {
   }
 }
 
+function* postOutgoingMessages(action) {
+  try {
+    console.log('Received a payload', action.payload);
+    const response = yield axios.post('/api/message', action.payload);
+  } catch (err) {
+    console.error('CLIENT - SAGAS - an error occurred posting messages');
+  }
+}
+
 function* chatSaga() {
   yield takeLatest('FETCH_MESSAGES', fetchMessages);
+  yield takeLatest('POST_OUTGOING_MESSAGES', postOutgoingMessages);
 }
 
 export default chatSaga;

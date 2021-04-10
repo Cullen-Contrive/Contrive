@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import io from 'socket.io-client';
 import DateObject from 'react-date-object';
+import Swal from 'sweetalert2';
 
 // Material UI
 import Button from '@material-ui/core/Button';
@@ -58,9 +59,17 @@ function Chat() {
 
   const sendMessage = (evt) => {
     evt.preventDefault(); // prevents the form from refreshing the page
-    // console.log('sending message after form submission');
+    if (message.length <= 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Empty Message',
+        text: 'Cannot send empty messages!',
+        showCloseButton: true,
+      });
+      return; // return so the function does not execute
+    }
     const date = new DateObject();
-    const formattedDate = date.format('YYYY/MM/DD hh:mm:ss.SSS');
+    const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
     const messageObject = {
       date: formattedDate,
       fromUser: 2,
@@ -69,14 +78,11 @@ function Chat() {
       toUser: 3,
     };
     setMessage('');
-    console.log('length', outgoingMessages.length);
-    console.log('outgoing', outgoingMessages);
     socketRef.current.emit('send message', messageObject);
   };
 
   const goBack = () => {
-    console.log('pushing to a previous page');
-    //
+    // posts messages to db upon moving from page.
     dispatch({
       type: 'POST_OUTGOING_MESSAGES',
       payload: outgoingMessages,
