@@ -2,25 +2,35 @@ import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
 
-function LoginPage() {
+// Material-UI
+import { ThemeProvider } from '@material-ui/core/styles';
+import {
+  Button, // replaces html5 <button> element
+  Grid,
+  Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
+} from '@material-ui/core';
+
+function LoginPage({ theme }) {
   const history = useHistory();
 
   return (
-    <div>
-      <LoginForm />
+    <ThemeProvider theme={theme}>
 
-      <center>
-        <button
+      <Grid item container xs={12}>
+        <LoginForm />
+      </Grid>
+
+      <Grid item container xs={12} justify="center">
+        <Button color="secondary" variant="contained"
           type="button"
-          className="btn btn_asLink"
           onClick={() => {
             history.push('/registration');
           }}
         >
           Register
-        </button>
-      </center>
-    </div>
+        </Button>
+      </Grid>
+    </ThemeProvider>
   );
 }
 

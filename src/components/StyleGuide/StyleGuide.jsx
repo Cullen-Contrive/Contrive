@@ -163,7 +163,9 @@ function StyleGuide() {
 
           <Grid item xs={12}>
             <FormControl variant="outlined" fullWidth>
-              <InputLabel id="selector-example-label">Selector Example</InputLabel>
+              <InputLabel id="selector-example-label">
+                Selector Example
+              </InputLabel>
               <Select
                 // value={state}
                 // onChange={handleChange}

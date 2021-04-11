@@ -151,7 +151,7 @@ function App() {
               path="/login"
               authRedirect="/user"
             >
-              <LoginPage />
+              <LoginPage theme={theme} />
             </ProtectedRoute>
 
             <ProtectedRoute

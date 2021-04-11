@@ -7,18 +7,8 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 import { ThemeProvider } from '@material-ui/core/styles';
 import {
   Button, // replaces html5 <button> element
-  ButtonGroup,
-  FormControl,
-  FormHelperText,
-  Grid, //
-  Input,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  TextField,
+  Grid,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
-
 } from '@material-ui/core';
 
 function RegisterPage({ theme }) {
@@ -26,19 +16,21 @@ function RegisterPage({ theme }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <RegisterForm />
 
-      <center>
-        <Button color="primary" variant="contained"
+      <Grid item container xs={12}>
+        <RegisterForm />
+      </Grid>
+
+      <Grid item container xs={12} justify="center">
+        <Button color="secondary" variant="contained"
           type="button"
-          className="btn btn_asLink"
           onClick={() => {
             history.push('/login');
           }}
         >
           Login
         </Button>
-      </center>
+      </Grid>
     </ThemeProvider>
   );
 }

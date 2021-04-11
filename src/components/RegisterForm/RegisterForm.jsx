@@ -37,43 +37,53 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <Grid item container spacing={2} xs={12} component={Paper}>
       <Typography variant="h2" component="h2" align="center">
         Register User
       </Typography>
       {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
+        <Typography variant="h3" component="h3" align="center"
+          className="alert" role="alert">
           {errors.registrationMessage}
-        </h3>
+        </Typography>
       )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="email"
+            label="email"
             type="text"
-            name="username"
+            autoComplete="current-email"
+            // helperText=""
+            variant="outlined"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
+        </FormControl>
+      </Grid>
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="password"
+            label="password"
             type="password"
-            name="password"
+            autoComplete="current-password"
+            helperText="Your password can include symbols and numbers."
+            variant="outlined"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
-    </form>
+        </FormControl>
+      </Grid>
+      <Grid item container xs={12} justify="center">
+        <Button color="primary" variant="contained"
+          onClick={registerUser}>
+          Register
+        </Button>
+      </Grid>
+    </Grid>
   );
 }
 
