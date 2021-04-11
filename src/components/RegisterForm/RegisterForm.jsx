@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // Material-UI
 import {
@@ -19,6 +20,7 @@ import {
 } from '@material-ui/core';
 
 function RegisterForm() {
+  const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
@@ -81,6 +83,14 @@ function RegisterForm() {
         <Button color="primary" variant="contained"
           onClick={registerUser}>
           Register
+        </Button>
+        <Button color="secondary" variant="contained"
+          type="button"
+          onClick={() => {
+            history.push('/login');
+          }}
+        >
+          Login
         </Button>
       </Grid>
     </Grid>

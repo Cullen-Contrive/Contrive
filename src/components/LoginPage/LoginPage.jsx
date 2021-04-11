@@ -20,7 +20,7 @@ function LoginPage({ theme }) {
         <LoginForm />
       </Grid>
 
-      <Grid item container xs={12} justify="center">
+      {/* <Grid item container xs={12} justify="center">
         <Button color="secondary" variant="contained"
           type="button"
           onClick={() => {
@@ -29,7 +29,7 @@ function LoginPage({ theme }) {
         >
           Register
         </Button>
-      </Grid>
+      </Grid> */}
     </ThemeProvider>
   );
 }

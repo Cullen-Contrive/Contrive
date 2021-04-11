@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // Material-UI
 import {
@@ -20,6 +20,8 @@ import {
 } from '@material-ui/core';
 
 function LoginForm() {
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
@@ -83,6 +85,14 @@ function LoginForm() {
         </FormControl>
       </Grid>
       <Grid item container xs={12} justify="center">
+        <Button color="secondary" variant="contained"
+          type="button"
+          onClick={() => {
+            history.push('/registration');
+          }}
+        >
+          Register
+        </Button>
         <Button color="primary" variant="contained"
           onClick={login}>
           Log In

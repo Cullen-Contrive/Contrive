@@ -21,16 +21,16 @@ function RegisterPage({ theme }) {
         <RegisterForm />
       </Grid>
 
-      <Grid item container xs={12} justify="center">
-        <Button color="secondary" variant="contained"
+      {/* <Grid item container xs={12} justify="center"> */}
+      {/* <Button color="secondary" variant="contained"
           type="button"
           onClick={() => {
             history.push('/login');
           }}
         >
           Login
-        </Button>
-      </Grid>
+        </Button> */}
+      {/* </Grid> */}
     </ThemeProvider>
   );
 }
