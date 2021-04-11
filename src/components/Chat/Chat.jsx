@@ -116,13 +116,11 @@ function Chat() {
             return <Message key={index} messageDetails={singleMessage} />;
           })}
 
-          {outgoingMessages.length > 0 ? (
-            outgoingMessages.map((singleMessage, index) => {
-              return <Message key={index} messageDetails={singleMessage} />;
-            })
-          ) : (
-            <h2>nope</h2>
-          )}
+          {outgoingMessages.length > 0
+            ? outgoingMessages.map((singleMessage, index) => {
+                return <Message key={index} messageDetails={singleMessage} />;
+              })
+            : ' '}
         </Paper>
       </Grid>
       {/* Form for submitting text to another user */}
