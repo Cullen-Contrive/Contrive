@@ -201,6 +201,7 @@ function RegisterForm() {
           <Button color="primary" variant="contained"
 
           onClick={onClickFunction}> */}
+
         {/* NEED TO CONDITIONALLY RENDER onClick ACTION FOR planner VS vendor (see trials above) */}
         <Button color="primary" variant="contained"
           onClick={vendorRegistration}>
