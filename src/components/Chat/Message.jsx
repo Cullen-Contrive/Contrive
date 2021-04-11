@@ -8,12 +8,10 @@ function Message({ messageDetails }) {
   const useStyles = makeStyles((theme) => ({
     container: {
       bottom: 0,
-      // position: "fixed" // remove this so we can apply flex design
     },
     bubbleContainer: {
       width: '100%',
       display: 'flex', //new added flex so we can put div at left and right side
-      //check style.css for left and right classnaeme based on your data
     },
     bubble: {
       border: '0.5px solid black',
