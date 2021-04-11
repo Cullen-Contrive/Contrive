@@ -1,4 +1,5 @@
 // Material-UI Themes (style sheet)
+// Reached at path '/styleGuide'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // Material-UI Components
@@ -60,28 +61,40 @@ const theme = createMuiTheme({
 });
 
 function StyleGuide() {
-  return(
+  return (
     <ThemeProvider theme={theme}>
-      <Grid container alignContent="center" alignItems="center" justify="center" spacing={10}>
 
+      {/* Overall Grid to wrap entire component */}
+      <Grid container alignContent="center" alignItems="center"
+        justify="center" spacing={10}>
+
+        {/* Top Grid Container to hold Contrive title and example paragraph */}
         <Grid item container component={Paper} xs={12}>
           <Grid item xs={12}>
-            <Typography variant="h1" align="center">Contrive Style Guide</Typography>
-          </Grid> 
+            <Typography variant="h1" align="center">
+              Contrive Style Guide
+            </Typography>
+          </Grid>
 
           <Grid item xs={12}>
             <Typography variant="body1" component="p">
-              The purpose of this document is to showcase and reference the styles that will be used to build out the Contrive Application. With the implementation of Material-UI within this application, this document also serves as a reference for what "vanilla" html elements are being replaced and how. This is an an example of a <strong>Typography Element with a "body1" variant and a "p" component</strong>.
+              The purpose of this document is to showcase and reference the styles
+              that will be used to build out the Contrive Application. With the
+              implementation of Material-UI within this application, this document
+              also serves as a reference for what "vanilla" html elements are being
+              replaced and how. This is an example of a <strong>Typography Element
+              with a "body1" variant and a "p" component</strong>.
             </Typography>
           </Grid>
         </Grid>
 
+        {/* Grid container to hold all buttons on this page */}
         <Grid item container spacing={2} xs={12} component={Paper}>
           <Grid item container xs={12} justify="center">
             <Button color="primary" variant="contained">Primary Button</Button>
           </Grid>
 
-          <Grid item container xs={12} justify="center">          
+          <Grid item container xs={12} justify="center">
             <Button color="secondary" variant="contained">Secondary Button</Button>
           </Grid>
 
@@ -93,6 +106,7 @@ function StyleGuide() {
           </Grid>
         </Grid>
 
+        {/* Grid container to hold entire form */}
         <Grid item container spacing={2} xs={12} component={Paper}>
           <Grid item xs={12}>
             <FormControl fullWidth>
@@ -109,8 +123,8 @@ function StyleGuide() {
 
           <Grid item xs={12}>
             <FormControl fullWidth>
-              <TextField 
-                id="password-input-example" 
+              <TextField
+                id="password-input-example"
                 label="Password input example"
                 type="password"
                 autoComplete="current-password"
@@ -122,8 +136,8 @@ function StyleGuide() {
 
           <Grid item xs={12}>
             <FormControl fullWidth>
-              <TextField 
-                id="password-input-example" 
+              <TextField
+                id="password-input-example"
                 label="Password input example"
                 type="password"
                 autoComplete="current-password"

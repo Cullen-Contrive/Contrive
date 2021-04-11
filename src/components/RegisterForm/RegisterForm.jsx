@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// Material-UI
+import {
+  Button, // replaces html5 <button> element
+  ButtonGroup,
+  FormControl,
+  FormHelperText,
+  Grid, //
+  Input,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+  Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
+
+} from '@material-ui/core';
+
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +38,9 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <Typography variant="h2" component="h2" align="center">
+        Register User
+      </Typography>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
