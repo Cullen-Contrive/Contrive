@@ -23,6 +23,8 @@ import DiscoverPage from "../DiscoverPage/DiscoverPage";
 import SearchNetwork from "../SearchNetwork/SearchNetwork";
 import StyleGuide from '../StyleGuide/StyleGuide';
 
+import RegisterVendorPage from '../RegisterPage/VendorRegisterPage';
+
 import "./App.css";
 
 // Material-UI:
@@ -84,7 +86,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <div>
-          {/* <Nav /> */}
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/message" />
@@ -95,7 +96,7 @@ function App() {
               exact
               path="/about"
             >
-              <AboutPage />
+              <AboutPage theme={theme} />
             </Route>
 
             {/* Visiting localhost:3000/styleGuide will show the styleGuide used for this page.
@@ -109,7 +110,7 @@ function App() {
             </Route>
 
             <Route exact path="/message">
-              <Message />
+              <Message theme={theme} />
             </Route>
 
             {/* For protected routes, the view could show one of several things on the same route.
@@ -121,7 +122,7 @@ function App() {
               exact
               path="/user"
             >
-              <UserPage />
+              <UserPage theme={theme} />
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -129,7 +130,7 @@ function App() {
               exact
               path="/discover"
             >
-              <DiscoverPage />
+              <DiscoverPage theme={theme} />
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -137,7 +138,7 @@ function App() {
               exact
               path="/search"
             >
-              <SearchNetwork />
+              <SearchNetwork theme={theme} />
             </ProtectedRoute>
 
             {/* When a value is supplied for the authRedirect prop the user will
@@ -167,13 +168,24 @@ function App() {
 
             <ProtectedRoute
               // with authRedirect:
+              // - if logged in, redirects to "/vendor"
+              // - else shows RegisterPage at "/registration"
+              exact
+              path="/registration/vendor"
+              authRedirect="/vendor"
+            >
+              <RegisterVendorPage theme={theme} />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // with authRedirect:
               // - if logged in, redirects to "/user"
               // - else shows LandingPage at "/home"
               exact
               path="/home"
               authRedirect="/user"
             >
-              <LandingPage />
+              <LandingPage theme={theme} />
             </ProtectedRoute>
 
             {/* If none of the other routes matched, we will show a 404. */}
@@ -181,7 +193,8 @@ function App() {
               <h1>404</h1>
             </Route>
           </Switch>
-          <Footer />
+          <Footer theme={theme} />
+          <Nav theme={theme} />
         </div>
       </Router>
     </ThemeProvider>

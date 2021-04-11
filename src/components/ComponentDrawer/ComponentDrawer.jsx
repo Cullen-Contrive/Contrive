@@ -3,7 +3,7 @@
 import React from 'react';
 
 
-function ComponentDrawer() {
+function ComponentDrawer({ theme }) {
   return (
     <div className="container">
       <p>Component Drawer</p>

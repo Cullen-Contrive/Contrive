@@ -3,7 +3,7 @@
 import React from 'react';
 
 
-function MessageDetail() {
+function MessageDetail({ theme }) {
   return (
     <div className="container">
       <p>Message Detail</p>

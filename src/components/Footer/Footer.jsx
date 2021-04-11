@@ -2,7 +2,7 @@
 import React from 'react';
 import './Footer.css';
 
-function Footer() {
+function Footer({ theme }) {
   return <footer>&copy; Contrive</footer>;
 }
 

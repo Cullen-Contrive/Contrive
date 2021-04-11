@@ -93,7 +93,7 @@ const PartnerMessage = styled.div`
   border-bottom-left-radius: 10%;
 `;
 
-function Message() {
+function Message({ theme }) {
   const [yourId, setYourId] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');

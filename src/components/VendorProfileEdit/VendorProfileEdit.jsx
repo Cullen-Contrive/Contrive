@@ -3,7 +3,7 @@
 import React from 'react';
 
 
-function VendorProfileEdit() {
+function VendorProfileEdit({ theme }) {
   return (
     <div className="container">
       <p>Vendor Profile Edit</p>
