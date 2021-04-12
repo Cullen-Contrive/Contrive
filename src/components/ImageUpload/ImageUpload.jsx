@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 // Styling for dropbox
 // const dropzoneStyle = {
 //   border: '1px solid black',
-//   height: '200px',
+//   height: '50px',
 //   width: '200px',
 //   "background-color": "#dddddd",
 // }
