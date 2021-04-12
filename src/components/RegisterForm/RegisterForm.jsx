@@ -25,18 +25,18 @@ function RegisterForm() {
 
   // Manage state of form inputs:
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
   const [website, setWebsite] = useState('');
   const [userType, setUserType] = useState('');
-  const [onClickFunction, setOnClickFunction] = useState('');
 
   // console.log('====================================');
   // console.log('username:', username);
+  // console.log('password:', password);
   // console.log('firstName:', firstName);
   // console.log('lastName:', lastName);
-  // console.log('password:', password);
+
   // console.log('website:', website);
   // console.log('userType:', userType);
   // console.log('====================================');
@@ -53,6 +53,10 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        firstName: firstName,
+        lastName: lastName,
+        website: website,
+        type: userType
       },
     });
   }; // end registerUser
