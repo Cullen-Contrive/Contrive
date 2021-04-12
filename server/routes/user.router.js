@@ -18,6 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
+  // User table info:
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
   const firstName = req.body.firstName;
@@ -25,12 +26,29 @@ router.post('/register', (req, res, next) => {
   const website = req.body.website;
   const type = req.body.type;
 
-  console.log('username:', username);
-  console.log('password', password);
-  console.log('firstName', firstName);
-  console.log('lastName', lastName);
-  console.log('website', website);
-  console.log('type', type);
+  // Vendor table info:
+  const companyAddress = req.body.companyAddress;
+  const city = req.body.city;
+  const state = req.body.state;
+  const zip = req.body.zip;
+  const companyName = req.body.companyName;
+  const description = req.body.description;
+  const additionalInfo = req.body.additionalInfo;
+  const phone = req.body.phone;
+
+  // console.log('username:', username);
+  // console.log('password', password);
+  // console.log('firstName', firstName);
+  // console.log('lastName', lastName);
+  // console.log('website', website);
+  // console.log('type', type);
+  // console.log('companyAddress:', companyAddress);
+  // console.log('city:', city);
+  // console.log('state', state);
+  // console.log('zip', zip);
+  // console.log('companyName', companyName);
+  // console.log('phone', phone);
+  // console.log('description:', description);
 
   const queryText = `INSERT INTO "users" ("username", "password", "firstName", "lastName", "website", "type")
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
@@ -38,7 +56,19 @@ router.post('/register', (req, res, next) => {
   // const queryText = `INSERT INTO "users" ("username", "password", "firstName", )`
   pool
     .query(queryText, [username, password, firstName, lastName, website, type])
-    .then(() => res.sendStatus(201))
+    .then((dbRes) => {
+      if (type === 'vendor') {
+        // console.log('dbRes:', dbRes);
+        const vendorUserId = dbRes.rows[0].id;
+        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "description", 
+      "additionalInfo", "phone")
+        VALUES ($1, $2, $3, $4);`
+
+        pool.query(sqlQuery, [vendorUserId, description, additionalInfo, phone])
+      }
+
+      res.sendStatus(201)
+    })
     .catch((err) => {
       console.log('User registration failed: ', err);
       res.sendStatus(500);

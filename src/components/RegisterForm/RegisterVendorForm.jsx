@@ -23,22 +23,33 @@ function RegisterVendorForm() {
   // Define history for routing purposes:
   const history = useHistory();
 
+  // Bring in info held from first Registration Page:
+  const vendorInfo = useSelector(store => store.user)
+
+  // console.log('====================================');
+  // console.log('vendorInfo:', vendorInfo);
+  // console.log('====================================');
+
+
   // Manage state of form inputs:
-  const [companyName, setCompanyName] = useState('');
   const [companyAddress, setCompanyAddress] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
-  const [phone, setPhone] = useState('');
+  const [zip, setZip] = useState('');
+  const [companyName, setCompanyName] = useState('');
   const [companyDescription, setCompanyDescription] = useState('');
-
+  const [additionalInfo, setAdditionalInfo] = useState('');
+  const [phone, setPhone] = useState('');
 
   // console.log('====================================');
   // console.log('companyName:', companyName);
   // console.log('companyAddress:', companyAddress);
   // console.log('city:', city);
   // console.log('state:', state);
-  // console.log('phone:', phone);
+  // const [zip, setZip] = useState('');
   // console.log('companyDescription:', companyDescription);
+  // const [additionalInfo, setAdditionalInfo] = useState('');
+  // console.log('phone:', phone);
   // console.log('====================================');
 
   // Bring in any errors stored in the reducer:
@@ -48,12 +59,18 @@ function RegisterVendorForm() {
   const registerUser = (event) => {
     event.preventDefault();
 
+    vendorInfo.companyAddress = companyAddress;
+    vendorInfo.city = city;
+    vendorInfo.state = state;
+    vendorInfo.zip = zip;
+    vendorInfo.companyName = companyName;
+    vendorInfo.description = companyDescription;
+    vendorInfo.additionalInfo = additionalInfo;
+    vendorInfo.phone = phone;
+
     dispatch({
       type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-      },
+      payload: vendorInfo,
     });
   }; // end registerUser
 
@@ -137,6 +154,22 @@ function RegisterVendorForm() {
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
           <TextField
+            id="zip"
+            label="zip code"
+            type="text"
+            autoComplete="current-zip"
+            // helperText=""
+            variant="outlined"
+            value={zip}
+            required
+            onChange={(event) => setZip(event.target.value)}
+          />
+        </FormControl>
+      </Grid>
+
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
             id="phone"
             label="phone"
             type="text"
@@ -164,6 +197,22 @@ function RegisterVendorForm() {
             value={companyDescription}
             required
             onChange={(event) => setCompanyDescription(event.target.value)}
+          />
+        </FormControl>
+      </Grid>
+
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="additionalInfo"
+            label="addtional information (certifications, etc.)"
+            type="text"
+            autoComplete="current-additionalInfo"
+            // helperText=""
+            variant="outlined"
+            value={additionalInfo}
+            required
+            onChange={(event) => setAdditionalInfo(event.target.value)}
           />
         </FormControl>
       </Grid>

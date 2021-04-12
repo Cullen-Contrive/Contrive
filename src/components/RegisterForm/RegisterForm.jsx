@@ -63,8 +63,19 @@ function RegisterForm() {
 
   const vendorRegistration = () => {
 
-    userType === 'planner' ? registerUser() :
-      history.push('/registration/vendor');
+    dispatch({
+      type: 'HOLD_USER_REGISTRATION',
+      payload: {
+        username: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        website: website,
+        type: userType
+      },
+    });
+
+    history.push('/registration/vendor');
   }
 
   return (
