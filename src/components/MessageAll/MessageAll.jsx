@@ -1,3 +1,5 @@
+// View of all messages related to the logged-in user.
+// Reached by path '/message'
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -144,4 +146,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Message;

@@ -1,13 +1,13 @@
 --USERS:
---Fill "users" table with fake users:
+--Fill "users" table with fake users (all users' passwords will be 'one'):
 INSERT INTO "users" ("username", "password", "firstName", "lastName", 
 "address", "city", "state", "zip", "type", "website", "bio")
-VALUES ('Mac@gmail.com', 'one', 'McKynlee', 'Westman', '4946 Walnut St', 'Kansas City', 'MO', 64112, 'planner', 'https://mckynlee.github.io/', 'Avid organizer of bike rallies - the non-motorized kind!'),
-('SirBill@gmail.com', 'one', 'William', 'Krug', '11 Knights Way', 'Minneapolis', 'MN', 55111, 'vendor', 'https://www.imdb.com/title/tt0183790/', 'Ready to help you plan your next Rennaissance affair down to the hilt of your sword!'),
-('LilRusty@gmail.com', 'one', 'Dusty', 'Meyers', '77 DnD Blvd', 'Lawrence', 'KS', 66044, 'planner', 'https://www.imdb.com/title/tt0190374/', 'Looking to plan the wedding of my lifetime!'),
-('JDog@gmail.com', 'one', 'John', 'Shands', '69 Woodstock Lane', 'Liberty', 'MO', 64068, 'vendor', 'https://www.libertymissouri.gov/1500/Liberty-Summer-Band', 'Able to provide a musical experience that your guests will never forget.'),
-('RedRebel@gmail.com', 'one', 'Jason', 'Lin', '123 Four Ave', 'St. Cloud', 'MN', 56301, 'planner', 'https://memes.com/', 'Helping local artists plan gallery-openings throughout the Twin Cities.'),
-('MushroomMan@gmail.com', 'one', 'Edan', 'Schwartz', '1 Magic Mushy Rd', 'Minneapolis', 'MN', 55404, 'vendor', 'https://www.birdsandblooms.com/stuff-we-love/gardening-stuff/mushroom-growing-kits/', 'Mushroom-catering specialty; guaranteed to serve only the non-toxic kind.');
+VALUES ('Mac@gmail.com', '$2a$10$d.tw3AyrHON3AynvQDuoN.my8uxemJ7KZhzc7fcRMAHiuMpxIwh/u', 'McKynlee', 'Westman', '4946 Walnut St', 'Kansas City', 'MO', 64112, 'planner', 'https://mckynlee.github.io/', 'Avid organizer of bike rallies - the non-motorized kind!'),
+('SirBill@gmail.com', '$2a$10$mnm8InlV1d1tnUTAGywETO1w6u/p/2kD.iUN9kJ25Ww6cBxNaHjzi', 'William', 'Krug', '11 Knights Way', 'Minneapolis', 'MN', 55111, 'vendor', 'https://www.imdb.com/title/tt0183790/', 'Ready to help you plan your next Rennaissance affair down to the hilt of your sword!'),
+('LilRusty@gmail.com', '$2a$10$nxWzD4fOt4n72TbnMlYXQO/yZknXnREW7s9DJY9IP0dIJG2PzsbiW', 'Dusty', 'Meyers', '77 DnD Blvd', 'Lawrence', 'KS', 66044, 'planner', 'https://www.imdb.com/title/tt0190374/', 'Looking to plan the wedding of my lifetime!'),
+('JDog@gmail.com', '$2a$10$vSH/PXClWlf3vPlHKRLNXu5TRQPamdzbn921Q7tgtiDsK20SVTB2m', 'John', 'Shands', '69 Woodstock Lane', 'Liberty', 'MO', 64068, 'vendor', 'https://www.libertymissouri.gov/1500/Liberty-Summer-Band', 'Able to provide a musical experience that your guests will never forget.'),
+('RedRebel@gmail.com', '$2a$10$coxFv5Ll23qca8Dp4LZ9T.UNlQTDQ32BM1FHXrKVqNwEJVmwWs8hG', 'Jason', 'Lin', '123 Four Ave', 'St. Cloud', 'MN', 56301, 'planner', 'https://memes.com/', 'Helping local artists plan gallery-openings throughout the Twin Cities.'),
+('MushroomMan@gmail.com', '$2a$10$y1VJWv.1EEpl5cbpp8csguhA8OuXfou32w/wWTA.yrOzrmv6i2zMW', 'Edan', 'Schwartz', '1 Magic Mushy Rd', 'Minneapolis', 'MN', 55404, 'vendor', 'https://www.birdsandblooms.com/stuff-we-love/gardening-stuff/mushroom-growing-kits/', 'Mushroom-catering specialty; guaranteed to serve only the non-toxic kind.');
 
 
 
