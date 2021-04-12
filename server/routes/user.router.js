@@ -62,7 +62,7 @@ router.post('/register', (req, res, next) => {
         const vendorUserId = dbRes.rows[0].id;
         const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "description", 
       "additionalInfo", "phone")
-        VALUES ($1, $2, $3, $4);`
+        VALUES ($1, $2, $3, $4) RETURNING "vendorUserId";`
 
         pool.query(sqlQuery, [vendorUserId, description, additionalInfo, phone])
       }

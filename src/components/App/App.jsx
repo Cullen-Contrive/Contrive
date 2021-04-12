@@ -22,6 +22,7 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import DiscoverPage from "../DiscoverPage/DiscoverPage";
 import SearchNetwork from "../SearchNetwork/SearchNetwork";
 import StyleGuide from '../StyleGuide/StyleGuide';
+import VendorProfile from '../VendorProfile/VendorProfile';
 
 import RegisterVendorPage from '../RegisterPage/RegisterVendorPage';
 
@@ -113,6 +114,14 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/vendor"
+            >
+              <VendorProfile />
+            </ProtectedRoute>
+
+            <ProtectedRoute
               // logged in shows Discover else shows LoginPage
               exact
               path="/discover"
@@ -170,6 +179,17 @@ function App() {
               // - else shows LandingPage at "/home"
               exact
               path="/home"
+              authRedirect="/user"
+            >
+              <LandingPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LandingPage at "/home"
+              exact
+              path="/vendor"
               authRedirect="/user"
             >
               <LandingPage />
