@@ -6,6 +6,10 @@ const useStyles = makeStyles({
     position: 'fixed',
     bottom: 0,
     width: '100%'
+  },
+  menuDrawer: {
+    width: '45%',
+    alignItems: 'center'
   }
 })
 
