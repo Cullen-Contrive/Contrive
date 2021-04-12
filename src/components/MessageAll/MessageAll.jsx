@@ -20,82 +20,81 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 // Custom Components
 import Message from './Message';
 
-// const Form = styled.form`
-//   width: 400px;
-// `;
-// function Chat() {
-//   const [yourId, setYourId] = useState();
-//   const [outgoingMessages, setOutgoingMessages] = useState([]);
-//   const [message, setMessage] = useState('');
-//   const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
-
-//   const socketRef = useRef();
-//   const dispatch = useDispatch();
-//   const history = useHistory();
-
-//   const existingMessages = useSelector((store) => store.chat);
-
-//   useEffect(() => {
-//     socketRef.current = io.connect(ENDPOINT);
-//     socketRef.current.emit('join', {
-//       name: 'Username will go here',
-//       room: 'room code will go here if need',
-//     });
-//     socketRef.current.on('message', (message) => {
-//       console.log('here', message);
-//       receiveMessage(message);
-//     });
-//     fetchMessages();
-//   }, []);
-
-//   useEffect(() => {
-//     socketRef.current.on('send message', (message) => {
-//       setOutgoingMessages((outgoingMessages) => [...outgoingMessages, message]);
-//     });
-//   }, []);
-
-//   const fetchMessages = () => {
-//     dispatch({ type: 'FETCH_MESSAGES' });
-//   };
-
-//   const sendMessage = (evt) => {
-//     evt.preventDefault(); // prevents the form from refreshing the page
-//     if (message.length <= 0) {
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Empty Message',
-//         text: 'Cannot send empty messages!',
-//         showCloseButton: true,
-//       });
-//       return; // return so the function does not execute
-//     }
-//     const date = new DateObject();
-//     const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
-//     const messageObject = {
-//       date: formattedDate,
-//       fromUser: 2,
-//       message: message,
-//       // id will be inserted on POST
-//       toUser: 3,
-//     };
-//     setMessage('');
-//     socketRef.current.emit('send message', messageObject);
-//   };
-
-//   const goBack = () => {
-//     // posts messages to db upon moving from page.
-//     dispatch({
-//       type: 'POST_OUTGOING_MESSAGES',
-//       payload: outgoingMessages,
-//       onComplete: () => {
-//         console.log('moving pages now!');
-//         // history.push('/alldetails') ???
-//       },
-//     });
-//   };
-
+const Form = styled.form`
+  width: 400px;
+`;
 
 function MessageAll() {
+  const [yourId, setYourId] = useState();
+  const [outgoingMessages, setOutgoingMessages] = useState([]);
+  const [message, setMessage] = useState('');
+  const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
+
+  const socketRef = useRef();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const existingMessages = useSelector((store) => store.chat);
+
+  useEffect(() => {
+    socketRef.current = io.connect(ENDPOINT);
+    socketRef.current.emit('join', {
+      name: 'Username will go here',
+      room: 'room code will go here if need',
+    });
+    socketRef.current.on('message', (message) => {
+      console.log('here', message);
+      receiveMessage(message);
+    });
+    fetchMessages();
+  }, []);
+
+  useEffect(() => {
+    socketRef.current.on('send message', (message) => {
+      setOutgoingMessages((outgoingMessages) => [...outgoingMessages, message]);
+    });
+  }, []);
+
+  const fetchMessages = () => {
+    dispatch({ type: 'FETCH_MESSAGES' });
+  };
+
+  const sendMessage = (evt) => {
+    evt.preventDefault(); // prevents the form from refreshing the page
+    if (message.length <= 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Empty Message',
+        text: 'Cannot send empty messages!',
+        showCloseButton: true,
+      });
+      return; // return so the function does not execute
+    }
+    const date = new DateObject();
+    const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
+    const messageObject = {
+      date: formattedDate,
+      fromUser: 2,
+      message: message,
+      // id will be inserted on POST
+      toUser: 3,
+    };
+    setMessage('');
+    socketRef.current.emit('send message', messageObject);
+  };
+
+  const goBack = () => {
+    // posts messages to db upon moving from page.
+    dispatch({
+      type: 'POST_OUTGOING_MESSAGES',
+      payload: outgoingMessages,
+      onComplete: () => {
+        console.log('moving pages now!');
+        // history.push('/alldetails') ???
+      },
+    });
+  };
+  
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
