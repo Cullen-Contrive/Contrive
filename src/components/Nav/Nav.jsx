@@ -68,7 +68,7 @@ function Nav() {
     >
       <BottomNavigationAction label="Discover" value="discover" icon={<LanguageIcon />} />
       <BottomNavigationAction label="Search" value="search" icon={<SearchIcon />} />
-      <BottomNavigationAction label="Plan" value="plan" icon={<AddCircleIcon fontSize="large" />} />
+      <BottomNavigationAction label="Plan" value="plan" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
       <BottomNavigationAction label="Messages" value="messages" icon={<ChatIcon />} />
       <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
     </BottomNavigation>
