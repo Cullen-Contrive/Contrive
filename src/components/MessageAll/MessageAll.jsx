@@ -1,3 +1,5 @@
+import React from 'react';
+
 // View of all messages related to the logged-in user.
 // Reached by path '/message'
 import React, { useState, useEffect, useRef } from 'react';
@@ -95,6 +97,8 @@ function Chat() {
     });
   };
 
+
+function MessageAll() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -146,4 +150,4 @@ function Chat() {
   );
 }
 
-export default Message;
+export default MessageAll;

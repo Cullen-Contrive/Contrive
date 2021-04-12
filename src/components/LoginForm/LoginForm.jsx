@@ -1,8 +1,27 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+// Material-UI
+import {
+  Button, // replaces html5 <button> element
+  ButtonGroup,
+  FormControl,
+  FormHelperText,
+  Grid, //
+  Input,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+  Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
+
+} from '@material-ui/core';
 
 function LoginForm() {
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
@@ -25,41 +44,61 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+    <Grid item container spacing={2} xs={12} component={Paper}>
+      <Typography variant="h2" component="h2" align="center">
+        Login
+      </Typography>
       {errors.loginMessage && (
-        <h3 className="alert" role="alert">
+        <Typography variant="h3" component="h3" align="center"
+          className="alert" role="alert">
           {errors.loginMessage}
-        </h3>
+        </Typography>
       )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="email"
+            label="email"
             type="text"
-            name="username"
-            required
+            autoComplete="current-email"
+            // helperText=""
+            variant="outlined"
             value={username}
+            required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
+        </FormControl>
+      </Grid>
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="password"
+            label="password"
             type="password"
-            name="password"
-            required
+            autoComplete="current-password"
+            helperText="Your password can include symbols and numbers."
+            variant="outlined"
             value={password}
+            required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
-    </form>
+        </FormControl>
+      </Grid>
+      <Grid item container xs={12} justify="center">
+        <Button color="secondary" variant="contained"
+          type="button"
+          onClick={() => {
+            history.push('/registration');
+          }}
+        >
+          Register
+        </Button>
+        <Button color="primary" variant="contained"
+          onClick={login}>
+          Log In
+        </Button>
+      </Grid>
+    </Grid>
   );
 }
 
