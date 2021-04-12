@@ -2,7 +2,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
-function ProfileHeader() {
+function ProfileName() {
   return (
     <Grid
       container
@@ -11,23 +11,6 @@ function ProfileHeader() {
       justify="center"
       direction="row"
     >
-      <Grid item xs={12}>
-        <img
-          className=""
-          src={process.env.PUBLIC_URL + 'placeholder.png'}
-          style={{
-            width: '25%',
-          }}
-        />
-        <Typography
-          variant="h2"
-          style={{
-            display: 'inline-block',
-          }}
-        >
-          Contrive
-        </Typography>
-      </Grid>
       {/* Beginning of Profile Name */}
       <Grid item xs={12}>
         <Typography variant="h5" style={{ display: 'inline-block' }}>
@@ -35,9 +18,10 @@ function ProfileHeader() {
         </Typography>
         <img
           src={process.env.PUBLIC_URL + 'placeholder.png'}
-          style={{ width: '25%', position: 'fixed' }}
+          style={{ width: '25%', height: '100%' }}
         />
       </Grid>
+      {/* Beginning of Rating / Certified */}
       <Grid item xs={12}>
         <center>
           {/* Certified or not */}
@@ -53,4 +37,4 @@ function ProfileHeader() {
   );
 }
 
-export default ProfileHeader;
+export default ProfileName;
