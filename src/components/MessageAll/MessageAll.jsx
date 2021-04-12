@@ -97,7 +97,6 @@ function Chat() {
     });
   };
 
-
 function MessageAll() {
   return (
     <Grid container spacing={3}>
@@ -149,5 +148,6 @@ function MessageAll() {
     </Grid>
   );
 }
+
 
 export default MessageAll;

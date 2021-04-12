@@ -14,6 +14,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 import AboutPage from "../AboutPage/AboutPage";
+import Message from "../MessageAll/MessageAll";
 import MessageDetail from "../MessageDetail/MessageDetail";
 import UserPage from "../UserPage/UserPage";
 import LandingPage from "../LandingPage/LandingPage";
@@ -23,8 +24,8 @@ import DiscoverPage from "../DiscoverPage/DiscoverPage";
 import SearchNetwork from "../SearchNetwork/SearchNetwork";
 import StyleGuide from '../StyleGuide/StyleGuide';
 import VendorProfile from '../VendorProfile/VendorProfile';
-
 import RegisterVendorPage from '../RegisterPage/RegisterVendorPage';
+
 
 import "./App.css";
 
@@ -69,9 +70,9 @@ function App() {
     dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
-  return (
-    <ThemeProvider theme={contriveTheme}>
-      <CssBaseline />
+  return (   
+ <ThemeProvider theme={contriveTheme}>
+   <CssBaseline />
       <Router>
         <div>
           <Switch>
