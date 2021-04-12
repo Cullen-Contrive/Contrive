@@ -1,3 +1,5 @@
+// View of all messages related to the logged-in user.
+// Reached by path '/message'
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +24,7 @@ const Form = styled.form`
   width: 400px;
 `;
 
-function Chat() {
+function MessageAll() {
   const [yourId, setYourId] = useState();
   const [outgoingMessages, setOutgoingMessages] = useState([]);
   const [message, setMessage] = useState('');
@@ -92,7 +94,7 @@ function Chat() {
       },
     });
   };
-
+  
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -113,15 +115,15 @@ function Chat() {
           {/* existingMessages comes from database */}
           {existingMessages.length > 0
             ? existingMessages.map((singleMessage, index) => {
-                return <Message key={index} messageDetails={singleMessage} />;
-              })
+              return <Message key={index} messageDetails={singleMessage} />;
+            })
             : ' '}
 
           {/* outgoingMessages is stored in local state and pushed to database on moving page */}
           {outgoingMessages.length > 0
             ? outgoingMessages.map((singleMessage, index) => {
-                return <Message key={index} messageDetails={singleMessage} />;
-              })
+              return <Message key={index} messageDetails={singleMessage} />;
+            })
             : ' '}
         </Paper>
       </Grid>
@@ -144,4 +146,5 @@ function Chat() {
   );
 }
 
-export default Chat;
+
+export default MessageAll;

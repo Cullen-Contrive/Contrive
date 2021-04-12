@@ -5,34 +5,27 @@ function ProfileName() {
   return (
     <Grid container spacing={3}>
       {/* Beginning of Profile Name */}
-      <Grid item xs={12} center>
+      <Grid item xs={8}>
         <Box
           display="flex"
-          flex-direction="column"
-          alignItems="center"
-          flexWrap="wrap"
+          flexDirection="column"
+          alignItems="flex-start"
           justifyContent="center"
         >
           <Typography variant="h5" style={{ display: 'inline-block' }}>
             Catherine's Catering
           </Typography>
+          {/* <CheckCircleIcon /> */}
           <img
             src={process.env.PUBLIC_URL + 'stars.jpg'}
             style={{ height: '50px' }}
           />
         </Box>
-        <Box display="flex" justifyContent="flex-end" alignItems="center">
-          {/* Rating will go here */}
-          {/* <CheckCircleIcon /> */}
-          <img
-            src={process.env.PUBLIC_URL + 'placeholder.png'}
-            style={{ width: '25%', height: '100%' }}
-          />
-        </Box>
       </Grid>
-      {/* Beginning of Rating / Certified */}
-      <Grid item xs={12}>
-        {/* Certified or not */}
+      <Grid item xs={4}>
+        <center>
+          <img src={process.env.PUBLIC_URL + 'placeholder.png'} />
+        </center>
       </Grid>
     </Grid>
   );

@@ -5,9 +5,9 @@ function ContriveHeader() {
   return (
     <Grid
       container
-      spacing={3}
+      spacing={0}
       alignItems="center"
-      justify="center"
+      justifyContent="space-between"
       direction="row"
     >
       <Grid item xs={12}>

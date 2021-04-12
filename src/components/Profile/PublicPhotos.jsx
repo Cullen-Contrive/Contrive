@@ -57,6 +57,9 @@ function PublicPhotos() {
         </IconButton>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <Typography>helloooooooo</Typography>
+          {/* {images.map((image, index) => 
+            return <PublicPhoto image={image}/>
+            )} */}
         </Collapse>
       </Grid>
     </Grid>
