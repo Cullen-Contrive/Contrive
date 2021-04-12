@@ -6,7 +6,10 @@ import About from './About';
 import SpecialFeatures from './SpecialFeatures';
 
 function VendorProfile() {
+  // redux / sagas stuff goes here...
+  //
   return (
+    // pass props to children
     <>
       <ContriveHeader />
       <ProfileName />
