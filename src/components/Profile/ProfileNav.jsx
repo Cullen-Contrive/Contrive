@@ -43,6 +43,7 @@ function ProfileNav() {
             <IconButton aria-label="website">
               <LanguageIcon />
             </IconButton>
+            {/* Conditionally render this element */}
             <IconButton aria-label="edit profile">
               <EditIcon />
             </IconButton>
