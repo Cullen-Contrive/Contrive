@@ -15,6 +15,8 @@ function* postOutgoingMessages(action) {
   try {
     console.log('Received a payload', action.payload);
     const response = yield axios.post('/api/message', action.payload);
+    // call the onComplete function here as a workaround for dealing with race condition
+    action.payload.onComplete();
   } catch (err) {
     console.error('CLIENT - SAGAS - an error occurred posting messages');
   }

@@ -110,12 +110,14 @@ function Chat() {
             marginRight: 10,
           }}
         >
-          {/* Messages should eventually come from redux rather than local state */}
-          {/* TODO: conditional render if length is greater than 0 */}
-          {existingMessages.map((singleMessage, index) => {
-            return <Message key={index} messageDetails={singleMessage} />;
-          })}
+          {/* existingMessages comes from database */}
+          {existingMessages.length > 0
+            ? existingMessages.map((singleMessage, index) => {
+                return <Message key={index} messageDetails={singleMessage} />;
+              })
+            : ' '}
 
+          {/* outgoingMessages is stored in local state and pushed to database on moving page */}
           {outgoingMessages.length > 0
             ? outgoingMessages.map((singleMessage, index) => {
                 return <Message key={index} messageDetails={singleMessage} />;
