@@ -55,6 +55,22 @@ function App() {
               <Chat />
             </Route>
 
+            {/* These routes are purely to tests the nav feature */}
+            <Route exact path="/discover">
+              <h1>You are On the Discover Page</h1>
+            </Route>
+
+            <Route exact path="/theNetwork">
+              <h1>You are on The Network Page</h1>
+            </Route>
+
+            <Route exact path="/events/create">
+              <h1>You are on the Create Events Page</h1>
+            </Route>
+
+            <Route exact path="/messages">
+              <h1>You are on the Messages Page</h1>
+            </Route>
             {/* For protected routes, the view could show one of several things on the same route.
               Visiting localhost:3000/user will show the UserPage if the user is logged in.
               If the user is not logged in, the ProtectedRoute will show the LoginPage (component).

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import useStyles from './Nav.styles'
@@ -20,6 +20,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 function Nav() {
   const classes = useStyles();
+  let history = useHistory();
   const [value, setValue] = useState('discover')
   const user = useSelector((store) => store.user);
 
@@ -35,6 +36,7 @@ function Nav() {
   
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    history.push(`${newValue}`)
   }
 
   return (
@@ -66,10 +68,10 @@ function Nav() {
       onChange={handleChange}
       className={classes.navbar}
     >
-      <BottomNavigationAction label="Discover" value="discover" icon={<LanguageIcon />} />
-      <BottomNavigationAction label="Search" value="search" icon={<SearchIcon />} />
-      <BottomNavigationAction label="Plan" value="plan" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
-      <BottomNavigationAction label="Messages" value="messages" icon={<ChatIcon />} />
+      <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
+      <BottomNavigationAction label="Search" value="/theNetwork" icon={<SearchIcon />} />
+      <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
+      <BottomNavigationAction label="Messages" value="/messages" icon={<ChatIcon />} />
       <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
     </BottomNavigation>
   );
