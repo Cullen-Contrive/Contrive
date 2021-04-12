@@ -6,7 +6,12 @@ function ProfileName() {
   return (
     <Grid container spacing={3}>
       {/* Beginning of Profile Name */}
-      <Grid item xs={12} center>
+      <Grid
+        item
+        xs={12}
+        center
+        style={{ alignItems: 'center', justify: 'center' }}
+      >
         <Typography variant="h5" style={{ display: 'inline-block' }}>
           Catherine's Catering
         </Typography>

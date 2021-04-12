@@ -11,6 +11,9 @@ function PublicPhotos() {
   const [expanded, setExpanded] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
     expand: {
       transform: 'rotate(0deg)',
       marginLeft: 'auto',
@@ -32,9 +35,15 @@ function PublicPhotos() {
   };
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} className={classes.root}>
       <Grid item xs={12}>
-        <Typography>Public Photos</Typography>
+        <Typography
+          style={{
+            display: 'inline-block',
+          }}
+        >
+          Public Photos
+        </Typography>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,

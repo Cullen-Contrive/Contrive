@@ -11,6 +11,9 @@ function SpecialFeatures() {
   const [expanded, setExpanded] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
     expand: {
       transform: 'rotate(0deg)',
       marginLeft: 'auto',
@@ -32,9 +35,15 @@ function SpecialFeatures() {
   };
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} className={classes.root}>
       <Grid item xs={12}>
-        <Typography>Special Features</Typography>
+        <Typography
+          style={{
+            display: 'inline-block',
+          }}
+        >
+          Special Features
+        </Typography>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
