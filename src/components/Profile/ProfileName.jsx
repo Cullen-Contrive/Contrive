@@ -4,15 +4,9 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 function ProfileName() {
   return (
-    <Grid
-      container
-      spacing={3}
-      alignItems="center"
-      justify="center"
-      direction="row"
-    >
+    <Grid container spacing={3}>
       {/* Beginning of Profile Name */}
-      <Grid item xs={12}>
+      <Grid item xs={12} center>
         <Typography variant="h5" style={{ display: 'inline-block' }}>
           Catherine's Catering
         </Typography>
@@ -23,15 +17,13 @@ function ProfileName() {
       </Grid>
       {/* Beginning of Rating / Certified */}
       <Grid item xs={12}>
-        <center>
-          {/* Certified or not */}
-          <CheckCircleIcon fontSize="large" style={{ color: 'green' }} />
-          {/* Rating will go here */}
-          <img
-            src={process.env.PUBLIC_URL + 'stars.jpg'}
-            style={{ width: '70%' }}
-          />
-        </center>
+        {/* Certified or not */}
+        <CheckCircleIcon fontSize="large" style={{ color: 'green' }} />
+        {/* Rating will go here */}
+        <img
+          src={process.env.PUBLIC_URL + 'stars.jpg'}
+          style={{ width: '70%' }}
+        />
       </Grid>
     </Grid>
   );
