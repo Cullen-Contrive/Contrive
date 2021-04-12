@@ -58,7 +58,9 @@ function RegisterForm() {
   }; // end registerUser
 
   const vendorRegistration = () => {
-    history.push('/registration/vendor');
+
+    userType === 'planner' ? registerUser() :
+      history.push('/registration/vendor');
   }
 
   return (
@@ -155,6 +157,7 @@ function RegisterForm() {
       </Grid>
 
       {/* INSERT IMAGE UPLOAD HERE */}
+      <p>Profile Pic Upload</p>
 
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
@@ -186,26 +189,10 @@ function RegisterForm() {
         </Button>
 
 
-        {/* <Button color="primary" variant="contained"
-          onClick={
-            ({ userType } === 'planner' ? { registerUser } :
-              { vendorRegistration })}> */}
-        {/* <Button color="primary" variant="contained"
-          { userType } === 'planner' ? onClick={ registerUser } :
-            onClick={ vendorRegistration }> */}
-
-        {/*  */}
-        {/* ({userType} === 'planner' ? {
-          setOnClickFunction(registerUser)} :
-              {setOnClickFunction(vendorRegistration)})
-          <Button color="primary" variant="contained"
-
-          onClick={onClickFunction}> */}
-
-        {/* NEED TO CONDITIONALLY RENDER onClick ACTION FOR planner VS vendor (see trials above) */}
         <Button color="primary" variant="contained"
-          onClick={vendorRegistration}>
-          Next
+          onClick={
+            (userType === 'planner' ? ((event) => registerUser(event)) :
+              (() => vendorRegistration()))}>Next
         </Button>
 
       </Grid>

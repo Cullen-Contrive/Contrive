@@ -10,16 +10,14 @@ import {
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
 } from '@material-ui/core';
 
-function LoginPage({ theme }) {
+function LoginPage() {
   const history = useHistory();
 
   return (
-    <ThemeProvider theme={theme}>
+    <Grid item container xs={12}>
+      <LoginForm />
 
-      <Grid item container xs={12}>
-        <LoginForm />
-      </Grid>
-
+      {/* Moved this button to LoginForm */}
       {/* <Grid item container xs={12} justify="center">
         <Button color="secondary" variant="contained"
           type="button"
@@ -30,7 +28,7 @@ function LoginPage({ theme }) {
           Register
         </Button>
       </Grid> */}
-    </ThemeProvider>
+    </Grid>
   );
 }
 

@@ -14,7 +14,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 import AboutPage from "../AboutPage/AboutPage";
-import Message from "../MessageAll/MessageAll";
+import MessageDetail from "../MessageDetail/MessageDetail";
 import UserPage from "../UserPage/UserPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -23,29 +23,15 @@ import DiscoverPage from "../DiscoverPage/DiscoverPage";
 import SearchNetwork from "../SearchNetwork/SearchNetwork";
 import StyleGuide from '../StyleGuide/StyleGuide';
 
-import RegisterVendorPage from '../RegisterPage/VendorRegisterPage';
+import RegisterVendorPage from '../RegisterPage/RegisterVendorPage';
 
 import "./App.css";
 
 // Material-UI:
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import {
-  Button, // replaces html5 <button> element
-  ButtonGroup,
-  FormControl,
-  FormHelperText,
-  Grid, //
-  Input,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  TextField,
-  Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
+import { CssBaseline } from '@material-ui/core';
 
-} from '@material-ui/core';
-
-const theme = createMuiTheme({
+const contriveTheme = createMuiTheme({
   palette: {
     background: {
       paper: "#fff",
@@ -83,7 +69,8 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={contriveTheme}>
+      <CssBaseline />
       <Router>
         <div>
           <Switch>
@@ -96,7 +83,7 @@ function App() {
               exact
               path="/about"
             >
-              <AboutPage theme={theme} />
+              <AboutPage />
             </Route>
 
             {/* Visiting localhost:3000/styleGuide will show the styleGuide used for this page.
@@ -110,7 +97,7 @@ function App() {
             </Route>
 
             <Route exact path="/message">
-              <Message theme={theme} />
+              <MessageDetail />
             </Route>
 
             {/* For protected routes, the view could show one of several things on the same route.
@@ -122,7 +109,7 @@ function App() {
               exact
               path="/user"
             >
-              <UserPage theme={theme} />
+              <UserPage />
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -130,7 +117,7 @@ function App() {
               exact
               path="/discover"
             >
-              <DiscoverPage theme={theme} />
+              <DiscoverPage />
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -138,7 +125,7 @@ function App() {
               exact
               path="/search"
             >
-              <SearchNetwork theme={theme} />
+              <SearchNetwork />
             </ProtectedRoute>
 
             {/* When a value is supplied for the authRedirect prop the user will
@@ -152,7 +139,7 @@ function App() {
               path="/login"
               authRedirect="/user"
             >
-              <LoginPage theme={theme} />
+              <LoginPage />
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -163,7 +150,7 @@ function App() {
               path="/registration"
               authRedirect="/user"
             >
-              <RegisterPage theme={theme} />
+              <RegisterPage />
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -174,7 +161,7 @@ function App() {
               path="/registration/vendor"
               authRedirect="/vendor"
             >
-              <RegisterVendorPage theme={theme} />
+              <RegisterVendorPage />
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -185,7 +172,7 @@ function App() {
               path="/home"
               authRedirect="/user"
             >
-              <LandingPage theme={theme} />
+              <LandingPage />
             </ProtectedRoute>
 
             {/* If none of the other routes matched, we will show a 404. */}
@@ -193,8 +180,8 @@ function App() {
               <h1>404</h1>
             </Route>
           </Switch>
-          <Footer theme={theme} />
-          <Nav theme={theme} />
+          <Footer />
+          {/* <Nav /> */}
         </div>
       </Router>
     </ThemeProvider>

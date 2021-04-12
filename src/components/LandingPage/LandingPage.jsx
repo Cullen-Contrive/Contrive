@@ -6,7 +6,7 @@ import './LandingPage.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import ImageUpload from '../ImageUpload/ImageUpload';
 
-function LandingPage({ theme }) {
+function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
 

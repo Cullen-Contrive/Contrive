@@ -3,7 +3,7 @@
 import React from 'react';
 
 
-function SearchNetwork({ theme }) {
+function SearchNetwork() {
   return (
     <div className="container">
       <p>Search Network</p>

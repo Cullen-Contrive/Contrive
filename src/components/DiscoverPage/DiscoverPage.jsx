@@ -4,7 +4,7 @@
 import React from 'react';
 
 
-function DiscoverPage({ theme }) {
+function DiscoverPage() {
   return (
     <div className="container">
       <p>Discover Page</p>
