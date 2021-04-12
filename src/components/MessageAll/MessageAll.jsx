@@ -1,8 +1,14 @@
+// View of all messages related to the logged-in user.
+// Reached by path '/message'
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import io from 'socket.io-client';
+import DateObject from 'react-date-object';
+import Swal from 'sweetalert2';
 
+// Material UI
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
@@ -11,7 +17,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-import Messages from './Messages';
+// Custom Components
+import Message from './Message';
 
 const Form = styled.form`
   width: 400px;
@@ -19,12 +26,15 @@ const Form = styled.form`
 
 function Chat() {
   const [yourId, setYourId] = useState();
-  const [messages, setMessages] = useState([]);
+  const [outgoingMessages, setOutgoingMessages] = useState([]);
   const [message, setMessage] = useState('');
   const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const socketRef = useRef();
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const existingMessages = useSelector((store) => store.chat);
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
@@ -36,29 +46,53 @@ function Chat() {
       console.log('here', message);
       receiveMessage(message);
     });
+    fetchMessages();
   }, []);
 
   useEffect(() => {
     socketRef.current.on('send message', (message) => {
-      setMessages((messages) => [...messages, message]);
+      setOutgoingMessages((outgoingMessages) => [...outgoingMessages, message]);
     });
   }, []);
 
+  const fetchMessages = () => {
+    dispatch({ type: 'FETCH_MESSAGES' });
+  };
+
   const sendMessage = (evt) => {
     evt.preventDefault(); // prevents the form from refreshing the page
-    // console.log('sending message after form submission');
+    if (message.length <= 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Empty Message',
+        text: 'Cannot send empty messages!',
+        showCloseButton: true,
+      });
+      return; // return so the function does not execute
+    }
+    const date = new DateObject();
+    const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
     const messageObject = {
-      body: message,
-      id: yourId, // req.user.id may go here and then we validate on the messages
+      date: formattedDate,
+      fromUser: 2,
+      message: message,
+      // id will be inserted on POST
+      toUser: 3,
     };
     setMessage('');
-
-    // console.log('emitting message to server');
     socketRef.current.emit('send message', messageObject);
   };
 
   const goBack = () => {
-    console.log('pushing to a previous page');
+    // posts messages to db upon moving from page.
+    dispatch({
+      type: 'POST_OUTGOING_MESSAGES',
+      payload: outgoingMessages,
+      onComplete: () => {
+        console.log('moving pages now!');
+        // history.push('/alldetails') ???
+      },
+    });
   };
 
   return (
@@ -78,8 +112,19 @@ function Chat() {
             marginRight: 10,
           }}
         >
-          {/* Messages should eventually come from redux rather than local state */}
-          <Messages messages={messages} />
+          {/* existingMessages comes from database */}
+          {existingMessages.length > 0
+            ? existingMessages.map((singleMessage, index) => {
+                return <Message key={index} messageDetails={singleMessage} />;
+              })
+            : ' '}
+
+          {/* outgoingMessages is stored in local state and pushed to database on moving page */}
+          {outgoingMessages.length > 0
+            ? outgoingMessages.map((singleMessage, index) => {
+                return <Message key={index} messageDetails={singleMessage} />;
+              })
+            : ' '}
         </Paper>
       </Grid>
       {/* Form for submitting text to another user */}
@@ -101,4 +146,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Message;
