@@ -2,6 +2,7 @@ import ContriveHeader from './ContriveHeader';
 import ProfileName from './ProfileName';
 import ProfileNav from './ProfileNav';
 import PublicPhotos from './PublicPhotos';
+import About from './About';
 
 function VendorProfile() {
   return (
@@ -10,6 +11,7 @@ function VendorProfile() {
       <ProfileName />
       <ProfileNav />
       <PublicPhotos />
+      <About />
     </>
   );
 }
