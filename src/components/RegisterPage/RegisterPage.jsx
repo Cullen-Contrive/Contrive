@@ -3,25 +3,35 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
+// Material-UI
+import {
+  Button, // replaces html5 <button> element
+  Grid,
+  Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
+} from '@material-ui/core';
+
 function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
-      <RegisterForm />
+    <Grid>
 
-      <center>
-        <button
+      <Grid item container xs={12}>
+        <RegisterForm />
+      </Grid>
+
+      {/* Moved this Button to RegisterForm */}
+      {/* <Grid item container xs={12} justify="center"> */}
+      {/* <Button color="secondary" variant="contained"
           type="button"
-          className="btn btn_asLink"
           onClick={() => {
             history.push('/login');
           }}
         >
           Login
-        </button>
-      </center>
-    </div>
+        </Button> */}
+      {/* </Grid> */}
+    </Grid>
   );
 }
 

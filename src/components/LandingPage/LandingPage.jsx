@@ -59,10 +59,12 @@ function LandingPage() {
   };
 
   return (
+
     <Box className={classes.paperContainer}>
     
       <Box align="center" width="100%" className={classes.buttons}>
       <Box className={classes.root}>
+
 
 
       <Button variant="contained" onClick = {onLogin} style={{ height: 40 }}>
