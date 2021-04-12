@@ -64,11 +64,11 @@ VALUES (2, 1, 'I would like to discuss what activities you would like included- 
 
 --EVENTS:
 --Create fake events for the fake Planners
-INSERT INTO "events" ("plannerUserId", "dateOfEvent", "address", 
+INSERT INTO "events" ("plannerUserId", "dateOfEvent", "timeOfEvent", "address", 
 "city", "state", "zip", "numberOfAttendees", "description")
-VALUES (1, '4-30-2021', '5600 Walnut', 'Smithville', 'MO', 64089, 50, 'Graduation celebration!'),
-(3, '8-17-2021', '75 Chestnut', 'Lawrence', 'KS', 64048, 200, 'Small wedding with our closest friends and family.'),
-(5, '5-5-2021', '5 Main St.', 'Minneapolis', 'MN', 55111, 1000, 'Huge Cinco de Mayo art fair.');
+VALUES (1, '2021-04-30', '3:00', '5600 Walnut', 'Smithville', 'MO', 64089, 50, 'Graduation celebration!'),
+(3, '2021-08-17', '12:00', '75 Chestnut', 'Lawrence', 'KS', 64048, 200, 'Small wedding with our closest friends and family.'),
+(5, '2021-05-05', '5:55', '5 Main St.', 'Minneapolis', 'MN', 55111, 1000, 'Huge Cinco de Mayo art fair.');
 
 --Create list of event types
 INSERT INTO "types_of_event" ("name")
@@ -81,20 +81,3 @@ VALUES (1, 5), (2, 1), (3, 7);
 --Pair fake vendors with fake events
 INSERT INTO "events_vendors" ("vendorUserId", "eventId")
 VALUES (2, 1), (4, 2), (6,3);
-
-
-
-
-
-
-INSERT INTO ()
-VALUES ()
-
-INSERT INTO ()
-VALUES ()
-
-INSERT INTO ()
-VALUES ()
-
-INSERT INTO ()
-VALUES ()

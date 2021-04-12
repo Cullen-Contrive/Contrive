@@ -25,7 +25,7 @@ CREATE TABLE "users" (
   "password" VARCHAR (256) NOT NULL,
   "firstName" VARCHAR(256),
   "lastName" VARCHAR(256),
-  "addresss" VARCHAR(512),
+  "address" VARCHAR(512),
   "city" VARCHAR(80),
   "state" VARCHAR(80),
   "zip" INT,
@@ -83,7 +83,8 @@ CREATE TABLE "events" (
   "id" SERIAL PRIMARY KEY,
   "plannerUserId" INT REFERENCES "users",
   "dateCreated" TIMESTAMPTZ DEFAULT current_timestamp,
-  "dateOfEvent" VARCHAR(256),
+  "dateOfEvent" DATE,
+  "timeOfEvent" TIME,
   "address" VARCHAR(256),
   "city" VARCHAR(80),
   "state" VARCHAR(80),
@@ -109,7 +110,6 @@ VALUES ('retirement'), ('birthday'), ('anniversary'), ('wedding'),
 ('fitness'), ('food'), ('games'), ('literature'), ('music'), ('networking'), 
 ('religion'), ('sports'), ('theater'), ('other');
 
-
 CREATE TABLE "events_vendors" (
   "id" SERIAL PRIMARY KEY,
   "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
@@ -123,6 +123,8 @@ CREATE TABLE "messages" (
   "date" TIMESTAMPTZ DEFAULT current_timestamp,
   "message" VARCHAR(1024)
 );
+
+
 
 
 --Stretch Tables:
