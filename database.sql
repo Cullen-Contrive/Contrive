@@ -43,7 +43,8 @@ CREATE TABLE "users_photos" (
 CREATE TABLE "vendors" (
 	"id" SERIAL PRIMARY KEY,
   "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
-	"description" VARCHAR (1200),
+  "companyName" VARCHAR(256),
+	"description" VARCHAR(1024),
 	"additionalInfo" VARCHAR(1024),
   "phone" VARCHAR(80),
   "certified" BOOLEAN DEFAULT false
