@@ -17,7 +17,7 @@ import { spacing } from '@material-ui/system';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *':{
+    '& > *': {
       margin: theme.spacing(1),
     },
   },
@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 function SearchNetwork() {
   const classes = useStyles();
   const [input, setInput] = useState('');
-
 
   // useEffect( () => {
   //   dispatch({
@@ -42,7 +41,7 @@ function SearchNetwork() {
     // }
   };
 
-    const handleCategoryChange = (evt) => {
+  const handleCategoryChange = (evt) => {
     // let newUser = evt.target.value;
     // if (newUser === '-1'){
     //   history.push(`/discover`);}
@@ -56,8 +55,7 @@ function SearchNetwork() {
       <main>
         <Box align="center" width="100%">
           <Box className={classes.root}>
-
-            <Box mb={2} align="center" width="100%" >
+            <Box mb={2} align="center" width="100%">
               <Typography variant="h3">
                 <Box mt={4} align="center" lineHeight={1}>
                   The Network
@@ -65,24 +63,27 @@ function SearchNetwork() {
               </Typography>
             </Box>
 
-          <SearchBar
-          //  input={input} 
-          //  onChange={updateInput}
-          />
+            {/* <SearchBar
+            //  input={input}
+            //  onChange={updateInput}
+            /> */}
 
-            <select 
-            name="VendorType" 
-            onChange={handleVendorChange}
-            >
-            <option key="-1" value="-1">-- Select Vendor Type --</option>
+            <select name="VendorType" onChange={handleVendorChange}>
+              <option key="-1" value="-1">
+                -- Select Vendor Type --
+              </option>
             </select>
 
-            <select 
-            name="userListSelect" 
-            onChange={handleCategoryChange}
-            >
-            <option key="-1" value="-1"> -- Select A Category -- </option>
+            <select name="userListSelect" onChange={handleCategoryChange}>
+              <option key="-1" value="-1">
+                {' '}
+                -- Select A Category --{' '}
+              </option>
             </select>
+            <SearchBar
+            //  input={input}
+            //  onChange={updateInput}
+            />
           </Box>
         </Box>
       </main>
