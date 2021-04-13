@@ -6,7 +6,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000', // this likely needs to be changed to wherever the origin requests are coming from
     methods: ['GET', 'POST'],
   },
 });
@@ -17,6 +17,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const awsRouter = require('./routes/aws.router');
+const messageRouter = require('./routes/message.router');
+const vendorRouter = require('./routes/vendor.router');
 
 // TODO AWS const
 const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
@@ -56,6 +58,8 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/aws', awsRouter);
+app.use('/api/message', messageRouter);
+app.use('/api/vendor', vendorRouter);
 
 // Serve static files
 app.use(express.static('build'));

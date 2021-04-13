@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
+
 import useStyles from './Nav.styles'
 import {useSelector} from 'react-redux';
-
 
 // Material-UI Components
 import {
@@ -94,9 +94,9 @@ function Nav() {
     >
 
       <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
-      <BottomNavigationAction label="Search" value="/theNetwork" icon={<SearchIcon />} />
+      <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
       <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
-      <BottomNavigationAction label="Messages" value="/messages" icon={<ChatIcon />} />
+      <BottomNavigationAction label="Messages" value="/message" icon={<ChatIcon />} />
       <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
 
       <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>

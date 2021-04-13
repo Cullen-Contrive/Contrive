@@ -1,46 +1,81 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import { useDispatch } from "react-redux";
+// AUTHENTICATION:
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
+// CUSTOM COMPONENTS:
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
+import AboutPage from '../AboutPage/AboutPage';
+import Message from '../MessageAll/MessageAll';
+// import MessageDetail from '../MessageDetail/MessageDetail';
+import UserPage from '../UserPage/UserPage';
+import LandingPage from '../LandingPage/LandingPage';
+import LoginPage from '../LoginPage/LoginPage';
+import RegisterPage from '../RegisterPage/RegisterPage';
+import DiscoverPage from '../DiscoverPage/DiscoverPage';
+import SearchNetwork from '../SearchNetwork/SearchNetwork';
+import StyleGuide from '../StyleGuide/StyleGuide';
+import VendorProfile from '../Profile/VendorProfile';
+import RegisterVendorPage from '../RegisterPage/RegisterVendorPage';
 
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import './App.css';
 
-import AboutPage from "../AboutPage/AboutPage";
-import Chat from "../Chat/Chat";
-import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
-import LandingPage from "../LandingPage/LandingPage";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
+// Material-UI:
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
 
-import { ThemeProvider } from '@material-ui/core/styles';
+const contriveTheme = createMuiTheme({
+  palette: {
+    background: {
+      paper: '#fff',
+      default: '#fff',
+      level2: '#f5f5f5',
+      level1: '#fff',
+    },
+    secondary: {
+      light: '#fffff9',
+      main: '#fefcc6',
+      dark: '#cac995',
+      contrastText: '#000000',
+    },
+    primary: {
+      light: '#cd7c50',
+      main: '#984f26',
+      dark: '#652500',
+      contrastText: '#ffffff',
+    },
+  },
+  typography: {
+    fontFamily: ['Forum', 'Raleway'].join(','),
+  },
+});
 
-import "./App.css";
-import theme from "./theme";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: "FETCH_USER" });
+    dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
+
+    <ThemeProvider theme={contriveTheme}>
+      <CssBaseline />
       <Router>
+        <Nav />
         <div>
-          <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/chat" />
+            <Redirect exact from="/" to="/message" />
 
             {/* Visiting localhost:3000/about will show the about page. */}
             <Route
@@ -51,34 +86,24 @@ function App() {
               <AboutPage />
             </Route>
 
-            <Route exact path="/chat">
-              <Chat />
+            {/* Visiting localhost:3000/styleGuide will show the styleGuide used for this page.
+            This route should be removed/inaccessible by users for production.*/}
+            <Route
+              // shows the StyleGuide for this Project
+              exact
+              path="/styleGuide"
+            >
+              <StyleGuide />
             </Route>
 
-            {/* These routes are purely to tests the nav feature */}
-            <Route exact path="/discover">
-              <h1>You are On the Discover Page</h1>
+            <Route exact path="/message">
+              <Message />
             </Route>
 
-            <Route exact path="/theNetwork">
-              <h1>You are on The Network Page</h1>
-            </Route>
-
-            <Route exact path="/events/create">
-              <h1>You are on the Create Events Page</h1>
-            </Route>
-
-            <Route exact path="/messages">
-              <h1>You are on the Messages Page</h1>
-            </Route>
-
-            <Route exact path="">
-              
-            </Route>
             {/* For protected routes, the view could show one of several things on the same route.
-              Visiting localhost:3000/user will show the UserPage if the user is logged in.
-              If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-              Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+            Visiting localhost:3000/user will show the UserPage if the user is logged in.
+            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
+            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
             <ProtectedRoute
               // logged in shows UserPage else shows LoginPage
               exact
@@ -88,16 +113,32 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
+              // logged in shows UserPage else shows LoginPage
               exact
-              path="/info"
+              path="/vendor"
             >
-              <InfoPage />
+              <VendorProfile />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // logged in shows Discover else shows LoginPage
+              exact
+              path="/discover"
+            >
+              <DiscoverPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // logged in shows Search else shows LoginPage
+              exact
+              path="/search"
+            >
+              <SearchNetwork />
             </ProtectedRoute>
 
             {/* When a value is supplied for the authRedirect prop the user will
-              be redirected to the path supplied when logged in, otherwise they will
-              be taken to the component and path supplied. */}
+            be redirected to the path supplied when logged in, otherwise they will
+            be taken to the component and path supplied. */}
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
@@ -122,10 +163,33 @@ function App() {
 
             <ProtectedRoute
               // with authRedirect:
+              // - if logged in, redirects to "/vendor"
+              // - else shows RegisterPage at "/registration"
+              exact
+              path="/registration/vendor"
+              authRedirect="/vendor"
+            >
+              <RegisterVendorPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // with authRedirect:
               // - if logged in, redirects to "/user"
               // - else shows LandingPage at "/home"
               exact
               path="/home"
+              authRedirect="/user"
+            >
+              <LandingPage />
+            </ProtectedRoute>
+
+
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LandingPage at "/home"
+              exact
+              path="/vendor"
               authRedirect="/user"
             >
               <LandingPage />
@@ -137,6 +201,7 @@ function App() {
             </Route>
           </Switch>
           <Footer />
+          
         </div>
       </Router>
     </ThemeProvider>

@@ -4,6 +4,8 @@ const userReducer = (state = {}, action) => {
       return action.payload;
     case 'UNSET_USER':
       return {};
+    case 'HOLD_USER_REGISTRATION':
+      return action.payload;
     default:
       return state;
   }
