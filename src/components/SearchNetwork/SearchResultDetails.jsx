@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-function SearchResultDetails() {
+function SearchResultDetails({ vendor }) {
+  console.log('====================================');
+  console.log('vendor:', vendor);
+  console.log('====================================');
 
   return (
     <div>
-      <h2>Search Result Details</h2>
+      {/* <div>{vendor.companyName}</div> */}
     </div>
   );
 }
