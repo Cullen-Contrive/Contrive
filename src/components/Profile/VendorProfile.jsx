@@ -20,17 +20,15 @@ function VendorProfile({ id = 2 }) {
     });
   }, []);
 
-  console.log('vendor details', vendorDetails);
-
   return (
     // pass props to children
     <>
       <ContriveHeader />
-      <ProfileName />
+      <ProfileName vendorDetails={vendorDetails[0]} />
       <ProfileNav />
       <PublicPhotos />
-      <About />
-      <SpecialFeatures />
+      <About vendorDetails={vendorDetails[0]} />
+      <SpecialFeatures vendorDetails={vendorDetails[0]} />
     </>
   );
 }
