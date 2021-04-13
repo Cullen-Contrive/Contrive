@@ -2,9 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+// ROUTES AT /api/vendor
 router.get('/', (req, res) => {
   const sqlText = `
   SELECT "users"."website", 
