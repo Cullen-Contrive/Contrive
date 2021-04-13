@@ -21,17 +21,36 @@ function VendorProfile() {
     });
   }, []);
 
-  console.log('vendorDetails', vendorDetails);
+  console.log('VENDOR PROFILE PAGE AND HERE ARE THE DETAILS', vendorDetails);
 
   return (
     // pass props to children
     <>
       <ContriveHeader />
-      <ProfileName />
-      <ProfileNav />
+      <ProfileName
+        name={vendorDetails.companyName}
+        certified={vendorDetails.certified}
+      />
+      <ProfileNav
+        email={vendorDetails.username}
+        phone={vendorDetails.phone}
+        website={vendorDetails.website}
+        address={vendorDetails.address}
+        city={vendorDetails.city}
+        state={vendorDetails.state}
+        zip={vendorDetails.zip}
+      />
       <PublicPhotos />
-      <About />
-      <SpecialFeatures />
+      <About
+        description={vendorDetails.description}
+        additionalInfo={vendorDetails.additionalInfo}
+        serviceTypes={vendorDetails.service_types}
+        website={vendorDetails.website}
+        phone={vendorDetails.phone}
+        city={vendorDetails.city}
+        state={vendorDetails.state}
+      />
+      <SpecialFeatures features={vendorDetails.special_features} />
     </>
   );
 }

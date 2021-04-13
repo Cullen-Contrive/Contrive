@@ -7,7 +7,11 @@ router.get('/all', (req, res) => {
   const sqlText = `
   SELECT 
   "users"."username",
-  "users"."website", 
+  "users"."website",
+  "users"."address", 
+  "users"."city", 
+  "users"."state", 
+  "users"."zip", 
   "vendors"."vendorUserId",
   "vendors"."description", 
   "vendors"."additionalInfo", 
@@ -26,6 +30,10 @@ router.get('/all', (req, res) => {
   GROUP BY 
   "users"."username",
   "users"."website",
+  "users"."address", 
+  "users"."city", 
+  "users"."state", 
+  "users"."zip",
   "vendors"."vendorUserId", 
   "vendors"."description", 
   "vendors"."additionalInfo", 
@@ -50,7 +58,11 @@ router.get('/:id', (req, res) => {
   const sqlText = `
   SELECT 
   "users"."username",
-  "users"."website", 
+  "users"."website",
+  "users"."address", 
+  "users"."city", 
+  "users"."state", 
+  "users"."zip",
   "vendors"."vendorUserId",
   "vendors"."description", 
   "vendors"."additionalInfo", 
@@ -69,6 +81,10 @@ router.get('/:id', (req, res) => {
   GROUP BY 
   "users"."username",
   "users"."website",
+  "users"."address", 
+  "users"."city", 
+  "users"."state", 
+  "users"."zip",
   "vendors"."vendorUserId", 
   "vendors"."description", 
   "vendors"."additionalInfo", 

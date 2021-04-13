@@ -9,7 +9,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 
-function ProfileNav() {
+function ProfileNav({ email, phone, website, address, city, state, zip }) {
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',

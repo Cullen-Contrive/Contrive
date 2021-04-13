@@ -1,13 +1,25 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Collapse from '@material-ui/core/Collapse';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
-function About() {
+function About({
+  description,
+  additionalInfo,
+  serviceTypes,
+  website,
+  phone,
+  city,
+  state,
+}) {
   const [expanded, setExpanded] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
@@ -35,8 +47,12 @@ function About() {
   };
 
   return (
-    <Grid container spacing={3} className={classes.root}>
-      <Grid item xs={12}>
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="vendor-about-content"
+        id="vendor-about-header"
+      >
         <Typography
           style={{
             display: 'inline-block',
@@ -44,19 +60,39 @@ function About() {
         >
           About
         </Typography>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-        <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
-      </Grid>
-    </Grid>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Grid container direction="column">
+          <Grid item>
+            <Typography variant="body1" component="p">
+              {description}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2" component="p">
+              {additionalInfo}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body3" component={Link}>
+              <strong>Website</strong>: {website}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body3">
+              <strong>Phone</strong>: {phone}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body3">
+              {serviceTypes.map((service, index) => {
+                return <li key={index}>{service}</li>;
+              })}
+            </Typography>
+          </Grid>
+        </Grid>
+      </AccordionDetails>
+    </Accordion>
   );
 }
 

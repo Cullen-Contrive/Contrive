@@ -40,46 +40,25 @@ function PublicPhotos() {
   };
 
   return (
-    // <Grid container spacing={3} className={classes.root}>
-    <div className={classes.root}>
-      <Accordion>
-        {/* <Grid item xs={12}> */}
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="public-photos-panel-content"
-          id="public-photos-panel-header"
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="public-photos-panel-content"
+        id="public-photos-panel-header"
+      >
+        <Typography
+          style={{
+            display: 'inline-block',
+          }}
         >
-          <Typography
-            style={{
-              display: 'inline-block',
-            }}
-          >
-            Public Photos
-          </Typography>
-        </AccordionSummary>
-        {/* <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton> */}
+          Public Photos
+        </Typography>
+      </AccordionSummary>
 
-        {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
-        <AccordionDetails>
-          <Typography>helloooooooo</Typography>
-        </AccordionDetails>
-        {/* {images.map((image, index) => 
-              return <PublicPhoto image={image}/>
-              )} */}
-        {/* </Collapse> */}
-        {/* </Grid> */}
-      </Accordion>
-    </div>
-    // </Grid>
+      <AccordionDetails>
+        <Grid container></Grid>
+      </AccordionDetails>
+    </Accordion>
   );
 }
 

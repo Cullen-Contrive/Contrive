@@ -3,7 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
-function ProfileName() {
+function ProfileName({ name, certified }) {
   return (
     <Grid container spacing={3}>
       {/* Beginning of Profile Name */}
@@ -16,10 +16,9 @@ function ProfileName() {
         >
           <Typography variant="h5" style={{ display: 'inline-block' }}>
             {/* Conditionally render name of Vendor here */}
-            {/* {vendorDetails.companyName} */}
+            {name ? name : 'Name goes here..'}
           </Typography>
-          {/* <CheckCircleIcon /> used for certification */}
-          {/* Conditionally render image of Vendor here */}
+          {certified ? <CheckCircleIcon /> : 'Not certified'}
           <img
             src={process.env.PUBLIC_URL + 'stars.jpg'}
             style={{ height: '50px' }}
