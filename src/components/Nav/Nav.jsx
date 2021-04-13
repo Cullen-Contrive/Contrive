@@ -131,9 +131,13 @@ function Nav() {
             <Grid item>
               <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
             </Grid>
+            <Grid item>
+              <LogOutButton className="navLink" />
+            </Grid>
+
           </Grid>
         </Box>
-        
+
       </Drawer>
     </BottomNavigation>
   );
