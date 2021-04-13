@@ -87,59 +87,62 @@ function Nav() {
     //     </Link>
     //   </div>
     // </div>
-    <BottomNavigation
-      value={value}
-      onChange={handleChange}
-      className={classes.navbar}
-    >
+    <>
+      {user.id && (
+        <BottomNavigation
+          value={value}
+          onChange={handleChange}
+          className={classes.navbar}
+        >
 
-      <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
-      <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
-      <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
-      <BottomNavigationAction label="Messages" value="/message" icon={<ChatIcon />} />
-      <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
+          <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
+          <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
+          <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
+          <BottomNavigationAction label="Messages" value="/message" icon={<ChatIcon />} />
+          <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
 
-      <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
-        {/* {list} */}
-        {/* TODO - Fix this in the future to show user's first name */}
-        <Box p={1}>
-          <Typography variant='h6' component="h2" gutterBottom>
-            Schmedan's Dashboard
-          </Typography>
-        </Box>
+          <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
+            <Box p={1}>
+              <Typography variant='h6' component="h2" gutterBottom>
+                {user.firstName}'s Dashboard
+              </Typography>
+            </Box>
 
-        <Box p={2}>
-          <center><Avatar>C</Avatar></center>
-        </Box>
+            {/* Todo - add the user's profile photo here */}
+            <Box p={2}>
+              <center><Avatar>C</Avatar></center>
+            </Box>
 
-        <Divider />
+            <Divider />
 
-        <Box p={2}>
-          <Grid container direction="column" spacing={2} alignItems="center">
-            <Grid item>
-              <Button color="primary" onClick={() => history.push('/myProfile')}>My Profile</Button>
-            </Grid>
-            <Grid item>
-              <Button color="primary" onClick={() => history.push('/myNetwork')}>My Network</Button>
-            </Grid>
-            <Grid item>
-              <Button color="primary" onClick={() => history.push('/myEvents')}>My Events</Button>
-            </Grid>
-            <Grid item>
-              <Button color="primary" onClick={() => history.push('/myCalendar')}>My Calendar</Button>
-            </Grid>
-            <Grid item>
-              <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
-            </Grid>
-            <Grid item>
-              <LogOutButton className="navLink" />
-            </Grid>
+            <Box p={2}>
+              <Grid container direction="column" spacing={2} alignItems="center">
+                <Grid item>
+                  <Button color="primary" onClick={() => history.push('/myProfile')}>My Profile</Button>
+                </Grid>
+                <Grid item>
+                  <Button color="primary" onClick={() => history.push('/myNetwork')}>My Network</Button>
+                </Grid>
+                <Grid item>
+                  <Button color="primary" onClick={() => history.push('/myEvents')}>My Events</Button>
+                </Grid>
+                <Grid item>
+                  <Button color="primary" onClick={() => history.push('/myCalendar')}>My Calendar</Button>
+                </Grid>
+                <Grid item>
+                  <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
+                </Grid>
+                <Grid item>
+                  <LogOutButton className="navLink" />
+                </Grid>
 
-          </Grid>
-        </Box>
+              </Grid>
+            </Box>
 
-      </Drawer>
-    </BottomNavigation>
+          </Drawer>
+        </BottomNavigation>
+      )}
+    </>
   );
 }
 
