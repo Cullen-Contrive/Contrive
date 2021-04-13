@@ -12,8 +12,8 @@ router.get('/all', (req, res) => {
   "vendors"."phone", 
   "vendors"."certified", 
   "vendors"."companyName",
-  ARRAY_AGG(DISTINCT "service_types"."name"), 
-  ARRAY_AGG(DISTINCT "special_features"."name")
+  ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
+  ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
@@ -52,8 +52,8 @@ router.get('/:id', (req, res) => {
   "vendors"."phone", 
   "vendors"."certified", 
   "vendors"."companyName",
-  ARRAY_AGG(DISTINCT "service_types"."name"), 
-  ARRAY_AGG(DISTINCT "special_features"."name")
+  ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
+  ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
