@@ -74,7 +74,7 @@ router.get('/:id', (req, res) => {
     .query(sqlText, [userId])
     .then((dbRes) => {
       console.log('SERVER - GET request at /api/vendor/id successful');
-      res.send(dbRes.rows);
+      res.send(dbRes.rows[0]);
     })
     .catch((err) => {
       console.error('SERVER - GET at /api/vendor an error occurred', err);
