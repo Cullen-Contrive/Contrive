@@ -5,7 +5,6 @@ import './Nav.css';
 import useStyles from './Nav.styles'
 import {useSelector} from 'react-redux';
 
-import MenuDrawer from './MenuDrawer';
 
 // Material-UI Components
 import {
@@ -16,6 +15,7 @@ import {
   Button,
   Divider,
   Drawer, 
+  Grid,
   List,
   ListItem,
   ListItemText,
@@ -45,24 +45,8 @@ function Nav() {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
   }
-
-  const list = () => {
-    <div
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <Avatar>C</Avatar>
-      <Divider />
-      <List>
-        <ListItem>
-          <ListItemText>My Profile</ListItemText>
-        </ListItem>
-      </List>
-    </div>
-  };
-
   
+  // Handles menu icon change when nav bar icons are clicked
   const handleChange = (event, newValue) => {
     console.log('handleChange Nav', newValue)
     setValue(newValue);
@@ -72,6 +56,7 @@ function Nav() {
     history.push(`${newValue}`);
   }
 
+  // Opens Menu Drawer
   const toggleDrawer = (open) => {
     console.log('toggleDrawer');
     
@@ -107,50 +92,49 @@ function Nav() {
       onChange={handleChange}
       className={classes.navbar}
     >
+
       <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
       <BottomNavigationAction label="Search" value="/theNetwork" icon={<SearchIcon />} />
       <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
       <BottomNavigationAction label="Messages" value="/messages" icon={<ChatIcon />} />
       <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
+
       <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
         {/* {list} */}
-        {/* Fix this in the future to show user's first name */}
-        <Typography variant='h6' component="h2" gutterBottom>
-          Schmedan's Dashboard
-        </Typography>
-        <center><Avatar>C</Avatar></center>
+        {/* TODO - Fix this in the future to show user's first name */}
+        <Box p={1}>
+          <Typography variant='h6' component="h2" gutterBottom>
+            Schmedan's Dashboard
+          </Typography>
+        </Box>
+
+        <Box p={2}>
+          <center><Avatar>C</Avatar></center>
+        </Box>
+
         <Divider />
-        <Button  color="primary" onClick={() => history.push('/myProfile')}>My Profile</Button>
-        <Button  color="primary" onClick={() => history.push('/myNetwork')}>My Network</Button>
-        <Button color="primary" onClick={() => history.push('/myEvents')}>My Events</Button>
-        <Button color="primary" onClick={() => history.push('/myCalendar')}>My Calendar</Button>
-        <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
-        {/* <List>
-          <ListItem>
-            <ListItemText>My Profile</ListItemText>
-          </ListItem>
 
-          <ListItem>
-            <ListItemText>My Network</ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>My Events</ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>My Calendar</ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>Inspiration</ListItemText>
-          </ListItem>
-        </List> */}
+        <Box p={2}>
+          <Grid container direction="column" spacing={2} alignItems="center">
+            <Grid item>
+              <Button color="primary" onClick={() => history.push('/myProfile')}>My Profile</Button>
+            </Grid>
+            <Grid item>
+              <Button color="primary" onClick={() => history.push('/myNetwork')}>My Network</Button>
+            </Grid>
+            <Grid item>
+              <Button color="primary" onClick={() => history.push('/myEvents')}>My Events</Button>
+            </Grid>
+            <Grid item>
+              <Button color="primary" onClick={() => history.push('/myCalendar')}>My Calendar</Button>
+            </Grid>
+            <Grid item>
+              <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
+            </Grid>
+          </Grid>
+        </Box>
+        
       </Drawer>
-      {/* <MenuDrawer
-        toggleDrawer={toggleDrawer}
-        state={state}
-      /> */}
     </BottomNavigation>
   );
 }

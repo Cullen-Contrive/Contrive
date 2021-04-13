@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   navbar: {
     overflow: 'hidden',
     position: 'fixed',
@@ -9,8 +9,11 @@ const useStyles = makeStyles({
   },
   menuDrawer: {
     width: '45%',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  menuButton: {
+    marginTop: '1em'
   }
-})
+}))
 
 export default useStyles;
