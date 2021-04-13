@@ -87,7 +87,7 @@ function Nav() {
     //     </Link>
     //   </div>
     // </div>
-    <>
+    <> {/* if user is not logged in, bottom nav will not render */}
       {user.id && (
         <BottomNavigation
           value={value}
@@ -96,8 +96,12 @@ function Nav() {
         >
 
           <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
-          <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
-          <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
+          {user.type === 'planner' && (
+            <>
+              <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
+              <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
+            </>
+          )}
           <BottomNavigationAction label="Messages" value="/message" icon={<ChatIcon />} />
           <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
 
@@ -129,13 +133,14 @@ function Nav() {
                 <Grid item>
                   <Button color="primary" onClick={() => history.push('/myCalendar')}>My Calendar</Button>
                 </Grid>
-                <Grid item>
-                  <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
-                </Grid>
+                {user.type === 'planner' && (
+                  <Grid item>
+                    <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
+                  </Grid>
+                )}
                 <Grid item>
                   <LogOutButton className="navLink" />
                 </Grid>
-
               </Grid>
             </Box>
 
