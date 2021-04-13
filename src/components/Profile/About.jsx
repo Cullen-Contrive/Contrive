@@ -7,9 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 
-function About({ vendorDetails }) {
+function About() {
   const [expanded, setExpanded] = useState(false);
-  console.log('About', vendorDetails);
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -55,13 +54,7 @@ function About({ vendorDetails }) {
         >
           <ExpandMoreIcon />
         </IconButton>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Typography>
-            {vendorDetails.description
-              ? vendorDetails.description
-              : 'This Vendor does not currently have a description available.'}
-          </Typography>
-        </Collapse>
+        <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
       </Grid>
     </Grid>
   );

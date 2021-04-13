@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
   root: {
     // flexGrow: 1,
-    width: '100%',
+    //width: '100%',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -41,38 +41,44 @@ function PublicPhotos() {
 
   return (
     // <Grid container spacing={3} className={classes.root}>
-    <Accordion className={classes.root}>
-      {/* <Grid item xs={12}> */}
-      <AccordionSummary>
-        <Typography
-          style={{
-            display: 'inline-block',
-          }}
+    <div className={classes.root}>
+      <Accordion>
+        {/* <Grid item xs={12}> */}
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="public-photos-panel-content"
+          id="public-photos-panel-header"
         >
-          Public Photos
-        </Typography>
-      </AccordionSummary>
-      {/* <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton> */}
+          <Typography
+            style={{
+              display: 'inline-block',
+            }}
+          >
+            Public Photos
+          </Typography>
+        </AccordionSummary>
+        {/* <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton> */}
 
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
-      <AccordionDetails>
-        <Typography>helloooooooo</Typography>
-      </AccordionDetails>
-      {/* {images.map((image, index) => 
-            return <PublicPhoto image={image}/>
-            )} */}
-      {/* </Collapse> */}
-      {/* </Grid> */}
-    </Accordion>
+        {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
+        <AccordionDetails>
+          <Typography>helloooooooo</Typography>
+        </AccordionDetails>
+        {/* {images.map((image, index) => 
+              return <PublicPhoto image={image}/>
+              )} */}
+        {/* </Collapse> */}
+        {/* </Grid> */}
+      </Accordion>
+    </div>
     // </Grid>
   );
 }
