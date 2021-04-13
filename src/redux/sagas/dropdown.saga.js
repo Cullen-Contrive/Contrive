@@ -7,3 +7,5 @@ function* dpCategorySaga() {
   yield takeLatest('FETCH_ACTIVE_ARTWORK', fetchActiveArtwork);
 
 }
+
+export default dpCategorySaga;
