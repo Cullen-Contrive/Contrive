@@ -1,51 +1,30 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
-<<<<<<< HEAD
 } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
-
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
+// AUTHENTICATION:
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+// CUSTOM COMPONENTS:
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
-import Chat from '../Chat/Chat';
+import Message from '../MessageAll/MessageAll';
+// import MessageDetail from '../MessageDetail/MessageDetail';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import VendorProfile from '../Profile/VendorProfile';
-=======
-} from "react-router-dom";
-import { useDispatch } from "react-redux";
-
-// AUTHENTICATION:
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
-// CUSTOM COMPONENTS:
-import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
-import AboutPage from "../AboutPage/AboutPage";
-import Message from "../MessageAll/MessageAll";
-import MessageDetail from "../MessageDetail/MessageDetail";
-import UserPage from "../UserPage/UserPage";
-import LandingPage from "../LandingPage/LandingPage";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
-import DiscoverPage from "../DiscoverPage/DiscoverPage";
-import SearchNetwork from "../SearchNetwork/SearchNetwork";
+import DiscoverPage from '../DiscoverPage/DiscoverPage';
+import SearchNetwork from '../SearchNetwork/SearchNetwork';
 import StyleGuide from '../StyleGuide/StyleGuide';
-import VendorProfile from '../VendorProfile/VendorProfile';
+import VendorProfile from '../Profile/VendorProfile';
 import RegisterVendorPage from '../RegisterPage/RegisterVendorPage';
-
->>>>>>> 1ebbf83a08e604899e7480be7d63a2b786f9b172
 
 import './App.css';
 
@@ -56,10 +35,10 @@ import { CssBaseline } from '@material-ui/core';
 const contriveTheme = createMuiTheme({
   palette: {
     background: {
-      paper: "#fff",
-      default: "#fff",
-      level2: "#f5f5f5",
-      level1: "#fff"
+      paper: '#fff',
+      default: '#fff',
+      level2: '#f5f5f5',
+      level1: '#fff',
     },
     secondary: {
       light: '#fffff9',
@@ -75,13 +54,9 @@ const contriveTheme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: [
-      'Forum',
-      'Raleway'
-    ].join(','),
+    fontFamily: ['Forum', 'Raleway'].join(','),
   },
 });
-
 
 function App() {
   const dispatch = useDispatch();
@@ -90,37 +65,9 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
-<<<<<<< HEAD
   return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/chat" />
-
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
-            <AboutPage />
-          </Route>
-
-          <Route exact path="/chat">
-            <Chat />
-          </Route>
-
-          <Route exact path="/vendor">
-            <VendorProfile />
-          </Route>
-
-          {/* For protected routes, the view could show one of several things on the same route.
-=======
-  return (   
- <ThemeProvider theme={contriveTheme}>
-   <CssBaseline />
+    <ThemeProvider theme={contriveTheme}>
+      <CssBaseline />
       <Router>
         <div>
           <Switch>
@@ -147,11 +94,10 @@ function App() {
             </Route>
 
             <Route exact path="/message">
-              <MessageDetail />
+              <Message />
             </Route>
 
             {/* For protected routes, the view could show one of several things on the same route.
->>>>>>> 1ebbf83a08e604899e7480be7d63a2b786f9b172
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
