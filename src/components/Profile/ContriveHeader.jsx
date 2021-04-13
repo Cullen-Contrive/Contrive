@@ -6,12 +6,12 @@ function ContriveHeader() {
   return (
     <Grid container spacing={0} direction="row">
       <Grid item xs={12}>
-        <Box alignItems="center" justifyContent="space-between">
+        <Box display="flex" alignItems="center" justifyContent="flex-start">
           <img
             className=""
             src={process.env.PUBLIC_URL + 'placeholder.png'}
             style={{
-              width: '25%',
+              width: '33%',
             }}
           />
           <Typography
