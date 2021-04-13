@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 // CUSTOM COMPONENTS:
 import SearchResultDetails from './SearchResultDetails';
 
 function SearchResults() {
+  const dispatch = useDispatch();
+
+  // Clear previous search results upon arrival to this page:
+  useEffect(() => {
+    dispatch({
+      type: 'UNSET_SEARCH'
+    });
+  }, []);
+
 
   // Bring in search results from reducer:
   const searchResults = useSelector(store => store.search)
