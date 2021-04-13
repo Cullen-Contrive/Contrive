@@ -29,9 +29,9 @@ VALUES (1, 'https://karaspartyideas.com/wp-content/uploads/2016/11/Bike-Themed-B
 --VENDORS:
 --Fill vendors tables with fake users with type "vendor"
 INSERT INTO "vendors" ("vendorUserId", "description", "additionalInfo", "phone")
-VALUES (2, 'My company provides the realest Rennaissance experience you can get.', 'I am a small, family-run business.  You will be blown away by what good jesters my kids make!', '888-777-6666'),
-(4, 'My Liberty Rockers will liven up your party no matter how small or large.', 'We are certified to play anywhere in the Kansas City metro.', '999-000-1234'),
-(6, 'I have been rated the Most-Luscious Mushroom Grower 5 years running.', 'I am approved by the FDA.', '567-890-4567');
+VALUES (2, 'Sir Knights Rentals', 'My company provides the realest Rennaissance experience you can get.', 'I am a small, family-run business.  You will be blown away by what good jesters my kids make!', '888-777-6666'),
+(4, 'Rockin Johns', 'My Liberty Rockers will liven up your party no matter how small or large.', 'We are certified to play anywhere in the Kansas City metro.', '999-000-1234'),
+(6, 'The Magical Mushroomer', 'I have been rated the Most-Luscious Mushroom Grower 5 years running.', 'I am approved by the FDA.', '567-890-4567');
 
 --Fill vendors_features table with real special_features data for the fake vendors:
 INSERT INTO "vendors_features" ("vendorUserId", "featureId")
