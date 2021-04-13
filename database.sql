@@ -93,15 +93,15 @@ CREATE TABLE "events" (
   "description" VARCHAR(1024)
 );
 
+CREATE TABLE "types_of_event" (
+  "id" SERIAL PRIMARY KEY,
+  "name" VARCHAR (80) UNIQUE NOT NULL
+);
+
 CREATE TABLE "events_types" (
   "id" SERIAL PRIMARY KEY,
   "eventId" INT REFERENCES "events" ON DELETE CASCADE,
   "typeId" INT REFERENCES "types_of_event" ON DELETE CASCADE
-);
-
-CREATE TABLE "types_of_event" (
-  "id" SERIAL PRIMARY KEY,
-  "name" VARCHAR (80) UNIQUE NOT NULL
 );
 
 INSERT INTO "types_of_event" ("name")
@@ -123,9 +123,6 @@ CREATE TABLE "messages" (
   "date" TIMESTAMPTZ DEFAULT current_timestamp,
   "message" VARCHAR(1024)
 );
-
-
-
 
 --Stretch Tables:
 CREATE TABLE "vendors_ratings" (
