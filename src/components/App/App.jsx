@@ -58,6 +58,7 @@ const contriveTheme = createMuiTheme({
   },
 });
 
+
 function App() {
   const dispatch = useDispatch();
 
@@ -66,9 +67,11 @@ function App() {
   }, [dispatch]);
 
   return (
+
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
+        <Nav />
         <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -126,7 +129,7 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
-              // logged in shows Discover else shows LoginPage
+              // logged in shows Search else shows LoginPage
               exact
               path="/search"
             >
@@ -180,6 +183,7 @@ function App() {
               <LandingPage />
             </ProtectedRoute>
 
+
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
@@ -197,7 +201,7 @@ function App() {
             </Route>
           </Switch>
           <Footer />
-          {/* <Nav /> */}
+          
         </div>
       </Router>
     </ThemeProvider>
