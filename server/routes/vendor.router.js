@@ -5,7 +5,9 @@ const router = express.Router();
 // ROUTES AT /api/vendor/all
 router.get('/all', (req, res) => {
   const sqlText = `
-  SELECT "users"."website", 
+  SELECT 
+  "users"."username",
+  "users"."website", 
   "vendors"."vendorUserId",
   "vendors"."description", 
   "vendors"."additionalInfo", 
@@ -22,6 +24,7 @@ router.get('/all', (req, res) => {
   JOIN "service_types" ON "vendors_services"."serviceId" = "service_types"."id"
   WHERE "users"."type" = 'vendor'
   GROUP BY 
+  "users"."username",
   "users"."website",
   "vendors"."vendorUserId", 
   "vendors"."description", 
@@ -45,7 +48,9 @@ router.get('/all', (req, res) => {
 router.get('/:id', (req, res) => {
   const userId = req.params.id;
   const sqlText = `
-  SELECT "users"."website", 
+  SELECT 
+  "users"."username",
+  "users"."website", 
   "vendors"."vendorUserId",
   "vendors"."description", 
   "vendors"."additionalInfo", 
@@ -62,6 +67,7 @@ router.get('/:id', (req, res) => {
   JOIN "service_types" ON "vendors_services"."serviceId" = "service_types"."id"
   WHERE "users"."type" = 'vendor' AND "users"."id" = $1
   GROUP BY 
+  "users"."username",
   "users"."website",
   "vendors"."vendorUserId", 
   "vendors"."description", 

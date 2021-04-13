@@ -12,14 +12,16 @@ import SpecialFeatures from './SpecialFeatures';
 function VendorProfile() {
   const params = useParams();
   const dispatch = useDispatch();
-  // const vendorDetails = useSelector((store) => store.vendor);
+  const vendorDetails = useSelector((store) => store.vendor);
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: 'FETCH_SINGLE_VENDOR',
-  //     payload: params.id,
-  //   });
-  // }, []);
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_SINGLE_VENDOR',
+      payload: params.id,
+    });
+  }, []);
+
+  console.log('vendorDetails', vendorDetails);
 
   return (
     // pass props to children
