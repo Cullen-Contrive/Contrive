@@ -5,7 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //Import Custom Components
+<<<<<<< HEAD
 import SearchBar from '../SearchBar/SearchBar';
+=======
+import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
+>>>>>>> 7adcb3f652f792a383d77b5fa5256e74414ec4e4
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,7 +30,11 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchNetwork() {
   const classes = useStyles();
+<<<<<<< HEAD
   const [input, setInput] = useState('');
+=======
+  // const [input, setInput] = useState('');
+>>>>>>> 7adcb3f652f792a383d77b5fa5256e74414ec4e4
 
   // useEffect( () => {
   //   dispatch({
@@ -55,7 +64,12 @@ function SearchNetwork() {
       <main>
         <Box align="center" width="100%">
           <Box className={classes.root}>
+<<<<<<< HEAD
             <Box mb={2} align="center" width="100%">
+=======
+
+            <Box mb={2} align="center" width="100%" >
+>>>>>>> 7adcb3f652f792a383d77b5fa5256e74414ec4e4
               <Typography variant="h3">
                 <Box mt={4} align="center" lineHeight={1}>
                   The Network
@@ -63,6 +77,7 @@ function SearchNetwork() {
               </Typography>
             </Box>
 
+<<<<<<< HEAD
             {/* <SearchBar
             //  input={input}
             //  onChange={updateInput}
@@ -85,6 +100,28 @@ function SearchNetwork() {
             //  onChange={updateInput}
             />
           </Box>
+=======
+            <SearchBar
+            //  input={input} 
+            //  onChange={updateInput}
+            />
+
+            <select
+              name="VendorType"
+              onChange={handleVendorChange}
+            >
+              <option key="-1" value="-1">-- Select Vendor Type --</option>
+            </select>
+
+            <select
+              name="userListSelect"
+              onChange={handleCategoryChange}
+            >
+              <option key="-1" value="-1"> -- Select A Category -- </option>
+            </select>
+          </Box>
+          <SearchResults />
+>>>>>>> 7adcb3f652f792a383d77b5fa5256e74414ec4e4
         </Box>
       </main>
     </div>
