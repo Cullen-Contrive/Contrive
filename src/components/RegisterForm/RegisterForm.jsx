@@ -206,8 +206,8 @@ function RegisterForm() {
 
         <Button color="primary" variant="contained"
           onClick={
-            (userType === 'planner' ? ((event) => registerUser(event)) :
-              (() => vendorRegistration()))}>Next
+            (userType === 'vendor' ? (() => vendorRegistration()) :
+              ((event) => registerUser(event)))}>Next
         </Button>
 
       </Grid>
