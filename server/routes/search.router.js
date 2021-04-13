@@ -6,15 +6,23 @@ const {
 } = require('../modules/authentication-middleware');
 
 
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/:searchTerm', rejectUnauthenticated, (req, res) => {
+  console.log('!!!!%%%%%%%%%%% req.params:', req.params.searchTerm);
+  const searchTerm = req.params.searchTerm;
 
-});
+  queryText = `SELECT * FROM "vendors"
+  WHERE "companyName" ILIKE '%' || $1 || '%';`
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+  pool.query(queryText, [searchTerm])
+    .then((dbRes) => {
+      console.log('SERVER - GET - at /api/search - received a response');
+      res.send(dbRes.rows);
+    })
+    .catch((err) => {
+      console.error('SERVER - an error occurred getting search results', err);
+      res.sendStatus(500);
+    });
+
 });
 
 module.exports = router;

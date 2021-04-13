@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //Import Custom Components
-import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 function SearchNetwork() {
   const classes = useStyles();
   // const [input, setInput] = useState('');
-
 
   // useEffect( () => {
   //   dispatch({
@@ -84,6 +84,7 @@ function SearchNetwork() {
               <option key="-1" value="-1"> -- Select A Category -- </option>
             </select>
           </Box>
+          <SearchResults />
         </Box>
       </main>
     </div>
