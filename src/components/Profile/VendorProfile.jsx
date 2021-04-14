@@ -39,6 +39,7 @@ function VendorProfile() {
         city={vendorDetails.city}
         state={vendorDetails.state}
         zip={vendorDetails.zip}
+        vendorId={vendorDetails.vendorUserId}
       />
       <PublicPhotos />
       <About

@@ -25,8 +25,6 @@ const Form = styled.form`
 `;
 
 function MessageAll() {
-  const [yourId, setYourId] = useState();
-  const [outgoingMessages, setOutgoingMessages] = useState([]);
   const [message, setMessage] = useState('');
   const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
@@ -35,23 +33,17 @@ function MessageAll() {
   const history = useHistory();
 
   const existingMessages = useSelector((store) => store.chat);
+  const currentUser = useSelector((store) => store.user);
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
+    // Join the chat room
     socketRef.current.emit('join', {
-      name: 'Username will go here',
-      room: 'room code will go here if need',
+      name: currentUser.firstName + currentUser.lastName,
+      room: 'Room Code - 4576',
     });
-    // socketRef.current.on('message', (message) => {
-    //   receiveMessage(message);
-    // });
+    // Fetch current messages
     fetchMessages();
-  }, []);
-
-  useEffect(() => {
-    socketRef.current.on('send message', (message) => {
-      setOutgoingMessages((outgoingMessages) => [...outgoingMessages, message]);
-    });
   }, []);
 
   const fetchMessages = () => {
@@ -73,7 +65,7 @@ function MessageAll() {
     const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
     const messageObject = {
       date: formattedDate,
-      fromUser: 2,
+      fromUser: currentUser.id,
       message: message,
       toUser: 3,
     };
@@ -86,7 +78,6 @@ function MessageAll() {
   };
 
   const goBack = () => {
-    // posts messages to db upon moving from page.
     console.log('moving pages now');
     // history.push('/alldetails');
   };
