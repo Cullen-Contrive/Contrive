@@ -111,6 +111,9 @@ function RegisterVendorForm() {
 
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
+        <Typography variant="body1" align="left">
+          company logo
+        </Typography>
           <ImageUpload
           page = "AddProfilePic"
           />
