@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import chat from './chat.reducer';
+import search from './search.reducer';
 import features from './specialFeaturesDD.reducer';
 import vendorTypes from './vendorTypesDD.reducer';
 import vendor from './vendor.reducer';
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   chat,
+  search,
   features,
   vendorTypes,
   vendor,

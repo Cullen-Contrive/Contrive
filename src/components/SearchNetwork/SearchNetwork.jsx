@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //Import Custom Components
-import SearchBar from '../SearchBar/SearchBar';
+
+import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,6 +19,21 @@ import { spacing } from '@material-ui/system';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
+function SearchNetwork() {
+  const classes = useStyles();
+  // const [input, setInput] = useState('');
+
+  // useEffect( () => {
+  //   dispatch({
+  //   });
+  // },[]);
+
     '& > *':{
       margin: theme.spacing(1),
     },
@@ -41,6 +58,7 @@ function SearchNetwork() {
   const [specialFeatures, setSpecialFeatures] = useState('');
   const [vendorTypes, setVendorTypes] = useState('');
 
+
   const handleVendorChange = (evt) => {
     // let newUser = evt.target.value;
     // if (newUser === '-1'){
@@ -50,7 +68,9 @@ function SearchNetwork() {
     // }
   };
 
-    const handleCategoryChange = (evt) => {
+
+  const handleCategoryChange = (evt) => {
+
     // let newUser = evt.target.value;
     // if (newUser === '-1'){
     //   history.push(`/discover`);}
@@ -72,6 +92,7 @@ function SearchNetwork() {
                 </Box>
               </Typography>
             </Box>
+
 
             <FormControl className={classes.formControl}>
               <InputLabel id="vendor-type">Vendor Types</InputLabel>
@@ -111,6 +132,7 @@ function SearchNetwork() {
           <SearchBar/>
 
           </Box>
+
         </Box>
       </main>
     </div>

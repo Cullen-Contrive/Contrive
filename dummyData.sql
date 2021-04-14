@@ -28,10 +28,10 @@ VALUES (1, 'https://karaspartyideas.com/wp-content/uploads/2016/11/Bike-Themed-B
 
 --VENDORS:
 --Fill vendors tables with fake users with type "vendor"
-INSERT INTO "vendors" ("vendorUserId", "description", "additionalInfo", "phone")
-VALUES (2, 'Sir Knights Rentals', 'My company provides the realest Rennaissance experience you can get.', 'I am a small, family-run business.  You will be blown away by what good jesters my kids make!', '888-777-6666'),
-(4, 'Rockin Johns', 'My Liberty Rockers will liven up your party no matter how small or large.', 'We are certified to play anywhere in the Kansas City metro.', '999-000-1234'),
-(6, 'The Magical Mushroomer', 'I have been rated the Most-Luscious Mushroom Grower 5 years running.', 'I am approved by the FDA.', '567-890-4567');
+INSERT INTO "vendors" ("vendorUserId", "companyName", "profilePic", "description", "additionalInfo", "phone")
+VALUES (2, 'Sir Knights Rentals', 'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/819485', 'My company provides the realest Rennaissance experience you can get.', 'I am a small, family-run business.  You will be blown away by what good jesters my kids make!', '888-777-6666'),
+(4, 'Rockin Johns', 'https://www.rawmusictv.com/images/og-share-image/best-swedish-rock-bands.jpg', 'My Liberty Rockers will liven up your party no matter how small or large.', 'We are certified to play anywhere in the Kansas City metro.', '999-000-1234'),
+(6, 'The Magical Mushroomer', 'https://images.ctfassets.net/cnu0m8re1exe/4jaJ338Mbgu42tfIVnvWbp/e2c7e11773ff21b6d6f073fe8b87ece7/shutterstock_734992102.jpg?w=650&h=433&fit=fill', 'I have been rated the Most-Luscious Mushroom Grower 5 years running.', 'I am approved by the FDA.', '567-890-4567');
 
 --Fill vendors_features table with real special_features data for the fake vendors:
 INSERT INTO "vendors_features" ("vendorUserId", "featureId")
@@ -69,10 +69,6 @@ INSERT INTO "events" ("plannerUserId", "dateOfEvent", "timeOfEvent", "address",
 VALUES (1, '2021-04-30', '3:00', '5600 Walnut', 'Smithville', 'MO', 64089, 50, 'Graduation celebration!'),
 (3, '2021-08-17', '12:00', '75 Chestnut', 'Lawrence', 'KS', 64048, 200, 'Small wedding with our closest friends and family.'),
 (5, '2021-05-05', '5:55', '5 Main St.', 'Minneapolis', 'MN', 55111, 1000, 'Huge Cinco de Mayo art fair.');
-
---Create list of event types
-INSERT INTO "types_of_event" ("name")
-VALUES ('wedding'), ('anniversary'), ('funeral'), ('retirement'), ('graduation'), ('birthday'), ('other');
 
 --Pair fake events with types_of_events
 INSERT INTO "events_types" ("eventId", "typeId")

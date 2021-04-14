@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import chatSaga from './chat.saga';
+import searchSaga from './search.saga';
 import dropdownSaga from './dropdown.saga';
 import vendorSaga from './vendor.saga';
 
@@ -19,6 +20,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     chatSaga(),
+    searchSaga(),
     dropdownSaga(),
     vendorSaga(),
   ]);
