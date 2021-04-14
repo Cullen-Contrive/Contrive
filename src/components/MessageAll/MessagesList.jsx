@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 
 import { 
   Avatar,
+  Box,
   Divider,
   List,
   ListItem,
@@ -14,10 +15,14 @@ import useStyles from './MessageAll.styles.js'
 
 function MessagesList(){
   const classes = useStyles();
+
   return(
     <>
-      <Typography variant="h2">Messages</Typography>
-      <List>
+      <Box p={1}>
+        <Typography variant="h2" align="center">Messages</Typography>
+      </Box>
+      <Divider/>
+      <List clasName={classes.messagesList}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             {/* alt should be name of user that the logged in user is messaging */}
@@ -34,7 +39,7 @@ function MessagesList(){
                   color="textPrimary"
                 >
                 {/* This text should be replaced with the last message sent/received */}
-                  I can send over a quote if that would be helpful to you.
+                  I can send over a quote if that would be helpful...
                 </Typography>
               </Fragment>
             }
@@ -59,7 +64,7 @@ function MessagesList(){
                   color="textPrimary"
                 >
                 {/* This text should be replaced with the last message sent/received */}
-                  We are booked up clear through August.
+                  We are booked up clear through August...
                 </Typography>
               </Fragment>
             }
@@ -84,7 +89,7 @@ function MessagesList(){
                   color="textPrimary"
                 >
                 {/* This text should be replaced with the last message sent/received */}
-                  I swear it's not just an act! It's truly a site to behold.
+                  I swear it's not just an act! It's truly...
                 </Typography>
               </Fragment>
             }
