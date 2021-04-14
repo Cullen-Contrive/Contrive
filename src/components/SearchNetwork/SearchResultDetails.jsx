@@ -8,7 +8,7 @@ function SearchResultDetails({ vendor }) {
 
   return (
     <div>
-      {/* <div>{vendor.companyName}</div> */}
+      <div>{vendor.companyName}</div>
     </div>
   );
 }

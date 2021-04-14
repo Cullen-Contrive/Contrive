@@ -9,7 +9,7 @@ const searchReducer = (state = [{
 }], action) => {
   switch (action.type) {
     case 'SET_SEARCH_RESULTS':
-      return [action.payload];
+      return action.payload;
     case 'UNSET_SEARCH':
       return [{
         additionalInfo: "",
