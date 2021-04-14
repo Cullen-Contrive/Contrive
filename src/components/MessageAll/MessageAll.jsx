@@ -52,6 +52,8 @@ function MessageAll() {
   };
 
   const sendMessage = (evt) => {
+    console.log('sending Message');
+    console.log('message', message.length);
     evt.preventDefault(); // prevents the form from refreshing the page
     if (message.length <= 0) {
       Swal.fire({
@@ -62,6 +64,7 @@ function MessageAll() {
       });
       return; // return so the function does not execute
     }
+
     const date = new DateObject();
     const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
     const messageObject = {
@@ -70,9 +73,17 @@ function MessageAll() {
       message: message,
       toUser: params.id,
     };
+
+    console.log('messageObject', messageObject);
+
     dispatch({
       type: 'POST_MESSAGE',
-      payload: messageObject,
+      payload: {
+        data: messageObject,
+        onComplete: () => {
+          fetchMessages();
+        },
+      },
     });
     setMessage('');
     socketRef.current.emit('send message', messageObject);
@@ -103,7 +114,13 @@ function MessageAll() {
           {/* existingMessages comes from database */}
           {existingMessages.length > 0
             ? existingMessages.map((singleMessage, index) => {
-                return <Message key={index} messageDetails={singleMessage} />;
+                return (
+                  <Message
+                    key={index}
+                    messageDetails={singleMessage}
+                    toUser={params.id}
+                  />
+                );
               })
             : ' '}
         </Paper>
