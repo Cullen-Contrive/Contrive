@@ -5,19 +5,42 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-router.get('/', (req, res) => {
-  // GET ROUTE - Gets Messages
-  // use req.user.id
-  const queryText = `SELECT * FROM "messages" WHERE "messages"."fromUser" = 2 OR "messages"."toUser" = 2;`;
+router.get('/all', rejectUnauthenticated, (req, res) => {
+  // GET ROUTE - Gets all messages for currently logged-in user
+  const user = req.user.id;
+  const queryText = `SELECT * FROM "messages" WHERE "messages"."fromUser" = $1 OR "messages"."toUser" = $1;`;
 
   pool
-    .query(queryText)
+    .query(queryText, [user])
     .then((dbRes) => {
-      console.log('SERVER - GET - at /api/message - received a response');
+      console.log('SERVER - GET - at /api/message/all - received a response');
       res.send(dbRes.rows);
     })
     .catch((err) => {
-      console.error('SERVER - an error occurred', err);
+      console.error(
+        'SERVER - GET at /api/message/all - an error occurred',
+        err
+      );
+      res.sendStatus(500);
+    });
+});
+
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  // GET ROUTE - Gets Messages between two users
+  const fromUser = req.user.id;
+  const toUser = req.params.id;
+  const queryText = ` SELECT * FROM "messages" WHERE 
+  "messages"."fromUser" = $1 AND "messages"."toUser" = $2
+  OR "messages"."toUser" = $1 AND "messages"."fromUser" =$2;`;
+
+  pool
+    .query(queryText, [fromUser, toUser])
+    .then((dbRes) => {
+      console.log('SERVER - GET at /api/message/id - received a response');
+      res.send(dbRes.rows);
+    })
+    .catch((err) => {
+      console.error('SERVER - GET at /api/message/id - an error occurred');
       res.sendStatus(500);
     });
 });

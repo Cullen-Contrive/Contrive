@@ -1,7 +1,7 @@
 // View of all messages related to the logged-in user.
 // Reached by path '/message'
 import { useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import io from 'socket.io-client';
@@ -31,6 +31,7 @@ function MessageAll() {
   const socketRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
+  const params = useParams();
 
   const existingMessages = useSelector((store) => store.chat);
   const currentUser = useSelector((store) => store.user);
@@ -47,7 +48,7 @@ function MessageAll() {
   }, []);
 
   const fetchMessages = () => {
-    dispatch({ type: 'FETCH_MESSAGES' });
+    dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
   };
 
   const sendMessage = (evt) => {
@@ -67,7 +68,7 @@ function MessageAll() {
       date: formattedDate,
       fromUser: currentUser.id,
       message: message,
-      toUser: 3,
+      toUser: params.id,
     };
     dispatch({
       type: 'POST_MESSAGE',
