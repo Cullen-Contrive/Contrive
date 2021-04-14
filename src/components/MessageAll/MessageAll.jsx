@@ -1,7 +1,7 @@
 // View of all messages related to the logged-in user.
 // Reached by path '/message'
 import { useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import io from 'socket.io-client';
@@ -25,38 +25,30 @@ const Form = styled.form`
 `;
 
 function MessageAll() {
-  const [yourId, setYourId] = useState();
-  const [outgoingMessages, setOutgoingMessages] = useState([]);
   const [message, setMessage] = useState('');
   const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const socketRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
+  const params = useParams();
 
   const existingMessages = useSelector((store) => store.chat);
+  const currentUser = useSelector((store) => store.user);
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
+    // Join the chat room
     socketRef.current.emit('join', {
-      name: 'Username will go here',
-      room: 'room code will go here if need',
+      name: currentUser.firstName + currentUser.lastName,
+      room: 'Room Code - 4576',
     });
-    socketRef.current.on('message', (message) => {
-      console.log('here', message);
-      receiveMessage(message);
-    });
+    // Fetch current messages
     fetchMessages();
   }, []);
 
-  useEffect(() => {
-    socketRef.current.on('send message', (message) => {
-      setOutgoingMessages((outgoingMessages) => [...outgoingMessages, message]);
-    });
-  }, []);
-
   const fetchMessages = () => {
-    dispatch({ type: 'FETCH_MESSAGES' });
+    dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
   };
 
   const sendMessage = (evt) => {
@@ -74,27 +66,23 @@ function MessageAll() {
     const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
     const messageObject = {
       date: formattedDate,
-      fromUser: 2,
+      fromUser: currentUser.id,
       message: message,
-      // id will be inserted on POST
-      toUser: 3,
+      toUser: params.id,
     };
+    dispatch({
+      type: 'POST_MESSAGE',
+      payload: messageObject,
+    });
     setMessage('');
     socketRef.current.emit('send message', messageObject);
   };
 
   const goBack = () => {
-    // posts messages to db upon moving from page.
-    dispatch({
-      type: 'POST_OUTGOING_MESSAGES',
-      payload: outgoingMessages,
-      onComplete: () => {
-        console.log('moving pages now!');
-        // history.push('/alldetails') ???
-      },
-    });
+    console.log('moving pages now');
+    // history.push('/alldetails');
   };
-  
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -115,15 +103,8 @@ function MessageAll() {
           {/* existingMessages comes from database */}
           {existingMessages.length > 0
             ? existingMessages.map((singleMessage, index) => {
-              return <Message key={index} messageDetails={singleMessage} />;
-            })
-            : ' '}
-
-          {/* outgoingMessages is stored in local state and pushed to database on moving page */}
-          {outgoingMessages.length > 0
-            ? outgoingMessages.map((singleMessage, index) => {
-              return <Message key={index} messageDetails={singleMessage} />;
-            })
+                return <Message key={index} messageDetails={singleMessage} />;
+              })
             : ' '}
         </Paper>
       </Grid>
@@ -145,6 +126,5 @@ function MessageAll() {
     </Grid>
   );
 }
-
 
 export default MessageAll;
