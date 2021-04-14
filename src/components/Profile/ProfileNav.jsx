@@ -1,3 +1,5 @@
+import { useHistory } from 'react-router-dom';
+
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -18,8 +20,13 @@ function ProfileNav({ email, phone, website, address, city, state, zip }) {
       },
     },
   }));
-
   const classes = useStyles();
+  const history = useHistory();
+
+  const goToEditView = () => {
+    console.log('headed to edit view');
+    // history.push('/somewhere');
+  };
 
   return (
     <Grid container spacing={3}>
@@ -31,20 +38,35 @@ function ProfileNav({ email, phone, website, address, city, state, zip }) {
               justifyContent: 'space-between',
             }}
           >
-            <IconButton aria-label="chat">
+            <IconButton
+              aria-label="email"
+              component="a"
+              href={`mailto:${email}`}
+              target="_blank"
+            >
               <EmailIcon />
             </IconButton>
-            <IconButton aria-label="phone">
+            <IconButton aria-label="phone" component="a" href={`tel:${phone}`}>
               <PhoneIcon />
             </IconButton>
-            <IconButton aria-label="location">
+            <IconButton
+              aria-label="location"
+              component="a"
+              href={`https://maps.google.com/?q=${zip} ${city}, ${state}`}
+              target="_blank"
+            >
               <LocationOnIcon />
             </IconButton>
-            <IconButton aria-label="website">
+            <IconButton
+              aria-label="website"
+              component="a"
+              href={website}
+              target="_blank"
+            >
               <LanguageIcon />
             </IconButton>
             {/* Conditionally render this element */}
-            <IconButton aria-label="edit profile">
+            <IconButton aria-label="edit profile" onClick={goToEditView}>
               <EditIcon />
             </IconButton>
           </ButtonGroup>

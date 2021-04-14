@@ -46,6 +46,10 @@ function About({
     setExpanded(!expanded);
   };
 
+  const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   return (
     <Accordion>
       <AccordionSummary
@@ -62,32 +66,38 @@ function About({
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Grid container direction="column">
+        <Grid container spacing={1} direction="column">
           <Grid item>
             <Typography variant="body1" component="p">
-              {description}
+              {description ? description : 'no description found.'}
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body2" component="p">
-              {additionalInfo}
+            <Typography variant="body1" component="p">
+              {additionalInfo ? additionalInfo : 'no information found.'}
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body3" component={Link}>
-              <strong>Website</strong>: {website}
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body3">
-              <strong>Phone</strong>: {phone}
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body3">
+            <Typography variant="body2">
               {serviceTypes.map((service, index) => {
-                return <li key={index}>{service}</li>;
+                return <li key={index}>{capitalize(service)}</li>;
               })}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2">
+              <strong>Website</strong>:{' '}
+              <span>
+                <a href={website}>{website}</a>
+              </span>
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2">
+              <strong>Phone</strong>:{' '}
+              <span>
+                <a href={`tel:${phone}`}>{phone}</a>
+              </span>
             </Typography>
           </Grid>
         </Grid>
