@@ -44,6 +44,7 @@ CREATE TABLE "vendors" (
 	"id" SERIAL PRIMARY KEY,
   "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
   "companyName" VARCHAR(256),
+  "profilePic" VARCHAR(1024),
 	"description" VARCHAR(1024),
 	"additionalInfo" VARCHAR(1024),
   "phone" VARCHAR(80),
@@ -107,7 +108,7 @@ CREATE TABLE "events_types" (
 
 INSERT INTO "types_of_event" ("name")
 VALUES ('retirement'), ('birthday'), ('anniversary'), ('wedding'), 
-('funeral'), ('reunion'), ('art'), ('causes'), ('drinks'), ('film'), 
+('funeral'), ('reunion'), ('art'), ('causes'), ('drinks'), ('film'), ('graduation'), 
 ('fitness'), ('food'), ('games'), ('literature'), ('music'), ('networking'), 
 ('religion'), ('sports'), ('theater'), ('other');
 

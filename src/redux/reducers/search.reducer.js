@@ -2,6 +2,7 @@ const searchReducer = (state = [{
   additionalInfo: "",
   certified: false,
   companyName: "",
+  profilePic: "https://iupac.org/wp-content/uploads/2018/05/default-avatar-300x300.png",
   description: "",
   id: 0,
   phone: "",

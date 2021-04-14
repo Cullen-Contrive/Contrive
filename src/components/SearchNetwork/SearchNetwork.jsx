@@ -65,11 +65,6 @@ function SearchNetwork() {
               </Typography>
             </Box>
 
-            <SearchBar
-            //  input={input} 
-            //  onChange={updateInput}
-            />
-
             <select
               name="VendorType"
               onChange={handleVendorChange}
@@ -83,6 +78,12 @@ function SearchNetwork() {
             >
               <option key="-1" value="-1"> -- Select A Category -- </option>
             </select>
+
+            <SearchBar
+            //  input={input} 
+            //  onChange={updateInput}
+            />
+
           </Box>
           <SearchResults />
         </Box>
