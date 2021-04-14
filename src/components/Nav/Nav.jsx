@@ -74,12 +74,12 @@ function Nav() {
         >
 
           <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
-          {user.type === 'planner' && (
-            <>
-              <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
-              <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
-            </>
-          )}
+
+
+          <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
+          <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
+
+
           <BottomNavigationAction label="Messages" value="/message" icon={<ChatIcon />} />
           <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
 
