@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import chatSaga from './chat.saga';
 import searchSaga from './search.saga';
+import dropdownSaga from './dropdown.saga';
 import vendorSaga from './vendor.saga';
 
 // rootSaga is the primary saga.
@@ -20,6 +21,7 @@ export default function* rootSaga() {
     userSaga(),
     chatSaga(),
     searchSaga(),
+    dropdownSaga(),
     vendorSaga(),
   ]);
 }
