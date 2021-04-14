@@ -45,7 +45,34 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
+  const queryText = `
+  INSERT INTO "messages" ("fromUser", 
+  "toUser", 
+  "date", 
+  "message")
+  VALUES ($1, $2, $3, $4);`;
+
+  console.log('req.body', req.body);
+
+  pool
+    .query(queryText, [
+      req.body.fromUser,
+      req.body.toUser,
+      req.body.date,
+      req.body.message,
+    ])
+    .then((dbRes) => {
+      console.log('SERVER - GET - at /api/message - received a response');
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error('SERVER - GET at /api/message', err);
+      res.sendStatus(500);
+    });
+});
+
+router.post('/outgoing', async (req, res) => {
   try {
     console.log('SERVER - POST - to messages');
 
