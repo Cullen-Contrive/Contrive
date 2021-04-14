@@ -1,4 +1,6 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { 
   Avatar,
@@ -15,6 +17,13 @@ import useStyles from './MessageAll.styles.js'
 
 function MessagesList(){
   const classes = useStyles();
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ALL_MESSAGES', payload: user.id})
+  }, [])
 
   return(
     <>
@@ -22,7 +31,7 @@ function MessagesList(){
         <Typography variant="h2" align="center">Messages</Typography>
       </Box>
       <Divider/>
-      <List clasName={classes.messagesList}>
+      <List className={classes.messagesList}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             {/* alt should be name of user that the logged in user is messaging */}

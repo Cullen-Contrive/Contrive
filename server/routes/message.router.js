@@ -28,6 +28,8 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   // GET ROUTE - Gets Messages between two users
   const fromUser = req.user.id;
+  console.log('fromUser', fromUser);
+  console.log('toUser', toUser);
   const toUser = req.params.id;
   const queryText = ` SELECT * FROM "messages" WHERE 
   "messages"."fromUser" = $1 AND "messages"."toUser" = $2
@@ -40,7 +42,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.send(dbRes.rows);
     })
     .catch((err) => {
-      console.error('SERVER - GET at /api/message/id - an error occurred');
+      console.error('SERVER - GET at /api/message/id - an error occurred', err);
       res.sendStatus(500);
     });
 });
