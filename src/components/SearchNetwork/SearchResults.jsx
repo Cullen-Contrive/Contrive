@@ -19,7 +19,7 @@ function SearchResults() {
   let searchResults = useSelector(store => store.search)
 
   console.log('searchResults:', searchResults);
-  console.log('searchResults[0]', searchResults[0]);
+  // console.log('searchResults[0]', searchResults[0]);
 
   return (
     <div>
@@ -28,16 +28,15 @@ function SearchResults() {
       {searchResults.map((vendor, i) => {
         return (
           <div>
-            <div>{vendor.companyName}</div>
-            <SearchResultDetails key={i} vendor={vendor} />
+            {searchResults[0].id !== 0 ?
+              (<SearchResultDetails key={i} vendor={vendor} />) :
+              (<div>No search results, please broaden your search.</div>)
+            }
           </div>
         )
       })}
 
-      {searchResults[0].id !== 0 ?
-        (<SearchResultDetails />) :
-        (<div>No search results, please broaden your search.</div>)
-      }
+
 
     </div>
   );
