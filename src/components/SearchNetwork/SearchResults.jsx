@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Grid } from '@material-ui/core';
 
 // CUSTOM COMPONENTS:
 import SearchResultDetails from './SearchResultDetails';
@@ -16,29 +17,27 @@ function SearchResults() {
 
 
   // Bring in search results from reducer:
-  const searchResults = useSelector(store => store.search)
+  let searchResults = useSelector(store => store.search)
 
   console.log('searchResults:', searchResults);
-  console.log('searchResults[0]', searchResults[0]);
-  // console.log('searchResults[0][1]', searchResults[0][1]);
+  // console.log('searchResults[0]', searchResults[0]);
 
   return (
     <div>
-      <h2>Search Results</h2>
+      {/* <h2>Search Results</h2> */}
+      <Grid container justify="space-around">
+        {searchResults.map((vendor, i) => {
+          return (
+            <>
+              {searchResults[0].id !== 0 ?
+                (<SearchResultDetails key={i} vendor={vendor} />) :
+                (<div>No search results, please broaden your search.</div>)
+              }
+            </>
+          )
+        })}
+      </Grid>
 
-      {searchResults.map((vendor, i) => {
-        return (
-          <div>
-            <div>{vendor.companyName}</div>
-            <SearchResultDetails key={i} vendor={vendor} />
-          </div>
-        )
-      })}
-
-      {/* {searchResults[0].id !== 0 ?
-        (<SearchResultDetails />) :
-        (<div>No search results, broaden your search.</div>)
-      } */}
 
     </div>
   );

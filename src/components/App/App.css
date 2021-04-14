@@ -112,3 +112,6 @@ input {
   margin-bottom: 10px;
 }
 
+li {
+  list-style-type: none;
+}

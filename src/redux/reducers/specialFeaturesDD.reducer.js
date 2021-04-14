@@ -1,7 +1,7 @@
 // Used to store special features
 const specialFeatures = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_FEATURE_LIST':
+    case 'SET_SPECIAL_FEATURE_LIST':
       return action.payload;
     default:
       return state;

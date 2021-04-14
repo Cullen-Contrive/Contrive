@@ -1,13 +1,25 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Collapse from '@material-ui/core/Collapse';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
-function About() {
+function About({
+  description,
+  additionalInfo,
+  serviceTypes,
+  website,
+  phone,
+  city,
+  state,
+}) {
   const [expanded, setExpanded] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
@@ -34,9 +46,17 @@ function About() {
     setExpanded(!expanded);
   };
 
+  const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   return (
-    <Grid container spacing={3} className={classes.root}>
-      <Grid item xs={12}>
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="vendor-about-content"
+        id="vendor-about-header"
+      >
         <Typography
           style={{
             display: 'inline-block',
@@ -44,31 +64,45 @@ function About() {
         >
           About
         </Typography>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Typography>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </Typography>
-        </Collapse>
-      </Grid>
-    </Grid>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Grid container spacing={1} direction="column">
+          <Grid item>
+            <Typography variant="body1" component="p">
+              {description ? description : 'no description found.'}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body1" component="p">
+              {additionalInfo ? additionalInfo : 'no information found.'}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2">
+              {serviceTypes.map((service, index) => {
+                return <li key={index}>{capitalize(service)}</li>;
+              })}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2">
+              <strong>Website</strong>:{' '}
+              <span>
+                <a href={website}>{website}</a>
+              </span>
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2">
+              <strong>Phone</strong>:{' '}
+              <span>
+                <a href={`tel:${phone}`}>{phone}</a>
+              </span>
+            </Typography>
+          </Grid>
+        </Grid>
+      </AccordionDetails>
+    </Accordion>
   );
 }
 

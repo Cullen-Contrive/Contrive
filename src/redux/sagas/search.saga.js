@@ -9,7 +9,8 @@ function* runSearch(action) {
   try {
     // const searchResults = yield axios.get('/api/search', searchTerm);
     const searchResults = yield axios.get(`/api/search/${searchTerm}`);
-    // console.log('searchResults:', searchResults.data);
+    console.log('searchResults.data:', searchResults.data);
+    console.log('searchResults.data[0]:', searchResults.data[0]);
 
     yield put({ type: 'SET_SEARCH_RESULTS', payload: searchResults.data });
   } catch (err) {

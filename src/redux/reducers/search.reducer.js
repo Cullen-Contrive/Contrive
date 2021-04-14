@@ -2,6 +2,7 @@ const searchReducer = (state = [{
   additionalInfo: "",
   certified: false,
   companyName: "",
+  profilePic: "https://iupac.org/wp-content/uploads/2018/05/default-avatar-300x300.png",
   description: "",
   id: 0,
   phone: "",
@@ -9,7 +10,7 @@ const searchReducer = (state = [{
 }], action) => {
   switch (action.type) {
     case 'SET_SEARCH_RESULTS':
-      return [action.payload];
+      return action.payload;
     case 'UNSET_SEARCH':
       return [{
         additionalInfo: "",
