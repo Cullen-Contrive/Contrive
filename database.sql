@@ -56,7 +56,7 @@ CREATE TABLE "special_features" (
 );
 
 INSERT INTO "special_features" ("name")
-VALUES ('femaleOwned'), ('bipocOwned'), ('smallBusiness');
+VALUES ('female-owned'), ('bipoc-owned'), ('small business');
 
 CREATE TABLE "service_types" (
   "id" SERIAL PRIMARY KEY,
@@ -64,7 +64,7 @@ CREATE TABLE "service_types" (
 );
 
 INSERT INTO "service_types" ("name")
-VALUES ('caterer'), ('venueManager'), ('decorator'), ('partySupplier'), 
+VALUES ('caterer'), ('venue manager'), ('decorator'), ('party supplier'), 
 ('entertainment');
 
 
