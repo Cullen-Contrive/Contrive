@@ -23,14 +23,15 @@ router.post('/register', (req, res, next) => {
   const password = encryptLib.encryptPassword(req.body.password);
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
-  const website = req.body.website;
-  const type = req.body.type;
-
-  // Vendor table info:
-  const companyAddress = req.body.companyAddress;
+  const address = req.body.companyAddress;
   const city = req.body.city;
   const state = req.body.state;
   const zip = req.body.zip;
+  const type = req.body.type;
+  const website = req.body.website;
+
+
+  // Vendor table info:
   const companyName = req.body.companyName;
   const description = req.body.description;
   const additionalInfo = req.body.additionalInfo;
@@ -50,21 +51,22 @@ router.post('/register', (req, res, next) => {
   // console.log('phone', phone);
   // console.log('description:', description);
 
-  const queryText = `INSERT INTO "users" ("username", "password", "firstName", "lastName", "website", "type")
-    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
+  const queryText = `INSERT INTO "users" ("username", "password", "firstName", 
+  "lastName", "address", "city", "state", "zip", "type", "website")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`;
 
   // const queryText = `INSERT INTO "users" ("username", "password", "firstName", )`
   pool
-    .query(queryText, [username, password, firstName, lastName, website, type])
+    .query(queryText, [username, password, firstName, lastName, address, city, state, zip, type, website])
     .then((dbRes) => {
       if (type === 'vendor') {
         // console.log('dbRes:', dbRes);
         const vendorUserId = dbRes.rows[0].id;
-        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "description", 
+        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "description", 
       "additionalInfo", "phone")
-        VALUES ($1, $2, $3, $4) RETURNING "vendorUserId";`
+        VALUES ($1, $2, $3, $4, $5);`
 
-        pool.query(sqlQuery, [vendorUserId, description, additionalInfo, phone])
+        pool.query(sqlQuery, [vendorUserId, companyName, description, additionalInfo, phone])
       }
 
       res.sendStatus(201)
@@ -80,6 +82,7 @@ router.post('/register', (req, res, next) => {
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
+  console.log('!!****&&&&&!!!!!!!!! req.body:', req.body);
   res.sendStatus(200);
 });
 

@@ -1,6 +1,6 @@
 // View of all messages related to the logged-in user.
 // Reached by path '/message'
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';

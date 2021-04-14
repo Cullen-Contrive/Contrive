@@ -43,7 +43,9 @@ CREATE TABLE "users_photos" (
 CREATE TABLE "vendors" (
 	"id" SERIAL PRIMARY KEY,
   "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
-	"description" VARCHAR (1200),
+  "companyName" VARCHAR(256),
+  "profilePic" VARCHAR(1024),
+	"description" VARCHAR(1024),
 	"additionalInfo" VARCHAR(1024),
   "phone" VARCHAR(80),
   "certified" BOOLEAN DEFAULT false
@@ -55,7 +57,7 @@ CREATE TABLE "special_features" (
 );
 
 INSERT INTO "special_features" ("name")
-VALUES ('femaleOwned'), ('bipocOwned'), ('smallBusiness');
+VALUES ('female-owned'), ('bipoc-owned'), ('small business');
 
 CREATE TABLE "service_types" (
   "id" SERIAL PRIMARY KEY,
@@ -63,7 +65,7 @@ CREATE TABLE "service_types" (
 );
 
 INSERT INTO "service_types" ("name")
-VALUES ('caterer'), ('venueManager'), ('decorator'), ('partySupplier'), 
+VALUES ('caterer'), ('venue manager'), ('decorator'), ('party supplier'), 
 ('entertainment');
 
 
@@ -106,7 +108,7 @@ CREATE TABLE "events_types" (
 
 INSERT INTO "types_of_event" ("name")
 VALUES ('retirement'), ('birthday'), ('anniversary'), ('wedding'), 
-('funeral'), ('reunion'), ('art'), ('causes'), ('drinks'), ('film'), 
+('funeral'), ('reunion'), ('art'), ('causes'), ('drinks'), ('film'), ('graduation'), 
 ('fitness'), ('food'), ('games'), ('literature'), ('music'), ('networking'), 
 ('religion'), ('sports'), ('theater'), ('other');
 

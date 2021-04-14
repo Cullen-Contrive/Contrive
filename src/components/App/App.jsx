@@ -59,16 +59,16 @@ const contriveTheme = createMuiTheme({
   },
 });
 
-
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_VENDOR_TYPES' });
+    dispatch({ type: 'FETCH_SPECIAL_FEATURES' });
   }, [dispatch]);
 
   return (
-
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
@@ -121,7 +121,7 @@ function App() {
             <ProtectedRoute
               // logged in shows UserPage else shows LoginPage
               exact
-              path="/vendor"
+              path="/vendor/:id" // url will look like "/vendor/2"
             >
               <VendorProfile />
             </ProtectedRoute>
@@ -173,7 +173,7 @@ function App() {
               // - else shows RegisterPage at "/registration"
               exact
               path="/registration/vendor"
-              authRedirect="/vendor"
+              authRedirect="/vendor/:id"
             >
               <RegisterVendorPage />
             </ProtectedRoute>
@@ -188,7 +188,6 @@ function App() {
             >
               <LandingPage />
             </ProtectedRoute>
-
 
             <ProtectedRoute
               // with authRedirect:
@@ -207,7 +206,6 @@ function App() {
             </Route>
           </Switch>
           <Footer />
-          
         </div>
       </Router>
     </ThemeProvider>
