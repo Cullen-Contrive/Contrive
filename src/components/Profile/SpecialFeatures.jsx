@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 
-function SpecialFeatures() {
+function SpecialFeatures({ features }) {
   const [expanded, setExpanded] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
@@ -33,9 +33,8 @@ function SpecialFeatures() {
   // Classes for styling
   const classes = useStyles();
 
-  // Event handler for collapsing photos
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
   return (
@@ -55,7 +54,13 @@ function SpecialFeatures() {
       </AccordionSummary>
 
       <AccordionDetails>
-        <Typography>helloooooooo</Typography>
+        <Grid item>
+          <Typography variant="body2">
+            {features.map((feature, index) => {
+              return <li key={index}>{capitalize(feature)}</li>;
+            })}
+          </Typography>
+        </Grid>
       </AccordionDetails>
     </Accordion>
   );
