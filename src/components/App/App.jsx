@@ -15,6 +15,7 @@ import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import Message from '../MessageAll/MessageAll';
+import MessagesList from '../MessageAll/MessagesList';
 // import MessageDetail from '../MessageDetail/MessageDetail';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
@@ -75,7 +76,7 @@ function App() {
         <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/message" />
+            {/* <Redirect exact from="/" to="/message" /> */}
 
             {/* Visiting localhost:3000/about will show the about page. */}
             <Route
@@ -96,6 +97,11 @@ function App() {
               <StyleGuide />
             </Route>
 
+            <Route exact path="/messages">
+              <MessagesList />
+            </Route>
+
+            {/* TODO - Should be mounted with user specific params on top e.g. /messages?toUser=a&fromUser=b*/}
             <Route exact path="/message">
               <Message />
             </Route>

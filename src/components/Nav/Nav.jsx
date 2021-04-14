@@ -98,7 +98,7 @@ function Nav() {
           <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
           <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
           <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
-          <BottomNavigationAction label="Messages" value="/message" icon={<ChatIcon />} />
+          <BottomNavigationAction label="Messages" value="/messagesf" icon={<ChatIcon />} />
           <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
 
           <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
