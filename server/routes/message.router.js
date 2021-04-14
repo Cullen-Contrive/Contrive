@@ -24,6 +24,8 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
+    console.log('SERVER - POST - to messages');
+
     const queryText = `
     INSERT INTO "messages" ("fromUser", 
                             "toUser", 

@@ -42,10 +42,9 @@ function MessageAll() {
       name: 'Username will go here',
       room: 'room code will go here if need',
     });
-    socketRef.current.on('message', (message) => {
-      console.log('here', message);
-      receiveMessage(message);
-    });
+    // socketRef.current.on('message', (message) => {
+    //   receiveMessage(message);
+    // });
     fetchMessages();
   }, []);
 
@@ -76,25 +75,22 @@ function MessageAll() {
       date: formattedDate,
       fromUser: 2,
       message: message,
-      // id will be inserted on POST
       toUser: 3,
     };
+    dispatch({
+      type: 'POST_MESSAGE',
+      payload: messageObject,
+    });
     setMessage('');
     socketRef.current.emit('send message', messageObject);
   };
 
   const goBack = () => {
     // posts messages to db upon moving from page.
-    dispatch({
-      type: 'POST_OUTGOING_MESSAGES',
-      payload: outgoingMessages,
-      onComplete: () => {
-        console.log('moving pages now!');
-        // history.push('/alldetails') ???
-      },
-    });
+    console.log('moving pages now');
+    // history.push('/alldetails');
   };
-  
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -115,15 +111,8 @@ function MessageAll() {
           {/* existingMessages comes from database */}
           {existingMessages.length > 0
             ? existingMessages.map((singleMessage, index) => {
-              return <Message key={index} messageDetails={singleMessage} />;
-            })
-            : ' '}
-
-          {/* outgoingMessages is stored in local state and pushed to database on moving page */}
-          {outgoingMessages.length > 0
-            ? outgoingMessages.map((singleMessage, index) => {
-              return <Message key={index} messageDetails={singleMessage} />;
-            })
+                return <Message key={index} messageDetails={singleMessage} />;
+              })
             : ' '}
         </Paper>
       </Grid>
@@ -145,6 +134,5 @@ function MessageAll() {
     </Grid>
   );
 }
-
 
 export default MessageAll;
