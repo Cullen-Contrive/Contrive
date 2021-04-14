@@ -18,12 +18,11 @@ function SearchResults() {
 
   // Bring in search results from reducer:
   let searchResults = useSelector(store => store.search)
-
-  console.log('searchResults:', searchResults);
-  // console.log('searchResults[0]', searchResults[0]);
+  console.log('searchResults in component:', searchResults);
 
   return (
     <div>
+
       {/* <h2>Search Results</h2> */}
       <Grid container justify="space-around">
         {searchResults.map((vendor, i) => {
@@ -37,7 +36,6 @@ function SearchResults() {
           )
         })}
       </Grid>
-
 
     </div>
   );

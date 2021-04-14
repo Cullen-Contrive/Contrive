@@ -126,6 +126,7 @@ function SearchNetwork() {
 
             <SearchBar />
           </Box>
+          <SearchResults />
         </Box>
       </main>
     </div>
