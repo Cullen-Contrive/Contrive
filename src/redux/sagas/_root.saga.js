@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import chatSaga from './chat.saga';
+import dropdownSaga from './dropdown.saga';
 import vendorSaga from './vendor.saga';
 
 // rootSaga is the primary saga.
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     chatSaga(),
+    dropdownSaga(),
     vendorSaga(),
   ]);
 }

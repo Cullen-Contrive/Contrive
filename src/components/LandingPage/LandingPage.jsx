@@ -6,9 +6,8 @@ import Image from '../Images/contriveLanding.png';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Backdrop, BottomNavigation } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { spacing } from '@material-ui/system';
 
@@ -64,8 +63,6 @@ function LandingPage() {
     
       <Box align="center" width="100%" className={classes.buttons}>
       <Box className={classes.root}>
-
-
 
       <Button variant="contained" onClick = {onLogin} style={{ height: 40 }}>
         <Typography variant="body1">
