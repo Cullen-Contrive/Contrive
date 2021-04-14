@@ -4,6 +4,7 @@ import user from './user.reducer';
 import chat from './chat.reducer';
 import features from './specialFeaturesDD.reducer';
 import vendorTypes from './vendorTypesDD.reducer';
+import vendor from './vendor.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   chat,
   features,
-  vendorTypes
+  vendorTypes,
+  vendor,
 });
 
 export default rootReducer;
