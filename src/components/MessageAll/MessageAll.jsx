@@ -52,8 +52,6 @@ function MessageAll() {
   };
 
   const sendMessage = (evt) => {
-    console.log('sending Message');
-    console.log('message', message.length);
     evt.preventDefault(); // prevents the form from refreshing the page
     if (message.length <= 0) {
       Swal.fire({
@@ -73,8 +71,6 @@ function MessageAll() {
       message: message,
       toUser: params.id,
     };
-
-    console.log('messageObject', messageObject);
 
     dispatch({
       type: 'POST_MESSAGE',
