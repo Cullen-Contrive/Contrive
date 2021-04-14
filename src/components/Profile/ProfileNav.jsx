@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 
 function ProfileNav({
   email,
@@ -35,8 +34,17 @@ function ProfileNav({
   const history = useHistory();
 
   const goToEditView = () => {
+    // handles going to editView if the
+    // logged in user matches the vendorId
     console.log('headed to edit view');
     // history.push('/somewhere');
+  };
+
+  const goToMessageView = () => {
+    // handles going to messageView for this particular vendor
+    // passes the vendorId in as the toUser
+    console.log('headed to message view');
+    history.push(`/message/${vendorId}`);
   };
 
   return (
@@ -59,8 +67,7 @@ function ProfileNav({
             </IconButton>
             <IconButton
               aria-label="begin a message with this vendor"
-              component={Link}
-              to={`/message/${vendorId}`}
+              onClick={goToMessageView}
             >
               <MessageIcon />
             </IconButton>

@@ -21,8 +21,6 @@ function VendorProfile() {
     });
   }, []);
 
-  console.log('VENDOR PROFILE PAGE AND HERE ARE THE DETAILS', vendorDetails);
-
   return (
     // pass props to children
     <>

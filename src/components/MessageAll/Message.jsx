@@ -34,7 +34,6 @@ function Message({ messageDetails, toUser }) {
   return (
     // Conditionally render to or from based on what the user.id is
     // messageDetails.fromUser == currently logged in user id
-    // Should set it up to render on left or right side
     // TODO: display the avatar for each user on each side
     <>
       {messageDetails.toUser == toUser ? (

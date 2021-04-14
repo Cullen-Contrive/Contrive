@@ -112,17 +112,19 @@ function MessageAll() {
           }}
         >
           {/* existingMessages comes from database */}
-          {existingMessages.length > 0
-            ? existingMessages.map((singleMessage, index) => {
-                return (
-                  <Message
-                    key={index}
-                    messageDetails={singleMessage}
-                    toUser={params.id}
-                  />
-                );
-              })
-            : ' '}
+          {existingMessages.length > 0 ? (
+            existingMessages.map((singleMessage, index) => {
+              return (
+                <Message
+                  key={index}
+                  messageDetails={singleMessage}
+                  toUser={params.id}
+                />
+              );
+            })
+          ) : (
+            <Typography>Start a conversation!</Typography>
+          )}
         </Paper>
       </Grid>
       {/* Form for submitting text to another user */}
