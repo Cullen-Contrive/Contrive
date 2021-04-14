@@ -36,6 +36,8 @@ function MessageAll() {
   const existingMessages = useSelector((store) => store.chat);
   const currentUser = useSelector((store) => store.user);
 
+  console.log('currentUser', currentUser);
+
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
     // Join the chat room
