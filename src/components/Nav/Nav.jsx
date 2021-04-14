@@ -4,7 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
 import useStyles from './Nav.styles'
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // Material-UI Components
 import {
@@ -14,7 +14,7 @@ import {
   Box,
   Button,
   Divider,
-  Drawer, 
+  Drawer,
   Grid,
   List,
   ListItem,
@@ -42,10 +42,10 @@ function Nav() {
   };
 
   if (user.id != null) {
-    loginLinkData.path = '/user';
-    loginLinkData.text = 'Home';
+    loginLinkData.path = '/discover';
+    loginLinkData.text = 'Discover';
   }
-  
+
   // Handles menu icon change when nav bar icons are clicked
   const handleChange = (event, newValue) => {
     console.log('handleChange Nav', newValue)
@@ -59,34 +59,12 @@ function Nav() {
   // Opens Menu Drawer
   const toggleDrawer = (open) => {
     console.log('toggleDrawer');
-    
+
     setState(open);
   };
 
   return (
-    // <div className="nav">
-    //   <Link to="/home">
-    //     <h2 className="nav-title">Prime Solo Project</h2>
-    //   </Link>
-    //   <div>
-    //     <Link className="navLink" to={loginLinkData.path}>
-    //       {loginLinkData.text}
-    //     </Link>
 
-    //     {user.id && (
-    //       <>
-    //         <Link className="navLink" to="/info">
-    //           Info Page
-    //         </Link>
-    //         <LogOutButton className="navLink" />
-    //       </>
-    //     )}
-
-    //     <Link className="navLink" to="/about">
-    //       About
-    //     </Link>
-    //   </div>
-    // </div>
     <> {/* if user is not logged in, bottom nav will not render */}
       {user.id && (
         <BottomNavigation
