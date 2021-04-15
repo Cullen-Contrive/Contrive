@@ -47,6 +47,8 @@ function MessageAll() {
     fetchMessages();
   }, []);
 
+  console.log('current', currentUser);
+
   const fetchMessages = () => {
     dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
   };
@@ -106,7 +108,6 @@ function MessageAll() {
             marginRight: 10,
           }}
         >
-          {/* existingMessages comes from database */}
           {existingMessages.length > 0 ? (
             existingMessages.map((singleMessage, index) => {
               return (
