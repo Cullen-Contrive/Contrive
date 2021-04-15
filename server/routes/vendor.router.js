@@ -1,9 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // ROUTES AT /api/vendor/all
-router.get('/all', (req, res) => {
+router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
   SELECT 
   "users"."username",
@@ -55,7 +58,7 @@ router.get('/all', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
   const sqlText = `
   SELECT 

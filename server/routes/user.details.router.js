@@ -37,7 +37,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * GET route for /api/user/details/id
  */
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   // Gets user info based on passed in params
   const userId = req.params.id;
   const queryText = `
@@ -59,13 +59,6 @@ router.get('/:id', (req, res) => {
       console.error('SERVER - GET - an error occurred getting user details');
       res.sendStatus(500);
     });
-});
-
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
 });
 
 module.exports = router;
