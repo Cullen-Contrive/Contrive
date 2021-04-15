@@ -28,6 +28,7 @@ function VendorProfile() {
       <ProfileName
         name={vendorDetails.companyName}
         certified={vendorDetails.certified}
+        profilePhoto={vendorDetails.profilePic}
       />
       <ProfileNav
         email={vendorDetails.username}
