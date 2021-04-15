@@ -11,6 +11,7 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Gets user info based on currently logged in user
   const userId = req.user.id;
+  console.log('userId incoming is', req.user.id);
   const queryText = `
   SELECT 
   "firstName", 

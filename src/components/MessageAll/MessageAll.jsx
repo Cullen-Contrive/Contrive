@@ -47,12 +47,17 @@ function MessageAll() {
     });
     // Fetch current messages
     fetchMessages();
+    fetchLoggedInUserDetails();
   }, []);
 
   console.log('current', currentUser);
 
   const fetchMessages = () => {
     dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
+  };
+
+  const fetchLoggedInUserDetails = () => {
+    dispatch({ type: 'FETCH_LOGGED_IN_USER_DETAILS' });
   };
 
   const sendMessage = (evt) => {
