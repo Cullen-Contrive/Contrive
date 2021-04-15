@@ -20,9 +20,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {
   // User table info:
   const username = req.body.username;
-  const password = encryptLib.encryptPassword(req.body.password);
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
+  const profilePic = req.body.profilePic;
+  const password = encryptLib.encryptPassword(req.body.password);
   const address = req.body.companyAddress;
   const city = req.body.city;
   const state = req.body.state;
@@ -38,9 +39,10 @@ router.post('/register', (req, res, next) => {
   const phone = req.body.phone;
 
   // console.log('username:', username);
-  // console.log('password', password);
   // console.log('firstName', firstName);
   // console.log('lastName', lastName);
+  // console.log('profilePic', profilePic);
+  // console.log('password', password);
   // console.log('website', website);
   // console.log('type', type);
   // console.log('companyAddress:', companyAddress);
@@ -51,13 +53,12 @@ router.post('/register', (req, res, next) => {
   // console.log('phone', phone);
   // console.log('description:', description);
 
-  const queryText = `INSERT INTO "users" ("username", "password", "firstName", 
-  "lastName", "address", "city", "state", "zip", "type", "website")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`;
+  const queryText = `INSERT INTO "users" ("username", "firstName", "lastName", 
+  "profilePic", "password", "address", "city", "state", "zip", "type", "website")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`;
 
-  // const queryText = `INSERT INTO "users" ("username", "password", "firstName", )`
   pool
-    .query(queryText, [username, password, firstName, lastName, address, city, state, zip, type, website])
+    .query(queryText, [username, firstName, lastName, profilePic, password, address, city, state, zip, type, website])
     .then((dbRes) => {
       if (type === 'vendor') {
         // console.log('dbRes:', dbRes);
