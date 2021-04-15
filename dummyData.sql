@@ -33,18 +33,12 @@ VALUES
 ('tammy@occasionslinen.com', 'one', 'Tammy', 'Danger', '551 Dorland Rd', 'Maplewood', 'MN', 55119, 'vendor', 'https://www.occasionslinen.com/', 'Whether it’s an intimate gathering or larger gala your event will be remembered for a lifetime. Specialty linens are key to a spectacular table setting and to creating your desired atmosphere. Just remember that your event will be photographed over and over…so you really want to make a lasting impression! Occasions Linen Rental services the Twin Cities and surrounding communities. If there is something that you don’t see on the website let us know we can order it! Together we can create your occasion to remember.'),
 ('events@festivitiesmn.com', 'one', 'Julio', 'Varga', '10701 Red Circle Drive', 'Minnetonka', 'MN', 55343, 'vendor', 'https://www.festivitiesmn.com/', 'Festivities has the functional, fun & fashionable stuff your event needs, with the design, service & expertise you want.'),
 ('info@apresparty.com', 'one', 'Lindsey', 'Logan', '5801 Clearwater Drive', 'Minnetona', 'MN', 55343, 'vendor', 'http://www.apresparty.com/', 'bI started Après 33 years ago out of the lower level of my home. Purchasing a full line of rental inventory and opening at my first location in time for the hectic Christmas season of 1987. We are now working out of more than 63,000 square feet.io'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('fun@atouchofmagicentertainment.com', 'one', 'Megan', 'Grahm', '', 'St. Paul', 'MN', 55113, 'vendor', 'https://atouchofmagicentertainment.com/', 'We are a family owned and operated full-service entertainment company run by professional entertainers.  Founded in 1986, A Touch of Magic, Inc. is located in St. Paul, Minnesota, the Twin Cities, with entertainers/artists who are nationally renowned in addition to being local favorites. What started as a small project to fund a college education,  has grown into a lifelong passion and desire to bring joy & laughter to our clients!  Maybe that’s why we’ve been named “Best Entertainment” in the Twin Cities over and over again.'),
+('karaoketwincities@gmail.com', 'one', 'Oko', 'Ono', '', 'Minneapolis', 'MN', 55406, 'vendor', 'wehttp://karaoketwincities.com/bsite', 'We provide hosted karaoke entertainment to local bars/restaurants as well as the opportunity to rent our equipment with or without a host to suit your entertainment needs.'),
+('info@northernsoundentertainment.com', 'one', 'Dustin', 'Jaeger', '16102 Hawthorn Path', 'Lakeville', 'MN', 55044, 'vendor', 'https://www.northernsoundentertainment.com/', 'The owners of Northern Sound Entertainment have a serious passion for the event service industry. They started this company in 2016 with a vision to shake up the Wedding and Event Services industry.'),
+('info@wedphoria.com', 'one', 'Michael', 'Wells', '', 'Clear Lake', 'MN', 55319, 'vendor', 'https://www.minnesotaprodj.com/', 'WedPhoria, formerly known as Minnesota Pro DJ, offers HIGH quality wedding and special event DJ, Photo Booth, Photography, Officiant and Event Planning services.'),
+('info@adagiodj.com', 'one', 'Roger', 'Moore', '413 Wacouta Street Suite 100', 'Saint Paul', 'MN', 55101, 'vendor', 'https://www.adagiodj.com/', 'When the lights go up and the party’s over, all you’ll have left are the memories. At Adagio Djay Entertainment, we specialize in crafting a symphony of music, melodies and excitement into the perfect experience for the most memorable day of your life. From the first dance to the last—we never forget whose day it is.'),
+('info@midwestsound.com', 'one', 'Charles', 'Jordan', '1900 Oakcrest Ave STE 6', 'Roseville', 'MN', 55113, 'vendor', 'https://www.midwestsound.com/', 'We created the blueprint for wedding DJ entertainment. We continue to set trends and facilitate remarkable receptions. Our unparalleled training and mentorship program makes our DJs exceptional. We perform at 1,900 receptions every year and each is customized to be one of a kind. Our comprehensive online planning process lets our clients have complete control to guarantee a unique and memorable wedding. With our experience and reliability, we will continue to provide amazing wedding DJ entertainment for many years to come.'),
 
 ('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
 
@@ -152,18 +146,12 @@ VALUES
 (28, 'Occasions Linen Rental', 'https://www.occasionslinen.com/wp-content/uploads/2016/01/new-logo-wide-xsm.png', 'Whether it’s an intimate gathering or larger gala your event will be remembered for a lifetime. Specialty linens are key to a spectacular table setting and to creating your desired atmosphere. Just remember that your event will be photographed over and over…so you really want to make a lasting impression! Occasions Linen Rental services the Twin Cities and surrounding communities. If there is something that you don’t see on the website let us know we can order it! Together we can create your occasion to remember.', '', '651-387-1726'),
 (29, 'Festivities', 'https://www.festivitiesmn.com/wp-content/uploads/2016/01/festvities_logo_318x72.jpg', 'Festivities has the functional, fun & fashionable stuff your event needs, with the design, service & expertise you want.', 'We specialize in weddings, social events, and coproate / non-profits.', '763-682-4846'),
 (30, 'Apres Event Decor & Tent Rental', 'https://res.cloudinary.com/expertise-com/image/upload/f_auto,fl_lossy,q_auto:low/remote_media/logos/1573065346_apresparty-com.jpg', 'I started Après 33 years ago out of the lower level of my home. Purchasing a full line of rental inventory and opening at my first location in time for the hectic Christmas season of 1987. We are now working out of more than 63,000 square feet.', 'Serving Minneapolis, St. Paul, Twin Cities, Minnesota, Wisconsin, Iowa, North Dakota, South Dakota', '952-942-3399'),
-
-(31, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(32, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(33, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(34, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(35, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(36, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
+(31, 'A Touch of Magic Entertainment', 'https://atouchofmagicentertainment.com/wp-content/uploads/2018/01/ATOM_Logo.png', 'We are a family owned and operated full-service entertainment company run by professional entertainers.  Founded in 1986, A Touch of Magic, Inc. is located in St. Paul, Minnesota, the Twin Cities, with entertainers/artists who are nationally renowned in addition to being local favorites. What started as a small project to fund a college education,  has grown into a lifelong passion and desire to bring joy & laughter to our clients!  Maybe that’s why we’ve been named “Best Entertainment” in the Twin Cities over and over again.', 'A Touch of Magic, a Certified Women’s Business Enterprise, specializes in top notch, age-appropriate entertainment for ages 3-93, reasonable prices, and unsurpassed customer support. Through our commitment, experience, and expertise, we have established a business relationship with our customers that is lasting a lifetime.', '651-748-9442'),
+(32, 'Karaoke Twin Cities', 'http://img1.wsimg.com/isteam/ip/5551b527-c09a-4f5e-ae4c-35a6fe37d268/79f27784-3cce-418a-bc34-7a794d4621e2.jpg/:/rs=h:500,cg:true,m', 'We provide hosted karaoke entertainment to local bars/restaurants as well as the opportunity to rent our equipment with or without a host to suit your entertainment needs.', 'We  deliver karaoke anywhere in the Twin Cities greater metro area. We may  be willing to travel farther for an additional fee, see our delivery map page for more info.', '612-889-7963'),
+(33, 'Northern Sound', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRur8DoOFGWLDmykCuV6KmqYk84-l3-R1q2pg&usqp=CAU', 'The owners of Northern Sound Entertainment have a serious passion for the event service industry. They started this company in 2016 with a vision to shake up the Wedding and Event Services industry.', 'Event DJ, Photo Booth, Event Videos, Karaoke', '612-306-2831'),
+(34, 'WedPhoria', 'https://www.minnesotaprodj.com/images/WedPhoria-Banner-hor-300x100.png', 'Your 1-Stop-Shop for Wedding & Special Event Services!', 'DJ, Photography, Videography, Event Planning, Photo Booths', '612-293-764'),
+(35, 'Adagio Djay Entertainment', 'https://vol7d4dgnq224poreu2v6gqb-wpengine.netdna-ssl.com/wp-content/uploads/sites/22/2017/01/logo-adagio.svg', 'When the lights go up and the party’s over, all you’ll have left are the memories. At Adagio Djay Entertainment, we specialize in crafting a symphony of music, melodies and excitement into the perfect experience for the most memorable day of your life. From the first dance to the last—we never forget whose day it is.', '', '612-787-3501'),
+(36, 'Midwest Sound DJ Entertainment', 'https://static1.squarespace.com/static/54849ccfe4b0b09de1feb208/t/54bdb9c5e4b0a3e130f04409/1608599170100/?format=1500w', 'We created the blueprint for wedding DJ entertainment. We continue to set trends and facilitate remarkable receptions. Our unparalleled training and mentorship program makes our DJs exceptional. We perform at 1,900 receptions every year and each is customized to be one of a kind. Our comprehensive online planning process lets our clients have complete control to guarantee a unique and memorable wedding. With our experience and reliability, we will continue to provide amazing wedding DJ entertainment for many years to come.', '', '651-644-4111'),
 
 (37, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
 
@@ -231,19 +219,8 @@ INSERT INTO "vendors_features"
 VALUES 
 (2, 3), (4, 3), (6, 1), (6, 3), (4, 3), (7, 3), (8,1), (9, 2), (11, 2), (12, 1),
 (14, 3), (15, 1), (16, 3), (17, 2), (18, 1), (19, 1), (21, 1), (22, 1), (23, 3),
-(24, 2), (25, 3), (26, 2), (27, 2), (28, 1), (29, 2), (30, 3),
-
-(31,),
-
-(32,),
-
-(33,),
-
-(34,),
-
-(35,),
-
-(36,),
+(24, 2), (25, 3), (26, 2), (27, 2), (28, 1), (29, 2), (30, 3), (31, 1), (32, 2),
+(35, 3), (36, 3),
 
 (37,),
 
