@@ -66,7 +66,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
   INSERT INTO "messages" ("fromUser", 
   "toUser", 
@@ -91,10 +91,8 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/outgoing', async (req, res) => {
+router.post('/bulk', rejectUnauthenticated, async (req, res) => {
   try {
-    console.log('SERVER - POST - to messages');
-
     const queryText = `
     INSERT INTO "messages" ("fromUser", 
                             "toUser", 
@@ -114,7 +112,7 @@ router.post('/outgoing', async (req, res) => {
     );
     res.sendStatus(201);
   } catch (err) {
-    console.error('SERVER - POST - at /api/message - an error occurred');
+    console.error('SERVER - POST - at /api/message/bulk - an error occurred');
     res.sendStatus(500);
   }
 });
