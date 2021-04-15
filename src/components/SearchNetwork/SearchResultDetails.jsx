@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import { Box, Grid } from '@material-ui/core';
 
 import './searchNetwork.css';
 
 function SearchResultDetails({ vendor }) {
+  console.log('====================================');
+  console.log('vendor:', vendor);
+  console.log('====================================');
 
   return (
 

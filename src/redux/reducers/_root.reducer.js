@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   chat,
-  search,
+  search, // search results based off vendor name keyword
   features,
   vendorTypes,
   vendor,

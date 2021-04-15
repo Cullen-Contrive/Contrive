@@ -74,8 +74,9 @@ function App() {
         <Nav />
         <div>
           <Switch>
-            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/styleGuide" />
+            {/* Visiting localhost:3000 will redirect to localhost:3000/welcome, 
+            which redirects to localhost:3000/discover if user is already logged in (see below) */}
+            <Redirect exact from="/" to="/welcome" />
 
             {/* Visiting localhost:3000/about will show the about page. */}
             <Route
@@ -141,55 +142,44 @@ function App() {
             be taken to the component and path supplied. */}
             <ProtectedRoute
               // with authRedirect:
-              // - if logged in, redirects to "/user"
+              // - if logged in, redirects to "/discover"
               // - else shows LoginPage at /login
               exact
               path="/login"
-              authRedirect="/user"
+              authRedirect="/discover"
             >
               <LoginPage />
             </ProtectedRoute>
 
             <ProtectedRoute
               // with authRedirect:
-              // - if logged in, redirects to "/user"
+              // - if logged in, redirects to "/discover"
               // - else shows RegisterPage at "/registration"
               exact
               path="/registration"
-              authRedirect="/user"
+              authRedirect="/discover"
             >
               <RegisterPage />
             </ProtectedRoute>
 
             <ProtectedRoute
               // with authRedirect:
-              // - if logged in, redirects to "/vendor"
+              // - if logged in, redirects to "/discover"
               // - else shows RegisterPage at "/registration"
               exact
               path="/registration/vendor"
-              authRedirect="/vendor/:id"
+              authRedirect="/discover"
             >
               <RegisterVendorPage />
             </ProtectedRoute>
 
             <ProtectedRoute
               // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LandingPage at "/home"
+              // - if logged in, redirects to "/discover"
+              // - else shows LandingPage at "/welcome"
               exact
-              path="/home"
-              authRedirect="/user"
-            >
-              <LandingPage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LandingPage at "/home"
-              exact
-              path="/vendor"
-              authRedirect="/user"
+              path="/welcome"
+              authRedirect="/discover"
             >
               <LandingPage />
             </ProtectedRoute>
