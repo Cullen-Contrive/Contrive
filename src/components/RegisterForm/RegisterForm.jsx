@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 // Material-UI
 import {
@@ -43,6 +44,8 @@ function RegisterForm() {
 
   // Bring in any errors stored in the reducer:
   const errors = useSelector((store) => store.errors);
+  const profilePic = useSelector(store => store.profilePic);
+
   const dispatch = useDispatch();
 
   const registerUser = (event) => {
@@ -55,6 +58,7 @@ function RegisterForm() {
         password: password,
         firstName: firstName,
         lastName: lastName,
+        profilePic: profilePic,
         website: website,
         type: userType
       },
@@ -157,6 +161,17 @@ function RegisterForm() {
 
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
+          <Typography variant="body1" align="left">
+            company logo
+        </Typography>
+          <ImageUpload
+            page="AddProfilePic"
+          />
+        </FormControl>
+      </Grid>
+
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
           <TextField
             id="website"
             label="website"
@@ -170,9 +185,6 @@ function RegisterForm() {
           />
         </FormControl>
       </Grid>
-
-      {/* INSERT IMAGE UPLOAD HERE */}
-      <p>Profile Pic Upload</p>
 
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
