@@ -11,7 +11,6 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Gets user info based on currently logged in user
   const userId = req.user.id;
-  console.log('Incoming userId is', req.user.id);
   const queryText = `
   SELECT 
   "firstName", 
@@ -24,12 +23,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [userId])
     .then((dbRes) => {
-      console.log('SERVER - GET - user details successful!');
+      console.log('SERVER - GET - user details by current user successful!');
       console.table(dbRes.rows);
       res.send(dbRes.rows);
     })
     .catch((err) => {
-      console.error('SERVER - GET - an error occurred getting user details');
+      console.error(
+        'SERVER - GET - an error occurred getting current user details'
+      );
       res.sendStatus(500);
     });
 });
@@ -52,7 +53,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [userId])
     .then((dbRes) => {
-      console.log('SERVER - GET - user type and photo successful!');
+      console.log('SERVER - GET - user details by id successful!');
       res.send(dbRes.rows);
     })
     .catch((err) => {
