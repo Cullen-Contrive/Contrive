@@ -7,18 +7,10 @@ import {
   Typography,
 } from '@material-ui/core';
 
-function EditVendorBasicInfo({vendor}) {
+function EditVendorBasicInfo({vendor, editProfileElement}) {
   const dispatch = useDispatch();
 
-  const editProfileElement = (reducerKey, newKeyValue) => {
-    dispatch({
-      type: 'SET_VENDOR',
-      payload: {
-        ...vendor,
-        [reducerKey]: newKeyValue
-      }
-    })
-  }
+ 
 
   return(
     <Grid container spacing={2}>

@@ -12,7 +12,6 @@ function EditVendorProfile() {
   const dispatch = useDispatch();
   const params = useParams();
   const vendorDetails = useSelector((store) => store.vendor);
-  
 
   useEffect(() => {
     dispatch({
@@ -21,14 +20,27 @@ function EditVendorProfile() {
     });
   }, []);
 
+  const editProfileElement = (reducerKey, newKeyValue) => {
+    dispatch({
+      type: 'SET_VENDOR',
+      payload: {
+        ...vendorDetails,
+        [reducerKey]: newKeyValue
+      }
+    })
+  }
+
   return(
     <>
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
       <EditVendorBasicInfo
         vendor={vendorDetails}
-
+        editProfileElement={editProfileElement}
       />
-      <EditVendorAbout />
+      <EditVendorAbout 
+        vendor={vendorDetails} 
+        editProfileElement={editProfileElement} 
+      />
       <EditVendorSpecialFeatures />      
     </>
   );
