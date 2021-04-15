@@ -38,11 +38,14 @@ function MessagesList(){
       <Box p={1}>
         <Typography variant="h2" align="center">Messages</Typography>
       </Box>
+
       <Divider/>
+
       <List className={classes.messagesList}>
         {conversations.map((conversation, index) => {
           // this will be the id of the user that the logged in user is having a conversation with
           let messenger;
+          
           if (conversation.greatest === user.id) {
             messenger = conversation.least;
           } else {
@@ -77,6 +80,7 @@ function MessagesList(){
                 />
               </ListItem>
 
+              {/* Creates Divider Line Between Each List item */}
               <Divider variant="middle" component="li" />
             </div>
           );
