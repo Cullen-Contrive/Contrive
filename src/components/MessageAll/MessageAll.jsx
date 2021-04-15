@@ -109,7 +109,7 @@ function MessageAll() {
             height: 300,
             marginLeft: 10,
             marginRight: 10,
-          }}d
+          }}
         >
           {/* existingMessages comes from database */}
           {existingMessages.length > 0
