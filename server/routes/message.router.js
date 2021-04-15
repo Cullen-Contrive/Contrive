@@ -18,7 +18,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
       "users"."firstName",
       "users"."lastName",
       "vendors"."companyName",
-      "vendors"."profilePic"
+      "users"."profilePic"
     FROM "messages"
     JOIN "users"
       ON "messages"."fromUser" = "users"."id" OR "messages"."toUser" = "users"."id"
@@ -66,15 +66,13 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
   INSERT INTO "messages" ("fromUser", 
   "toUser", 
   "date", 
   "message")
   VALUES ($1, $2, $3, $4);`;
-
-  console.log('req.body', req.body);
 
   pool
     .query(queryText, [
@@ -93,10 +91,8 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/outgoing', async (req, res) => {
+router.post('/bulk', rejectUnauthenticated, async (req, res) => {
   try {
-    console.log('SERVER - POST - to messages');
-
     const queryText = `
     INSERT INTO "messages" ("fromUser", 
                             "toUser", 
@@ -116,7 +112,7 @@ router.post('/outgoing', async (req, res) => {
     );
     res.sendStatus(201);
   } catch (err) {
-    console.error('SERVER - POST - at /api/message - an error occurred');
+    console.error('SERVER - POST - at /api/message/bulk - an error occurred');
     res.sendStatus(500);
   }
 });
