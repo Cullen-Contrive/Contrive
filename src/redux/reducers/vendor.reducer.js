@@ -1,5 +1,17 @@
 const vendorReducer = (
-  state = { special_features: [], service_types: [] },
+  state = { 
+    additionalInfo: '',
+    address: '',
+    city: '',
+    companyName: '',
+    description: '',
+    phone: '',
+    profilePic: '#',
+    special_features: [], 
+    service_types: [],
+    state: '',
+    website: '',
+  },
   action
 ) => {
   switch (action.type) {

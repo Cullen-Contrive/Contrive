@@ -6,6 +6,8 @@ import EditVendorAbout from './EditVendorAbout';
 import EditVendorBasicInfo from './EditVendorBasicInfo';
 import EditVendorSpecialFeatures from './EditVendorSpecialFeatures';
 
+import {Typography} from '@material-ui/core';
+
 function EditVendorProfile() {
   const dispatch = useDispatch();
   const params = useParams();
@@ -20,7 +22,11 @@ function EditVendorProfile() {
 
   return(
     <>
-      <EditVendorBasicInfo />
+      <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
+      <EditVendorBasicInfo
+        companyName={vendorDetails.companyName}
+        description={vendorDetails.description}
+      />
       <EditVendorAbout />
       <EditVendorSpecialFeatures />      
     </>
