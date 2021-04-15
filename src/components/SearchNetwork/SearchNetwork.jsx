@@ -54,12 +54,20 @@ function SearchNetwork() {
   const [typeId, setTypeId] = useState(-1);
   const [featureId, setFeatureId] = useState(-1);
 
-  console.log('typeId:', typeId);
-  console.log('featureId:', featureId);
+  // const [selections, setSelections] = useState({ typeId: -1, featureId: -1 })
+
+  let selections = { typeId, featureId }
+  console.log('selections at start:', selections);
+
+  // console.log('typeId:', typeId);
+  // console.log('featureId:', featureId);
 
 
   const handleVendorTypeChange = (evt) => {
+
     setTypeId(evt.target.value);
+    // setSelections(typeId = evt.target.value, selections.featureId);
+    console.log('selections in TypeChange:', selections);
 
     console.log('typeId', typeId);
     console.log('evt.target.value in handleVendor:', evt.target.value);
@@ -80,11 +88,12 @@ function SearchNetwork() {
     dispatch({
       type: 'FETCH_MATCHING_VENDORS',
       payload: {
-        typeId: typeId,
-        featureId: featureId,
+        selections
       }
     })
   };
+  // typeId: typeId,
+  // featureId: featureId,
 
   // Variable to control conditional rendering of search results message:
   const [hasClickedSearch, setHasClickedSearch] = useState(0);
@@ -110,7 +119,7 @@ function SearchNetwork() {
                 labelId="vendor-type"
                 id="vendor-type"
                 name="Vendor Types"
-                value={typeId}
+                value={selections.typeId}
                 // onChange={(evt) => setTypeId(evt.target.value)}
                 // onChange={(evt) => handleVendorTypeChange(evt.target.value)}
                 onChange={handleVendorTypeChange}

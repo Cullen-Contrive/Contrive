@@ -7,11 +7,13 @@ function* filterSaga() {
 }
 
 function* fetchMatchingVendors(action) {
-  const data = action.payload
-  console.log('start of fetchMatchingVendors', data);
+  const vendorTypeSelection = action.payload.typeId;
+  const specialFeatureSelection = action.payload.featureId;
+
+  console.log('start of fetchMatchingVendors', vendorTypeSelection, specialFeatureSelection);
 
   try {
-    const response = yield axios.get(`/api/filter/typeId=${data.typeId}/featureId=${data.featureId}`);
+    const response = yield axios.get(`/api/filter/typeId=${vendorTypeSelection}/featureId=${specialFeatureSelection}`);
 
     yield put({ type: 'SET_MATCHING_VENDORS', payload: response.data });
   } catch (error) {

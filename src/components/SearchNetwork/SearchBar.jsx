@@ -32,7 +32,7 @@ const SearchBar = ({ hasClickedSearch, setHasClickedSearch }) => {
     // <form onSubmit={(event) => runSearch()}>
     <Grid container>
       <Grid item xs={8}>
-        <input
+        <input type="search"
           // style={BarStyling}
           key="searchBar"
           value={searchInput}

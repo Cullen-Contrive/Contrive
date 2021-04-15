@@ -14,12 +14,11 @@ router.get('/typeId=:typeID/featureId=:featureID', (req, res) => {
   console.log('special feature', featureId);
 
   if (featureId === "-1") {
-    const queryText = `SELECT "companyName", "profilePic" FROM "vendors"
-                       WHERE "vendorUserId" IN 
-                       (
-                       SELECT "vendorUserId" FROM "vendors_services"
-                       WHERE "serviceId" = $1
-                       ); `;
+    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
+                        WHERE "vendorUserId" IN 
+                          (SELECT "vendorUserId" FROM "vendors_services"
+                            WHERE "serviceId" = $1); `;
     pool
       .query(queryText, [typeId])
       .then((result) => {
@@ -31,7 +30,8 @@ router.get('/typeId=:typeID/featureId=:featureID', (req, res) => {
         res.sendStatus(500);
       });
   } else if (typeId === "-1") {
-    const queryText = `SELECT "companyName", "profilePic" FROM "vendors"
+    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+                      JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE "vendorUserId" IN 
                        (
                        SELECT "vendorUserId" FROM "vendors_features"
