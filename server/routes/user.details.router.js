@@ -6,7 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 /**
- * GET route template
+ * GET route for /api/user/details/
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Gets user info based on currently logged in user
@@ -17,15 +17,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "firstName", 
   "lastName", 
   "type", 
-  "photo"
+  "profilePic"
   FROM "users" 
-  JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
-  WHERE "users"."id" = $1
-  GROUP BY 
-  "firstName", 
-  "lastName", 
-  "type", 
-  "photo";`;
+  WHERE "users".id = $1`;
 
   pool
     .query(queryText, [userId])
@@ -40,19 +34,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+/**
+ * GET route for /api/user/details/id
+ */
 router.get('/:id', (req, res) => {
   // Gets user info based on passed in params
   const userId = req.params.id;
   const queryText = `
   SELECT 
+  "firstName", 
+  "lastName", 
   "type", 
-  "photo"
-  FROM "users" 
-  JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
-  WHERE "users"."id" = $1
-  GROUP BY 
-  "type", 
-  "photo";`;
+  "profilePic"
+  FROM "users"
+  WHERE "users".id = $1`;
 
   pool
     .query(queryText, [userId])
