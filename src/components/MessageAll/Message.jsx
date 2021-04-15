@@ -38,9 +38,9 @@ function Message({ messageDetails, toUser }) {
     // messageDetails.fromUser == currently logged in user id
     // TODO: display the avatar for each user on each side
     <>
+      {messageDetails.date}
       {messageDetails.toUser == toUser ? (
         <div className={`${classes.bubbleContainerRight}`}>
-          {messageDetails.date}
           <div className={classes.bubble}>
             <div className={classes.button}>{messageDetails.message}</div>
           </div>

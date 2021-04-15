@@ -86,11 +86,8 @@ function MessageAll() {
   };
 
   const goBack = () => {
-    console.log('moving pages now');
-    // history.push('/alldetails');
+    history.push('/messages');
   };
-
-  console.log('existingMessages', existingMessages);
 
   return (
     <Grid container spacing={3}>
