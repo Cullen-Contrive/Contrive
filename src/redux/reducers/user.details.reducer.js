@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 const otherUserDetailsReducer = (state = {}, action) => {
   // Used for grabbing second user's details for displaying their
   // profile pic and user type for messages

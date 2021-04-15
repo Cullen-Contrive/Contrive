@@ -34,7 +34,9 @@ function MessageAll() {
   const params = useParams();
 
   const existingMessages = useSelector((store) => store.chat.chatReducer);
-  const currentUser = useSelector((store) => store.user);
+  const currentUser = useSelector(
+    (store) => store.userDetails.loggedInUserDetailsReducer
+  );
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
