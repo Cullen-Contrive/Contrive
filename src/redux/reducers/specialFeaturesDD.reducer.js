@@ -1,5 +1,5 @@
 // Used to store special features
-const specialFeatures = (state = {}, action) => {
+const specialFeatures = (state = [], action) => {
   switch (action.type) {
     case 'SET_SPECIAL_FEATURE_LIST':
       return action.payload;
@@ -8,6 +8,6 @@ const specialFeatures = (state = {}, action) => {
   }
 };
 
-// user will be on the redux state at:
+// user will access the redux state at:
 // state.user
 export default specialFeatures;

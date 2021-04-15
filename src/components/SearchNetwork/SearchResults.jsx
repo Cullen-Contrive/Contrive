@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core';
 // CUSTOM COMPONENTS:
 import SearchResultDetails from './SearchResultDetails';
 
-function SearchResults() {
+function SearchResults({ hasClickedSearch, setHasClickedSearch }) {
   const dispatch = useDispatch();
 
   // Clear previous search results upon arrival to this page:
@@ -28,13 +28,21 @@ function SearchResults() {
         {searchResults.map((vendor, i) => {
           return (
             <>
-              {searchResults[0].id !== 0 ?
-                (<SearchResultDetails key={i} vendor={vendor} />) :
-                (<div>No search results, please broaden your search.</div>)
+              {
+                searchResults[0].id !== 0 ?
+                  (<SearchResultDetails key={i} vendor={vendor} />) : (
+                    hasClickedSearch !== 0 ?
+                      // If the search button has been clicked, but no results yielded:
+                      (<div>No search results, please broaden your search.</div>) :
+                      // If the search button has NOT been clicked, welcome the user to the page
+                      (<div>Welcome to the Network Search!</div>)
+                  )
               }
+
             </>
           )
         })}
+
       </Grid>
 
     </div>
