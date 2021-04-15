@@ -31,8 +31,6 @@ function Message({ messageDetails, toUser }) {
   }));
   const classes = useStyles();
 
-  console.log('messageDetails', messageDetails);
-
   return (
     // Conditionally render to or from based on what the user.id is
     // messageDetails.fromUser == currently logged in user id
