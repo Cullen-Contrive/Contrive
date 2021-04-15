@@ -33,7 +33,7 @@ function MessageAll() {
   const history = useHistory();
   const params = useParams();
 
-  const existingMessages = useSelector((store) => store.chat);
+  const existingMessages = useSelector((store) => store.chat.chatReducer);
   const currentUser = useSelector((store) => store.user);
 
   useEffect(() => {
