@@ -13,7 +13,7 @@ router.get('/typeId=:typeID/featureId=:featureID', (req, res) => {
   console.log('vendor type=', typeId);
   console.log('special feature', featureId);
 
-  if (featureId === "-1") {
+  if (featureId === -1) {
     const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
                         JOIN "users" ON "vendors"."vendorUserId" = "users".id
                         WHERE "vendorUserId" IN 
@@ -29,7 +29,7 @@ router.get('/typeId=:typeID/featureId=:featureID', (req, res) => {
         console.log('retrieve filter failed: ', err);
         res.sendStatus(500);
       });
-  } else if (typeId === "-1") {
+  } else if (typeId === -1) {
     const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
                       JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE "vendorUserId" IN 
