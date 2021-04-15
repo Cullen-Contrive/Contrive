@@ -16,6 +16,13 @@ function* fetchUserDetailsById(action) {
 }
 
 function* fetchLoggedInUserDetails() {
+  // Fetches logged-in user's details
+  // No incoming payload - Server uses req.user.id
+  const response = yield axios.get('/api/user/details');
+  yield put({
+    type: 'SET_LOGGED_IN_USER_DETAILS',
+    payload: response.data,
+  });
   try {
   } catch (err) {
     console.error('an error occurred fetching logged-in user details');
