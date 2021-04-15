@@ -27,18 +27,12 @@ VALUES
 ('Blush@gmail.com', 'one', 'Colleen', 'Nava', '', 'Inver Grove Heights', 'MN', 55076, 'vendor', 'website', 'Simply put, I absolutely love all things design! Each project is an exciting challenge for me as I translate ideas and visions into real life. The special events we celebrate are often important milestones in our lives and deserve to be remembered in a beautiful way… and unique, artful statement decor will do just that for you and your guests! A stunning photo backdrop, welcome wall, or perhaps a lovely balloon piece will set the tone for these momentous occasions. '),
 ('AmazingScott@live.com', 'one', 'Scott', '', '', 'Minneapolis', 'MN', 55409, 'vendor', 'http://www.amazingscott.com/', 'The Amazing Scott features international award-winning balloon Artist and Certified Balloon Artist (CBA), Scott Nichols CBA. With Beautiful balloon sculptures, Outstanding balloon decor, and Amazing balloon Entertainment, we offer unique upgrades to any party or event to make it "Magical" for an unforgettable experience.'),
 ('leslie@decorforweddings.com', 'one', 'Leslie', 'Goodman', '100 West Franklin Avenue Suite 202', 'Minneapolis', 'MN', 55404, 'vendor', 'http://www.decorforweddings.com/', 'Distinctive decor, floral & styling for weddings & events in Minneapolis, St. Paul & the Twin Cities Metro Area of Minnesota.'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('aandjparty@aol.com', 'one', 'James', 'Anderson', '', 'Bloomington', 'MN', 55431, 'vendor', 'http://www.ajpartyrental.com/', 'We bring all of your rental needs to you! No matter your location whether it be Minneapolis, Edina, Lakeville, Bloomington, Farmington Apple Valley or any surrounding Twin Cities area, we charge a reasonable fee to ensure you have what you need for your event. Tables, Chairs, Canopies, and much more- We have what you need to make your party the best it can be!'),
+('partyrentals@broadwayparty.com', 'one', 'Jonas', 'Smith', '8101 Ashton Ave NE', 'Fridley', 'MN', 55432, 'vendor', 'https://broadwaypartyrental.com/', 'Broadway is a Local Family Owned business & since 1956 we’ve dedicated ourselves to providing quality rental equipment to our community! We’re 2nd Generation owned & operated! Learn more about buying local.'),
+('info@minnesota-ice.com', 'one', 'Willard', 'Smith', '755 Prior Ave. Suite 237', 'St. Paul', 'MN', 55104, 'vendor', 'https://www.minnesota-ice.com/', 'MINNESOTA ICE IS THE LEADING PRODUCER OF PACKAGED ICE, PURE & CLEAR COCKTAIL ICE, KOLD DRAFT ICE CUBES, CRUSHED ICE, SHAVED ICE BLOCKS, SCULPTURE ICE BLOCKS, AND ICE SCULPTURES'),
+('tammy@occasionslinen.com', 'one', 'Tammy', 'Danger', '551 Dorland Rd', 'Maplewood', 'MN', 55119, 'vendor', 'https://www.occasionslinen.com/', 'Whether it’s an intimate gathering or larger gala your event will be remembered for a lifetime. Specialty linens are key to a spectacular table setting and to creating your desired atmosphere. Just remember that your event will be photographed over and over…so you really want to make a lasting impression! Occasions Linen Rental services the Twin Cities and surrounding communities. If there is something that you don’t see on the website let us know we can order it! Together we can create your occasion to remember.'),
+('events@festivitiesmn.com', 'one', 'Julio', 'Varga', '10701 Red Circle Drive', 'Minnetonka', 'MN', 55343, 'vendor', 'https://www.festivitiesmn.com/', 'Festivities has the functional, fun & fashionable stuff your event needs, with the design, service & expertise you want.'),
+('info@apresparty.com', 'one', 'Lindsey', 'Logan', '5801 Clearwater Drive', 'Minnetona', 'MN', 55343, 'vendor', 'http://www.apresparty.com/', 'bI started Après 33 years ago out of the lower level of my home. Purchasing a full line of rental inventory and opening at my first location in time for the hectic Christmas season of 1987. We are now working out of more than 63,000 square feet.io'),
 
 ('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
 
@@ -152,18 +146,12 @@ VALUES
 (22, 'Blush Custom Event Decor', 'https://static1.squarespace.com/static/5dc43efb2e2b2933cf3e1d98/t/5e41b5da7bc3911e7c2bfbce/1606628440231/?format=1500w', 'Simply put, I absolutely love all things design! Each project is an exciting challenge for me as I translate ideas and visions into real life. The special events we celebrate are often important milestones in our lives and deserve to be remembered in a beautiful way… and unique, artful statement decor will do just that for you and your guests! A stunning photo backdrop, welcome wall, or perhaps a lovely balloon piece will set the tone for these momentous occasions.', '', '651-402-5474'),
 (23, 'Amazing Balloon Entertainment & Decorations', 'http://static1.squarespace.com/static/58b8608537c58149fafa08e0/t/5e9e0a8768b9b14d0a18752f/1579735304886/?format=1500w', 'We specialize in quality event Balloon Entertainment, Decorations & Delivery Service for family parties, corporate functions, and workshops for all levels. With over 20 years experience, our head-turning work is perfect for all occasions, customizable to any theme or color scheme, and is guaranteed to put smiles on the faces of all your guests from ages 1-1000!', '', '612-695-1697'),
 (24, 'Charmed! Boutique Decor & Floral', '', 'Distinctive decor, floral & styling for weddings & events in Minneapolis, St. Paul & the Twin Cities Metro Area of Minnesota.', 'Styles ranging from Rustic & Elegant to Tuscan Stone, Gold & Crystal, and many more.', '612-382-2960'),
-
-(25, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(26, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(27, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(28, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(29, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(30, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
+(25, 'A & J Party and Event Rental', '', 'We bring all of your rental needs to you! No matter your location whether it be Minneapolis, Edina, Lakeville, Bloomington, Farmington Apple Valley or any surrounding Twin Cities area, we charge a reasonable fee to ensure you have what you need for your event. Tables, Chairs, Canopies, and much more- We have what you need to make your party the best it can be!', '', '612-708-3421'),
+(26, 'Broadway Party & Tent Rental', '', 'Broadway is a Local Family Owned business & since 1956 we’ve dedicated ourselves to providing quality rental equipment to our community! We’re 2nd Generation owned & operated! Learn more about buying local.', 'Booking your rental products long before the date of your event reduces rushed decisions and gives sufficient time for you and Broadway Party & Tent Rental to work together to plan and prepare an enjoyable event. Ordering early also increases the probability that the products, delivery, and pickup times you want will be available. Last minute changes can be counterproductive and may have adverse affects on an otherwise successful event. At Broadway Party & Tent Rental we make every effort to help you make the best choices for your event!', '763-208-1357'),
+(27, 'Minnesota Ice', 'https://www.minnesota-ice.com/images/mni-logo2.svg', 'MINNESOTA ICE IS THE LEADING PRODUCER OF PACKAGED ICE, PURE & CLEAR COCKTAIL ICE, KOLD DRAFT ICE CUBES, CRUSHED ICE, SHAVED ICE BLOCKS, SCULPTURE ICE BLOCKS, AND ICE SCULPTURES', '', '612-254-8330'),
+(28, 'Occasions Linen Rental', 'https://www.occasionslinen.com/wp-content/uploads/2016/01/new-logo-wide-xsm.png', 'Whether it’s an intimate gathering or larger gala your event will be remembered for a lifetime. Specialty linens are key to a spectacular table setting and to creating your desired atmosphere. Just remember that your event will be photographed over and over…so you really want to make a lasting impression! Occasions Linen Rental services the Twin Cities and surrounding communities. If there is something that you don’t see on the website let us know we can order it! Together we can create your occasion to remember.', '', '651-387-1726'),
+(29, 'Festivities', 'https://www.festivitiesmn.com/wp-content/uploads/2016/01/festvities_logo_318x72.jpg', 'Festivities has the functional, fun & fashionable stuff your event needs, with the design, service & expertise you want.', 'We specialize in weddings, social events, and coproate / non-profits.', '763-682-4846'),
+(30, 'Apres Event Decor & Tent Rental', 'https://res.cloudinary.com/expertise-com/image/upload/f_auto,fl_lossy,q_auto:low/remote_media/logos/1573065346_apresparty-com.jpg', 'I started Après 33 years ago out of the lower level of my home. Purchasing a full line of rental inventory and opening at my first location in time for the hectic Christmas season of 1987. We are now working out of more than 63,000 square feet.', 'Serving Minneapolis, St. Paul, Twin Cities, Minnesota, Wisconsin, Iowa, North Dakota, South Dakota', '952-942-3399'),
 
 (31, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
 
@@ -243,19 +231,7 @@ INSERT INTO "vendors_features"
 VALUES 
 (2, 3), (4, 3), (6, 1), (6, 3), (4, 3), (7, 3), (8,1), (9, 2), (11, 2), (12, 1),
 (14, 3), (15, 1), (16, 3), (17, 2), (18, 1), (19, 1), (21, 1), (22, 1), (23, 3),
-(24, 2),
-
-(25,),
-
-(26,),
-
-(27,),
-
-(28,),
-
-(29,),
-
-(30,),
+(24, 2), (25, 3), (26, 2), (27, 2), (28, 1), (29, 2), (30, 3),
 
 (31,),
 
