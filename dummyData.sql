@@ -45,18 +45,12 @@ VALUES
 ('info@grandmas.com', 'one', 'Vivan', 'Heart', '2800 Guinotte Ave', 'Kansas City', 'MO', 64120, 'vendor', 'https://grandmascatering.com/', ''),
 ('info@twositers.com', 'one', 'Michele', 'Fisher', '5701 Logan Rd', 'Kansas City', 'MO', 64136, 'vendor', 'http://www.twosisterscateringkc.com/', `From a business lunch to your elaborate social event of the year, Two Sisters Catering’s homemade touch and elegance goes into everything we make. Our delicious recipes and eye-appealing dishes have been a Kansas City favorite for more than 10 years.`),
 ('eacatering@gmail.com', 'one', 'Lars', 'Hettfield', '8011 Wornall Road', 'Kansas City', 'MO', 64114, 'vendor', 'http://www.eacatering.com/', `EA Catering & Sons is chef-owned and operated in Kansas City, MO. Since opening in 2006, we’ve treated every customer like they were a part of our family. We are a full service caterer. We create a custom from scratch menu just for you. We can also take care of all your event planning needs. . Chef Argie is a graduate  of the Culinary Institute of America in Hyde Park, New York. He is well reviewed and has 30 years experience in the industry. Free event venue with minimum order! We never cut corners, we use the best natural ingredients we can find, we make everything from scratch. We never use processed or any pre-made foods you will love the difference. Eat Good Live Well!`),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
+('PavilionBanquet@gmail.com', 'one', 'Kacie', 'McClusky', '14831 E US Highway 40', 'Kansas City', 'MO', 64136, 'vendor', 'https://www.pavilioneventspace.com/', 'Boasting over 10,000 Square Feet Of Freshly Renovated Event Space, The Pavilion Event Space, is the Perfect Venue for your Wedding or Special Event! Showcasing Antique Bronze Ceilings, 15 Swarovski Crystal Chandeliers, Hickory Hardwood Floors, 40 foot Archways Trimmed in Stone, a 112 foot long Grand Chandelier Aisle, The Most Unique Outdoor Ceremony Space in town, and a central location near four Major Highways...What else could you ask for?'),
+('theview@kchopps.com', 'one', 'Harry', 'Potter', '4000 North Mulberry Drive', 'Kansas City', 'MO', 64116, 'vendor', 'http://theviewatbriarcliff.com/', 'Our 20-foot floor-to-ceiling windows are sure to amaze your guests upon entry, providing a panoramic view of the Kansas City skyline. While your guests are marveling at the picturesque scenery, they will be dining on innovative cuisine prepared by our Executive Chef and dancing and celebrating the night away in our stylish 7,200 square foot ballroom.'),
+('info@2016mainkc.com', 'one', 'Ginny', 'Granger', '2016 Main St', 'Kansas City', 'MO', 64108, 'vendor', 'http://www.2016mainkc.com/', '2016 Main sits at the threshold of Downtown Kansas City’s Crossroads district. Recently renovated, it offers modern amenities in a beautiful art gallery setting full of character and original architectural details now fused with contemporary aesthetics. The venue epitomizes the rich soul of its Crossroads roots, while simultaneously achieving a level of elegance and refinement not often seen in the endearingly eclectic surrounding area. With our recent addition we can accommodate groups of up to 250 while rich details throughout warm the space making it perfectly cozy for more intimate gatherings. Featuring ebony hardwood floors, marble accents, private bridal suite and more, the balance between modern luxury and vintage charm results in a stunning space in the heart of KC.'),
+('hello@skylinerooftops.com', 'one', 'Johnny', 'Utah', '2100 Central St', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.skylinerooftops.com/', 'Are you ready to elevate your event? Skyline Rooftops offers 4 unique rooftop venues, all with stunning views of Downtown Kansas City. Whether you are hosting 10 or 200 guests, we have the perfect spot to celebrate your biggest day.'),
+('info@cellar222.com', 'one', 'Steve', 'Cougar', '222 W 20th Street', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.cellar222.com/', `Cellar 222 is an upscale intimate Wine Cellar loaded with character in the heart of Kansas City. We're told still the best kept secret for one of a kind quaint Receptions, Corporate Events, and Parties. Our clients and couples love our fun and relaxed low stress vibe. A cozy and rustic setting with Italian forged iron lighting, natural stone fireplace, hand cut travertine floor, old world bar, plus... a really big posh comfy Bridal/VIP suite!`),
+('info@AbbottEventsKC.com', 'one', 'Lucy', 'McDonald', '1720 Cherry St', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.abbotteventskc.com/cherryhall', 'Cherry Hall is located in the historic Crossroads Arts District of Kansas City. This venue holds 220 guests, and the contemporary and intricate decor is thoughtfully designed to fit the needs of any event. With a versatile indoor and outdoor space, Cherry Hall is the perfect venue to host your next event!'),
 
 ('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
@@ -150,18 +144,12 @@ VALUES
 (40, `Grandma's Catering`, 'https://grandmascatering.com/wp-content/themes/grandmas/assets/img/logo.png', '', '', '816-472-6362'),
 (41, 'Two Sisters Catering', 'http://beta.twosisterscateringkc.com/wp-content/uploads/2013/11/two-sisters-text_011.png', `From a business lunch to your elaborate social event of the year, Two Sisters Catering’s homemade touch and elegance goes into everything we make. Our delicious recipes and eye-appealing dishes have been a Kansas City favorite for more than 10 years.`, 'additionalInfo', '816-737-0846'),
 (42, 'EA Catering & Event Space', 'http://www.eacatering.com/publishImages/~master~master~~master7.jpg', `EA Catering & Sons is chef-owned and operated in Kansas City, MO. Since opening in 2006, we’ve treated every customer like they were a part of our family. We are a full service caterer. We create a custom from scratch menu just for you. We can also take care of all your event planning needs. . Chef Argie is a graduate  of the Culinary Institute of America in Hyde Park, New York. He is well reviewed and has 30 years experience in the industry. Free event venue with minimum order! We never cut corners, we use the best natural ingredients we can find, we make everything from scratch. We never use processed or any pre-made foods you will love the difference. Eat Good Live Well!`, `At EA Catering we specialize in fresh, from scratch, healthy food. We use organic produce. Free range, hormone and antibiotic free poultry and free range, grass fed beef. We bake our own bread. Roast and smoke our meats in house. No GMO's! No HFCS! Just good clean food. We know you will taste and feel the difference. Eat Good Live Well`, '913-961-6226'),
-
-(43, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(44, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(45, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(46, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(47, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(48, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
+(43, 'The Pavilion Event Space', 'https://static.wixstatic.com/media/c1b583_254177e740d340c3a7dc59d7910d4152~mv2_d_4144_1318_s_2.png/v1/fill/w_600,h_190,al_c,q_85,usm_0.66_1.00_0.01/c1b583_254177e740d340c3a7dc59d7910d4152~mv2_d_4144_1318_s_2.webp', 'description', 'Stock your own Bar. Open Vedor / Catering Policy. Space to Comfortably Seat 300', '816-478-4848'),
+(44, 'The View at Briarcliff', 'http://theviewatbriarcliff.com/wp-content/uploads/2017/12/TheView_Logo-272x300.png', 'Our 20-foot floor-to-ceiling windows are sure to amaze your guests upon entry, providing a panoramic view of the Kansas City skyline. While your guests are marveling at the picturesque scenery, they will be dining on innovative cuisine prepared by our Executive Chef and dancing and celebrating the night away in our stylish 7,200 square foot ballroom. Our professional and experienced planners will help guide you through any type of event including weddings, receptions, corporate gatherings, private parties, formal dinners and more. Whether you’re hosting for 5 or 500, our elegant ballroom can be divided to suit your party needs. From a fully customizable menu to décor, to seamless service, The View at Briarcliff is sure to offer a memorable experience for all.', 'LEED certified venue. Located inside the luxurious Courtyard marriott', '816-841-2361'),
+(45, '2016 Main', 'http://static1.squarespace.com/static/57d81c80579fb38706d5d5e5/t/5c1276204fa51aee02fd70ae/1582913382380/?format=1500w', `2016 Main sits at the threshold of Downtown Kansas City’s Crossroads district. Recently renovated, it offers modern amenities in a beautiful art gallery setting full of character and original architectural details now fused with contemporary aesthetics. The venue epitomizes the rich soul of its Crossroads roots, while simultaneously achieving a level of elegance and refinement not often seen in the endearingly eclectic surrounding area. With our recent addition we can accommodate groups of up to 250 while rich details throughout warm the space making it perfectly cozy for more intimate gatherings. Featuring ebony hardwood floors, marble accents, private bridal suite and more, the balance between modern luxury and vintage charm results in a stunning space in the heart of KC.`, 'Additional services available', '816-674-6900'),
+(46, 'Skyline Rooftops', 'https://static1.squarespace.com/static/6010d580e6d31b0d1c325cbb/t/601c50d13f2e8e76d14c38d1/1618105144005/?format=1500w', 'Are you ready to elevate your event? Skyline Rooftops offers 4 unique rooftop venues, all with stunning views of Downtown Kansas City. Whether you are hosting 10 or 200 guests, we have the perfect spot to celebrate your biggest day.', '14 hour rental. Free parking. Vendor flexibility.', '913-777-4488'),
+(47, 'Cellar 222', 'https://static.wixstatic.com/media/da2a1a_63b63bf885d74145a23bc26438c7f47e~mv2.jpg/v1/fill/w_150,h_136,al_c,q_80,usm_0.66_1.00_0.01/logo.webp', `Cellar 222 is an upscale intimate Wine Cellar loaded with character in the heart of Kansas City. We're told still the best kept secret for one of a kind quaint Receptions, Corporate Events, and Parties. Our clients and couples love our fun and relaxed low stress vibe. A cozy and rustic setting with Italian forged iron lighting, natural stone fireplace, hand cut travertine floor, old world bar, plus... a really big posh comfy Bridal/VIP suite!`, '', '913-522-4770'),
+(48, 'Abbott Events', 'https://static.wixstatic.com/media/71c685_ddb1f37a8406449e80834c79b4060d92~mv2.png/v1/crop/x_0,y_28,w_1667,h_611/fill/w_263,h_94,al_c,q_85,usm_0.66_1.00_0.01/Final%20Abbott%20Events%20Logo.webp', 'Cherry Hall is located in the historic Crossroads Arts District of Kansas City. This venue holds 220 guests, and the contemporary and intricate decor is thoughtfully designed to fit the needs of any event. With a versatile indoor and outdoor space, Cherry Hall is the perfect venue to host your next event!', '', '816-982-1014'),
 
 (49, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
 
@@ -206,19 +194,8 @@ VALUES
 (2, 3), (4, 3), (6, 1), (6, 3), (4, 3), (7, 3), (8,1), (9, 2), (11, 2), (12, 1),
 (14, 3), (15, 1), (16, 3), (17, 2), (18, 1), (19, 1), (21, 1), (22, 1), (23, 3),
 (24, 2), (25, 3), (26, 2), (27, 2), (28, 1), (29, 2), (30, 3), (31, 1), (32, 2),
-(35, 3), (36, 3), (37, 1), (39, 2), (41, 1),
+(35, 3), (36, 3), (37, 1), (39, 2), (41, 1), (43, 1), (44, 2), (45, 3), (47, 3),
 
-(43,),
-
-(44,),
-
-(45,),
-
-(46,),
-
-(47,),
-
-(48,),
 
 (49,),
 
