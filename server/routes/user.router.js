@@ -34,6 +34,7 @@ router.post('/register', (req, res, next) => {
 
   // Vendor table info:
   const companyName = req.body.companyName;
+  const profilePic = req.body.profilePic;
   const description = req.body.description;
   const additionalInfo = req.body.additionalInfo;
   const phone = req.body.phone;
@@ -63,11 +64,11 @@ router.post('/register', (req, res, next) => {
       if (type === 'vendor') {
         // console.log('dbRes:', dbRes);
         const vendorUserId = dbRes.rows[0].id;
-        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "description", 
+        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "profilePic", "description", 
       "additionalInfo", "phone")
-        VALUES ($1, $2, $3, $4, $5);`
+        VALUES ($1, $2, $3, $4, $5, $6);`
 
-        pool.query(sqlQuery, [vendorUserId, companyName, description, additionalInfo, phone])
+        pool.query(sqlQuery, [vendorUserId, companyName, profilePic, description, additionalInfo, phone])
       }
 
       res.sendStatus(201)

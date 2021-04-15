@@ -1,13 +1,17 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // ROUTES AT /api/vendor/all
-router.get('/all', (req, res) => {
+router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
   SELECT 
   "users"."username",
   "users"."website",
+  "users"."profilePic",
   "users"."address", 
   "users"."city", 
   "users"."state", 
@@ -30,6 +34,7 @@ router.get('/all', (req, res) => {
   GROUP BY 
   "users"."username",
   "users"."website",
+  "users"."profilePic",
   "users"."address", 
   "users"."city", 
   "users"."state", 
@@ -53,12 +58,13 @@ router.get('/all', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
   const sqlText = `
   SELECT 
   "users"."username",
   "users"."website",
+  "users"."profilePic",
   "users"."address", 
   "users"."city", 
   "users"."state", 
@@ -81,6 +87,7 @@ router.get('/:id', (req, res) => {
   GROUP BY 
   "users"."username",
   "users"."website",
+  "users"."profilePic",
   "users"."address", 
   "users"."city", 
   "users"."state", 

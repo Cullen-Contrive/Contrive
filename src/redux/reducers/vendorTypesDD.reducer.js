@@ -1,5 +1,5 @@
 // Used to store vendor types
-const vendorTypes = (state = {}, action) => {
+const vendorTypes = (state = [], action) => {
   switch (action.type) {
     case 'SET_VENDOR_TYPE_LIST':
       return action.payload;

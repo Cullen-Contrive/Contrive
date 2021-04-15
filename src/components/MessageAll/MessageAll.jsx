@@ -33,8 +33,13 @@ function MessageAll() {
   const history = useHistory();
   const params = useParams();
 
-  const existingMessages = useSelector((store) => store.chat);
-  const currentUser = useSelector((store) => store.user);
+  const existingMessages = useSelector((store) => store.chat.chatReducer);
+  const currentUser = useSelector(
+    (store) => store.userDetails.loggedInUserDetailsReducer
+  );
+  const toUser = useSelector(
+    (store) => store.userDetails.otherUserDetailsReducer
+  );
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
@@ -45,10 +50,26 @@ function MessageAll() {
     });
     // Fetch current messages
     fetchMessages();
+    fetchLoggedInUserDetails();
+    fetchToUserDetails();
   }, []);
 
+  console.log('current', currentUser);
+  console.log('other', toUser);
+
   const fetchMessages = () => {
+    // Fetches messages between fromUser and toUser
     dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
+  };
+
+  const fetchLoggedInUserDetails = () => {
+    // Fetches display info for logged in user of conversation
+    dispatch({ type: 'FETCH_LOGGED_IN_USER_DETAILS' });
+  };
+
+  const fetchToUserDetails = () => {
+    // Fetches display info for second user of conversation
+    dispatch({ type: 'FETCH_USER_DETAILS_BY_ID', payload: params.id });
   };
 
   const sendMessage = (evt) => {
@@ -62,6 +83,7 @@ function MessageAll() {
       });
       return; // return so the function does not execute
     }
+
     const date = new DateObject();
     const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
     const messageObject = {
@@ -70,17 +92,22 @@ function MessageAll() {
       message: message,
       toUser: params.id,
     };
+
     dispatch({
       type: 'POST_MESSAGE',
-      payload: messageObject,
+      payload: {
+        data: messageObject,
+        onComplete: () => {
+          fetchMessages();
+        },
+      },
     });
     setMessage('');
     socketRef.current.emit('send message', messageObject);
   };
 
   const goBack = () => {
-    console.log('moving pages now');
-    // history.push('/alldetails');
+    history.push('/messages');
   };
 
   return (
@@ -100,12 +127,19 @@ function MessageAll() {
             marginRight: 10,
           }}
         >
-          {/* existingMessages comes from database */}
-          {existingMessages.length > 0
-            ? existingMessages.map((singleMessage, index) => {
-                return <Message key={index} messageDetails={singleMessage} />;
-              })
-            : ' '}
+          {existingMessages.length > 0 ? (
+            existingMessages.map((singleMessage, index) => {
+              return (
+                <Message
+                  key={index}
+                  messageDetails={singleMessage}
+                  toUser={params.id}
+                />
+              );
+            })
+          ) : (
+            <Typography>Start a conversation!</Typography>
+          )}
         </Paper>
       </Grid>
       {/* Form for submitting text to another user */}

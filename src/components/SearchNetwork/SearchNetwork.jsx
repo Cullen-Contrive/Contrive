@@ -40,13 +40,12 @@ const useStyles = makeStyles((theme) => ({
 function SearchNetwork() {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const [input, setInput] = useState('');
 
-  // Grabs information from Global Redex Store
+  // Grab information from Global Redux Store
   const features = useSelector((store) => store.features);
   const service = useSelector((store) => store.vendorTypes);
 
-  //Local store variables that captures from inputs
+  // Local state that captures input data
   const [specialFeatures, setSpecialFeatures] = useState('');
   const [vendorTypes, setVendorTypes] = useState('');
 
@@ -67,6 +66,11 @@ function SearchNetwork() {
     // userChange(newUser);
     // }
   };
+
+  // Variable to control conditional rendering of search results message:
+  const [hasClickedSearch, setHasClickedSearch] = useState(0);
+  console.log('hasClickedSearch in SearchNetwork:', hasClickedSearch);
+
 
   return (
     <div>
@@ -93,10 +97,10 @@ function SearchNetwork() {
                 {/* <MenuItem value="" disabled> -- Select Vendor Type -- </MenuItem> */}
                 {service &&
                   service.length &&
-                  service.map((cat, i) => {
+                  service.map((category, i) => {
                     return (
-                      <MenuItem key={i} value={cat.id}>
-                        {cat.name}
+                      <MenuItem key={i} value={category.id}>
+                        {category.name}
                       </MenuItem>
                     );
                   })}
@@ -114,18 +118,21 @@ function SearchNetwork() {
               >
                 {features &&
                   features.length &&
-                  features.map((feat, i) => {
+                  features.map((feature, i) => {
                     return (
-                      <MenuItem key={i} value={feat.id}>
-                        {feat.name}
+                      <MenuItem key={i} value={feature.id}>
+                        {feature.name}
                       </MenuItem>
                     );
                   })}
               </Select>
             </FormControl>
 
-            <SearchBar />
+            <SearchBar hasClickedSearch={hasClickedSearch}
+              setHasClickedSearch={setHasClickedSearch} />
           </Box>
+          <SearchResults hasClickedSearch={hasClickedSearch}
+            setHasClickedSearch={setHasClickedSearch} />
         </Box>
       </main>
     </div>

@@ -1,3 +1,6 @@
+// First welcome page for new users, (if logged in, will reroute user to /discover)
+// reached at path /welcome
+
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -14,7 +17,7 @@ import { spacing } from '@material-ui/system';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *':{
+    '& > *': {
       margin: theme.spacing(1),
     },
   },
@@ -60,23 +63,23 @@ function LandingPage() {
   return (
 
     <Box className={classes.paperContainer}>
-    
+
       <Box align="center" width="100%" className={classes.buttons}>
-      <Box className={classes.root}>
+        <Box className={classes.root}>
 
-      <Button variant="contained" onClick = {onLogin} style={{ height: 40 }}>
-        <Typography variant="body1">
-        Login
+          <Button variant="contained" onClick={onLogin} style={{ height: 40 }}>
+            <Typography variant="body1">
+              Login
         </Typography>
-      </Button>
+          </Button>
 
-      <Button variant="contained" onClick = {onRegister} style={{ height: 40 }}>
-        <Typography variant="body1">
-        Register
+          <Button variant="contained" onClick={onRegister} style={{ height: 40 }}>
+            <Typography variant="body1">
+              Register
         </Typography>
-      </Button>
+          </Button>
 
-      </Box>
+        </Box>
       </Box>
 
     </Box>
