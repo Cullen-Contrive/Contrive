@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
+import { PhotoSizeSelectSmallTwoTone } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +57,13 @@ function PublicPhotos() {
       </AccordionSummary>
 
       <AccordionDetails>
-        <Grid container></Grid>
+        <Grid container flexDirection="column">
+          {/* Use to display images */}
+          {/* TODO: Pull in a list of images */}
+          {/* {photoList.map((photo, index) => {
+            return <img key={index } src={photo}/>
+          })} */}
+        </Grid>
       </AccordionDetails>
     </Accordion>
   );
