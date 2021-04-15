@@ -75,9 +75,16 @@ function App() {
         <Nav />
         <div>
           <Switch>
+<<<<<<< HEAD
+            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+
+            <Redirect exact from="/" to="/home" />
+
+=======
             {/* Visiting localhost:3000 will redirect to localhost:3000/welcome, 
             which redirects to localhost:3000/discover if user is already logged in (see below) */}
             <Redirect exact from="/" to="/welcome" />
+>>>>>>> 12df79ba2130e1d78a329ac307175a6943af0c6f
 
             {/* Visiting localhost:3000/about will show the about page. */}
             <Route

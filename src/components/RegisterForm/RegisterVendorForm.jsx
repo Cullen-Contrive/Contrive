@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 // Material-UI
 import {
@@ -26,6 +26,7 @@ function RegisterVendorForm() {
 
   // Bring in info held from first Registration Page:
   const vendorInfo = useSelector(store => store.user)
+  const profilePic = useSelector(store => store.profilePic);
 
   // console.log('====================================');
   // console.log('vendorInfo:', vendorInfo);
@@ -66,6 +67,7 @@ function RegisterVendorForm() {
     vendorInfo.state = state;
     vendorInfo.zip = zip;
     vendorInfo.companyName = companyName;
+    vendorInfo.profilePic = profilePic;
     vendorInfo.description = companyDescription;
     vendorInfo.additionalInfo = additionalInfo;
     vendorInfo.phone = phone;
@@ -103,6 +105,17 @@ function RegisterVendorForm() {
             value={companyName}
             required
             onChange={(event) => setCompanyName(event.target.value)}
+          />
+        </FormControl>
+      </Grid>
+
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+        <Typography variant="body1" align="left">
+          company logo
+        </Typography>
+          <ImageUpload
+          page = "AddProfilePic"
           />
         </FormControl>
       </Grid>
