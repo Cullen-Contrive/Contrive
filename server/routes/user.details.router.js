@@ -24,8 +24,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     .query(queryText, [userId])
     .then((dbRes) => {
       console.log('SERVER - GET - user details by current user successful!');
-      console.table(dbRes.rows);
-      res.send(dbRes.rows);
+      res.send(dbRes.rows[0]);
     })
     .catch((err) => {
       console.error(
@@ -55,7 +54,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     .query(queryText, [userId])
     .then((dbRes) => {
       console.log('SERVER - GET - user details by id successful!');
-      res.send(dbRes.rows);
+      res.send(dbRes.rows[0]);
     })
     .catch((err) => {
       console.error('SERVER - GET - an error occurred getting user details');
