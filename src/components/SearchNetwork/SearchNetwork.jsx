@@ -92,8 +92,7 @@ function SearchNetwork() {
       }
     })
   };
-  // typeId: typeId,
-  // featureId: featureId,
+
 
   // Variable to control conditional rendering of search results message:
   const [hasClickedSearch, setHasClickedSearch] = useState(0);

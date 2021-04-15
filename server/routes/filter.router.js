@@ -8,8 +8,8 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 router.get('/typeId=:typeID/featureId=:featureID', (req, res) => {
-  const typeId = req.params.typeID;
-  const featureId = req.params.featureID;
+  const typeId = Number(req.params.typeID);
+  const featureId = Number(req.params.featureID);
   console.log('vendor type=', typeId);
   console.log('special feature', featureId);
 
@@ -47,13 +47,15 @@ router.get('/typeId=:typeID/featureId=:featureID', (req, res) => {
         console.log('retrieve filter failed: ', err);
         res.sendStatus(500);
       });
-  } else {
-    const queryText = `SELECT "companyName", "profilePic" FROM "vendors"
+  }
+  else {
+    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE ("vendorUserId" IN 
                        ( SELECT "vendorUserId" FROM "vendors_services" WHERE "serviceId" = $1 ))
                        AND
                        ( "vendorUserId" IN 
-                       ( SELECT "vendorUserId" FROM "vendors_features" WHERE "featureId" = $2 ))
+                       ( SELECT "vendorUserId" FROM "vendors_features" WHERE "featureId" = $2 ));
                        `;
     pool
       .query(queryText, [typeId, featureId])

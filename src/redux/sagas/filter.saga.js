@@ -7,8 +7,8 @@ function* filterSaga() {
 }
 
 function* fetchMatchingVendors(action) {
-  const vendorTypeSelection = action.payload.typeId;
-  const specialFeatureSelection = action.payload.featureId;
+  const vendorTypeSelection = action.payload.selections.typeId;
+  const specialFeatureSelection = action.payload.selections.featureId;
 
   console.log('start of fetchMatchingVendors', vendorTypeSelection, specialFeatureSelection);
 
