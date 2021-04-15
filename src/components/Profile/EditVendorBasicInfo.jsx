@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 import { 
   FormControl,
   Grid,
@@ -5,7 +7,18 @@ import {
   Typography,
 } from '@material-ui/core';
 
-function EditVendorBasicInfo({companyName, description}) {
+function EditVendorBasicInfo({vendor}) {
+  const dispatch = useDispatch();
+
+  const editProfileElement = (reducerKey, newKeyValue) => {
+    dispatch({
+      type: 'SET_VENDOR',
+      payload: {
+        ...vendor,
+        [reducerKey]: newKeyValue
+      }
+    })
+  }
 
   return(
     <Grid container spacing={2}>
@@ -20,8 +33,9 @@ function EditVendorBasicInfo({companyName, description}) {
             helperText="Edit your company's display name."
             label="Company Name"
             type="text"
+            onChange={event => editProfileElement('companyName', event.target.value) }
             variant="outlined" 
-            value={companyName} 
+            value={vendor.companyName} 
           />
         </FormControl>      
       </Grid>
@@ -34,7 +48,8 @@ function EditVendorBasicInfo({companyName, description}) {
             label="Company Description"
             type="text"
             variant="outlined" 
-            value={description} 
+            value={vendor.description} 
+            onChange={event => editProfileElement('description', event.target.value)}
             multiline
             rows={4}
           />

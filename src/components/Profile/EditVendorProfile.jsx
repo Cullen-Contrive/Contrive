@@ -12,6 +12,7 @@ function EditVendorProfile() {
   const dispatch = useDispatch();
   const params = useParams();
   const vendorDetails = useSelector((store) => store.vendor);
+  
 
   useEffect(() => {
     dispatch({
@@ -24,8 +25,8 @@ function EditVendorProfile() {
     <>
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
       <EditVendorBasicInfo
-        companyName={vendorDetails.companyName}
-        description={vendorDetails.description}
+        vendor={vendorDetails}
+
       />
       <EditVendorAbout />
       <EditVendorSpecialFeatures />      
