@@ -53,21 +53,21 @@ router.post('/register', (req, res, next) => {
   // console.log('description:', description);
 
   const queryText = `INSERT INTO "users" ("username", "password", "firstName", 
-  "lastName", "profilePic", "address", "city", "state", "zip", "type", "website")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`;
+  "lastName", "address", "city", "state", "zip", "type", "website")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`;
 
   // const queryText = `INSERT INTO "users" ("username", "password", "firstName", )`
   pool
-    .query(queryText, [username, password, firstName, lastName, profilePic, address, city, state, zip, type, website])
+    .query(queryText, [username, password, firstName, lastName, address, city, state, zip, type, website])
     .then((dbRes) => {
       if (type === 'vendor') {
         // console.log('dbRes:', dbRes);
         const vendorUserId = dbRes.rows[0].id;
-        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "description", 
+        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "profilePic", "description", 
       "additionalInfo", "phone")
         VALUES ($1, $2, $3, $4, $5, $6);`
 
-        pool.query(sqlQuery, [vendorUserId, companyName, description, additionalInfo, phone])
+        pool.query(sqlQuery, [vendorUserId, companyName, profilePic, description, additionalInfo, phone])
       }
 
       res.sendStatus(201)
