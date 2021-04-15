@@ -1,4 +1,5 @@
-// Used to store artwork image url from the Server
+
+// Used to store Profile Picture URL received from AWS S3 Bucket
 const awsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_PROFILE_PIC':

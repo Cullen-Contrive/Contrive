@@ -18,7 +18,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
       "users"."firstName",
       "users"."lastName",
       "vendors"."companyName",
-      "vendors"."profilePic"
+      "users"."profilePic"
     FROM "messages"
     JOIN "users"
       ON "messages"."fromUser" = "users"."id" OR "messages"."toUser" = "users"."id"
