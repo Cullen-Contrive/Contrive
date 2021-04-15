@@ -98,13 +98,13 @@ function App() {
               <StyleGuide />
             </Route>
 
-            <Route exact path="/messages">
+            <ProtectedRoute exact path="/messages">
               <MessagesList />
-            </Route>
+            </ProtectedRoute>
 
-            <Route exact path="/message/:id">
+            <ProtectedRoute exact path="/message/:id">
               <Message />
-            </Route>
+            </ProtectedRoute>
 
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
