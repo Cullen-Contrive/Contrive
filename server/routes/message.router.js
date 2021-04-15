@@ -74,8 +74,6 @@ router.post('/', (req, res) => {
   "message")
   VALUES ($1, $2, $3, $4);`;
 
-  console.log('req.body', req.body);
-
   pool
     .query(queryText, [
       req.body.fromUser,
