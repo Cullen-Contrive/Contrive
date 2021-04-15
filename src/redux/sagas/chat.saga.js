@@ -3,9 +3,10 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchMessages(action) {
   try {
-    console.log('action.payload', action.payload);
+    // Fetches messages from server/db based on toUser id
+    // toUser -> Integer
+    // fromUser will be req.user.id, toUser needs to be passed in
     const response = yield axios.get(`/api/message/${action.payload}`);
-    console.log('CLIENT - SAGAS - fetch successful', response.data);
     yield put({ type: 'SET_MESSAGES', payload: response.data });
   } catch (err) {
     console.error('CLIENT - SAGAS - an error occurred fetching messages');
@@ -15,8 +16,11 @@ function* fetchMessages(action) {
 // Fetches all messages (conversations) between a user and anyone they have had conversations with
 function* fetchAllMessages() {
   try {
+    // Fetches all messages from server/db based on req.user.id
+    // req.user.id is accessed via the server
     const response = yield axios.get('/api/message/all');
     console.log('CLIENT - SAGAS - fetch all messages successful');
+
     yield put({ type: 'SET_ALL_MESSAGES', payload: response.data });
   } catch (err) {
     console.error(
@@ -28,9 +32,8 @@ function* fetchAllMessages() {
 
 function* postOutgoingMessages(action) {
   try {
-    console.log('Received a payload', action.payload);
+    // Template for posting outgoing messages asynchronously
     const response = yield axios.post('/api/message', action.payload);
-    // call the onComplete function here as a workaround for dealing with race condition
     action.payload.onComplete();
   } catch (err) {
     console.error('CLIENT - SAGAS - an error occurred posting messages');
@@ -39,8 +42,10 @@ function* postOutgoingMessages(action) {
 
 function* postMessage(action) {
   try {
+    // Posts individual message to server/db
+    // expects payload.data -> Object
+    // expects onComplete -> function which will call fetch messages upon completion
     const response = yield axios.post('/api/message', action.payload.data);
-    console.log('a response occurred', response);
     action.payload.onComplete();
   } catch (err) {
     console.error('CLIENT - SAGAS - an error occurred posting message');

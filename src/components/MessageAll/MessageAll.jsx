@@ -52,8 +52,6 @@ function MessageAll() {
   };
 
   const sendMessage = (evt) => {
-    console.log('sending Message');
-    console.log('message', message.length);
     evt.preventDefault(); // prevents the form from refreshing the page
     if (message.length <= 0) {
       Swal.fire({
@@ -73,8 +71,6 @@ function MessageAll() {
       message: message,
       toUser: params.id,
     };
-
-    console.log('messageObject', messageObject);
 
     dispatch({
       type: 'POST_MESSAGE',
@@ -112,17 +108,19 @@ function MessageAll() {
           }}
         >
           {/* existingMessages comes from database */}
-          {existingMessages.length > 0
-            ? existingMessages.map((singleMessage, index) => {
-                return (
-                  <Message
-                    key={index}
-                    messageDetails={singleMessage}
-                    toUser={params.id}
-                  />
-                );
-              })
-            : ' '}
+          {existingMessages.length > 0 ? (
+            existingMessages.map((singleMessage, index) => {
+              return (
+                <Message
+                  key={index}
+                  messageDetails={singleMessage}
+                  toUser={params.id}
+                />
+              );
+            })
+          ) : (
+            <Typography>Start a conversation!</Typography>
+          )}
         </Paper>
       </Grid>
       {/* Form for submitting text to another user */}
