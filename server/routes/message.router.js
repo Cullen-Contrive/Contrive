@@ -8,7 +8,26 @@ const {
 router.get('/all', rejectUnauthenticated, (req, res) => {
   // GET ROUTE - Gets all messages for currently logged-in user
   const user = req.user.id;
-  const queryText = `SELECT * FROM "messages" WHERE "messages"."fromUser" = $1 OR "messages"."toUser" = $1;`;
+  const queryText = `
+    SELECT DISTINCT 
+      ON(GREATEST("fromUser", "toUser"), LEAST("fromUser", "toUser")) 
+      GREATEST("fromUser", "toUser"), 
+      LEAST("fromUser", "toUser"), 
+      "date" AS "maxDate", 
+      "message",
+      "users"."firstName",
+      "users"."lastName",
+      "vendors"."companyName",
+      "vendors"."profilePic"
+    FROM "messages"
+    JOIN "users"
+      ON "messages"."fromUser" = "users"."id" OR "messages"."toUser" = "users"."id"
+    RIGHT OUTER JOIN "vendors"
+      On "users"."id" = "vendors"."vendorUserId"
+    WHERE "fromUser" = $1
+      OR "toUser" = $1
+    ORDER BY GREATEST("fromUser", "toUser"), LEAST("fromUser", "toUser"), "maxDate" DESC;
+  `;
 
   pool
     .query(queryText, [user])
@@ -29,8 +48,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   // GET ROUTE - Gets Messages between two users
   const fromUser = req.user.id;
   console.log('fromUser', fromUser);
-  console.log('toUser', toUser);
   const toUser = req.params.id;
+  console.log('toUser', toUser);
   const queryText = ` SELECT * FROM "messages" WHERE 
   "messages"."fromUser" = $1 AND "messages"."toUser" = $2
   OR "messages"."toUser" = $1 AND "messages"."fromUser" =$2;`;
