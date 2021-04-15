@@ -18,7 +18,9 @@ function* fetchUserDetailsById(action) {
 function* fetchLoggedInUserDetails() {
   // Fetches logged-in user's details
   // No incoming payload - Server uses req.user.id
-  const response = yield axios.get('/api/user/details');
+  console.log('FETCHING logged in user details');
+  const response = yield axios.get('/api/user/details/');
+  console.log('FETCHED', response.data);
   yield put({
     type: 'SET_LOGGED_IN_USER_DETAILS',
     payload: response.data,

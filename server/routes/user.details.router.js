@@ -11,7 +11,7 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Gets user info based on currently logged in user
   const userId = req.user.id;
-  console.log('userId incoming is', req.user.id);
+  console.log('Incoming userId is', req.user.id);
   const queryText = `
   SELECT 
   "firstName", 
@@ -31,6 +31,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     .query(queryText, [userId])
     .then((dbRes) => {
       console.log('SERVER - GET - user details successful!');
+      console.table(dbRes.rows);
       res.send(dbRes.rows);
     })
     .catch((err) => {
