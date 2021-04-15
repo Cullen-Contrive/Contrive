@@ -8,6 +8,6 @@ const specialFeatures = (state = {}, action) => {
   }
 };
 
-// user will be on the redux state at:
+// user will access the redux state at:
 // state.user
 export default specialFeatures;

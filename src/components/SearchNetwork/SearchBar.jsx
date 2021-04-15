@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Grid } from '@material-ui/core';
 
-const SearchBar = () => {
+const SearchBar = ({ hasClickedSearch, setHasClickedSearch }) => {
   const dispatch = useDispatch();
   // const BarStyling = { width: "22rem", 
   // background: "#F2F1F9", border: "1px solid", borderRadius: "7px", padding: "0.5rem" };
@@ -10,8 +10,14 @@ const SearchBar = () => {
   // Capture keyword inputs with local state:
   const [searchInput, setSearchInput] = useState('');
 
+
   const runSearch = (event) => {
     event.preventDefault;
+
+
+    setHasClickedSearch(hasClickedSearch + 1);
+    console.log('hasClickedSearch in searchBar:', hasClickedSearch);
+
 
     dispatch({
       type: 'RUN_SEARCH',
