@@ -52,21 +52,27 @@ function SearchNetwork() {
 
   // //Local store variables that captures from inputs
   const [typeId, setTypeId] = useState(-1);
-  const [featureId, setFeatureId] = useState('');
-  // let typeId = -1
-  // let featureId = -1
+  const [featureId, setFeatureId] = useState(-1);
+
+  console.log('typeId:', typeId);
+  console.log('featureId:', featureId);
 
 
   const handleVendorTypeChange = (evt) => {
     setTypeId(evt.target.value);
 
     console.log('typeId', typeId);
+    console.log('evt.target.value in handleVendor:', evt.target.value);
 
     onChange();
   };
 
   const handleSpecialFeatureChange = (evt) => {
-    featureId = evt.target.value;
+    setFeatureId(evt.target.value);
+
+    console.log('featureId', featureId);
+    console.log('evt.target.value in handleFeature:', evt.target.value);
+
     onChange();
   };
 
@@ -104,8 +110,9 @@ function SearchNetwork() {
                 labelId="vendor-type"
                 id="vendor-type"
                 name="Vendor Types"
-                value={vendorTypes}
-                // onChange={(evt) => setVendorTypes(evt.target.value)}
+                value={typeId}
+                // onChange={(evt) => setTypeId(evt.target.value)}
+                // onChange={(evt) => handleVendorTypeChange(evt.target.value)}
                 onChange={handleVendorTypeChange}
               >
                 {/* <MenuItem key="-1" value="-1"> -- Select Vendor Type -- </MenuItem> */}
@@ -127,8 +134,9 @@ function SearchNetwork() {
                 labelId="special-features"
                 id="special-features"
                 name="Special Features"
-                value={specialFeatures}
-                // onChange={(evt) => setSpecialFeatures(evt.target.value)}
+                value={featureId}
+                // onChange={(evt) => setFeatureId(evt.target.value)}
+                // onChange={(event) => handleSpecialFeatureChange(evt.target.value)}
                 onChange={handleSpecialFeatureChange}
               >
                 {/* <MenuItem key="-1" value="-1"> -- Select Vendor Type -- </MenuItem> */}
@@ -147,9 +155,9 @@ function SearchNetwork() {
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={spacing}>
 
-                  {/* <section className="artwork"> */}
+
                   {
-                    // Makes sure artworkList is populated
+                    // Makes sure filter criteria is populated
                     filter && filter.length &&
                     filter.map((vendor, i) => {
                       return (
