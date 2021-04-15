@@ -8,6 +8,7 @@ import features from './specialFeaturesDD.reducer';
 import vendorTypes from './vendorTypesDD.reducer';
 import vendor from './vendor.reducer';
 import profilePic from './aws.reducer';
+import filter from './filter.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   vendorTypes,
   vendor,
   profilePic,
+  filter,
 });
 
 export default rootReducer;

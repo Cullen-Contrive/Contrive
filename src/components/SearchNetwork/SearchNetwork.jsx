@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     maxWidth: 300,
   },
+  img: {
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
 }));
 
 function SearchNetwork() {
@@ -44,27 +48,36 @@ function SearchNetwork() {
   // Grab information from Global Redux Store
   const features = useSelector((store) => store.features);
   const service = useSelector((store) => store.vendorTypes);
+  const filter = useSelector((store) => store.filter);
 
-  // Local state that captures input data
-  const [specialFeatures, setSpecialFeatures] = useState('');
-  const [vendorTypes, setVendorTypes] = useState('');
+  // //Local store variables that captures from inputs
+  const [typeId, setTypeId] = useState(-1);
+  const [featureId, setFeatureId] = useState('');
+  // let typeId = -1
+  // let featureId = -1
 
-  const handleVendorChange = (evt) => {
-    // let newUser = evt.target.value;
-    // if (newUser === '-1'){
-    //   history.push(`/discover`);}
-    // else {
-    // userChange(newUser);
-    // }
+
+  const handleVendorTypeChange = (evt) => {
+    setTypeId(evt.target.value);
+
+    console.log('typeId', typeId);
+
+    onChange();
   };
 
-  const handleCategoryChange = (evt) => {
-    // let newUser = evt.target.value;
-    // if (newUser === '-1'){
-    //   history.push(`/discover`);}
-    // else {
-    // userChange(newUser);
-    // }
+  const handleSpecialFeatureChange = (evt) => {
+    featureId = evt.target.value;
+    onChange();
+  };
+
+  const onChange = () => {
+    dispatch({
+      type: 'FETCH_MATCHING_VENDORS',
+      payload: {
+        typeId: typeId,
+        featureId: featureId,
+      }
+    })
   };
 
   // Variable to control conditional rendering of search results message:
@@ -92,9 +105,10 @@ function SearchNetwork() {
                 id="vendor-type"
                 name="Vendor Types"
                 value={vendorTypes}
-                onChange={(evt) => setVendorTypes(evt.target.value)}
+                // onChange={(evt) => setVendorTypes(evt.target.value)}
+                onChange={handleVendorTypeChange}
               >
-                {/* <MenuItem value="" disabled> -- Select Vendor Type -- </MenuItem> */}
+                {/* <MenuItem key="-1" value="-1"> -- Select Vendor Type -- </MenuItem> */}
                 {service &&
                   service.length &&
                   service.map((category, i) => {
@@ -114,8 +128,10 @@ function SearchNetwork() {
                 id="special-features"
                 name="Special Features"
                 value={specialFeatures}
-                onChange={(evt) => setSpecialFeatures(evt.target.value)}
+                // onChange={(evt) => setSpecialFeatures(evt.target.value)}
+                onChange={handleSpecialFeatureChange}
               >
+                {/* <MenuItem key="-1" value="-1"> -- Select Vendor Type -- </MenuItem> */}
                 {features &&
                   features.length &&
                   features.map((feature, i) => {
@@ -127,6 +143,34 @@ function SearchNetwork() {
                   })}
               </Select>
             </FormControl>
+            <Grid container className={classes.root} spacing={2}>
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={spacing}>
+
+                  {/* <section className="artwork"> */}
+                  {
+                    // Makes sure artworkList is populated
+                    filter && filter.length &&
+                    filter.map((vendor, i) => {
+                      return (
+                        <Grid
+                          key={i}
+                        >
+                          <br></br>
+                          <Typography align="center" variant="h5">{vendor.companyName}</Typography>
+                          <br></br>
+                          <img src={vendor.profilePic} alt={vendor.companyName} className={classes.img} />
+                          <br></br>
+                          <br></br>
+                        </Grid>
+
+                      );
+                    })
+                  }
+                  {/* </section> */}
+                </Grid>
+              </Grid>
+            </Grid>
 
             <SearchBar hasClickedSearch={hasClickedSearch}
               setHasClickedSearch={setHasClickedSearch} />

@@ -23,6 +23,7 @@ const vendorRouter = require('./routes/vendor.router');
 const searchRouter = require('./routes/search.router');
 const specialFeaturesRouter = require('./routes/specialFeaturesDD.router');
 const vendorTypesRouter = require('./routes/vendorTypesDD.router');
+const filterRouter = require('./routes/filter.router');
 
 // TODO AWS const
 const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
@@ -68,6 +69,7 @@ app.use('/api/vendor', vendorRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/specialfeatures', specialFeaturesRouter);
 app.use('/api/vendortypes', vendorTypesRouter);
+app.use('/api/filter', filterRouter);
 
 // Serve static files
 app.use(express.static('build'));
