@@ -39,44 +39,36 @@ VALUES
 ('info@wedphoria.com', 'one', 'Michael', 'Wells', '', 'Clear Lake', 'MN', 55319, 'vendor', 'https://www.minnesotaprodj.com/', 'WedPhoria, formerly known as Minnesota Pro DJ, offers HIGH quality wedding and special event DJ, Photo Booth, Photography, Officiant and Event Planning services.'),
 ('info@adagiodj.com', 'one', 'Roger', 'Moore', '413 Wacouta Street Suite 100', 'Saint Paul', 'MN', 55101, 'vendor', 'https://www.adagiodj.com/', 'When the lights go up and the party’s over, all you’ll have left are the memories. At Adagio Djay Entertainment, we specialize in crafting a symphony of music, melodies and excitement into the perfect experience for the most memorable day of your life. From the first dance to the last—we never forget whose day it is.'),
 ('info@midwestsound.com', 'one', 'Charles', 'Jordan', '1900 Oakcrest Ave STE 6', 'Roseville', 'MN', 55113, 'vendor', 'https://www.midwestsound.com/', 'We created the blueprint for wedding DJ entertainment. We continue to set trends and facilitate remarkable receptions. Our unparalleled training and mentorship program makes our DJs exceptional. We perform at 1,900 receptions every year and each is customized to be one of a kind. Our comprehensive online planning process lets our clients have complete control to guarantee a unique and memorable wedding. With our experience and reliability, we will continue to provide amazing wedding DJ entertainment for many years to come.'),
+('info@brancatoscatering.com', 'one', 'Brandon', 'Castillo', '5050 Kansas Ave', 'Kansas City', 'KS', 66106, 'vendor', 'https://brancatoscatering.com/', 'Whether you’re planning an outdoor event or working with one of Kansas City’s hottest venues, our expert coordinators will offer you the latest in food trends and make your event one to remember. We work closely with Kansas City’s top event venues to help provide you with the best service possible for your big day. If you haven’t selected your venue yet we can help guide you in finding the perfect fit for your big day. Our coordinators will work with you from planning to execution, providing you with expert guidance leading up to your event and throughout your big day making sure your expectations are exceeded.'),
+('moxiecatering@gmail.com', 'one', '', '', '1617 Genessee St', 'Kansas City', 'MO', 64102, 'vendor', 'http://www.moxiecatering.com/', ''),
+('chef@thebluepot.com', 'one', 'Kelly', 'Bundy', '8133 Wornall Road', 'Kansas City', 'MO', 64114, 'vendor', 'https://thebluepot.com/', 'Kansas City’s premier catering and event designer for weddings, corporate and social events, since 2006. Delight your guests with seasonal, made-from-scratch menu items inspired by the best ingredients.'),
+('info@grandmas.com', 'one', 'Vivan', 'Heart', '2800 Guinotte Ave', 'Kansas City', 'MO', 64120, 'vendor', 'https://grandmascatering.com/', ''),
+('info@twositers.com', 'one', 'Michele', 'Fisher', '5701 Logan Rd', 'Kansas City', 'MO', 64136, 'vendor', 'http://www.twosisterscateringkc.com/', `From a business lunch to your elaborate social event of the year, Two Sisters Catering’s homemade touch and elegance goes into everything we make. Our delicious recipes and eye-appealing dishes have been a Kansas City favorite for more than 10 years.`),
+('eacatering@gmail.com', 'one', 'Lars', 'Hettfield', '8011 Wornall Road', 'Kansas City', 'MO', 64114, 'vendor', 'http://www.eacatering.com/', `EA Catering & Sons is chef-owned and operated in Kansas City, MO. Since opening in 2006, we’ve treated every customer like they were a part of our family. We are a full service caterer. We create a custom from scratch menu just for you. We can also take care of all your event planning needs. . Chef Argie is a graduate  of the Culinary Institute of America in Hyde Park, New York. He is well reviewed and has 30 years experience in the industry. Free event venue with minimum order! We never cut corners, we use the best natural ingredients we can find, we make everything from scratch. We never use processed or any pre-made foods you will love the difference. Eat Good Live Well!`),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
+('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
 
 ('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
 
@@ -152,18 +144,12 @@ VALUES
 (34, 'WedPhoria', 'https://www.minnesotaprodj.com/images/WedPhoria-Banner-hor-300x100.png', 'Your 1-Stop-Shop for Wedding & Special Event Services!', 'DJ, Photography, Videography, Event Planning, Photo Booths', '612-293-764'),
 (35, 'Adagio Djay Entertainment', 'https://vol7d4dgnq224poreu2v6gqb-wpengine.netdna-ssl.com/wp-content/uploads/sites/22/2017/01/logo-adagio.svg', 'When the lights go up and the party’s over, all you’ll have left are the memories. At Adagio Djay Entertainment, we specialize in crafting a symphony of music, melodies and excitement into the perfect experience for the most memorable day of your life. From the first dance to the last—we never forget whose day it is.', '', '612-787-3501'),
 (36, 'Midwest Sound DJ Entertainment', 'https://static1.squarespace.com/static/54849ccfe4b0b09de1feb208/t/54bdb9c5e4b0a3e130f04409/1608599170100/?format=1500w', 'We created the blueprint for wedding DJ entertainment. We continue to set trends and facilitate remarkable receptions. Our unparalleled training and mentorship program makes our DJs exceptional. We perform at 1,900 receptions every year and each is customized to be one of a kind. Our comprehensive online planning process lets our clients have complete control to guarantee a unique and memorable wedding. With our experience and reliability, we will continue to provide amazing wedding DJ entertainment for many years to come.', '', '651-644-4111'),
-
-(37, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(38, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(39, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(40, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(41, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(42, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
+(37, `Brancato's Catering`, 'http://brancatoscatering.com/wp-content/uploads/b-logo-e1612471991570.png', 'Whether you’re planning an outdoor event or working with one of Kansas City’s hottest venues, our expert coordinators will offer you the latest in food trends and make your event one to remember. We work closely with Kansas City’s top event venues to help provide you with the best service possible for your big day. If you haven’t selected your venue yet we can help guide you in finding the perfect fit for your big day. Our coordinators will work with you from planning to execution, providing you with expert guidance leading up to your event and throughout your big day making sure your expectations are exceeded.', 'Food is important to the success of your event and our reception – wedding catering is designed to accommodate various budgets. Our customizable options are designed to fit the needs of your event. Brancato’s Catering, selected as one of the city’s best caterers, offers everything from full-service seated dinners, buffets and appetizers to quick and easy drop-off orders. We also offer full liquor packages, bartenders, room flip service, closing service and cake cutting.', '815-765-4707'),
+(38, 'Moxie Catering & Event Design', 'http://www.moxiecatering.com/moxieFront01.jpg', '', '', '816-561-0384'),
+(39, 'Blue Pot Catering', 'https://thebluepot.com/wp-content/uploads/2016/09/BluePotLogoWide.jpg', 'Kansas City’s premier catering and event designer for weddings, corporate and social events, since 2006. Delight your guests with seasonal, made-from-scratch menu items inspired by the best ingredients.', 'Custom Menus', '816-916-0169'),
+(40, `Grandma's Catering`, 'https://grandmascatering.com/wp-content/themes/grandmas/assets/img/logo.png', '', '', '816-472-6362'),
+(41, 'Two Sisters Catering', 'http://beta.twosisterscateringkc.com/wp-content/uploads/2013/11/two-sisters-text_011.png', `From a business lunch to your elaborate social event of the year, Two Sisters Catering’s homemade touch and elegance goes into everything we make. Our delicious recipes and eye-appealing dishes have been a Kansas City favorite for more than 10 years.`, 'additionalInfo', '816-737-0846'),
+(42, 'EA Catering & Event Space', 'http://www.eacatering.com/publishImages/~master~master~~master7.jpg', `EA Catering & Sons is chef-owned and operated in Kansas City, MO. Since opening in 2006, we’ve treated every customer like they were a part of our family. We are a full service caterer. We create a custom from scratch menu just for you. We can also take care of all your event planning needs. . Chef Argie is a graduate  of the Culinary Institute of America in Hyde Park, New York. He is well reviewed and has 30 years experience in the industry. Free event venue with minimum order! We never cut corners, we use the best natural ingredients we can find, we make everything from scratch. We never use processed or any pre-made foods you will love the difference. Eat Good Live Well!`, `At EA Catering we specialize in fresh, from scratch, healthy food. We use organic produce. Free range, hormone and antibiotic free poultry and free range, grass fed beef. We bake our own bread. Roast and smoke our meats in house. No GMO's! No HFCS! Just good clean food. We know you will taste and feel the difference. Eat Good Live Well`, '913-961-6226'),
 
 (43, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
 
@@ -220,19 +206,7 @@ VALUES
 (2, 3), (4, 3), (6, 1), (6, 3), (4, 3), (7, 3), (8,1), (9, 2), (11, 2), (12, 1),
 (14, 3), (15, 1), (16, 3), (17, 2), (18, 1), (19, 1), (21, 1), (22, 1), (23, 3),
 (24, 2), (25, 3), (26, 2), (27, 2), (28, 1), (29, 2), (30, 3), (31, 1), (32, 2),
-(35, 3), (36, 3),
-
-(37,),
-
-(38,),
-
-(39,),
-
-(40,),
-
-(41,),
-
-(42,),
+(35, 3), (36, 3), (37, 1), (39, 2), (41, 1),
 
 (43,),
 
