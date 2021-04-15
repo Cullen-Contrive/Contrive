@@ -18,6 +18,7 @@ import useStyles from './MessageAll.styles.js'
 function MessagesList(){
   const classes = useStyles();
   const user = useSelector((store) => store.user);
+  const conversations = useSelector((store) => store.chat.allMessagesReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -25,6 +26,11 @@ function MessagesList(){
     dispatch({ type: 'FETCH_ALL_MESSAGES', payload: user.id})
   }, [])
 
+  const viewConversation = (messengerId) => {
+    console.log('in viewConversation, messengerId:', messengerId);
+  }
+
+  console.log('list of conversations:', conversations);
   return(
     <>
       <Box p={1}>
@@ -32,6 +38,47 @@ function MessagesList(){
       </Box>
       <Divider/>
       <List className={classes.messagesList}>
+        {conversations.map((conversation, index) => {
+          let messenger;
+          if (conversation.greatest === user.id) {
+            messenger = conversation.least;
+          } else {
+            messenger = conversation.greatest;
+          }
+
+          return(
+            <div>
+              <ListItem alignItems="flex-start" key={index} onClick={() => viewConversation(messenger)}>
+                <ListItemAvatar>
+                  {/* alt should be name of user that the logged in user is messaging */}
+                  <Avatar alt={conversation.companyName} src={conversation.profilePic} />
+                </ListItemAvatar>
+
+                <ListItemText
+                  primary={conversation.companyName} // primary text will be rendered from reducer
+                  secondary={
+                    <Fragment>
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        className={classes.inline}
+                        noWrap
+                        color="textPrimary"
+                      >
+                      {/* This text should be replaced with the last message sent/received */}
+                        {conversation.message}
+                      </Typography>
+                    </Fragment>
+                  }
+                />
+              </ListItem>
+
+              <Divider variant="middle" component="li" />
+            </div>
+          );
+        })}
+
+
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             {/* alt should be name of user that the logged in user is messaging */}

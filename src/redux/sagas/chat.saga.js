@@ -16,7 +16,7 @@ function* fetchAllMessages() {
   try {
     const response = yield axios.get('/api/message/all');
     console.log('CLIENT - SAGAS - fetch all messages successful');
-    yield put({ type: 'SET_MESSAGES', payload: response.data });
+    yield put({ type: 'SET_ALL_MESSAGES', payload: response.data });
   } catch (err) {
     console.error(
       'CLIENT - SAGAS - an error occurred fetching all messages',
