@@ -20,31 +20,14 @@ class ImageUpload extends Component {
   handleFinishedUpload = info => {
     console.log('File uploaded with filename: ', info.filename);
     console.log('Access it on s3 at: ', info.fileUrl);
+
     if( this.props.page === "AddProfilePic" )
       {
       this.props.dispatch({
         type: 'SET_PROFILE_PIC',
         payload: info.fileUrl
       });
-      } 
-    // if( this.props.page === "AddArtworkImage" )
-    // {
-    // this.props.dispatch({
-    //   type: 'SET_IMAGE_URL',
-    //   payload: info.fileUrl
-    // });
-    // } else if (this.props.page === "AddProfilePicture")
-    // {
-    //   this.props.dispatch({
-    //     type: 'SET_PFP_URL',
-    //     payload: info.fileUrl
-    //   });
-    // };
-    // return(
-    // <div>
-    //   <p>File Uploaded!</p>
-    // </div>
-    // );
+      }
   }
 
   render() {

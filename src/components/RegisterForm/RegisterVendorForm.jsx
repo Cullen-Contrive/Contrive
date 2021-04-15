@@ -200,7 +200,6 @@ function RegisterVendorForm() {
         </FormControl>
       </Grid>
 
-      {/* INSERT LOGO UPLOAD HERE */}
 
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
