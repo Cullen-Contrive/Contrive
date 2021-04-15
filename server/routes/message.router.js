@@ -26,7 +26,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
       On "users"."id" = "vendors"."vendorUserId"
     WHERE "fromUser" = $1
       OR "toUser" = $1
-    ORDER BY GREATEST("fromUser", "toUser"), LEAST("fromUser", "toUser"), "maxDate" DESC;
+    ORDER BY GREATEST("fromUser", "toUser"), LEAST("fromUser", "toUser"), "maxDate" ASC;
   `;
 
   pool

@@ -2,6 +2,7 @@ import { Fragment, useEffect, } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+// Material-UI components
 import { 
   Avatar,
   Box,
@@ -40,6 +41,7 @@ function MessagesList(){
       <Divider/>
       <List className={classes.messagesList}>
         {conversations.map((conversation, index) => {
+          // this will be the id of the user that the logged in user is having a conversation with
           let messenger;
           if (conversation.greatest === user.id) {
             messenger = conversation.least;
@@ -48,13 +50,15 @@ function MessagesList(){
           }
 
           return(
-            <div>
-              <ListItem alignItems="flex-start" key={index} onClick={() => viewConversation(messenger)}>
-                <ListItemAvatar>
-                  {/* alt should be name of user that the logged in user is messaging */}
-                  <Avatar alt={conversation.companyName} src={conversation.profilePic} />
+            <div key={index}>
+              <ListItem alignItems="flex-start"onClick={() => viewConversation(messenger)}>
+                {/* This is the profile pic of the user that the logged in user is having a conversation with */}
+                <ListItemAvatar className={classes.chatAvatar}>
+                  <Avatar className={classes.chatAvatar} alt={conversation.companyName} src={conversation.profilePic} />
                 </ListItemAvatar>
 
+                {/* The primary text is the name of the user that the logged in user is having a conversation with,
+                    The secondary text is a preview of the last message sent in the conversation. */}
                 <ListItemText
                   primary={conversation.companyName} // primary text will be rendered from reducer
                   secondary={
@@ -66,7 +70,6 @@ function MessagesList(){
                         noWrap
                         color="textPrimary"
                       >
-                      {/* This text should be replaced with the last message sent/received */}
                         {conversation.message}
                       </Typography>
                     </Fragment>
@@ -79,81 +82,6 @@ function MessagesList(){
           );
         })}
 
-
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            {/* alt should be name of user that the logged in user is messaging */}
-            <Avatar alt="Catherine's Catering" src="http://static.demilked.com/wp-content/uploads/2019/06/5d08f30f841b3-white-house-chef-andre-rush-5d07495ae2959__700.jpg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary="Catherine's Catering" // primary text will be rendered from reducer
-            secondary={
-              <Fragment>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                {/* This text should be replaced with the last message sent/received */}
-                  I can send over a quote if that would be helpful...
-                </Typography>
-              </Fragment>
-            }
-          />
-        </ListItem>
-
-        <Divider variant="middle" component="li" />
-
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            {/* alt should be name of user that the logged in user is messaging */}
-            <Avatar alt="Tom Petty Coverband" src="https://crescentmoonentertainment.com/wp-content/uploads/2017/03/southern-accents-band-pic.jpg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary="Tom Petty Coverband" // primary text will be rendered from reducer
-            secondary={
-              <Fragment>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                {/* This text should be replaced with the last message sent/received */}
-                  We are booked up clear through August...
-                </Typography>
-              </Fragment>
-            }
-          />
-        </ListItem>
-
-        <Divider variant="middle" component="li" />
-
-                <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            {/* alt should be name of user that the logged in user is messaging */}
-            <Avatar alt="The Best Magician Ever" src="https://www.careeraddict.com/uploads/article/31169/001magician.jpg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary="The Best Magician Ever" // primary text will be rendered from reducer
-            secondary={
-              <Fragment>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                {/* This text should be replaced with the last message sent/received */}
-                  I swear it's not just an act! It's truly...
-                </Typography>
-              </Fragment>
-            }
-          />
-        </ListItem>
-
-        <Divider variant="middle" component="li" />
       </List>
     </>
   );

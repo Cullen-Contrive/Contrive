@@ -12,6 +12,7 @@ function* fetchMessages(action) {
   }
 }
 
+// Fetches all messages (conversations) between a user and anyone they have had conversations with
 function* fetchAllMessages() {
   try {
     const response = yield axios.get('/api/message/all');
