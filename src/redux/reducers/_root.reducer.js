@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
+import userDetails from './user.details.reducer';
 import chat from './chat.reducer';
 import search from './search.reducer';
 import features from './specialFeaturesDD.reducer';
@@ -17,6 +18,7 @@ import profilePic from './aws.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
+  userDetails,
   chat,
   search, // search results based off vendor name keyword
   features,
