@@ -4,6 +4,8 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Avatar from '@material-ui/core/Avatar';
 
+import starsImg from '../Images/stars.jpg';
+
 function ProfileName({ name, certified, profilePhoto }) {
   return (
     <Grid container spacing={3}>
@@ -20,15 +22,11 @@ function ProfileName({ name, certified, profilePhoto }) {
             {name ? name : 'Name goes here..'}
           </Typography>
           {certified ? <CheckCircleIcon /> : 'Not certified'}
-          <img
-            src={process.env.PUBLIC_URL + 'stars.jpg'}
-            style={{ height: '50px' }}
-          />
+          <img src={starsImg} style={{ height: '50px' }} />
         </Box>
       </Grid>
       <Grid item xs={5}>
         <center>
-          {/* TODO: style this photo as an avatar type thing */}
           {profilePhoto ? (
             <Avatar alt={name} src={profilePhoto} />
           ) : (
