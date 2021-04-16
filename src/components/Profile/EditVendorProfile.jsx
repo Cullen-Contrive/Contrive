@@ -1,15 +1,20 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import EditVendorContact from './EditVendorContact';
 import EditVendorBasicInfo from './EditVendorBasicInfo';
 import EditVendorSpecialFeatures from './EditVendorSpecialFeatures';
 
-import {Typography} from '@material-ui/core';
+import {
+  Button,
+  ButtonGroup,
+  Typography
+} from '@material-ui/core';
 
 function EditVendorProfile() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const params = useParams();
   const vendorDetails = useSelector((store) => store.vendor);
 
@@ -30,6 +35,14 @@ function EditVendorProfile() {
     })
   }
 
+  const cancelEdit = () => {
+    history.push(`/vendor/${vendorDetails.vendorUserId}`)
+  }
+
+  const saveEdit = () => {
+
+  }
+
   return(
     <>
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
@@ -45,6 +58,10 @@ function EditVendorProfile() {
         vendor={vendorDetails} 
         editProfileElement={editProfileElement} 
       />      
+      <ButtonGroup variant="contained">
+        <Button color="secondary" onClick={cancelEdit}>Cancel</Button>
+        <Button color="primary" onClick={saveEdit}>Save</Button>
+      </ButtonGroup>
     </>
   );
 } // end EditVendorProfile

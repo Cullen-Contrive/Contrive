@@ -110,13 +110,13 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// this route updates a vendor profile
 router.put('/update', rejectUnauthenticated, async (req, res) => {
   console.log('POST /api/vendor/update here is what we got:', req.body);
   const connection = await pool.connect();
   
   const userId = req.user.id;
   console.log('user id:', userId)
-
 
   const sqlTextVendors = `
     UPDATE "vendors"
