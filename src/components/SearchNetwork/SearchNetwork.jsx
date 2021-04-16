@@ -51,45 +51,35 @@ function SearchNetwork() {
   const filter = useSelector((store) => store.filter);
 
   // //Local store variables that captures from inputs
-  const [typeId, setTypeId] = useState(-1);
-  const [featureId, setFeatureId] = useState(-1);
+  // const [typeId, setTypeId] = useState(-1);
+  // const [featureId, setFeatureId] = useState(-1);
 
   // const [selections, setSelections] = useState({ typeId: -1, featureId: -1 })
 
-  let selections = { typeId, featureId }
+  const [selections, setSelections] = useState({ typeId: -1, featureId: -1 });
   console.log('selections at start:', selections);
 
-  // console.log('typeId:', typeId);
-  // console.log('featureId:', featureId);
+  // Function to set the value corresponding with selected vendor type in dropdown:
+  const handleTypeSelection = (evt) => {
+    setSelections({ ...selections, typeId: evt.target.value });
 
-
-  const handleVendorTypeChange = (evt) => {
-
-    setTypeId(evt.target.value);
-    // setSelections(typeId = evt.target.value, selections.featureId);
-    console.log('selections in TypeChange:', selections);
-
-    console.log('typeId', typeId);
-    console.log('evt.target.value in handleVendor:', evt.target.value);
-
+    // Call function that will pass data to Saga (and then on to server/DB)
     onChange();
   };
 
-  const handleSpecialFeatureChange = (evt) => {
-    setFeatureId(evt.target.value);
+  // Function to set the value corresponding with selected special feature in dropdown:
+  const handleFeatureSelection = (evt) => {
+    setSelections({ ...selections, featureId: evt.target.value });
 
-    console.log('featureId', featureId);
-    console.log('evt.target.value in handleFeature:', evt.target.value);
-
+    // Call function that will pass data to Saga (and then on to server/DB)
     onChange();
   };
 
+  // Send both selections to the Saga
   const onChange = () => {
     dispatch({
       type: 'FETCH_MATCHING_VENDORS',
-      payload: {
-        selections
-      }
+      payload: selections
     })
   };
 
@@ -119,11 +109,8 @@ function SearchNetwork() {
                 id="vendor-type"
                 name="Vendor Types"
                 value={selections.typeId}
-                // onChange={(evt) => setTypeId(evt.target.value)}
-                // onChange={(evt) => handleVendorTypeChange(evt.target.value)}
-                onChange={handleVendorTypeChange}
+                onChange={handleTypeSelection}
               >
-                {/* <MenuItem key="-1" value="-1"> -- Select Vendor Type -- </MenuItem> */}
                 {service &&
                   service.length &&
                   service.map((category, i) => {
@@ -142,12 +129,9 @@ function SearchNetwork() {
                 labelId="special-features"
                 id="special-features"
                 name="Special Features"
-                value={featureId}
-                // onChange={(evt) => setFeatureId(evt.target.value)}
-                // onChange={(event) => handleSpecialFeatureChange(evt.target.value)}
-                onChange={handleSpecialFeatureChange}
+                value={selections.featureId}
+                onChange={handleFeatureSelection}
               >
-                {/* <MenuItem key="-1" value="-1"> -- Select Vendor Type -- </MenuItem> */}
                 {features &&
                   features.length &&
                   features.map((feature, i) => {
@@ -183,7 +167,7 @@ function SearchNetwork() {
                       );
                     })
                   }
-                  {/* </section> */}
+
                 </Grid>
               </Grid>
             </Grid>
