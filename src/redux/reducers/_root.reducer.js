@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import userDetails from './user.details.reducer';
-import chat from './chat.reducer';
+import chat from './message.reducer';
 import search from './search.reducer';
 import features from './specialFeatures.reducer';
 import vendorTypes from './vendorTypes.reducer';

@@ -20,7 +20,8 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', (req, 
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE "vendorUserId" IN 
                        (SELECT "vendorUserId" FROM "vendors_services"
-                       WHERE "serviceId" = $1); `;
+                       WHERE "serviceId" = $1); 
+                       `;
     pool
       .query(queryText, [typeId])
       .then((result) => {
@@ -36,10 +37,9 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', (req, 
     const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE "vendorUserId" IN 
-                       (
-                       SELECT "vendorUserId" FROM "vendors_features"
-                       WHERE "featureId" = $1
-                       ); `;
+                       ( SELECT "vendorUserId" FROM "vendors_features"
+                       WHERE "featureId" = $1 ); 
+                       `;
     pool
       .query(queryText, [featureId])
       .then((result) => {
@@ -53,9 +53,9 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', (req, 
 
   } else if (typeId === -1 && featureId === -1) {
     const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
-                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
-                        WHERE "companyName" ILIKE '%' || $1 || '%';`
-
+                       JOIN "users" ON "vendors"."vendorUserId" = "users".id
+                       WHERE "companyName" ILIKE '%' || $1 || '%'; 
+                       `;
     pool.query(queryText, [searchTerm])
       .then((result) => {
         console.log('SERVER - GET - at /api/search - received a response');
@@ -67,7 +67,12 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', (req, 
       });
 
   } else if (typeId === -1 && featureId != -1 && searchTerm != "37423573209") {
-    const queryText = `
+    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+                       JOIN "users" ON "vendors"."vendorUserId" = "users".id
+                       WHERE ( "vendorUserId" IN 
+                       ( SELECT "vendorUserId" FROM "vendors_features" WHERE "featureId" = $1 ))
+                       AND
+                       "vendors"."companyName" ILIKE '%' || $2 || '%';
                        ;`
 
     pool.query(queryText, [featureId, searchTerm])
@@ -81,8 +86,13 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', (req, 
       });
 
   } else if (featureId === -1 && typeId != -1 && searchTerm != "37423573209") {
-    const queryText = `
-                       ;`
+    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+                       JOIN "users" ON "vendors"."vendorUserId" = "users".id
+                       WHERE ("vendorUserId" IN 
+                       ( SELECT "vendorUserId" FROM "vendors_services" WHERE "serviceId" = $1 ))
+                       AND
+                       "vendors"."companyName" ILIKE '%' || $2 || '%';
+                       `;
 
     pool.query(queryText, [typeId, searchTerm])
       .then((result) => {
