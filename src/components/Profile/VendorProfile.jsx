@@ -36,6 +36,8 @@ function VendorProfile() {
     });
   };
 
+  console.log('vendorDetails', vendorDetails);
+
   return (
     // pass props to children
     <>

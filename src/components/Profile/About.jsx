@@ -79,7 +79,7 @@ function About({
           </Grid>
           <Grid item>
             <Typography variant="body2">
-              {serviceTypes
+              {serviceTypes && !serviceTypes[0] === null
                 ? serviceTypes.map((service) => {
                     return <li key={service.id}>{capitalize(service.name)}</li>;
                   })

@@ -56,7 +56,7 @@ function SpecialFeatures({ features }) {
       <AccordionDetails>
         <Grid item>
           <Typography variant="body2">
-            {features
+            {features && !features[0] === null
               ? features.map((feature) => {
                   return <li key={feature.id}>{capitalize(feature.name)}</li>;
                 })
