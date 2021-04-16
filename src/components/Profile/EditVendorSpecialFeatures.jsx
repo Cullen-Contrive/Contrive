@@ -1,0 +1,50 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
+  FormLabel,
+  Grid,
+} from '@material-ui/core';
+
+function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
+  const features = useSelector(store => store.features)
+
+  console.log('THESE ARE THE FEATURES', features)
+  return(
+    <Grid item xs={12}>
+      <FormControl component="fieldset">
+        {features.map((feature, index) => {
+          let checked = false;
+
+          for (let specialFeature of vendor.special_features) {
+            if (specialFeature.id === feature.id) {
+              checked = true; 
+            }
+          }
+
+          return(
+            <FormControlLabel 
+              control={<Checkbox value={feature.id} checked={checked} color="primary" onChange={(event) => editProfileElement('special_features', event.target.value)} name="test" />} 
+              label={feature.name}
+              key={index}
+            />
+          );
+        })}
+        <FormControlLabel 
+          control={<Checkbox color="primary" checked={true} onChange={(event) => editProfileElement('special_features', event.target.value)} name="test" />} 
+          label="test checked"
+        />
+        <FormControlLabel 
+          control={<Checkbox color="primary" checked={false} onChange={() => editProfileElement('')} name="test" />} 
+          label="test unchecked"
+        />
+      </FormControl>
+    </Grid>
+  );
+} // end EditVendorSpecialFeatures
+
+export default EditVendorSpecialFeatures;

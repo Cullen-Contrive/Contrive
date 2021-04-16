@@ -1,7 +1,17 @@
 const vendorReducer = (
   state = {
-    special_features: [{ id: 1, name: 'small business' }],
-    service_types: [{ id: 1, name: 'caterer' }],
+    additionalInfo: '',
+    address: '',
+    city: '',
+    companyName: '',
+    description: '',
+    phone: '',
+    profilePic: '#',
+    special_features: [],
+    service_types: [],
+    state: '',
+    website: '',
+    zip: '',
   },
   action
 ) => {
