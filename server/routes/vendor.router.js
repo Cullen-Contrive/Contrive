@@ -38,6 +38,8 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
   WHERE "users"."type" = 'vendor'
   GROUP BY 
   "users"."username",
+  "users"."firstName",
+  "users"."lastName",
   "users"."website",
   "users"."profilePic",
   "users"."address", 

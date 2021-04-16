@@ -146,6 +146,61 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', (req, 
         res.sendStatus(500);
       });
 
+  } else if (searchTerm === "37423573209" && typeId === -1 && featureId === -1) {
+    const sqlText = `
+  SELECT
+  "users"."username",
+  "users"."website",
+  "users"."firstName",
+  "users"."lastName",
+  "users"."profilePic",
+  "users"."address", 
+  "users"."city", 
+  "users"."state", 
+  "users"."zip",
+  "vendors"."companyName",
+  "vendors"."vendorUserId",
+  "vendors"."description", 
+  "vendors"."additionalInfo", 
+  "vendors"."phone", 
+  "vendors"."certified",
+  "vendors"."companyName",
+  JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
+  JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
+  FROM "users"
+  JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
+  JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
+  JOIN "special_features" ON "vendors_features"."featureId" = "special_features"."id"
+  JOIN "vendors_services" ON "vendors"."vendorUserId" = "vendors_services"."vendorUserId"
+  JOIN "service_types" ON "vendors_services"."serviceId" = "service_types"."id"
+  WHERE "users"."type" = 'vendor'
+  GROUP BY 
+  "users"."username",
+  "users"."firstName",
+  "users"."lastName",
+  "users"."website",
+  "users"."profilePic",
+  "users"."address", 
+  "users"."city", 
+  "users"."state", 
+  "users"."zip",
+  "vendors"."vendorUserId", 
+  "vendors"."description", 
+  "vendors"."additionalInfo", 
+  "vendors"."phone", 
+  "vendors"."certified", 
+  "vendors"."companyName";`;
+
+  pool
+    .query(sqlText)
+    .then((result) => {
+      console.log('SERVER - for NO type, feature, nor search term  successful');
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.error('SERVER - for NO type, feature, nor search term an error occurred:', err);
+      res.sendStatus(500);
+    });
   }
 });
 module.exports = router;

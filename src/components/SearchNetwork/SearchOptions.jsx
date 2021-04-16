@@ -65,7 +65,7 @@ function SearchOptions({
     //show that a search request has been made:
     setHasMadeSearchRequest(hasMadeSearchRequest + 1);
 
-    let selectedType = { ...selections, typeId: evt.target.value }
+    let selectedType = { ...selections, typeId: Number(evt.target.value) }
     setSelections(selectedType);
 
     // Call function that will pass data to Saga (and then on to server/DB)
@@ -78,7 +78,7 @@ function SearchOptions({
     //show that a search request has been made:
     setHasMadeSearchRequest(hasMadeSearchRequest + 1);
 
-    const selectedFeature = { ...selections, featureId: evt.target.value }
+    const selectedFeature = { ...selections, featureId: Number(evt.target.value) }
     setSelections(selectedFeature);
 
     // Call function that will pass data to Saga (and then on to server/DB)
@@ -121,6 +121,7 @@ function SearchOptions({
           value={selections.typeId}
           onChange={handleTypeSelection}
         >
+          <MenuItem key="-1" value="-1">--- Select Service Type ---</MenuItem>
           {service &&
             service.length &&
             service.map((category, i) => {
@@ -142,6 +143,7 @@ function SearchOptions({
           value={selections.featureId}
           onChange={handleFeatureSelection}
         >
+        <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem>
           {features &&
             features.length &&
             features.map((feature, i) => {
