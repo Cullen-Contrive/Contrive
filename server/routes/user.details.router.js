@@ -46,7 +46,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * GET route for /api/user/details/id
  */
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   // Gets user info based on passed in params
   // Used for gathering info on conversation partner for display
   const userId = req.params.id;
