@@ -69,6 +69,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "users"."state", 
   "users"."zip",
   "vendors"."vendorUserId",
+  "vendors"."companyName",
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 

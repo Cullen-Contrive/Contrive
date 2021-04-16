@@ -31,17 +31,25 @@ function EditVendorProfile() {
       payload: {
         ...vendorDetails,
         [reducerKey]: newKeyValue
-      }
-    })
-  }
+      },
+    });
+  } // end editProfileElement
 
   const cancelEdit = () => {
     history.push(`/vendor/${vendorDetails.vendorUserId}`)
-  }
+  } // end cancelEdit
 
   const saveEdit = () => {
-
-  }
+    dispatch({
+      type: 'UPDATE_VENDOR_PROFILE',
+      payload: {
+        data: vendorDetails,
+        onComplete: () => {
+          cancelEdit();
+        },
+      },
+    })
+  } // end saveEdit
 
   return(
     <>
@@ -54,10 +62,10 @@ function EditVendorProfile() {
         vendor={vendorDetails} 
         editProfileElement={editProfileElement} 
       />
-      <EditVendorSpecialFeatures
+      {/* <EditVendorSpecialFeatures
         vendor={vendorDetails} 
         editProfileElement={editProfileElement} 
-      />      
+      />       */}
       <ButtonGroup variant="contained">
         <Button color="secondary" onClick={cancelEdit}>Cancel</Button>
         <Button color="primary" onClick={saveEdit}>Save</Button>

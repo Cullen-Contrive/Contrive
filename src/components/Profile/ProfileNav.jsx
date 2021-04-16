@@ -38,8 +38,8 @@ function ProfileNav({
   const goToEditView = () => {
     // handles going to editView if the
     // logged in user matches the vendorId
-    console.log('headed to edit view');
-    history.push(`/vendor/${vendorId}`);
+    console.log('headed to edit view'), vendorId;
+    history.push(`/vendor/edit/${vendorId}`);
   };
 
   const goToMessageView = () => {
