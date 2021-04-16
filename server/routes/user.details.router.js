@@ -18,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "lastName", 
   "type", 
   "profilePic", 
-  ARRAY_AGG(DISTINCT "users_photos"."photo") AS "userPhotos"
+  JSON_AGG(DISTINCT "users_photos".*) AS "userPhotos"
   FROM "users"
   JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
   WHERE "users".id = $1
@@ -46,7 +46,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * GET route for /api/user/details/id
  */
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/:id', (req, res) => {
   // Gets user info based on passed in params
   // Used for gathering info on conversation partner for display
   const userId = req.params.id;
@@ -57,7 +57,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "lastName", 
   "type", 
   "profilePic", 
-  ARRAY_AGG(DISTINCT "users_photos"."photo") AS "userPhotos"
+  JSON_AGG(DISTINCT "users_photos".*) AS "userPhotos"
   FROM "users"
   JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
   WHERE "users".id = $1
