@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //Import Custom Components
-import SearchBar from './SearchBar';
+import SearchBar from './SearchOptions';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
