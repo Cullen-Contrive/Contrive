@@ -8,20 +8,21 @@ const {
 // ROUTES AT /api/vendor/all
 router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-  SELECT 
+  SELECT
   "users"."username",
   "users"."website",
   "users"."profilePic",
   "users"."address", 
   "users"."city", 
   "users"."state", 
-  "users"."zip", 
+  "users"."zip",
   "vendors"."vendorUserId",
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified", 
-  "vendors"."companyName",
+  "special_features"."id" AS "specialFeatureId", 
+  "service_types"."id" AS "serviceTypeId",
   ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
   ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
   FROM "users"
@@ -44,7 +45,9 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified", 
-  "vendors"."companyName";`;
+  "vendors"."companyName", 
+  "special_features"."id", 
+  "service_types"."id";`;
 
   pool
     .query(sqlText)
@@ -61,7 +64,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
   const sqlText = `
-  SELECT 
+  SELECT
   "users"."username",
   "users"."website",
   "users"."profilePic",
@@ -74,7 +77,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified", 
-  "vendors"."companyName",
+  "special_features"."id" AS "specialFeatureId", 
+  "service_types"."id" AS "serviceTypeId",
   ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
   ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
   FROM "users"
@@ -97,7 +101,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified", 
-  "vendors"."companyName";`;
+  "vendors"."companyName", 
+  "special_features"."id", 
+  "service_types"."id";`;
 
   pool
     .query(sqlText, [userId])

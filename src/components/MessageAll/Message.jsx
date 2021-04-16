@@ -1,10 +1,11 @@
+import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import './Chat.css';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-function Message({ messageDetails, toUser }) {
+function Message({ messageDetails, toUserId, currentUser, toUser }) {
   const useStyles = makeStyles((theme) => ({
     container: {
       bottom: 0,
@@ -36,15 +37,23 @@ function Message({ messageDetails, toUser }) {
     // messageDetails.fromUser == currently logged in user id
     // TODO: display the avatar for each user on each side
     <>
-      {messageDetails.date}
-      {messageDetails.toUser == toUser ? (
+      {messageDetails.toUser == toUserId ? (
+        // display on right
         <div className={`${classes.bubbleContainerRight}`}>
+          <Avatar
+            alt={currentUser.firstName + 'photo'}
+            src={currentUser.profilePic}
+          />
+          {messageDetails.date}
           <div className={classes.bubble}>
             <div className={classes.button}>{messageDetails.message}</div>
           </div>
         </div>
       ) : (
+        // display on left
         <div className={`${classes.bubbleContainerLeft}`}>
+          <Avatar alt={toUser.firstName + 'photo'} src={toUser.profilePic} />
+          {messageDetails.date}
           <div className={classes.bubble}>
             <div className={classes.button}>{messageDetails.message}</div>
           </div>
