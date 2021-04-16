@@ -54,9 +54,6 @@ function MessageAll() {
     fetchToUserDetails();
   }, []);
 
-  console.log('current', currentUser);
-  console.log('other', toUser);
-
   const fetchMessages = () => {
     // Fetches messages between fromUser and toUser
     dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
@@ -133,7 +130,9 @@ function MessageAll() {
                 <Message
                   key={index}
                   messageDetails={singleMessage}
-                  toUser={params.id}
+                  toUserId={params.id}
+                  currentUser={currentUser}
+                  toUser={toUser}
                 />
               );
             })
