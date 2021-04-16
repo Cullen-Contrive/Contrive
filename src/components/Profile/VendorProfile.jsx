@@ -13,9 +13,13 @@ function VendorProfile() {
   const params = useParams();
   const dispatch = useDispatch();
   const vendorDetails = useSelector((store) => store.vendor);
+  const vendorPhotos = useSelector(
+    (store) => store.userDetails.otherUserDetailsReducer
+  );
 
   useEffect(() => {
     fetchVendorDetails();
+    fetchVendorPhotos();
   }, []);
 
   const fetchVendorDetails = () => {
@@ -25,11 +29,14 @@ function VendorProfile() {
     });
   };
 
-  // const fetchVendorPhotos = () => {
-  //   dispatch({
-  //     type: ''
-  //   })
-  // }
+  const fetchVendorPhotos = () => {
+    dispatch({
+      type: 'FETCH_USER_DETAILS_BY_ID',
+      payload: params.id,
+    });
+  };
+
+  console.log('vendorPhotos', vendorPhotos.userPhotos);
 
   return (
     // pass props to children
