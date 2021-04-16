@@ -26,7 +26,7 @@ function* updateVendorProfile(action) {
 
     yield put({
       type: 'FETCH_SINGLE_VENDOR',
-      payload: 'action.payload.data.vendorUserId'
+      payload: action.payload.data.vendorUserId
     })
     
     action.payload.onComplete();

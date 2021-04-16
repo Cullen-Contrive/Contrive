@@ -85,7 +85,7 @@ function EditVendorContact({vendor, editProfileElement}) {
             type="number"
             variant="outlined" 
             value={vendor.zip} 
-            onChange={event => editProfileElement('address', event.target.value)}
+            onChange={event => editProfileElement('zip', event.target.value)}
           />
         </FormControl>
       </Grid>

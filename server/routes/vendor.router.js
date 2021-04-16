@@ -122,10 +122,11 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
   const sqlTextVendors = `
     UPDATE "vendors"
     SET
-      "description" = $1, 
-      "additionalInfo" = $2, 
-      "phone" = $3
-    WHERE "vendorUserId" = $4;
+      "companyName" = $1,
+      "description" = $2, 
+      "additionalInfo" = $3, 
+      "phone" = $4
+    WHERE "vendorUserId" = $5;
   `;
 
   const sqlTextUsers = `
@@ -134,13 +135,14 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
       "website" = $1,
       "profilePic" = $2,
       "address" = $3, 
-        "city" = $4, 
-        "state" = $5, 
-        "zip" = $6
+      "city" = $4, 
+      "state" = $5, 
+      "zip" = $6
     WHERE "id" = $7;
   `;
 
   const updateValuesVendors = [
+    req.body.companyName,
     req.body.description,
     req.body.additionalInfo,
     req.body.phone,
