@@ -13,6 +13,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // CUSTOM COMPONENTS:
 import Nav from '../Nav/Nav';
 import EditVendorProfile from '../Profile/EditVendorProfile';
+import CreateEvent from '../Event/CreateEvent';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import Message from '../MessageAll/MessageAll';
@@ -142,6 +143,14 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
+              // logged in shows Discover else shows LoginPage
+              exact
+              path="/events/create"
+            >
+              <CreateEvent />
+            </ProtectedRoute>
+
+            <ProtectedRoute
               // logged in shows Search else shows LoginPage
               exact
               path="/search"
@@ -195,6 +204,7 @@ function App() {
             >
               <LandingPage />
             </ProtectedRoute>
+
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>

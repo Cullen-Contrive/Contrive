@@ -5,8 +5,6 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-// TODO: If special features or service types are blank, the api request gets nothing back.
-
 // ROUTES AT /api/vendor/all
 router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
@@ -31,10 +29,10 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
   JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
-  JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
-  JOIN "special_features" ON "vendors_features"."featureId" = "special_features"."id"
-  JOIN "vendors_services" ON "vendors"."vendorUserId" = "vendors_services"."vendorUserId"
-  JOIN "service_types" ON "vendors_services"."serviceId" = "service_types"."id"
+  FULL OUTER JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
+  FULL OUTER JOIN "special_features" ON "vendors_features"."featureId" = "special_features"."id"
+  FULL OUTER JOIN "vendors_services" ON "vendors"."vendorUserId" = "vendors_services"."vendorUserId"
+  FULL OUTER JOIN "service_types" ON "vendors_services"."serviceId" = "service_types"."id"
   WHERE "users"."type" = 'vendor'
   GROUP BY 
   "users"."username",
@@ -77,7 +75,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "users"."state", 
   "users"."zip",
   "vendors"."vendorUserId",
-  "vendors"."companyName",
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
@@ -87,10 +84,10 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
-  JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
-  JOIN "special_features" ON "vendors_features"."featureId" = "special_features"."id"
-  JOIN "vendors_services" ON "vendors"."vendorUserId" = "vendors_services"."vendorUserId"
-  JOIN "service_types" ON "vendors_services"."serviceId" = "service_types"."id"
+  FULL OUTER JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
+  FULL OUTER JOIN "special_features" ON "vendors_features"."featureId" = "special_features"."id"
+  FULL OUTER JOIN "vendors_services" ON "vendors"."vendorUserId" = "vendors_services"."vendorUserId"
+  FULL OUTER JOIN "service_types" ON "vendors_services"."serviceId" = "service_types"."id"
   WHERE "users"."type" = 'vendor' AND "users"."id" = $1
   GROUP BY 
   "users"."username",
@@ -123,9 +120,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 router.put('/update', rejectUnauthenticated, async (req, res) => {
   console.log('POST /api/vendor/update here is what we got:', req.body);
   const connection = await pool.connect();
-  
+
   const userId = req.user.id;
-  console.log('user id:', userId)
+  console.log('user id:', userId);
 
   const sqlTextVendors = `
     UPDATE "vendors"
@@ -154,7 +151,7 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     req.body.description,
     req.body.additionalInfo,
     req.body.phone,
-    userId
+    userId,
   ];
 
   const updateValuesUsers = [
@@ -164,11 +161,11 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     req.body.city,
     req.body.state,
     req.body.zip,
-    userId
+    userId,
   ];
 
   try {
-    await connection.query('BEGIN')
+    await connection.query('BEGIN');
     await connection.query(sqlTextVendors, updateValuesVendors);
     await connection.query(sqlTextUsers, updateValuesUsers);
     await connection.query('COMMIT');
@@ -180,7 +177,6 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
   } finally {
     connection.release();
   }
-
-})
+});
 
 module.exports = router;

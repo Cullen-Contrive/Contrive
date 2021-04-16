@@ -74,14 +74,13 @@ router.post('/register', (req, res, next) => {
       if (type === 'vendor') {
         // console.log('dbRes:', dbRes);
         const vendorUserId = dbRes.rows[0].id;
-        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "profilePic", "description", 
-      "additionalInfo", "phone")
-        VALUES ($1, $2, $3, $4, $5, $6);`;
+        const sqlQuery = `INSERT INTO "vendors" 
+          ("vendorUserId", "companyName", "description", "additionalInfo", "phone")
+        VALUES ($1, $2, $3, $4, $5);`;
 
         pool.query(sqlQuery, [
           vendorUserId,
           companyName,
-          profilePic,
           description,
           additionalInfo,
           phone,

@@ -2,6 +2,8 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import placeholderImg from '../Images/placeholder.png';
+
 function ContriveHeader() {
   return (
     <Grid container spacing={0} direction="row">
@@ -9,7 +11,7 @@ function ContriveHeader() {
         <Box display="flex" alignItems="center" justifyContent="flex-start">
           <img
             className=""
-            src={process.env.PUBLIC_URL + 'placeholder.png'}
+            src={placeholderImg}
             style={{
               width: '33%',
             }}
