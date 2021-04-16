@@ -117,6 +117,11 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post('/update', )
+router.post('/update', rejectUnauthenticated, (req, res) => {
+  const userId = req.params.id;
+  const sqlText = `
+    
+  `;
+})
 
 module.exports = router;
