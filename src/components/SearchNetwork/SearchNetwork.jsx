@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //Import Custom Components
-import SearchBar from './SearchOptions';
+import SearchOptions from './SearchOptions';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -50,48 +50,8 @@ function SearchNetwork() {
     });
   }, []);
 
-
-  // Grab information from Global Redux Store
-  const features = useSelector((store) => store.features);
-  const service = useSelector((store) => store.vendorTypes);
-  const filter = useSelector((store) => store.filter);
-
-
-  // Variable to capture changes in the dropdown selections (vendor type and special feature):
-  const [selections, setSelections] = useState({ typeId: -1, featureId: -1 });
-  console.log('selections at start:', selections);
-
-
-  // Function to set the value corresponding with selected vendor type in dropdown:
-  const handleTypeSelection = (evt) => {
-    setSelections({ ...selections, typeId: evt.target.value });
-
-    // Call function that will pass data to Saga (and then on to server/DB)
-    onChange();
-  };
-
-
-  // Function to set the value corresponding with selected special feature in dropdown:
-  const handleFeatureSelection = (evt) => {
-    setSelections({ ...selections, featureId: evt.target.value });
-
-    // Call function that will pass data to Saga (and then on to server/DB)
-    onChange();
-  };
-
-
-  // Send both selections to the Saga
-  const onChange = () => {
-    dispatch({
-      type: 'FETCH_MATCHING_VENDORS',
-      payload: selections
-    })
-  };
-
-
   // Variable to capture search word inputs with local state:
   const [searchInput, setSearchInput] = useState('');
-
 
   // Variable to control conditional rendering of search results message:
   const [hasClickedSearch, setHasClickedSearch] = useState(0);
@@ -111,52 +71,15 @@ function SearchNetwork() {
               </Typography>
             </Box>
 
-            <FormControl className={classes.formControl}>
-              <InputLabel id="vendor-type">Vendor Types</InputLabel>
-              <Select
-                labelId="vendor-type"
-                id="vendor-type"
-                name="Vendor Types"
-                value={selections.typeId}
-                onChange={handleTypeSelection}
-              >
-                {service &&
-                  service.length &&
-                  service.map((category, i) => {
-                    return (
-                      <MenuItem key={i} value={category.id}>
-                        {category.name}
-                      </MenuItem>
-                    );
-                  })}
-              </Select>
-            </FormControl>
+            <SearchOptions hasClickedSearch={hasClickedSearch}
+              setHasClickedSearch={setHasClickedSearch}
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+            />
 
-            <FormControl className={classes.formControl}>
-              <InputLabel id="special-features">Special Features</InputLabel>
-              <Select
-                labelId="special-features"
-                id="special-features"
-                name="Special Features"
-                value={selections.featureId}
-                onChange={handleFeatureSelection}
-              >
-                {features &&
-                  features.length &&
-                  features.map((feature, i) => {
-                    return (
-                      <MenuItem key={i} value={feature.id}>
-                        {feature.name}
-                      </MenuItem>
-                    );
-                  })}
-              </Select>
-            </FormControl>
-            <Grid container className={classes.root} spacing={2}>
+            {/* <Grid container className={classes.root} spacing={2}>
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={spacing}>
-
-
                   {
                     // Makes sure filter criteria is populated
                     filter && filter.length &&
@@ -172,20 +95,13 @@ function SearchNetwork() {
                           <br></br>
                           <br></br>
                         </Grid>
-
                       );
                     })
                   }
-
                 </Grid>
               </Grid>
-            </Grid>
+            </Grid> */}
 
-            <SearchBar hasClickedSearch={hasClickedSearch}
-              setHasClickedSearch={setHasClickedSearch}
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
-            />
           </Box>
 
         </Box>
