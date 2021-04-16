@@ -21,8 +21,6 @@ function VendorProfile() {
     });
   }, []);
 
-  console.log('VENDOR PROFILE PAGE AND HERE ARE THE DETAILS', vendorDetails);
-
   return (
     // pass props to children
     <>
@@ -30,6 +28,7 @@ function VendorProfile() {
       <ProfileName
         name={vendorDetails.companyName}
         certified={vendorDetails.certified}
+        profilePhoto={vendorDetails.profilePic}
       />
       <ProfileNav
         email={vendorDetails.username}
@@ -39,6 +38,7 @@ function VendorProfile() {
         city={vendorDetails.city}
         state={vendorDetails.state}
         zip={vendorDetails.zip}
+        vendorId={vendorDetails.vendorUserId}
       />
       <PublicPhotos />
       <About

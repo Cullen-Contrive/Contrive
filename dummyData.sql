@@ -1,9 +1,12 @@
 --USERS:
 --Fill "users" table with fake users (all users' passwords will be 'one'):
+
 INSERT INTO "users"
 ("username", "firstName", "lastName", "profilePic", "password", "address", "city", "state", "zip", "type", "website", "bio")
 
-VALUES ('Mac@gmail.com', 'McKynlee', 'Westman', 'https://karaspartyideas.com/wp-content/uploads/2016/11/Bike-Themed-Birthday-Party-via-Karas-Party-Ideas-KarasPartyIdeas.com28.jpeg', '$2a$10$d.tw3AyrHON3AynvQDuoN.my8uxemJ7KZhzc7fcRMAHiuMpxIwh/u', '4946 Walnut St', 'Kansas City', 'MO', 64112, 'planner', 'https://mckynlee.github.io/', 'Avid organizer of bike rallies - the non-motorized kind!'),
+
+VALUES 
+('Mac@gmail.com', 'McKynlee', 'Westman', 'https://karaspartyideas.com/wp-content/uploads/2016/11/Bike-Themed-Birthday-Party-via-Karas-Party-Ideas-KarasPartyIdeas.com28.jpeg', '$2a$10$d.tw3AyrHON3AynvQDuoN.my8uxemJ7KZhzc7fcRMAHiuMpxIwh/u', '4946 Walnut St', 'Kansas City', 'MO', 64112, 'planner', 'https://mckynlee.github.io/', 'Avid organizer of bike rallies - the non-motorized kind!'),
 ('SirBill@gmail.com', 'William', 'Krug', 'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/819485', '$2a$10$mnm8InlV1d1tnUTAGywETO1w6u/p/2kD.iUN9kJ25Ww6cBxNaHjzi', '11 Knights Way', 'Minneapolis', 'MN', 55111, 'vendor', 'https://www.imdb.com/title/tt0183790/', 'Ready to help you plan your next Rennaissance affair down to the hilt of your sword!'),
 ('LilRusty@gmail.com', 'Dusty', 'Meyers', 'http://basementrejects.com/wp-content/uploads/2014/08/dungeons-dragons-2000-thora-birch-riding-dragon-savina-300x166.jpg', '$2a$10$nxWzD4fOt4n72TbnMlYXQO/yZknXnREW7s9DJY9IP0dIJG2PzsbiW', '77 DnD Blvd', 'Lawrence', 'KS', 66044, 'planner', 'https://www.imdb.com/title/tt0190374/', 'Looking to plan the wedding of my lifetime!'),
 ('JDog@gmail.com', 'John', 'Shands', 'https://www.rawmusictv.com/images/og-share-image/best-swedish-rock-bands.jpg', '$2a$10$vSH/PXClWlf3vPlHKRLNXu5TRQPamdzbn921Q7tgtiDsK20SVTB2m', '69 Woodstock Lane', 'Liberty', 'MO', 64068, 'vendor', 'https://www.libertymissouri.gov/1500/Liberty-Summer-Band', 'Able to provide a musical experience that your guests will never forget.'),
@@ -63,6 +66,8 @@ VALUES ('Mac@gmail.com', 'McKynlee', 'Westman', 'https://karaspartyideas.com/wp-
 ('dancefactory@gmail.com', 'Devon', 'Paul', '', 'one', '', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.wedj4u.com/home.html', 'Our specialty is filling dance floors and making sure you and your guests have a great time!  We moved here in 2014 and since have performed at over 200 venues in and around Kansas City; winning The Knot Bridal Magazines "Best of Weddings" award 6-years in-a-row, supported numerous area charities, and are extremely proud to have been selected as the Official DJs for The Kansas City Chiefs ​"Ultimate Tailgate Party" held inside Arrowhead Stadium!​'),
 ('djhydan@gmail.com', 'Hydan', '', 'http://static1.squarespace.com/static/5a01c7c5d7bdce98fb7e8b06/t/5a5bfa57652dea17cc3219c4/1574230673654/?format=original', 'one', '', 'Kansas City', 'KS', 66101, 'vendor', 'website', 'HYDAN is an open format vinyl DJ based out of Kansas City. HYDAN grew up with a background in music, teaching himself how to play the piano at a very young age. HYDAN went on to play piano professionally until he discovered his passion for DJing while studying at the University of Kansas. In Lawrence, HYDAN helped build huge followings to what has become one of the most popular bars in the city and HYDAN quickly became one of the most followed DJs in Lawrence.'),
 ('info@levity.com', 'Derek', 'Styles', 'https://lirp.cdn-website.com/4fb9608c/dms3rep/multi/opt/Gray_Levity_Logo_Transparent_Background-cropped-426w.png', 'one', '1633 Swift St', 'Kansas City', 'MO', 64116, 'vendor', 'https://www.kcmobiledj.com/', 'Making Celebrations Easier');
+('MushroomMan@gmail.com', 'Edan', 'Schwartz', 'https://images.ctfassets.net/cnu0m8re1exe/4jaJ338Mbgu42tfIVnvWbp/e2c7e11773ff21b6d6f073fe8b87ece7/shutterstock_734992102.jpg?w=650&h=433&fit=fill', '$2a$10$y1VJWv.1EEpl5cbpp8csguhA8OuXfou32w/wWTA.yrOzrmv6i2zMW', '1 Magic Mushy Rd', 'Minneapolis', 'MN', 55404, 'vendor', 'https://www.birdsandblooms.com/stuff-we-love/gardening-stuff/mushroom-growing-kits/', 'Mushroom-catering specialty; guaranteed to serve only the non-toxic kind.');
+
 
 
 --USERS_PHOTOS:
@@ -138,6 +143,7 @@ VALUES
 (58, 'The Dance Factory', 'Our specialty is filling dance floors and making sure you and your guests have a great time!  We moved here in 2014 and since have performed at over 200 venues in and around Kansas City; winning The Knot Bridal Magazine`s "Best of Weddings" award 6-years in-a-row, supported numerous area charities, and are extremely proud to have been selected as the Official DJ`s for The Kansas City Chief`s ​"Ultimate Tailgate Party" held inside Arrowhead Stadium!​', '', '816-260-7379'),
 (59, 'DJ Hydan', 'HYDAN is an open format vinyl DJ based out of Kansas City. HYDAN grew up with a background in music, teaching himself how to play the piano at a very young age. HYDAN went on to play piano professionally until he discovered his passion for DJing while studying at the University of Kansas. In Lawrence, HYDAN helped build huge followings to what has become one of the most popular bars in the city and HYDAN quickly became one of the most followed DJs in Lawrence.', '', '913-708-5277'),
 (60, 'Levity Weddings & Events', 'Making Celebrations Easier', 'Owning a business is more than providing an amazing product or stellar service.  It`s important to be able to use the privilege of our success and give back to make a positive impact in our community.  Levity takes pride in donating services each year to benefit worthy causes.  From birthday parties for under-privileged youth, fundraisers that help homeless families get off the streets for good or assisting organizations trying to give every child a warm and loving home.  On top of that, all of our past and present heroes of the armed forces receive a 10% upgrade credit.', '816-974-3005');
+
 
 --Fill vendors_features table with real special_features data for the fake vendors:
 INSERT INTO "vendors_features"

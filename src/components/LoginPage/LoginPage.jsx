@@ -16,18 +16,6 @@ function LoginPage() {
   return (
     <Grid item container xs={12}>
       <LoginForm />
-
-      {/* Moved this button to LoginForm */}
-      {/* <Grid item container xs={12} justify="center">
-        <Button color="secondary" variant="contained"
-          type="button"
-          onClick={() => {
-            history.push('/registration');
-          }}
-        >
-          Register
-        </Button>
-      </Grid> */}
     </Grid>
   );
 }

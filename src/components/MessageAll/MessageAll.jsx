@@ -1,7 +1,7 @@
 // View of all messages related to the logged-in user.
 // Reached by path '/message'
 import { useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import io from 'socket.io-client';
@@ -25,38 +25,51 @@ const Form = styled.form`
 `;
 
 function MessageAll() {
-  const [yourId, setYourId] = useState();
-  const [outgoingMessages, setOutgoingMessages] = useState([]);
   const [message, setMessage] = useState('');
   const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const socketRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
+  const params = useParams();
 
-  const existingMessages = useSelector((store) => store.chat);
+  const existingMessages = useSelector((store) => store.chat.chatReducer);
+  const currentUser = useSelector(
+    (store) => store.userDetails.loggedInUserDetailsReducer
+  );
+  const toUser = useSelector(
+    (store) => store.userDetails.otherUserDetailsReducer
+  );
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
+    // Join the chat room
     socketRef.current.emit('join', {
-      name: 'Username will go here',
-      room: 'room code will go here if need',
+      name: currentUser.firstName + currentUser.lastName,
+      room: 'Room Code - 4576',
     });
-    socketRef.current.on('message', (message) => {
-      console.log('here', message);
-      receiveMessage(message);
-    });
+    // Fetch current messages
     fetchMessages();
+    fetchLoggedInUserDetails();
+    fetchToUserDetails();
   }, []);
 
-  useEffect(() => {
-    socketRef.current.on('send message', (message) => {
-      setOutgoingMessages((outgoingMessages) => [...outgoingMessages, message]);
-    });
-  }, []);
+  console.log('current', currentUser);
+  console.log('other', toUser);
 
   const fetchMessages = () => {
-    dispatch({ type: 'FETCH_MESSAGES' });
+    // Fetches messages between fromUser and toUser
+    dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
+  };
+
+  const fetchLoggedInUserDetails = () => {
+    // Fetches display info for logged in user of conversation
+    dispatch({ type: 'FETCH_LOGGED_IN_USER_DETAILS' });
+  };
+
+  const fetchToUserDetails = () => {
+    // Fetches display info for second user of conversation
+    dispatch({ type: 'FETCH_USER_DETAILS_BY_ID', payload: params.id });
   };
 
   const sendMessage = (evt) => {
@@ -70,31 +83,33 @@ function MessageAll() {
       });
       return; // return so the function does not execute
     }
+
     const date = new DateObject();
     const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
     const messageObject = {
       date: formattedDate,
-      fromUser: 2,
+      fromUser: currentUser.id,
       message: message,
-      // id will be inserted on POST
-      toUser: 3,
+      toUser: params.id,
     };
+
+    dispatch({
+      type: 'POST_MESSAGE',
+      payload: {
+        data: messageObject,
+        onComplete: () => {
+          fetchMessages();
+        },
+      },
+    });
     setMessage('');
     socketRef.current.emit('send message', messageObject);
   };
 
   const goBack = () => {
-    // posts messages to db upon moving from page.
-    dispatch({
-      type: 'POST_OUTGOING_MESSAGES',
-      payload: outgoingMessages,
-      onComplete: () => {
-        console.log('moving pages now!');
-        // history.push('/alldetails') ???
-      },
-    });
+    history.push('/messages');
   };
-  
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -112,19 +127,19 @@ function MessageAll() {
             marginRight: 10,
           }}
         >
-          {/* existingMessages comes from database */}
-          {existingMessages.length > 0
-            ? existingMessages.map((singleMessage, index) => {
-              return <Message key={index} messageDetails={singleMessage} />;
+          {existingMessages.length > 0 ? (
+            existingMessages.map((singleMessage, index) => {
+              return (
+                <Message
+                  key={index}
+                  messageDetails={singleMessage}
+                  toUser={params.id}
+                />
+              );
             })
-            : ' '}
-
-          {/* outgoingMessages is stored in local state and pushed to database on moving page */}
-          {outgoingMessages.length > 0
-            ? outgoingMessages.map((singleMessage, index) => {
-              return <Message key={index} messageDetails={singleMessage} />;
-            })
-            : ' '}
+          ) : (
+            <Typography>Start a conversation!</Typography>
+          )}
         </Paper>
       </Grid>
       {/* Form for submitting text to another user */}
@@ -145,6 +160,5 @@ function MessageAll() {
     </Grid>
   );
 }
-
 
 export default MessageAll;

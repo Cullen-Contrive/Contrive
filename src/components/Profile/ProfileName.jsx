@@ -2,8 +2,9 @@ import { Grid, Box, Typography } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Avatar from '@material-ui/core/Avatar';
 
-function ProfileName({ name, certified }) {
+function ProfileName({ name, certified, profilePhoto }) {
   return (
     <Grid container spacing={3}>
       {/* Beginning of Profile Name */}
@@ -27,13 +28,16 @@ function ProfileName({ name, certified }) {
       </Grid>
       <Grid item xs={5}>
         <center>
-          {/* if profilephoto exists render image, else render add image icon */}
-          <IconButton size="large">
+          {/* TODO: style this photo as an avatar type thing */}
+          {profilePhoto ? (
+            <Avatar alt={name} src={profilePhoto} />
+          ) : (
+            <Avatar>A</Avatar>
+          )}
+
+          {/* <IconButton size="large">
             <AddAPhotoIcon />
-          </IconButton>
-          {/* <img
-            src={process.env.PUBLIC_URL + 'placeholder.png'}
-          /> */}
+          </IconButton> */}
         </center>
       </Grid>
     </Grid>

@@ -20,9 +20,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {
   // User table info:
   const username = req.body.username;
-  const password = encryptLib.encryptPassword(req.body.password);
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
+  const profilePic = req.body.profilePic;
+  const password = encryptLib.encryptPassword(req.body.password);
   const address = req.body.companyAddress;
   const city = req.body.city;
   const state = req.body.state;
@@ -33,14 +34,16 @@ router.post('/register', (req, res, next) => {
 
   // Vendor table info:
   const companyName = req.body.companyName;
+  const profilePic = req.body.profilePic;
   const description = req.body.description;
   const additionalInfo = req.body.additionalInfo;
   const phone = req.body.phone;
 
   // console.log('username:', username);
-  // console.log('password', password);
   // console.log('firstName', firstName);
   // console.log('lastName', lastName);
+  // console.log('profilePic', profilePic);
+  // console.log('password', password);
   // console.log('website', website);
   // console.log('type', type);
   // console.log('companyAddress:', companyAddress);
@@ -51,22 +54,21 @@ router.post('/register', (req, res, next) => {
   // console.log('phone', phone);
   // console.log('description:', description);
 
-  const queryText = `INSERT INTO "users" ("username", "password", "firstName", 
-  "lastName", "address", "city", "state", "zip", "type", "website")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`;
+  const queryText = `INSERT INTO "users" ("username", "firstName", "lastName", 
+  "profilePic", "password", "address", "city", "state", "zip", "type", "website")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`;
 
-  // const queryText = `INSERT INTO "users" ("username", "password", "firstName", )`
   pool
-    .query(queryText, [username, password, firstName, lastName, address, city, state, zip, type, website])
+    .query(queryText, [username, firstName, lastName, profilePic, password, address, city, state, zip, type, website])
     .then((dbRes) => {
       if (type === 'vendor') {
         // console.log('dbRes:', dbRes);
         const vendorUserId = dbRes.rows[0].id;
-        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "description", 
+        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "profilePic", "description", 
       "additionalInfo", "phone")
-        VALUES ($1, $2, $3, $4, $5);`
+        VALUES ($1, $2, $3, $4, $5, $6);`
 
-        pool.query(sqlQuery, [vendorUserId, companyName, description, additionalInfo, phone])
+        pool.query(sqlQuery, [vendorUserId, companyName, profilePic, description, additionalInfo, phone])
       }
 
       res.sendStatus(201)

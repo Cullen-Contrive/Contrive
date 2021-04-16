@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 
 import EmailIcon from '@material-ui/icons/Email';
+import MessageIcon from '@material-ui/icons/Message';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -11,7 +12,16 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 
-function ProfileNav({ email, phone, website, address, city, state, zip }) {
+function ProfileNav({
+  email,
+  phone,
+  website,
+  address,
+  city,
+  state,
+  zip,
+  vendorId,
+}) {
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -24,8 +34,17 @@ function ProfileNav({ email, phone, website, address, city, state, zip }) {
   const history = useHistory();
 
   const goToEditView = () => {
+    // handles going to editView if the
+    // logged in user matches the vendorId
     console.log('headed to edit view');
     // history.push('/somewhere');
+  };
+
+  const goToMessageView = () => {
+    // handles going to messageView for this particular vendor
+    // passes the vendorId in as the toUser
+    console.log('headed to message view');
+    history.push(`/message/${vendorId}`);
   };
 
   return (
@@ -46,11 +65,21 @@ function ProfileNav({ email, phone, website, address, city, state, zip }) {
             >
               <EmailIcon />
             </IconButton>
-            <IconButton aria-label="phone" component="a" href={`tel:${phone}`}>
+            <IconButton
+              aria-label="begin a message with this vendor"
+              onClick={goToMessageView}
+            >
+              <MessageIcon />
+            </IconButton>
+            <IconButton
+              aria-label="start a phone call"
+              component="a"
+              href={`tel:${phone}`}
+            >
               <PhoneIcon />
             </IconButton>
             <IconButton
-              aria-label="location"
+              aria-label="open location on Google Maps"
               component="a"
               href={`https://maps.google.com/?q=${zip} ${city}, ${state}`}
               target="_blank"
@@ -58,7 +87,7 @@ function ProfileNav({ email, phone, website, address, city, state, zip }) {
               <LocationOnIcon />
             </IconButton>
             <IconButton
-              aria-label="website"
+              aria-label="open this vendor's website"
               component="a"
               href={website}
               target="_blank"
