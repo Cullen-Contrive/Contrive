@@ -43,7 +43,6 @@ function ProfileNav({
   const goToMessageView = () => {
     // handles going to messageView for this particular vendor
     // passes the vendorId in as the toUser
-    console.log('headed to message view');
     history.push(`/message/${vendorId}`);
   };
 
