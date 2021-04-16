@@ -51,40 +51,18 @@ VALUES
 ('hello@skylinerooftops.com', 'one', 'Johnny', 'Utah', '2100 Central St', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.skylinerooftops.com/', 'Are you ready to elevate your event? Skyline Rooftops offers 4 unique rooftop venues, all with stunning views of Downtown Kansas City. Whether you are hosting 10 or 200 guests, we have the perfect spot to celebrate your biggest day.'),
 ('info@cellar222.com', 'one', 'Steve', 'Cougar', '222 W 20th Street', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.cellar222.com/', `Cellar 222 is an upscale intimate Wine Cellar loaded with character in the heart of Kansas City. We're told still the best kept secret for one of a kind quaint Receptions, Corporate Events, and Parties. Our clients and couples love our fun and relaxed low stress vibe. A cozy and rustic setting with Italian forged iron lighting, natural stone fireplace, hand cut travertine floor, old world bar, plus... a really big posh comfy Bridal/VIP suite!`),
 ('info@AbbottEventsKC.com', 'one', 'Lucy', 'McDonald', '1720 Cherry St', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.abbotteventskc.com/cherryhall', 'Cherry Hall is located in the historic Crossroads Arts District of Kansas City. This venue holds 220 guests, and the contemporary and intricate decor is thoughtfully designed to fit the needs of any event. With a versatile indoor and outdoor space, Cherry Hall is the perfect venue to host your next event!'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', '', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio'),
-
-('usesrname', 'one', 'firstName', 'lastName', 'address', 'city', 'MN', zip, 'vendor', 'website', 'bio');
+('info@ultrapom.com', 'one', 'Carolyn', 'Schwartz', '3175 Terrace Street', 'Kansas City', 'MO', 65111, 'vendor', 'https://ultrapom.com/', 'Ultrapom Event Rental is your source for all your event rental needs.  We have both your basic folding tables and chairs, as well as your specialty rental needs, like gold flatware and sequin tablecloths. We are located in Kansas City, with delivery and pick up available to events in the metro and surrounding areas.'),
+('info@northalndpartyrentals.com', 'one', 'James', 'Dahl', '12600 N Woodland Ave Building D', 'Kansas City', 'MO', 64165, 'vendor', 'https://www.northlandpartyrentals.com/', 'Northland Party Rentals is located here in Kansas City, Missouri. We offer a full range of services including bounce houses, water slides, concessions, tables & chairs, and character appearances. We love doing large events and parties of any sort! Leave the delivery, set-up, and takedown to us. We do deliver all over the Kansas City metro, yes that does include the Kansas side. We also work with multiple other vendors to make sure your full party or event is a success!'),
+('info@kcpartyrentals.com', 'one', 'Lisa', 'Wellington', '6620 Royal St', 'Pleasant Valley', 'MO', 64068, 'vendor', 'https://www.kcpartyrentals.com/', `It’s all about the experience. We have years of experience providing customizable, creative and unique events to you and your party goers. Whether that's a back yard birthday party for your child or a large corporate event with tents, inflatables and more we've done it all. We provide the best customer service experience in Kansas City, from our experienced event coordinators and office staff to the happy staff that help deliver, set up and take down your events. We strive not to be just another party rental company, we strive to be the best. Lastly, our inventory allows you to provide the ultimate experience for your guests. We have one of the largest inventories in Kansas City and it is growing weekly. Need something you don’t see, often times we will go get it so we can be your one stop shop. Just Ask.`),
+('info@marqueeeventrentals.com', 'one', 'Mike', 'Holmes', '5050 Kansas Ave', 'Kansas City', 'KS', 66106, 'vendor', 'https://marqueerents.com/', 'We are proud to announce we have officially become Marquee. We have united six of the best companies into one premier event company. As a result, Marquee combines great people and products to provide you with more event expertise, and the deepest inventory in the industry. Our resources and capabilities allow us to uniquely partner with clients to execute any type or size of event across Midwest and Southern markets. One passionate team of experts 100% Committed to ensure client satisfaction every day, every event.'),
+('info@carnivaltimes.com', 'one', 'Adam', 'Brody', '5200 NE 48th St', 'Kansas City', 'MO', 64119, 'vendor', 'https://www.carnivaltimes.com/', `Carnival Times is your premiere provider of all your party rental needs. We carry over 150 unique party attractions, from moonwalks to mechanical bulls. Needing a cotton candy machine or bouncer for your next birthday party? We offer up to 6-hour rentals and can provide overnight, or multi-day rental services. Inflatables such as obstacle courses, giant slides, and even jousting arena's are available for any type of event.  Looking for something unique? We carry foam dance party pits, “Hoss” the Mechanical Hog, and 27’ Rock Walls, too! Did you know we also carry photo booths and Single Euro-Bungee’s.`),
+('info.josefiestas@gmail.com', 'one', 'Jose', 'Martin', '4832 E 9th Street', 'Kansas City', 'MO', 64124, 'vendor', 'website', `Whether it's your daughter's elegant  wedding reception  or your son's graduation celebration, we've got what you're looking for at Jose Fiestas. We carry tents, tables, chairs, linens, balloon decor, portable staging and much more!`),
+('info@elitesounds.com', 'one', 'Sam', 'Gibson', '1124 W 25 St', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.elitesoundskc.com/#elite-sounds', `Elite Sounds has established itself as one of the most skilled, entertaining and original event DJ companies in Kansas City. We don’t simply play music or set up lighting. We create an experience. From wedding receptions and high school dances to corporate holiday parties and fundraisers, we team with our clients to ensure each event is a reflection of their vision.  Expect experienced, award winning entertainers to facilitate every aspect of your event while leaving guests exhausted from high energy dancing!`),
+('info@crystalproductionsdj.com', 'one', 'Junior', 'Babcock', '2500 W Pennway St', 'Kansas City', 'MO', 64108, 'vendor', 'https://crystalprokc.com/', `Crystal Productions DJ Services is the perfect complement to any event. We are a family owned company that specializes in DJ services for weddings, corporate events, parties, you name it! We offer a variety of other services to incorporate into your exciting day! Not only will your guests dance the night away, they can enjoy a photo booth and remember the night for days, even months to follow.`),
+('djalexreedkc@gmail.com', 'one', 'Alex', 'Reed', '1219 Union Ave', 'Kansas City', 'MO', 64101, 'vendor', 'https://djalexreed.com/', 'I was born and raised in Kansas growing up in Shawnee, where I graduated high school and went to Pittsburg State University for my undergraduate degree. Music has always been a passion of mine growing up playing different instruments and listening to a variety of genres. I began DJing in the summer of 2010 because I was tired of listening to the same music at parties, weddings and bars. I have a vast knowledge of music and an eye for the crowd, so I decided to put my skills to work.'),
+('dancefactory@gmail.com', 'one', 'Devon', 'Paul', '', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.wedj4u.com/home.html', `Our specialty is filling dance floors and making sure you and your guests have a great time!  We moved here in 2014 and since have performed at over 200 venues in and around Kansas City; winning The Knot Bridal Magazine's "Best of Weddings" award 6-years in-a-row, supported numerous area charities, and are extremely proud to have been selected as the Official DJ's for The Kansas City Chief's​"Ultimate Tailgate Party" held inside Arrowhead Stadium!​`),
+('djhydan@gmail.com', 'one', 'Hydan', '', '', 'Kansas City', 'KS', 66101, 'vendor', 'website', `HYDAN is an open format vinyl DJ based out of Kansas City. HYDAN grew up with a background in music, teaching himself how to play the piano at a very young age. HYDAN went on to play piano professionally until he discovered his passion for DJing while studying at the University of Kansas. In Lawrence, HYDAN helped build huge followings to what has become one of the most popular bars in the city and HYDAN quickly became one of the most followed DJs in Lawrence.`),
+('info@levity.com', 'one', 'Derek', 'Styles', '1633 Swift St', 'Kansas City', 'MO', 64116, 'vendor', 'https://www.kcmobiledj.com/', 'Making Celebrations Easier');
 
 
 --USERS_PHOTOS:
@@ -150,42 +128,18 @@ VALUES
 (46, 'Skyline Rooftops', 'https://static1.squarespace.com/static/6010d580e6d31b0d1c325cbb/t/601c50d13f2e8e76d14c38d1/1618105144005/?format=1500w', 'Are you ready to elevate your event? Skyline Rooftops offers 4 unique rooftop venues, all with stunning views of Downtown Kansas City. Whether you are hosting 10 or 200 guests, we have the perfect spot to celebrate your biggest day.', '14 hour rental. Free parking. Vendor flexibility.', '913-777-4488'),
 (47, 'Cellar 222', 'https://static.wixstatic.com/media/da2a1a_63b63bf885d74145a23bc26438c7f47e~mv2.jpg/v1/fill/w_150,h_136,al_c,q_80,usm_0.66_1.00_0.01/logo.webp', `Cellar 222 is an upscale intimate Wine Cellar loaded with character in the heart of Kansas City. We're told still the best kept secret for one of a kind quaint Receptions, Corporate Events, and Parties. Our clients and couples love our fun and relaxed low stress vibe. A cozy and rustic setting with Italian forged iron lighting, natural stone fireplace, hand cut travertine floor, old world bar, plus... a really big posh comfy Bridal/VIP suite!`, '', '913-522-4770'),
 (48, 'Abbott Events', 'https://static.wixstatic.com/media/71c685_ddb1f37a8406449e80834c79b4060d92~mv2.png/v1/crop/x_0,y_28,w_1667,h_611/fill/w_263,h_94,al_c,q_85,usm_0.66_1.00_0.01/Final%20Abbott%20Events%20Logo.webp', 'Cherry Hall is located in the historic Crossroads Arts District of Kansas City. This venue holds 220 guests, and the contemporary and intricate decor is thoughtfully designed to fit the needs of any event. With a versatile indoor and outdoor space, Cherry Hall is the perfect venue to host your next event!', '', '816-982-1014'),
-
-(49, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(50, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(51, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(52, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(53, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(54, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(55, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(56, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(57, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(58, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(59, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(60, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(61, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(62, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(63, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(64, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(65, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone'),
-
-(66, 'companyName', 'profilePic', 'description', 'additionalInfo', 'phone');
+(49, 'Ultrapom', 'https://ultrapom.com/wp-content/themes/ultrapom_renting/images/162x46xultrapom-logo-for-web-retina.gif,qx94285.pagespeed.ic.owBiXhWPhz.png', 'Ultrapom Event Rental is your source for all your event rental needs.  We have both your basic folding tables and chairs, as well as your specialty rental needs, like gold flatware and sequin tablecloths. We are located in Kansas City, with delivery and pick up available to events in the metro and surrounding areas.', '', '816-525-8568'),
+(50, 'Northland Party Rentals', 'https://files.sysers.com/cp/upload/northlandpartyrentals/editor/NorthlandLogo-Original.png', 'Northland Party Rentals is located here in Kansas City, Missouri. We offer a full range of services including bounce houses, water slides, concessions, tables & chairs, and character appearances. We love doing large events and parties of any sort! Leave the delivery, set-up, and takedown to us. We do deliver all over the Kansas City metro, yes that does include the Kansas side. We also work with multiple other vendors to make sure your full party or event is a success!', `Our staff is professionally trained on all safety and cleanliness procedures. Our service and dedication to our clients are unsurpassed. Our goal is to offer the largest, quality selection of supplies, products, and customer service to supply our customers' needs. We continuously order and receive new products to ensure we always have the best products for you, our customers. We will continue going out of our way to make sure the needs of our amazing customers are met.1`, '816-785-3917'),
+(51, 'KC Party Rentals', 'https://files.sysers.com/cp/upload/jumpingmonkeyskc/editor/full/logo.png', `It’s all about the experience. We have years of experience providing customizable, creative and unique events to you and your party goers. Whether that's a back yard birthday party for your child or a large corporate event with tents, inflatables and more we've done it all. We provide the best customer service experience in Kansas City, from our experienced event coordinators and office staff to the happy staff that help deliver, set up and take down your events. We strive not to be just another party rental company, we strive to be the best. Lastly, our inventory allows you to provide the ultimate experience for your guests. We have one of the largest inventories in Kansas City and it is growing weekly. Need something you don’t see, often times we will go get it so we can be your one stop shop. Just Ask.`, '', '816-945-9181'),
+(52, 'Marquee Event Rentals', 'https://re-mm-assets.s3.amazonaws.com/site_setting/1/original_MarqueeLogo_1519237715.svg', 'We are proud to announce we have officially become Marquee. We have united six of the best companies into one premier event company. As a result, Marquee combines great people and products to provide you with more event expertise, and the deepest inventory in the industry. Our resources and capabilities allow us to uniquely partner with clients to execute any type or size of event across Midwest and Southern markets. One passionate team of experts 100% Committed to ensure client satisfaction every day, every event.', 'We have your event needs covered, from beverage services to staging. Get in touch today to learn more about our products and services or to request a complimentary consultation with an event specialist.', '816-765-1444'),
+(53, 'Carnival Times', 'https://static1.squarespace.com/static/538a68a0e4b0ba8d706a6578/t/6074da23392a054975b8d4a0/1618271317972/?format=1500w', `Carnival Times is your premiere provider of all your party rental needs. We carry over 150 unique party attractions, from moonwalks to mechanical bulls. Needing a cotton candy machine or bouncer for your next birthday party? We offer up to 6-hour rentals and can provide overnight, or multi-day rental services. Inflatables such as obstacle courses, giant slides, and even jousting arena's are available for any type of event.  Looking for something unique? We carry foam dance party pits, “Hoss” the Mechanical Hog, and 27’ Rock Walls, too! Did you know we also carry photo booths and Single Euro-Bungee’s.`, `Carnival Times serves the entire KC Metro Area, including Platte City, Kearney, Lee's Summit, Blue Springs, Overland Park, Kansas City, Independence, and more.`, '816-569-2855'),
+(54, 'Jose Fiestas Rental', '', `Whether it's your daughter's elegant  wedding reception  or your son's graduation celebration, we've got what you're looking for at Jose Fiestas. We carry tents, tables, chairs, linens, balloon decor, portable staging and much more!`, `We're small enough to offer personalized service yet large enough to deliver exactly what you need.`, '816-231-5764'),
+(55, 'Elite Sounds', 'https://static1.squarespace.com/static/581fbcd2ebbd1a19864a1322/t/5ed6b1639c031531300a37b7/1618455549602/?format=1500w', `Elite Sounds has established itself as one of the most skilled, entertaining and original event DJ companies in Kansas City. We don’t simply play music or set up lighting. We create an experience. From wedding receptions and high school dances to corporate holiday parties and fundraisers, we team with our clients to ensure each event is a reflection of their vision.  Expect experienced, award winning entertainers to facilitate every aspect of your event while leaving guests exhausted from high energy dancing!`, `KMBC’s A-List Competition Awards: Best DJ Company, 2009; Wedding Wire’s Couples Choice Awards, 2010 - 2020; The Knot Best Of Weddings Awards: 2011, 2013 - 2020; The Knot Best of Weddings Hall of Fame; and Best of Borrowed & Blue Weddings, 2016 - 2017.`, '816-559-8080'),
+(56, 'Crystal Productions DJ Service', 'https://crystalprokc.com/wp-content/uploads/2020/06/Logo.jpg', `Crystal Productions DJ Services is the perfect complement to any event. We are a family owned company that specializes in DJ services for weddings, corporate events, parties, you name it! We offer a variety of other services to incorporate into your exciting day! Not only will your guests dance the night away, they can enjoy a photo booth and remember the night for days, even months to follow.`, `We want to play a vital role in your celebration whether it be a wedding, corporate event, or party, we want to support you! It takes a team of professionals to pull off the most memorable event and we would love to be your local event DJ, uplighting professional, and photo booth connoisseur. When picking your DJ entertainment, you want to be sure they are the perfect fit for you and your guests for your special celebration. Please be sure to contact us to discuss the best options for your event!`, '816-979-3657'),
+(57, 'DJ Alex Reed', 'http://djalexreed.com/wp-content/uploads/2017/03/DJAlexReed-Website-Logo-1.png', 'I was born and raised in Kansas growing up in Shawnee, where I graduated high school and went to Pittsburg State University for my undergraduate degree. Music has always been a passion of mine growing up playing different instruments and listening to a variety of genres. I began DJing in the summer of 2010 because I was tired of listening to the same music at parties, weddings and bars. I have a vast knowledge of music and an eye for the crowd, so I decided to put my skills to work.', '', '913-744-9641'),
+(58, 'The Dance Factory', '', `Our specialty is filling dance floors and making sure you and your guests have a great time!  We moved here in 2014 and since have performed at over 200 venues in and around Kansas City; winning The Knot Bridal Magazine's "Best of Weddings" award 6-years in-a-row, supported numerous area charities, and are extremely proud to have been selected as the Official DJ's for The Kansas City Chief's​"Ultimate Tailgate Party" held inside Arrowhead Stadium!​`, '', '816-260-7379'),
+(59, 'DJ Hydan', 'http://static1.squarespace.com/static/5a01c7c5d7bdce98fb7e8b06/t/5a5bfa57652dea17cc3219c4/1574230673654/?format=original', `HYDAN is an open format vinyl DJ based out of Kansas City. HYDAN grew up with a background in music, teaching himself how to play the piano at a very young age. HYDAN went on to play piano professionally until he discovered his passion for DJing while studying at the University of Kansas. In Lawrence, HYDAN helped build huge followings to what has become one of the most popular bars in the city and HYDAN quickly became one of the most followed DJs in Lawrence.`, '', '913-708-5277'),
+(60, 'Levity Weddings & Events', 'https://lirp.cdn-website.com/4fb9608c/dms3rep/multi/opt/Gray_Levity_Logo_Transparent_Background-cropped-426w.png', 'Making Celebrations Easier', `Owning a business is more than providing an amazing product or stellar service.  It's important to be able to use the privilege of our success and give back to make a positive impact in our community.  Levity takes pride in donating services each year to benefit worthy causes.  From birthday parties for under-privileged youth, fundraisers that help homeless families get off the streets for good or assisting organizations trying to give every child a warm and loving home.  On top of that, all of our past and present heroes of the armed forces receive a 10% upgrade credit.`, '816-974-3005');
 
 --Fill vendors_features table with real special_features data for the fake vendors:
 INSERT INTO "vendors_features"
@@ -195,43 +149,7 @@ VALUES
 (14, 3), (15, 1), (16, 3), (17, 2), (18, 1), (19, 1), (21, 1), (22, 1), (23, 3),
 (24, 2), (25, 3), (26, 2), (27, 2), (28, 1), (29, 2), (30, 3), (31, 1), (32, 2),
 (35, 3), (36, 3), (37, 1), (39, 2), (41, 1), (43, 1), (44, 2), (45, 3), (47, 3),
-
-
-(49,),
-
-(50,),
-
-(51,),
-
-(52,),
-
-(53,),
-
-(54,),
-
-(55, ),
-
-(56, ),
-
-(57, ),
-
-(58, ),
-
-(59, ),
-
-(60, ),
-
-(61, ),
-
-(62, ),
-
-(63, ),
-
-(64, ),
-
-(65, ),
-
-(66, );
+(49, 1), (51, 3), (52, 2), (55, 3), (57, 3), (59, 3),
 
 --Fill vendors_services table with real service_types data for the fake vendors:
 INSERT INTO "vendors_services"
@@ -242,9 +160,8 @@ VALUES
 (20, 3), (21, 3), (22, 3), (23, 3), (24, 3), (25, 4), (26, 4), (27, 4), (28, 4),
 (29, 4), (30, 4), (31, 5), (32, 5), (33, 5), (34, 5), (35, 5), (36, 5), (37, 1),
 (38, 1), (39, 1), (40, 1), (41, 1), (42, 1), (43, 2), (44, 2), (45, 2), (46, 2),
-(47, 2), (48, 2), (49, 3), (50, 3), (51, 3), (52, 3), (53, 3), (54, 3), (55, 4),
-(56, 4), (57, 4), (58, 4), (59, 4), (60, 4), (61, 5), (62, 5), (63, 5), (64, 5),
-(65, 5), (66, 5);
+(47, 2), (48, 2), (49, 4), (50, 4), (51, 4), (52, 4), (53, 4), (54, 4), (55, 5),
+(56, 5), (57, 5), (58, 5), (59, 5), (60, 5);
 
 
 --MESSAGES
