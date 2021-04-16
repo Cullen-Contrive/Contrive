@@ -18,8 +18,6 @@ const vendorReducer = (
   switch (action.type) {
     case 'SET_VENDOR':
       return action.payload;
-    case 'SET_ALL_VENDORS':
-      return action.payload;
     default:
       return state;
   }

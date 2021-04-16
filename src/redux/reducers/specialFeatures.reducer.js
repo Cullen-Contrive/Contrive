@@ -1,5 +1,5 @@
 // Used to store special features
-const specialFeatures = (state = [], action) => {
+const specialFeatures = (state = [{ id: 0, name: "" }], action) => {
   switch (action.type) {
     case 'SET_SPECIAL_FEATURE_LIST':
       return action.payload;

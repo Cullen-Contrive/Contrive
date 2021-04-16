@@ -66,8 +66,6 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'FETCH_VENDOR_TYPES' });
-    dispatch({ type: 'FETCH_SPECIAL_FEATURES' });
   }, [dispatch]);
 
   return (
