@@ -21,8 +21,8 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified",
-  JSON_AGG(DISTINCT "service_types".*) AS "service_types", 
-  JSON_AGG(DISTINCT "special_features".*) AS "special_features"
+  JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
+  JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
@@ -73,8 +73,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified",
-  JSON_AGG(DISTINCT "service_types".*) AS "service_types", 
-  JSON_AGG(DISTINCT "special_features".*) AS "special_features"
+  JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
+  JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
