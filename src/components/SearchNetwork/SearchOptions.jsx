@@ -38,19 +38,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SearchOptions({ hasClickedSearch,
-  setHasClickedSearch,
+function SearchOptions({
   searchInput,
   setSearchInput }) {
   const dispatch = useDispatch();
   const classes = useStyles();
 
 
-  /////////////////// MANAGE DROPDOWN //////////////////////////////////
+  /////////////////// TRACK IF SEARCH REQUEST MADE //////////////////////////////////
+  const [hasMadeSearchRequest, setHasMadeSearchRequest] = useState(0);
+
+
+  /////////////////// MANAGE DROPDOWNS //////////////////////////////////
   // Grab information from Global Redux Store
   const features = useSelector((store) => store.features);
   const service = useSelector((store) => store.vendorTypes);
-  const filter = useSelector((store) => store.filter);
 
 
   // Variable to capture changes in the dropdown selections (vendor type and special feature):
@@ -60,6 +62,9 @@ function SearchOptions({ hasClickedSearch,
 
   // Function to set the value corresponding with selected vendor type in dropdown:
   const handleTypeSelection = (evt) => {
+    //show that a search request has been made:
+    setHasMadeSearchRequest(hasMadeSearchRequest + 1);
+
     let selectedType = { ...selections, typeId: evt.target.value }
     setSelections(selectedType);
 
@@ -67,8 +72,12 @@ function SearchOptions({ hasClickedSearch,
     runSearch(selectedType);
   };
 
+
   // Function to set the value corresponding with selected special feature in dropdown:
   const handleFeatureSelection = (evt) => {
+    //show that a search request has been made:
+    setHasMadeSearchRequest(hasMadeSearchRequest + 1);
+
     const selectedFeature = { ...selections, featureId: evt.target.value }
     setSelections(selectedFeature);
 
@@ -77,7 +86,22 @@ function SearchOptions({ hasClickedSearch,
   };
 
 
-  // Send both selections to the Saga
+  /////////////////// MANAGE SEARCH BAR //////////////////////////////////
+  // Function to set the value corresponding with keyword typed in search bar:
+  const handleSearchInput = () => {
+    //show that a search request has been made:
+    setHasMadeSearchRequest(hasMadeSearchRequest + 1);
+
+    const searchTermObject = { ...selections, searchTermInput: searchInput }
+    setSelections(searchTermObject);
+
+    // Call function that will pass data to Saga (and then on to server/DB)
+    runSearch(searchTermObject);
+  }
+
+
+  /////////////////// GET SEARCH RESULTS //////////////////////////////////
+  // Send any/all selections to the Saga
   const runSearch = (searchSelections) => {
     dispatch({
       type: 'FETCH_MATCHING_VENDORS',
@@ -85,22 +109,6 @@ function SearchOptions({ hasClickedSearch,
     })
   };
 
-
-
-  /////////////////// MANAGE SEARCH BAR //////////////////////////////////
-  const handleSearchInput = () => {
-    // Show that search button has been clicked and remove "welcome" message
-    // setHasClickedSearch(hasClickedSearch + 1);
-    // console.log('hasClickedSearch in searchBar:', hasClickedSearch);
-
-    const searchTermObject = { ...selections, searchTermInput: searchInput }
-    console.log('searchTermObject:', searchTermObject);
-    console.log('searchInput:', searchInput);
-    setSelections(searchTermObject);
-
-    // Call function that will pass data to Saga (and then on to server/DB)
-    runSearch(searchTermObject);
-  }
 
   return (
     <Grid container>
@@ -147,8 +155,6 @@ function SearchOptions({ hasClickedSearch,
       </FormControl>
 
 
-
-
       <Grid item xs={8}>
         <input type="search"
           key="searchBar"
@@ -164,7 +170,7 @@ function SearchOptions({ hasClickedSearch,
       </Grid>
 
 
-      <SearchResults hasClickedSearch={hasClickedSearch} />
+      <SearchResults hasMadeSearchRequest={hasMadeSearchRequest} />
     </Grid>
   );
 }

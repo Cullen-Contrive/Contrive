@@ -1,7 +1,5 @@
 import React from 'react';
-import { Box, Grid } from '@material-ui/core';
-
-import './searchNetwork.css';
+import { Box, Grid, Typography } from '@material-ui/core';
 
 function SearchResultDetails({ vendor }) {
   // console.log('vendor:', vendor);
@@ -9,12 +7,13 @@ function SearchResultDetails({ vendor }) {
 
   return (
 
-    <Grid item xs={5}>
+    <Grid item xs={5}
+      onClick={() => history.push(`/vendor/${vendor.vendorUserId}`)}>
       <Box mt={3} mb={3}>
         <img src={vendor.profilePic} alt={vendor.companyName} className="vendorProfilePic" />
         {/* ToDo: Add Vendor Rating (Stretch) here */}
         {/* <Box>{vendor.rating}</Box> */}
-        <Box>{vendor.companyName}</Box>
+        <Typography>{vendor.companyName}</Typography>
       </Box>
     </Grid>
 
