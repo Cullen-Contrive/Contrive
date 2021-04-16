@@ -5,6 +5,8 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
+// TODO: If special features or service types are blank, the api request gets nothing back.
+
 // ROUTES AT /api/vendor/all
 router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
