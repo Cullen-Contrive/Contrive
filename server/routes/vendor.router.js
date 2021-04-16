@@ -110,11 +110,44 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post('/update', rejectUnauthenticated, (req, res) => {
-  const userId = req.params.id;
-  const sqlText = `
-    
+router.put('/update', rejectUnauthenticated, async (req, res) => {
+  console.log('POST /api/vendor/update here is what we got:', req.body);
+  const connection = await pool.connect();
+  
+  const userId = req.user.id;
+  console.log('user id:', userId)
+
+
+  const sqlTextVendors = `
+    UPDATE "vendors"
+    SET
+      "description" = $1, 
+      "additionalInfo" = $2, 
+      "phone" = $3
+    WHERE "vendorUserId" = $4
+    RETURNING *;
   `;
+
+  const updateValuesVendors = [
+    req.body.description,
+    req.body.additionalInfo,
+    req.body.phone,
+    userId
+  ]
+
+  try {
+    await connection.query('BEGIN')
+    await connection.query(sqlTextVendors, updateValuesVendors);
+    await connection.query('COMMIT');
+    res.sendStatus(200);
+  } catch (err) {
+    console.log('Error updating vendor profile:', err);
+    await connection.query('ROLLBACK');
+    res.sendStatus(500);
+  } finally {
+    connection.release();
+  }
+
 })
 
 module.exports = router;
