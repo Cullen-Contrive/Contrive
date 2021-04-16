@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import EditVendorAbout from './EditVendorAbout';
+import EditVendorContact from './EditVendorContact';
 import EditVendorBasicInfo from './EditVendorBasicInfo';
 import EditVendorSpecialFeatures from './EditVendorSpecialFeatures';
 
@@ -37,11 +37,14 @@ function EditVendorProfile() {
         vendor={vendorDetails}
         editProfileElement={editProfileElement}
       />
-      <EditVendorAbout 
+      <EditVendorContact 
         vendor={vendorDetails} 
         editProfileElement={editProfileElement} 
       />
-      <EditVendorSpecialFeatures />      
+      <EditVendorSpecialFeatures
+        vendor={vendorDetails} 
+        editProfileElement={editProfileElement} 
+      />      
     </>
   );
 } // end EditVendorProfile

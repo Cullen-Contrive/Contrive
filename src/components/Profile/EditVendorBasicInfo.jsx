@@ -47,6 +47,7 @@ function EditVendorBasicInfo({vendor, editProfileElement}) {
           />
         </FormControl>      
       </Grid>
+    
     </Grid>
   );
 } // end EditVendorBasicInfo

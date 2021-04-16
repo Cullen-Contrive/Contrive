@@ -31,10 +31,8 @@ router.post('/register', (req, res, next) => {
   const type = req.body.type;
   const website = req.body.website;
 
-
   // Vendor table info:
   const companyName = req.body.companyName;
-  const profilePic = req.body.profilePic;
   const description = req.body.description;
   const additionalInfo = req.body.additionalInfo;
   const phone = req.body.phone;

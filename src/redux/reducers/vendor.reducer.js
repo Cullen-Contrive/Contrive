@@ -11,6 +11,7 @@ const vendorReducer = (
     service_types: [],
     state: '',
     website: '',
+    zip: '',
   },
   action
 ) => {
