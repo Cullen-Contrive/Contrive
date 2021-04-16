@@ -1,3 +1,4 @@
+// Import Libraries
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -11,6 +12,7 @@ import {
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // CUSTOM COMPONENTS:
+import AdminPage from '../Admin/AdminPage';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
@@ -97,6 +99,10 @@ function App() {
             >
               <StyleGuide />
             </Route>
+
+            <ProtectedRoute exact path="/admin">
+              <AdminPage />
+            </ProtectedRoute>
 
             <ProtectedRoute exact path="/messages">
               <MessagesList />
