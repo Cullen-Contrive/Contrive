@@ -13,12 +13,21 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
   const queryText = `
   SELECT 
+  "users"."id",
   "firstName", 
   "lastName", 
   "type", 
-  "profilePic"
-  FROM "users" 
-  WHERE "users".id = $1`;
+  "profilePic", 
+  JSON_AGG(DISTINCT "users_photos".*) AS "userPhotos"
+  FROM "users"
+  JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
+  WHERE "users".id = $1
+  GROUP BY 
+  "users"."id",
+  "firstName", 
+  "lastName", 
+  "type", 
+  "profilePic";`;
 
   pool
     .query(queryText, [userId])
@@ -43,12 +52,21 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
   const queryText = `
   SELECT 
+  "users"."id",
   "firstName", 
   "lastName", 
   "type", 
-  "profilePic"
+  "profilePic", 
+  JSON_AGG(DISTINCT "users_photos".*) AS "userPhotos"
   FROM "users"
-  WHERE "users".id = $1`;
+  JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
+  WHERE "users".id = $1
+  GROUP BY 
+  "users"."id",
+  "firstName", 
+  "lastName", 
+  "type", 
+  "profilePic";`;
 
   pool
     .query(queryText, [userId])

@@ -1,5 +1,5 @@
 const vendorReducer = (
-  state = { 
+  state = {
     additionalInfo: '',
     address: '',
     city: '',
@@ -7,7 +7,7 @@ const vendorReducer = (
     description: '',
     phone: '',
     profilePic: '#',
-    special_features: [], 
+    special_features: [],
     service_types: [],
     state: '',
     website: '',

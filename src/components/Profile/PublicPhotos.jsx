@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PublicPhotos() {
+function PublicPhotos({ photos }) {
   const [expanded, setExpanded] = useState(false);
 
   // Classes for styling
@@ -59,10 +59,12 @@ function PublicPhotos() {
       <AccordionDetails>
         <Grid container flexDirection="column">
           {/* Use to display images */}
-          {/* TODO: Pull in a list of images */}
-          {/* {photoList.map((photo, index) => {
-            return <img key={index } src={photo}/>
-          })} */}
+          {/* TODO: Scale images appropriately */}
+          {photos
+            ? photos.map((singlePhoto) => {
+                return <img key={singlePhoto.id} src={singlePhoto.photo} />;
+              })
+            : ' '}
         </Grid>
       </AccordionDetails>
     </Accordion>

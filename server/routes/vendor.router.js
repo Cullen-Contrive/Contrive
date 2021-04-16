@@ -5,6 +5,8 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
+// TODO: If special features or service types are blank, the api request gets nothing back.
+
 // ROUTES AT /api/vendor/all
 router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
@@ -21,6 +23,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified",
+  "vendors"."companyName",
   JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
   JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
@@ -74,6 +77,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified",
+  "vendors"."companyName",
   JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
   JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
@@ -96,8 +100,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified", 
-  "vendors"."companyName";
-  `;
+  "vendors"."companyName";`;
 
   pool
     .query(sqlText, [userId])
