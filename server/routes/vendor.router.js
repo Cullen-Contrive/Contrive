@@ -20,11 +20,9 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
-  "vendors"."certified", 
-  "special_features"."id" AS "specialFeatureId", 
-  "service_types"."id" AS "serviceTypeId",
-  ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
-  ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
+  "vendors"."certified",
+  JSON_AGG(DISTINCT "service_types".*) AS "service_types", 
+  JSON_AGG(DISTINCT "special_features".*) AS "special_features"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
@@ -45,9 +43,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified", 
-  "vendors"."companyName", 
-  "special_features"."id", 
-  "service_types"."id";`;
+  "vendors"."companyName";`;
 
   pool
     .query(sqlText)
@@ -76,11 +72,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
-  "vendors"."certified", 
-  "special_features"."id" AS "specialFeatureId", 
-  "service_types"."id" AS "serviceTypeId",
-  ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
-  ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
+  "vendors"."certified",
+  JSON_AGG(DISTINCT "service_types".*) AS "service_types", 
+  JSON_AGG(DISTINCT "special_features".*) AS "special_features"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
@@ -101,9 +95,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified", 
-  "vendors"."companyName", 
-  "special_features"."id", 
-  "service_types"."id";`;
+  "vendors"."companyName";
+  `;
 
   pool
     .query(sqlText, [userId])
