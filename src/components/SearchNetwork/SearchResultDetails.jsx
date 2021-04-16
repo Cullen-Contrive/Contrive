@@ -4,9 +4,8 @@ import { Box, Grid } from '@material-ui/core';
 import './searchNetwork.css';
 
 function SearchResultDetails({ vendor }) {
-  console.log('====================================');
-  console.log('vendor:', vendor);
-  console.log('====================================');
+  // console.log('vendor:', vendor);
+
 
   return (
 

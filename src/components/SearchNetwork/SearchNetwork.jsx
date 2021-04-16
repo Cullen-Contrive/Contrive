@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //Import Custom Components
-
 import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -45,19 +43,24 @@ function SearchNetwork() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  // Dispatch a request on page load for retrieving all vendors 
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_ALL_VENDORS'
+    });
+  }, []);
+
+
   // Grab information from Global Redux Store
   const features = useSelector((store) => store.features);
   const service = useSelector((store) => store.vendorTypes);
   const filter = useSelector((store) => store.filter);
 
-  // //Local store variables that captures from inputs
-  // const [typeId, setTypeId] = useState(-1);
-  // const [featureId, setFeatureId] = useState(-1);
 
-  // const [selections, setSelections] = useState({ typeId: -1, featureId: -1 })
-
+  // Variable to capture changes in the dropdown selections (vendor type and special feature):
   const [selections, setSelections] = useState({ typeId: -1, featureId: -1 });
   console.log('selections at start:', selections);
+
 
   // Function to set the value corresponding with selected vendor type in dropdown:
   const handleTypeSelection = (evt) => {
@@ -67,6 +70,7 @@ function SearchNetwork() {
     onChange();
   };
 
+
   // Function to set the value corresponding with selected special feature in dropdown:
   const handleFeatureSelection = (evt) => {
     setSelections({ ...selections, featureId: evt.target.value });
@@ -75,6 +79,7 @@ function SearchNetwork() {
     onChange();
   };
 
+
   // Send both selections to the Saga
   const onChange = () => {
     dispatch({
@@ -82,6 +87,10 @@ function SearchNetwork() {
       payload: selections
     })
   };
+
+
+  // Variable to capture search word inputs with local state:
+  const [searchInput, setSearchInput] = useState('');
 
 
   // Variable to control conditional rendering of search results message:
@@ -173,10 +182,12 @@ function SearchNetwork() {
             </Grid>
 
             <SearchBar hasClickedSearch={hasClickedSearch}
-              setHasClickedSearch={setHasClickedSearch} />
+              setHasClickedSearch={setHasClickedSearch}
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+            />
           </Box>
-          <SearchResults hasClickedSearch={hasClickedSearch}
-            setHasClickedSearch={setHasClickedSearch} />
+
         </Box>
       </main>
     </div>

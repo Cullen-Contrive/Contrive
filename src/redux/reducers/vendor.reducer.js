@@ -1,5 +1,6 @@
 const vendorReducer = (
-  state = { special_features: [], service_types: [] },
+  // state = { special_features: [], service_types: [] },
+  state = [],
   action
 ) => {
   switch (action.type) {

@@ -1,43 +1,65 @@
-import React, { useState } from 'react';
+// Component to manage search bar --> feeds into SearchNetwork and seen at path /search
+
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Grid } from '@material-ui/core';
 
-const SearchBar = ({ hasClickedSearch, setHasClickedSearch }) => {
-  const dispatch = useDispatch();
-  // const BarStyling = { width: "22rem", 
-  // background: "#F2F1F9", border: "1px solid", borderRadius: "7px", padding: "0.5rem" };
+//CUSTOM COMPONENTS:
+import SearchResults from './SearchResults';
 
-  // Capture keyword inputs with local state:
-  const [searchInput, setSearchInput] = useState('');
-
-
-  const runSearch = (event) => {
-    event.preventDefault;
+const SearchBar = ({ hasClickedSearch,
+  setHasClickedSearch,
+  searchInput,
+  setSearchInput }) => {
 
 
-    setHasClickedSearch(hasClickedSearch + 1);
-    console.log('hasClickedSearch in searchBar:', hasClickedSearch);
+  ///////////// Filter from all vendors for search word:///////////////////////////////////
+
+  // Bring in allVendors
+  const allVendors = useSelector((store) => store.vendor);
+  // console.log('allVendors in searchBar:', allVendors);
+
+  // Empty list to capture filtered vendors
+  const [selectedVendors, setSelectedVendors] = useState(allVendors);
+  console.log('selectedVendors in SearchBar:', selectedVendors);
 
 
-    dispatch({
-      type: 'RUN_SEARCH',
-      payload: {
-        searchInput: searchInput
-      },
-    });
+  // handle change event of search input
+  const handleChange = (value) => {
+    setSearchInput(value);
+    filterData(value);
+  };
 
+  // filter records by search text
+  const filterData = (value) => {
+    const lowercasedValue = value.toLowerCase().trim();
+    console.log('lowercasedValue', lowercasedValue);
+
+    if (lowercasedValue === "") {
+      setSelectedVendors(allVendors)
+    }
+    else {
+      const filteredData = allVendors.filter(vendor => {
+        return Object.keys(vendor).some(companyName =>
+          vendor[companyName].toString().toLowerCase().includes(lowercasedValue)
+        );
+      });
+
+      setSelectedVendors(filteredData);
+    }
   }
 
+
+
+
   return (
-    // <form onSubmit={(event) => runSearch()}>
     <Grid container>
       <Grid item xs={8}>
         <input type="search"
-          // style={BarStyling}
           key="searchBar"
           value={searchInput}
           placeholder={`Search vendors by name e.g. "Kiki's Delivery Service"`}
-          onChange={(event) => setSearchInput(event.target.value)}
+          onChange={(event) => handleChange(event.target.value)}
         />
       </Grid>
       <Grid item xs={4}>
@@ -45,6 +67,8 @@ const SearchBar = ({ hasClickedSearch, setHasClickedSearch }) => {
           Search
         </Button>
       </Grid>
+
+      <SearchResults hasClickedSearch={hasClickedSearch} selectedVendors={selectedVendors} />
     </Grid>
   );
 }
