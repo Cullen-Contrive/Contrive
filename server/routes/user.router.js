@@ -31,7 +31,6 @@ router.post('/register', (req, res, next) => {
   const type = req.body.type;
   const website = req.body.website;
 
-
   // Vendor table info:
   const companyName = req.body.companyName;
   const description = req.body.description;
@@ -58,19 +57,38 @@ router.post('/register', (req, res, next) => {
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`;
 
   pool
-    .query(queryText, [username, firstName, lastName, profilePic, password, address, city, state, zip, type, website])
+    .query(queryText, [
+      username,
+      firstName,
+      lastName,
+      profilePic,
+      password,
+      address,
+      city,
+      state,
+      zip,
+      type,
+      website,
+    ])
     .then((dbRes) => {
       if (type === 'vendor') {
         // console.log('dbRes:', dbRes);
         const vendorUserId = dbRes.rows[0].id;
-        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "description", 
+        const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "profilePic", "description", 
       "additionalInfo", "phone")
-        VALUES ($1, $2, $3, $4, $5);`
+        VALUES ($1, $2, $3, $4, $5, $6);`;
 
-        pool.query(sqlQuery, [vendorUserId, companyName, description, additionalInfo, phone])
+        pool.query(sqlQuery, [
+          vendorUserId,
+          companyName,
+          profilePic,
+          description,
+          additionalInfo,
+          phone,
+        ]);
       }
 
-      res.sendStatus(201)
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.log('User registration failed: ', err);

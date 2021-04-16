@@ -8,22 +8,21 @@ const {
 // ROUTES AT /api/vendor/all
 router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-  SELECT 
+  SELECT
   "users"."username",
   "users"."website",
   "users"."profilePic",
   "users"."address", 
   "users"."city", 
   "users"."state", 
-  "users"."zip", 
+  "users"."zip",
   "vendors"."vendorUserId",
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
-  "vendors"."certified", 
-  "vendors"."companyName",
-  ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
-  ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
+  "vendors"."certified",
+  JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
+  JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
@@ -61,7 +60,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
   const sqlText = `
-  SELECT 
+  SELECT
   "users"."username",
   "users"."website",
   "users"."profilePic",
@@ -73,10 +72,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
-  "vendors"."certified", 
-  "vendors"."companyName",
-  ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
-  ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
+  "vendors"."certified",
+  JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
+  JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
@@ -97,7 +95,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."additionalInfo", 
   "vendors"."phone", 
   "vendors"."certified", 
-  "vendors"."companyName";`;
+  "vendors"."companyName";
+  `;
 
   pool
     .query(sqlText, [userId])
