@@ -121,9 +121,9 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', (req, 
                        ( SELECT "vendorUserId" FROM "vendors_services" WHERE "serviceId" = $1 ))
                        AND
                        ( "vendorUserId" IN 
-                       ( SELECT "vendorUserId" FROM "vendors_features" WHERE "featureId" = $2 ));
+                       ( SELECT "vendorUserId" FROM "vendors_features" WHERE "featureId" = $2 ))
                        AND
-                       "vendors"."companyName" ILIKE '%' || $1 || '%'
+                       "vendors"."companyName" ILIKE '%' || $3 || '%';
                        `;
     pool
       .query(queryText, [typeId, featureId, searchTerm])
