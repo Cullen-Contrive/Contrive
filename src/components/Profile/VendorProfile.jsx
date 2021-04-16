@@ -36,8 +36,6 @@ function VendorProfile() {
     });
   };
 
-  console.log('vendorPhotos', vendorPhotos.userPhotos);
-
   return (
     // pass props to children
     <>
@@ -57,7 +55,7 @@ function VendorProfile() {
         zip={vendorDetails.zip}
         vendorId={vendorDetails.vendorUserId}
       />
-      <PublicPhotos />
+      <PublicPhotos photos={vendorPhotos.userPhotos} />
       <About
         description={vendorDetails.description}
         additionalInfo={vendorDetails.additionalInfo}
