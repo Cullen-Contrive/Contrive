@@ -1,5 +1,16 @@
+// Import Libraries
+import React from 'react';
+
+// Import Custom Components
+import AllUsersList from './AllUsersList';
+
 function AdminPage() {
-  return <h1>ADMIN PAGE</h1>;
+  return (
+    <div>
+      <h1>Admin Page</h1>
+      <AllUsersList />
+    </div>
+  );
 }
 
 export default AdminPage;
