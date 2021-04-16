@@ -21,6 +21,7 @@ function VendorProfile() {
     });
   }, []);
 
+  console.log('vendorDetails', vendorDetails);
   return (
     // pass props to children
     <>
@@ -50,7 +51,7 @@ function VendorProfile() {
         city={vendorDetails.city}
         state={vendorDetails.state}
       />
-      <SpecialFeatures features={vendorDetails.special_features} />
+      {/* <SpecialFeatures features={vendorDetails.special_features} /> */}
     </>
   );
 }
