@@ -12,6 +12,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import { PhotoSizeSelectSmallTwoTone } from '@material-ui/icons';
 
+import placeholderImg from '../Images/placeholder.png';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     // flexGrow: 1,
@@ -60,11 +62,13 @@ function PublicPhotos({ photos }) {
         <Grid container flexDirection="column">
           {/* Use to display images */}
           {/* TODO: Scale images appropriately */}
-          {photos
-            ? photos.map((singlePhoto) => {
-                return <img key={singlePhoto.id} src={singlePhoto.photo} />;
-              })
-            : ' '}
+          {photos ? (
+            photos.map((singlePhoto) => {
+              return <img key={singlePhoto.id} src={singlePhoto.photo} />;
+            })
+          ) : (
+            <img src={placeholderImg} />
+          )}
         </Grid>
       </AccordionDetails>
     </Accordion>
