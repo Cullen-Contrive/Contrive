@@ -20,9 +20,25 @@ function* fetchAllVendors(action) {
   }
 }
 
+function* updateVendorProfile(action) {
+  try {
+    yield axios.put('/api/vendor/update', action.payload.data);
+
+    yield put({
+      type: 'FETCH_SINGLE_VENDOR',
+      payload: action.payload.data.vendorUserId
+    })
+    
+    action.payload.onComplete();
+  } catch (err) {
+    console.error('Get all vendors request failed', err);
+  }
+}
+
 function* vendorSaga() {
   yield takeLatest('FETCH_SINGLE_VENDOR', fetchSingleVendor);
   yield takeLatest('FETCH_ALL_VENDORS', fetchAllVendors);
+  yield takeLatest('UPDATE_VENDOR_PROFILE', updateVendorProfile);
 }
 
 export default vendorSaga;

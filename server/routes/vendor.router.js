@@ -5,25 +5,27 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
+// TODO: If special features or service types are blank, the api request gets nothing back.
+
 // ROUTES AT /api/vendor/all
 router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-  SELECT 
+  SELECT
   "users"."username",
   "users"."website",
   "users"."profilePic",
   "users"."address", 
   "users"."city", 
   "users"."state", 
-  "users"."zip", 
+  "users"."zip",
   "vendors"."vendorUserId",
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
-  "vendors"."certified", 
+  "vendors"."certified",
   "vendors"."companyName",
-  ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
-  ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
+  JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
+  JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
@@ -61,7 +63,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
   const sqlText = `
-  SELECT 
+  SELECT
   "users"."username",
   "users"."website",
   "users"."profilePic",
@@ -70,13 +72,14 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "users"."state", 
   "users"."zip",
   "vendors"."vendorUserId",
+  "vendors"."companyName",
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
-  "vendors"."certified", 
+  "vendors"."certified",
   "vendors"."companyName",
-  ARRAY_AGG(DISTINCT "service_types"."name") AS "service_types", 
-  ARRAY_AGG(DISTINCT "special_features"."name") AS "special_features"
+  JSON_AGG(DISTINCT "service_types".*) AS "serviceTypes", 
+  JSON_AGG(DISTINCT "special_features".*) AS "specialFeatures"
   FROM "users"
   JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId" 
   JOIN "vendors_features" ON "vendors"."vendorUserId" = "vendors_features"."vendorUserId"
@@ -110,5 +113,69 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// this route updates a vendor profile
+router.put('/update', rejectUnauthenticated, async (req, res) => {
+  console.log('POST /api/vendor/update here is what we got:', req.body);
+  const connection = await pool.connect();
+  
+  const userId = req.user.id;
+  console.log('user id:', userId)
+
+  const sqlTextVendors = `
+    UPDATE "vendors"
+    SET
+      "companyName" = $1,
+      "description" = $2, 
+      "additionalInfo" = $3, 
+      "phone" = $4
+    WHERE "vendorUserId" = $5;
+  `;
+
+  const sqlTextUsers = `
+    UPDATE "users"
+    SET
+      "website" = $1,
+      "profilePic" = $2,
+      "address" = $3, 
+      "city" = $4, 
+      "state" = $5, 
+      "zip" = $6
+    WHERE "id" = $7;
+  `;
+
+  const updateValuesVendors = [
+    req.body.companyName,
+    req.body.description,
+    req.body.additionalInfo,
+    req.body.phone,
+    userId
+  ];
+
+  const updateValuesUsers = [
+    req.body.website,
+    req.body.profilePic,
+    req.body.address,
+    req.body.city,
+    req.body.state,
+    req.body.zip,
+    userId
+  ];
+
+  try {
+    await connection.query('BEGIN')
+    await connection.query(sqlTextVendors, updateValuesVendors);
+    await connection.query(sqlTextUsers, updateValuesUsers);
+    await connection.query('COMMIT');
+    res.sendStatus(200);
+  } catch (err) {
+    console.log('Error updating vendor profile:', err);
+    await connection.query('ROLLBACK');
+    res.sendStatus(500);
+  } finally {
+    connection.release();
+  }
+
+})
 
 module.exports = router;

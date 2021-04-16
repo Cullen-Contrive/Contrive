@@ -16,3 +16,20 @@ const vendorReducer = (
 // user will be on the redux state at:
 // state.user
 export default vendorReducer;
+
+// =======
+//   state = {
+//     additionalInfo: '',
+//     address: '',
+//     city: '',
+//     companyName: '',
+//     description: '',
+//     phone: '',
+//     profilePic: '#',
+//     special_features: [],
+//     service_types: [],
+//     state: '',
+//     website: '',
+//     zip: '',
+//   },
+// >>>>>>> <incoming changes>

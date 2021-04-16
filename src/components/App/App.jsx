@@ -12,6 +12,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // CUSTOM COMPONENTS:
 import Nav from '../Nav/Nav';
+import EditVendorProfile from '../Profile/EditVendorProfile';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import Message from '../MessageAll/MessageAll';
@@ -122,6 +123,14 @@ function App() {
               path="/vendor/:id" // url will look like "/vendor/2"
             >
               <VendorProfile />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/vendor/edit/:id" // url will look like "/vendor/2"
+            >
+              <EditVendorProfile />
             </ProtectedRoute>
 
             <ProtectedRoute

@@ -57,7 +57,7 @@ CREATE TABLE "special_features" (
 );
 
 INSERT INTO "special_features" ("name")
-VALUES ('female-owned'), ('bipoc-owned'), ('small business');
+VALUES ('female owned'), ('bipoc owned'), ('small business');
 
 CREATE TABLE "service_types" (
   "id" SERIAL PRIMARY KEY,
