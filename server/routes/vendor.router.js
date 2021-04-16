@@ -124,8 +124,19 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
       "description" = $1, 
       "additionalInfo" = $2, 
       "phone" = $3
-    WHERE "vendorUserId" = $4
-    RETURNING *;
+    WHERE "vendorUserId" = $4;
+  `;
+
+  const sqlTextUsers = `
+    UPDATE "users"
+    SET
+      "website" = $1,
+      "profilePic" = $2,
+      "address" = $3, 
+        "city" = $4, 
+        "state" = $5, 
+        "zip" = $6
+    WHERE "id" = $7;
   `;
 
   const updateValuesVendors = [
@@ -133,11 +144,22 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     req.body.additionalInfo,
     req.body.phone,
     userId
-  ]
+  ];
+
+  const updateValuesUsers = [
+    req.body.website,
+    req.body.profilePic,
+    req.body.address,
+    req.body.city,
+    req.body.state,
+    req.body.zip,
+    userId
+  ];
 
   try {
     await connection.query('BEGIN')
     await connection.query(sqlTextVendors, updateValuesVendors);
+    await connection.query(sqlTextUsers, updateValuesUsers);
     await connection.query('COMMIT');
     res.sendStatus(200);
   } catch (err) {
