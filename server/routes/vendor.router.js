@@ -69,6 +69,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "users"."state", 
   "users"."zip",
   "vendors"."vendorUserId",
+  "vendors"."companyName",
   "vendors"."description", 
   "vendors"."additionalInfo", 
   "vendors"."phone", 
@@ -109,5 +110,69 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// this route updates a vendor profile
+router.put('/update', rejectUnauthenticated, async (req, res) => {
+  console.log('POST /api/vendor/update here is what we got:', req.body);
+  const connection = await pool.connect();
+  
+  const userId = req.user.id;
+  console.log('user id:', userId)
+
+  const sqlTextVendors = `
+    UPDATE "vendors"
+    SET
+      "companyName" = $1,
+      "description" = $2, 
+      "additionalInfo" = $3, 
+      "phone" = $4
+    WHERE "vendorUserId" = $5;
+  `;
+
+  const sqlTextUsers = `
+    UPDATE "users"
+    SET
+      "website" = $1,
+      "profilePic" = $2,
+      "address" = $3, 
+      "city" = $4, 
+      "state" = $5, 
+      "zip" = $6
+    WHERE "id" = $7;
+  `;
+
+  const updateValuesVendors = [
+    req.body.companyName,
+    req.body.description,
+    req.body.additionalInfo,
+    req.body.phone,
+    userId
+  ];
+
+  const updateValuesUsers = [
+    req.body.website,
+    req.body.profilePic,
+    req.body.address,
+    req.body.city,
+    req.body.state,
+    req.body.zip,
+    userId
+  ];
+
+  try {
+    await connection.query('BEGIN')
+    await connection.query(sqlTextVendors, updateValuesVendors);
+    await connection.query(sqlTextUsers, updateValuesUsers);
+    await connection.query('COMMIT');
+    res.sendStatus(200);
+  } catch (err) {
+    console.log('Error updating vendor profile:', err);
+    await connection.query('ROLLBACK');
+    res.sendStatus(500);
+  } finally {
+    connection.release();
+  }
+
+})
 
 module.exports = router;
