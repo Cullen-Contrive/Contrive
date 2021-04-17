@@ -5,7 +5,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import io from 'socket.io-client';
-import DateObject from 'react-date-object';
 import Swal from 'sweetalert2';
 
 // Material UI
@@ -107,8 +106,8 @@ function MessageAll() {
       return; // return so the function does not execute
     }
 
-    const date = new DateObject();
-    const formattedDate = date.format('YYYY-MM-DD hh:mm:ss.SSS');
+    const date = new Date();
+    const formattedDate = date.toISOString();
     const messageObject = {
       date: formattedDate,
       fromUser: currentUser.id,
@@ -145,7 +144,7 @@ function MessageAll() {
         </Grid>
       </Grid>
       <Grid container component={Paper} className={classes.chatSection}>
-        <Grid item xs={9}>
+        <Grid item xs={12}>
           <List className={classes.messageArea}>
             {existingMessages.length > 0 ? (
               existingMessages.map((singleMessage, index) => {
