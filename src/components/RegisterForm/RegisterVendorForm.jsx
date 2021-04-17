@@ -19,6 +19,7 @@ import {
   Chip
 } from '@material-ui/core';
 
+
 function RegisterVendorForm() {
   // Define history for routing purposes, dispatch for Redux communication, and classes for styling:
   const history = useHistory();
@@ -51,9 +52,8 @@ function RegisterVendorForm() {
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [phone, setPhone] = useState('');
   const [specialFeatureNames, setSpecialFeatureNames] = useState([]);
-  const [specialFeatureIds, setSpecialFeatureIds] = useState([]);
   const [vendorTypeNames, setVendorTypeNames] = useState([]);
-  const [vendorTypeIds, setVendorTypeIds] = useState([]);
+
 
   // console.log('====================================');
   // console.log('companyName:', companyName);
@@ -64,25 +64,55 @@ function RegisterVendorForm() {
   // console.log('companyDescription:', companyDescription);
   // console.log('additionalInfo:', additionalInfo);
   // console.log('phone:', phone);
-  console.log('specialFeatures:', specialFeatureNames);
-  console.log('vendorTypes:', vendorTypeNames);
+  console.log('specialFeatureNames:', specialFeatureNames);
+  console.log('vendorTypeNames:', vendorTypeNames);
   // console.log('====================================');
 
 
   const handleFeatureSelection = (event) => {
     // Convert feature names (needed as value for rendering Chips) info feature ID's:
-    let featureId;
+    const selectedIdList = [];
 
     for (let feature of features) {
-      if (feature.name === event.target.value) {
-        featureId = feature.id;
+      console.log('feature.name:', feature.name, 'event.target.value', event.target.value);
+
+      for (let selectedOption of event.target.value) {
+        if (feature.name === selectedOption) {
+
+          selectedIdList.push(feature.id);
+          // console.log('selectedIdList Feature:', selectedIdList);
+        }
       }
     }
+    // Add the array of selected feature ID's to the vendorInfo that will be used to register
+    vendorInfo.specialFeatures = selectedIdList;
+    console.log('vendorInfo in features:', vendorInfo);
+
+    // Keep all selected features as the value of the feature dropdown, so they render as chips:
     setSpecialFeatureNames(event.target.value);
   };
 
 
   const handleVendorTypeSelection = (event) => {
+    // Convert service names (needed as value for rendering Chips) info service ID's:
+    const selectedIdList = [];
+
+    for (let service of services) {
+      console.log('service.name:', service.name, 'event.target.value', event.target.value);
+
+      for (let selectedOption of event.target.value) {
+        if (service.name === selectedOption) {
+
+          selectedIdList.push(service.id);
+          console.log('selectedIdList Service:', selectedIdList);
+        }
+      }
+    }
+    // Add the array of selected service ID's to the vendorInfo that will be used to register
+    vendorInfo.vendorTypes = selectedIdList;
+    console.log('vendorInfo in features:', vendorInfo);
+
+    // Keep all selected services as the value of the service dropdown, so they render as chips:
     setVendorTypeNames(event.target.value);
   };
 
@@ -100,8 +130,6 @@ function RegisterVendorForm() {
     vendorInfo.description = companyDescription;
     vendorInfo.additionalInfo = additionalInfo;
     vendorInfo.phone = phone;
-    vendorInfo.specialFeatures = specialFeatureIds;
-    vendorInfo.vendorTypes = vendorTypeIds;
 
     console.log("vendor info", vendorInfo);
 
