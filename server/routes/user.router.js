@@ -18,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
-  // User table info:
+  // Users table info:
   const username = req.body.username;
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -31,11 +31,17 @@ router.post('/register', (req, res, next) => {
   const type = req.body.type;
   const website = req.body.website;
 
-  // Vendor table info:
+  // Vendors table info:
   const companyName = req.body.companyName;
   const description = req.body.description;
   const additionalInfo = req.body.additionalInfo;
   const phone = req.body.phone;
+
+  // Vendors_services table info:
+  const servicesArray = req.body.vendorTypes;
+
+  // Vendors_features table info:
+  const featuresArray = req.body.specialFeatures;
 
   // console.log('username:', username);
   // console.log('firstName', firstName);
@@ -51,6 +57,8 @@ router.post('/register', (req, res, next) => {
   // console.log('companyName', companyName);
   // console.log('phone', phone);
   // console.log('description:', description);
+  console.log('servicesArray', servicesArray);
+  console.log('featuresArray', featuresArray);
 
   const queryText = `INSERT INTO "users" ("username", "firstName", "lastName", 
   "profilePic", "password", "address", "city", "state", "zip", "type", "website")

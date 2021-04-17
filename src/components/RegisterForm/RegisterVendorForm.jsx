@@ -55,6 +55,7 @@ function RegisterVendorForm() {
   const [vendorTypeNames, setVendorTypeNames] = useState([]);
 
 
+  // Ensure that the proper info is being captured:
   // console.log('====================================');
   // console.log('companyName:', companyName);
   // console.log('companyAddress:', companyAddress);
@@ -64,8 +65,8 @@ function RegisterVendorForm() {
   // console.log('companyDescription:', companyDescription);
   // console.log('additionalInfo:', additionalInfo);
   // console.log('phone:', phone);
-  console.log('specialFeatureNames:', specialFeatureNames);
-  console.log('vendorTypeNames:', vendorTypeNames);
+  // console.log('specialFeatureNames:', specialFeatureNames);
+  // console.log('vendorTypeNames:', vendorTypeNames);
   // console.log('====================================');
 
 
@@ -74,7 +75,7 @@ function RegisterVendorForm() {
     const selectedIdList = [];
 
     for (let feature of features) {
-      console.log('feature.name:', feature.name, 'event.target.value', event.target.value);
+      // console.log('feature.name:', feature.name, 'event.target.value', event.target.value);
 
       for (let selectedOption of event.target.value) {
         if (feature.name === selectedOption) {
@@ -86,7 +87,7 @@ function RegisterVendorForm() {
     }
     // Add the array of selected feature ID's to the vendorInfo that will be used to register
     vendorInfo.specialFeatures = selectedIdList;
-    console.log('vendorInfo in features:', vendorInfo);
+    // console.log('vendorInfo in features:', vendorInfo);
 
     // Keep all selected features as the value of the feature dropdown, so they render as chips:
     setSpecialFeatureNames(event.target.value);
@@ -98,19 +99,19 @@ function RegisterVendorForm() {
     const selectedIdList = [];
 
     for (let service of services) {
-      console.log('service.name:', service.name, 'event.target.value', event.target.value);
+      // console.log('service.name:', service.name, 'event.target.value', event.target.value);
 
       for (let selectedOption of event.target.value) {
         if (service.name === selectedOption) {
 
           selectedIdList.push(service.id);
-          console.log('selectedIdList Service:', selectedIdList);
+          // console.log('selectedIdList Service:', selectedIdList);
         }
       }
     }
     // Add the array of selected service ID's to the vendorInfo that will be used to register
     vendorInfo.vendorTypes = selectedIdList;
-    console.log('vendorInfo in features:', vendorInfo);
+    // console.log('vendorInfo in features:', vendorInfo);
 
     // Keep all selected services as the value of the service dropdown, so they render as chips:
     setVendorTypeNames(event.target.value);
