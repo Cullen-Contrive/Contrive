@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ImageUpload from '../ImageUpload/ImageUpload';
 
 // Material-UI
 import {
@@ -105,17 +104,6 @@ function RegisterVendorForm() {
             value={companyName}
             required
             onChange={(event) => setCompanyName(event.target.value)}
-          />
-        </FormControl>
-      </Grid>
-
-      <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
-        <Typography variant="body1" align="left">
-          company logo
-        </Typography>
-          <ImageUpload
-          page = "AddProfilePic"
           />
         </FormControl>
       </Grid>
