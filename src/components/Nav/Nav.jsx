@@ -3,8 +3,10 @@ import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-import useStyles from './Nav.styles'
+import useStyles from './Nav.styles';
 import { useSelector } from 'react-redux';
+
+import VendorNav from './VendorNav';
 
 // Material-UI Components
 import {
@@ -16,9 +18,6 @@ import {
   Divider,
   Drawer,
   Grid,
-  List,
-  ListItem,
-  ListItemText,
   Typography
 } from '@material-ui/core';
 
@@ -66,7 +65,13 @@ function Nav() {
   return (
 
     <> {/* if user is not logged in, bottom nav will not render */}
-      {user.id && (
+      {user.id && user.type === 'vendor' ? (
+        <VendorNav
+          classes={classes}
+          handleChange={handleChange}
+          value={value}
+        />
+      ) : (
         <BottomNavigation
           value={value}
           onChange={handleChange}
@@ -79,6 +84,8 @@ function Nav() {
           <BottomNavigationAction label="Messages" value="/messages" icon={<ChatIcon />} />
           <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
 
+        </BottomNavigation>
+      )}
           <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
             <Box p={1}>
               <Typography variant='h6' component="h2" gutterBottom>
@@ -119,8 +126,6 @@ function Nav() {
             </Box>
 
           </Drawer>
-        </BottomNavigation>
-      )}
     </>
   );
 }
