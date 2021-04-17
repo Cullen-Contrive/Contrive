@@ -8,6 +8,11 @@ const useStyles = makeStyles((theme) => ({
   chip: {
     margin: 2,
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    // maxWidth: 300,
+  },
 }))
 
 export default useStyles;

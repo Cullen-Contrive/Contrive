@@ -20,10 +20,13 @@ import {
 } from '@material-ui/core';
 
 function RegisterVendorForm() {
-  // Define history for routing purposes, and dispatch for Saga/Redux communication:
+  // Define history for routing purposes, dispatch for Redux communication, and classes for styling:
   const history = useHistory();
   const dispatch = useDispatch();
+  const classes = useStyles();
 
+
+  /////////////////// BRING IN NECESSARY DATA //////////////////////////////////
   // Bring in any errors stored in the reducer:
   const errors = useSelector((store) => store.errors);
 
@@ -36,6 +39,7 @@ function RegisterVendorForm() {
   const service = useSelector((store) => store.vendorTypes);
 
 
+  /////////////////// MANAGE INPUTS //////////////////////////////////
   // Manage state of form inputs:
   const [companyAddress, setCompanyAddress] = useState('');
 
@@ -46,19 +50,56 @@ function RegisterVendorForm() {
   const [companyDescription, setCompanyDescription] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [phone, setPhone] = useState('');
+  const [specialFeatures, setSpecialFeatures] = useState([]);
+  const [vendorTypes, setVendorTypes] = useState([]);
 
   // console.log('====================================');
   // console.log('companyName:', companyName);
   // console.log('companyAddress:', companyAddress);
   // console.log('city:', city);
   // console.log('state:', state);
-  // const [zip, setZip] = useState('');
+  // console.log('zip:', zip);
   // console.log('companyDescription:', companyDescription);
-  // const [additionalInfo, setAdditionalInfo] = useState('');
+  // console.log('additionalInfo:', additionalInfo);
   // console.log('phone:', phone);
+  console.log('specialFeatures:', specialFeatures);
+  console.log('vendorTypes:', vendorTypes);
   // console.log('====================================');
 
 
+  const handleSingleFeature = (event) => {
+    setSpecialFeatures(event.target.value);
+  };
+
+  const handleMultipleFeatures = (event) => {
+    const { options } = event.target;
+    const value = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    setSpecialFeatures(value);
+  };
+
+
+  const handleSingleVendorType = (event) => {
+    setVendorTypes(event.target.value);
+  };
+
+  const handleMultipleVendorTypes = (event) => {
+    const { options } = event.target;
+    const value = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    setVendorTypes(value);
+  };
+
+
+  /////////////////// REGISTER VENDOR //////////////////////////////////
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -71,6 +112,8 @@ function RegisterVendorForm() {
     vendorInfo.description = companyDescription;
     vendorInfo.additionalInfo = additionalInfo;
     vendorInfo.phone = phone;
+    vendorInfo.specialFeatures = specialFeatures;
+    vendorInfo.vendorTypes = vendorTypes;
 
     console.log("vendor info", vendorInfo);
 
@@ -79,6 +122,7 @@ function RegisterVendorForm() {
       payload: vendorInfo,
     });
   }; // end registerUser
+
 
   return (
     <Grid item container spacing={2} xs={12} component={Paper}>
@@ -223,6 +267,64 @@ function RegisterVendorForm() {
       </Grid>
 
 
+      <FormControl className={classes.formControl}>
+        <InputLabel id="vendor-type">Services Offered</InputLabel>
+        <Select
+          labelId="vendor-type"
+          id="vendor-type"
+          multiple
+          name="Vendor Types"
+          value={vendorTypes}
+          onChange={handleSingleVendorType}
+          input={<Input id="select-multiple-features" />}
+          renderValue={(selected) => (
+            <div className={classes.chips}>
+              {selected.map((feature) => (
+                <Chip key={feature} label={feature} className={classes.chip} />
+              ))}
+            </div>
+          )}
+        >
+          {/* <MenuItem key="-1" value="-1">--- Select Service Type ---</MenuItem> */}
+          {service.map((category, i) => {
+            return (
+              <MenuItem key={i} value={category.name}>
+                {category.name}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+
+
+      <FormControl className={classes.formControl}>
+        <InputLabel id="special-features">Special Features</InputLabel>
+        <Select
+          labelId="special-features"
+          id="special-features"
+          multiple
+          name="Special Features"
+          value={specialFeatures}
+          onChange={handleSingleFeature}
+          input={<Input id="select-multiple-features" />}
+          renderValue={(selected) => (
+            <div className={classes.chips}>
+              {selected.map((feature) => (
+                <Chip key={feature} label={feature} className={classes.chip} />
+              ))}
+            </div>
+          )}
+        >
+          {/* <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem> */}
+          {features.map((feature, i) => {
+            return (
+              <MenuItem key={i} value={feature.name}>
+                {feature.name}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
 
 
       <Grid item container xs={12} justify="center">
