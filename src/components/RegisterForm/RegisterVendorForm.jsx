@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import useStyles from './RegisterForm.styles';
 
 // Material-UI
 import {
   Button, // replaces html5 <button> element
   ButtonGroup,
   FormControl,
-  FormHelperText,
   Grid, //
   Input,
   InputLabel,
@@ -16,7 +16,7 @@ import {
   Select,
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
-
+  Chip
 } from '@material-ui/core';
 
 function RegisterVendorForm() {

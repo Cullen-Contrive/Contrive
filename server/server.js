@@ -20,8 +20,8 @@ const userDetailsRouter = require('./routes/user.details.router');
 const awsRouter = require('./routes/aws.router');
 const messageRouter = require('./routes/message.router');
 const vendorRouter = require('./routes/vendor.router');
-const specialFeaturesRouter = require('./routes/specialFeaturesDD.router');
-const vendorTypesRouter = require('./routes/vendorTypesDD.router');
+const specialFeaturesRouter = require('./routes/specialFeatures.router');
+const vendorTypesRouter = require('./routes/vendorTypes.router');
 const filterRouter = require('./routes/filter.router');
 
 // TODO AWS const
