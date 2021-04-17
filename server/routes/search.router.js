@@ -1,21 +1,21 @@
 // Server-side Component to handle all search requests from the SearchNetwork
 const express = require('express');
+const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 
-const router = express.Router();
 
 router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', rejectUnauthenticated, (req, res) => {
   // Variables to hold search parameters sent via the API URL (above)
   const typeId = Number(req.params.typeID);
   const featureId = Number(req.params.featureID);
   const searchTerm = req.params.searchTerm;
-  console.log('vendor type=', typeId);
-  console.log('special feature', featureId);
-  console.log('search Term', searchTerm);
+  // console.log('vendor type=', typeId);
+  // console.log('special feature', featureId);
+  // console.log('search Term', searchTerm);
 
   // If none of the 3 filter options given, return all vendors:
   if (searchTerm === "37423573209" && typeId === -1 && featureId === -1) {
@@ -143,7 +143,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
 
     pool.query(queryText, [featureId, searchTerm])
       .then((result) => {
-        console.log('SERVER - GET - at /api/filter - received a response');
+        console.log('SERVER - GET - at /api/search - received a response');
         res.send(result.rows);
       })
       .catch((err) => {
@@ -163,7 +163,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
 
     pool.query(queryText, [typeId, searchTerm])
       .then((result) => {
-        console.log('SERVER - GET - at /api/filter - received a response');
+        console.log('SERVER - GET - at /api/search - received a response');
         res.send(result.rows);
       })
       .catch((err) => {
