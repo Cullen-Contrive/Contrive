@@ -36,7 +36,7 @@ function RegisterVendorForm() {
 
   // Bring in special feature and vendor type options 
   const features = useSelector((store) => store.features);
-  const service = useSelector((store) => store.vendorTypes);
+  const services = useSelector((store) => store.vendorTypes);
 
 
   /////////////////// MANAGE INPUTS //////////////////////////////////
@@ -50,8 +50,10 @@ function RegisterVendorForm() {
   const [companyDescription, setCompanyDescription] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [phone, setPhone] = useState('');
-  const [specialFeatures, setSpecialFeatures] = useState([]);
-  const [vendorTypes, setVendorTypes] = useState([]);
+  const [specialFeatureNames, setSpecialFeatureNames] = useState([]);
+  const [specialFeatureIds, setSpecialFeatureIds] = useState([]);
+  const [vendorTypeNames, setVendorTypeNames] = useState([]);
+  const [vendorTypeIds, setVendorTypeIds] = useState([]);
 
   // console.log('====================================');
   // console.log('companyName:', companyName);
@@ -62,40 +64,26 @@ function RegisterVendorForm() {
   // console.log('companyDescription:', companyDescription);
   // console.log('additionalInfo:', additionalInfo);
   // console.log('phone:', phone);
-  console.log('specialFeatures:', specialFeatures);
-  console.log('vendorTypes:', vendorTypes);
+  console.log('specialFeatures:', specialFeatureNames);
+  console.log('vendorTypes:', vendorTypeNames);
   // console.log('====================================');
 
 
-  const handleSingleFeature = (event) => {
-    setSpecialFeatures(event.target.value);
-  };
+  const handleFeatureSelection = (event) => {
+    // Convert feature names (needed as value for rendering Chips) info feature ID's:
+    let featureId;
 
-  const handleMultipleFeatures = (event) => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
+    for (let feature of features) {
+      if (feature.name === event.target.value) {
+        featureId = feature.id;
       }
     }
-    setSpecialFeatures(value);
+    setSpecialFeatureNames(event.target.value);
   };
 
 
-  const handleSingleVendorType = (event) => {
-    setVendorTypes(event.target.value);
-  };
-
-  const handleMultipleVendorTypes = (event) => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    setVendorTypes(value);
+  const handleVendorTypeSelection = (event) => {
+    setVendorTypeNames(event.target.value);
   };
 
 
@@ -112,8 +100,8 @@ function RegisterVendorForm() {
     vendorInfo.description = companyDescription;
     vendorInfo.additionalInfo = additionalInfo;
     vendorInfo.phone = phone;
-    vendorInfo.specialFeatures = specialFeatures;
-    vendorInfo.vendorTypes = vendorTypes;
+    vendorInfo.specialFeatures = specialFeatureIds;
+    vendorInfo.vendorTypes = vendorTypeIds;
 
     console.log("vendor info", vendorInfo);
 
@@ -274,8 +262,8 @@ function RegisterVendorForm() {
           id="vendor-type"
           multiple
           name="Vendor Types"
-          value={vendorTypes}
-          onChange={handleSingleVendorType}
+          value={vendorTypeNames}
+          onChange={handleVendorTypeSelection}
           input={<Input id="select-multiple-features" />}
           renderValue={(selected) => (
             <div className={classes.chips}>
@@ -285,8 +273,7 @@ function RegisterVendorForm() {
             </div>
           )}
         >
-          {/* <MenuItem key="-1" value="-1">--- Select Service Type ---</MenuItem> */}
-          {service.map((category, i) => {
+          {services.map((category, i) => {
             return (
               <MenuItem key={i} value={category.name}>
                 {category.name}
@@ -304,18 +291,17 @@ function RegisterVendorForm() {
           id="special-features"
           multiple
           name="Special Features"
-          value={specialFeatures}
-          onChange={handleSingleFeature}
+          value={specialFeatureNames}
+          onChange={handleFeatureSelection}
           input={<Input id="select-multiple-features" />}
           renderValue={(selected) => (
             <div className={classes.chips}>
-              {selected.map((feature) => (
-                <Chip key={feature} label={feature} className={classes.chip} />
+              {selected.map((featureValue) => (
+                <Chip key={featureValue} label={featureValue} className={classes.chip} />
               ))}
             </div>
           )}
         >
-          {/* <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem> */}
           {features.map((feature, i) => {
             return (
               <MenuItem key={i} value={feature.name}>
