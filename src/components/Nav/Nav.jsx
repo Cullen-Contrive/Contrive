@@ -64,7 +64,7 @@ function Nav() {
   return (
 
     <> {/* nav bar look depends on user type, vendor or planner */}
-      {user.id && user.type === 'vendor' ? 
+      {user.type === 'vendor' ? 
         <VendorNav
           classes={classes}
           handleChange={handleChange}
@@ -77,7 +77,7 @@ function Nav() {
           value={value}
         />
       }
-      
+
       <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
         <Box p={1}>
           <Typography variant='h6' component="h2" gutterBottom>
