@@ -37,11 +37,11 @@ router.post('/register', (req, res, next) => {
   const additionalInfo = req.body.additionalInfo;
   const phone = req.body.phone;
 
-  // Vendors_services table info:
-  const servicesArray = req.body.vendorTypes;
-
   // Vendors_features table info:
   const featuresArray = req.body.specialFeatures;
+
+  // Vendors_services table info:
+  const servicesArray = req.body.vendorTypes;
 
   // console.log('username:', username);
   // console.log('firstName', firstName);
@@ -84,7 +84,8 @@ router.post('/register', (req, res, next) => {
         const vendorUserId = dbRes.rows[0].id;
         const sqlQuery = `INSERT INTO "vendors" 
           ("vendorUserId", "companyName", "description", "additionalInfo", "phone")
-        VALUES ($1, $2, $3, $4, $5);`;
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING "vendorUserId";`;
 
         pool.query(sqlQuery, [
           vendorUserId,
@@ -92,7 +93,35 @@ router.post('/register', (req, res, next) => {
           description,
           additionalInfo,
           phone,
-        ]);
+        ])
+          .then((dbRes) => {
+            // console.log('dbRes:', dbRes);
+            const vendorUserId = dbRes.rows[0].vendorUserId;
+            // console.log('vendorUserId for vendors_features:', vendorUserId);
+
+            const featureSqlText = `INSERT INTO "vendors_features"
+              ("vendorUserId", "featureId")
+              VALUES ($1, $2);`;
+
+            // Insert each selected special feature from the array into the DB:
+            for (let featureId of featuresArray) {
+              pool.query(featureSqlText, [vendorUserId, featureId])
+            }
+
+            const serviceSqlText = `INSERT INTO "vendors_services"
+            ("vendorUserId", "serviceId")
+            VALUES ($1, $2);`;
+
+            // Insert each selected special feature from the array into the DB:
+            for (let serviceId of servicesArray) {
+              pool.query(serviceSqlText, [vendorUserId, serviceId])
+            }
+
+          })
+          .catch((err) => {
+            console.log('User registration failed at vendors_features insertion: ', err);
+            res.sendStatus(500);
+          });
       }
 
       res.sendStatus(201);
