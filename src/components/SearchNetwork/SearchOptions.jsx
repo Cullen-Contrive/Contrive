@@ -7,36 +7,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchResults from './SearchResults';
 
 // MATERIAL UI
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './Search.styles';
 import {
-  Typography,
-  Button,
-  Select,
-  FormControl,
-  InputLabel,
-  MenuItem,
   Box,
+  Button,
+  FormControl,
   FormHelperText,
   Grid,
+  InputBase,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
 } from '@material-ui/core';
 import { spacing } from '@material-ui/system';
+import SearchIcon from '@material-ui/icons/Search';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-  img: {
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-}));
 
 function SearchOptions({
   searchInput,
@@ -124,7 +110,7 @@ function SearchOptions({
           value={selections.typeId}
           onChange={handleTypeSelection}
         >
-          <MenuItem key="-1" value="-1">--- Select Service Type ---</MenuItem>
+          <MenuItem key="-1" value="-1">-- Select One --</MenuItem>
           {service &&
             service.length &&
             service.map((category, i) => {
@@ -146,7 +132,7 @@ function SearchOptions({
           value={selections.featureId}
           onChange={handleFeatureSelection}
         >
-          <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem>
+          <MenuItem key="-1" value="-1">-- Select One --</MenuItem>
           {features &&
             features.length &&
             features.map((feature, i) => {
@@ -160,19 +146,41 @@ function SearchOptions({
       </FormControl>
 
 
-      <Grid item xs={8}>
-        <input type="search"
+      <Grid item xs={8} className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
+        </div>
+        <InputBase type="search"
           key="searchBar"
           value={searchInput}
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
           placeholder={`Search vendors by name e.g. "Kiki's Delivery Service"`}
           onChange={(event) => setSearchInput(event.target.value)}
         />
       </Grid>
+
       <Grid item xs={4}>
         <Button type="submit" onClick={handleSearchInput}>
           Search
         </Button>
       </Grid>
+
+      {/* <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div> */}
 
 
       <SearchResults hasMadeSearchRequest={hasMadeSearchRequest} />
