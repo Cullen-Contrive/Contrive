@@ -56,6 +56,9 @@ function SearchOptions({
 
 
   // Variable to capture changes in the dropdown selections (vendor type and special feature):
+  // Initial values are set to identify which of the three filter options have been selected-
+  // -1 is an id that will NOT be found in our database, so we know it is an non-selection on each dropdown.
+  // The searchTermInput is for a company name, so we set the initial value to 37423573209, which is unlikely to ever be input as a search term
   const [selections, setSelections] = useState({ typeId: -1, featureId: -1, searchTermInput: 37423573209 });
   console.log('selections at start:', selections);
 
@@ -143,7 +146,7 @@ function SearchOptions({
           value={selections.featureId}
           onChange={handleFeatureSelection}
         >
-        <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem>
+          <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem>
           {features &&
             features.length &&
             features.map((feature, i) => {
