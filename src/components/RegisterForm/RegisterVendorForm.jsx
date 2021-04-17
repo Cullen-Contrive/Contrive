@@ -20,16 +20,20 @@ import {
 } from '@material-ui/core';
 
 function RegisterVendorForm() {
-  // Define history for routing purposes:
+  // Define history for routing purposes, and dispatch for Saga/Redux communication:
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  // Bring in any errors stored in the reducer:
+  const errors = useSelector((store) => store.errors);
 
   // Bring in info held from first Registration Page:
   const vendorInfo = useSelector(store => store.user)
   const profilePic = useSelector(store => store.profilePic);
 
-  // console.log('====================================');
-  // console.log('vendorInfo:', vendorInfo);
-  // console.log('====================================');
+  // Bring in special feature and vendor type options 
+  const features = useSelector((store) => store.features);
+  const service = useSelector((store) => store.vendorTypes);
 
 
   // Manage state of form inputs:
@@ -54,9 +58,6 @@ function RegisterVendorForm() {
   // console.log('phone:', phone);
   // console.log('====================================');
 
-  // Bring in any errors stored in the reducer:
-  const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -220,6 +221,8 @@ function RegisterVendorForm() {
           />
         </FormControl>
       </Grid>
+
+
 
 
       <Grid item container xs={12} justify="center">

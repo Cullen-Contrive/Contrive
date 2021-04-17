@@ -50,7 +50,7 @@ function SearchOptions({
 
 
   /////////////////// MANAGE DROPDOWNS //////////////////////////////////
-  // Grab information from Global Redux Store
+  // Bring in special feature and vendor type options 
   const features = useSelector((store) => store.features);
   const service = useSelector((store) => store.vendorTypes);
 
@@ -143,7 +143,7 @@ function SearchOptions({
           value={selections.featureId}
           onChange={handleFeatureSelection}
         >
-        <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem>
+          <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem>
           {features &&
             features.length &&
             features.map((feature, i) => {
