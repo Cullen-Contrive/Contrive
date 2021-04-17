@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import ContriveHeader from './ContriveHeader';
+
 import ProfileName from './ProfileName';
 import ProfileNav from './ProfileNav';
 import PublicPhotos from './PublicPhotos';
@@ -39,7 +39,6 @@ function VendorProfile() {
   return (
     // pass props to children
     <>
-      <ContriveHeader />
       <ProfileName
         name={vendorDetails.companyName}
         certified={vendorDetails.certified}
