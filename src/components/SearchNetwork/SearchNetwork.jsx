@@ -13,24 +13,9 @@ import {
   Grid,
   Box
 } from '@material-ui/core';
+import useStyles from './Search.styles';
 import { spacing } from '@material-ui/system';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-  img: {
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-}));
 
 function SearchNetwork() {
   const dispatch = useDispatch();
