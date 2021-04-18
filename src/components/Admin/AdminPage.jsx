@@ -1,15 +1,20 @@
 // Import Libraries
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Import Custom Components
-import AllUsersList from './AllUsersList';
+import AllPlannersList from './AllPlannersList';
+import AllUsersList from './AllVendersList';
 
 // Import Styling
 import { makeStyles } from '@material-ui/core/styles';
 import {
+  Box,
+  FormControlLabel,
   Grid,
+  IconButton,
   Paper,
+  Switch,
   Table,
   TableBody,
   TableCell,
@@ -17,40 +22,18 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  TableSortLabel,
+  Toolbar,
   Typography,
 } from '@material-ui/core';
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 const columns = [
-  // { id: 'type', label: 'Type', minWidth: 170 },
-  // { id: 'companyName', label: 'Company Name', minWidth: 170 },
-  // { id: 'firstName', label: 'First Name', minWidth: 170 },
-  // { id: 'lastName', label: 'Last Name', minWidth: 170 },
-  // { id: 'certified', label: 'Certified', minWidth: 170 },
-  // { id: 'remove', label: 'Remove', minWidth: 170 },
-
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
+  { id: 'companyName', label: 'Company Name', minWidth: 170 },
+  { id: 'firstName', label: 'First Name', minWidth: 170 },
+  { id: 'lastName', label: 'Last Name', minWidth: 170 },
+  { id: 'certified', label: 'Certified', minWidth: 170 },
+  { id: 'remove', label: 'Remove', minWidth: 170 },
 ];
 
 // function createData(type, companyName, firstName, lastName, certified, remove) {
@@ -59,28 +42,33 @@ const columns = [
 
 // const rows =
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
+function descendingComparator(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
 }
 
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
+function getComparator(order, orderBy) {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(1, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort(array, comparator) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
 
 const useStyles = makeStyles({
   root: {
@@ -95,10 +83,20 @@ function AdminPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_ALL_VENDORS',
+    });
+  }, []);
+
   // let users = useSelector(store => store.)
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const createSortHandler = (property) => (event) => {
+    onRequestSort(event, property);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -110,12 +108,47 @@ function AdminPage() {
   };
 
   return (
-    <Grid container>
-      <h1>Admin Page</h1>
+    <Box>
+      <Box mt={3} mb={3}>
+        <Typography variant="h2" component="h1" align="center" gutterBottom>
+          Admin Portal
+        </Typography>
+      </Box>
       <Grid container justify="center">
-        <Grid item>
+        <Grid item xs={10}>
+          <Box mt={3} mb={3}>
+            <Typography variant="h4" component="h2" align="left">
+              Vendors
+            </Typography>
+          </Box>
           <Paper className={classes.root}>
             <TableContainer className={classes.container}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ mindWidth: column.minWidth }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableHead>
+                <TableBody>
+                  {vendors.map((vendor) => {
+                    <TableRow key={vendor.vendorUserId}>
+                      <TableCell>{vendor.companyName}</TableCell>
+                      <TableCell>{vendor.firstName}</TableCell>
+                      <TableCell>{vendor.lastName}</TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                    </TableRow>;
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            {/* <TableContainer className={classes.container}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -165,12 +198,12 @@ function AdminPage() {
               page={page}
               onChangePage={handleChangePage}
               onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
+            /> */}
           </Paper>
         </Grid>
       </Grid>
       {/* <AllUsersList /> */}
-    </Grid>
+    </Box>
   );
 }
 
