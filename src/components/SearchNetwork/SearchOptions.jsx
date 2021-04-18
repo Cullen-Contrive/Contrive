@@ -36,7 +36,7 @@ function SearchOptions({
 
 
   /////////////////// MANAGE DROPDOWNS //////////////////////////////////
-  // Grab information from Global Redux Store
+  // Bring in special feature and vendor type options 
   const features = useSelector((store) => store.features);
   const service = useSelector((store) => store.vendorTypes);
 
@@ -167,21 +167,6 @@ function SearchOptions({
           Search
         </Button>
       </Grid>
-
-      {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div> */}
-
 
       <SearchResults hasMadeSearchRequest={hasMadeSearchRequest} />
     </Grid>

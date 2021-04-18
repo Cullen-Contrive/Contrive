@@ -22,8 +22,8 @@ function ContriveHeader() {
               src={contriveLogo}
             />
           </Grid>
-          
-          <Grid item xs ={8}>
+
+          <Grid item xs={8}>
             <Typography
               variant="h2"
               component="h1"
@@ -32,7 +32,7 @@ function ContriveHeader() {
               Contrive
             </Typography>
           </Grid>
-    
+
         </Grid>
       )}
     </>
