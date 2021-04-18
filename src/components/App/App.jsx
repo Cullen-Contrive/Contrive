@@ -13,6 +13,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // CUSTOM COMPONENTS:
 import Nav from '../Nav/Nav';
 import EditVendorProfile from '../Profile/EditVendorProfile';
+import ContriveHeader from '../Header/ContriveHeader';
 import CreateEvent from '../Event/CreateEvent';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
@@ -73,7 +74,10 @@ function App() {
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
-        {user.id && <Nav />}      
+
+        <ContriveHeader />
+        {user.id && <Nav />}
+
         <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/welcome, 
