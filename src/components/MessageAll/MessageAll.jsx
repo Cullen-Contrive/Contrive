@@ -10,12 +10,14 @@ import Swal from 'sweetalert2';
 // Material UI
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Fab from '@material-ui/core/Fab';
@@ -23,6 +25,7 @@ import SendIcon from '@material-ui/icons/Send';
 
 // Custom Components
 import Message from './Message';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { FavoriteBorder } from '@material-ui/icons';
 
 const Form = styled.form`
@@ -138,6 +141,7 @@ function MessageAll() {
     <div>
       <Grid container>
         <Grid item xs={12}>
+          <Button startIcon={<ArrowBackIosIcon />} onClick={goBack}></Button>
           <Typography variant="h5" className="header-message">
             Chat
           </Typography>
