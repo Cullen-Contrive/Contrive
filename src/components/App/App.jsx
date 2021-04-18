@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -64,6 +64,7 @@ const contriveTheme = createMuiTheme({
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -73,8 +74,10 @@ function App() {
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
+
         <ContriveHeader />
-        <Nav />
+        {user.id && <Nav />}
+
         <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/welcome, 
