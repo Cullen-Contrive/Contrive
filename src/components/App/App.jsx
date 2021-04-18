@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -13,6 +13,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // CUSTOM COMPONENTS:
 import Nav from '../Nav/Nav';
 import EditVendorProfile from '../Profile/EditVendorProfile';
+import ContriveHeader from '../Header/ContriveHeader'
 import CreateEvent from '../Event/CreateEvent';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
@@ -63,6 +64,7 @@ const contriveTheme = createMuiTheme({
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -72,7 +74,10 @@ function App() {
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
-        <Nav />
+
+        <ContriveHeader />
+        {user.id && <Nav />}
+
         <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/welcome, 

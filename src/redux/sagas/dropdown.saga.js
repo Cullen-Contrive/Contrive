@@ -8,20 +8,20 @@ function* dropdownSaga() {
 }
 
 function* fetchVendorTypes(action) {
-  const data = action.payload
-  console.log("inside fetchVendorTypes all", data);
-    try {
-      const response = yield axios.get(`/api/vendortypes`);
+  // const data = action.payload
+  // console.log("inside fetchVendorTypes all", data);
+  try {
+    const response = yield axios.get(`/api/vendortypes`);
 
-      yield put({ type: 'SET_VENDOR_TYPE_LIST', payload: response.data });
-    } catch (error) {
-      console.log('fetchVendorTypes get request failed', error);
-    }
+    yield put({ type: 'SET_VENDOR_TYPE_LIST', payload: response.data });
+  } catch (error) {
+    console.log('fetchVendorTypes get request failed', error);
+  }
 }
 
 function* fetchSpecialFeatures(action) {
-  const data = action.payload
-  console.log('start of fetchSpecialFeatures', data);
+  // const data = action.payload
+  // console.log('start of fetchSpecialFeatures', data);
 
   try {
     const response = yield axios.get(`/api/specialfeatures`);
