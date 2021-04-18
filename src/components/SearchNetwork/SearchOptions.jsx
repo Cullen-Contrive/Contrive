@@ -7,36 +7,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchResults from './SearchResults';
 
 // MATERIAL UI
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './Search.styles';
 import {
-  Typography,
-  Button,
-  Select,
-  FormControl,
-  InputLabel,
-  MenuItem,
   Box,
+  Button,
+  FormControl,
   FormHelperText,
   Grid,
+  InputBase,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
 } from '@material-ui/core';
 import { spacing } from '@material-ui/system';
+import SearchIcon from '@material-ui/icons/Search';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-  img: {
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-}));
 
 function SearchOptions({
   searchInput,
@@ -56,6 +42,9 @@ function SearchOptions({
 
 
   // Variable to capture changes in the dropdown selections (vendor type and special feature):
+  // Initial values are set to identify which of the three filter options have been selected-
+  // -1 is an id that will NOT be found in our database, so we know it is an non-selection on each dropdown.
+  // The searchTermInput is for a company name, so we set the initial value to 37423573209, which is unlikely to ever be input as a search term
   const [selections, setSelections] = useState({ typeId: -1, featureId: -1, searchTermInput: 37423573209 });
   console.log('selections at start:', selections);
 
@@ -121,7 +110,7 @@ function SearchOptions({
           value={selections.typeId}
           onChange={handleTypeSelection}
         >
-          <MenuItem key="-1" value="-1">--- Select Service Type ---</MenuItem>
+          <MenuItem key="-1" value="-1">-- Select One --</MenuItem>
           {service &&
             service.length &&
             service.map((category, i) => {
@@ -143,7 +132,8 @@ function SearchOptions({
           value={selections.featureId}
           onChange={handleFeatureSelection}
         >
-          <MenuItem key="-1" value="-1">--- Select Special Feature ---</MenuItem>
+
+          <MenuItem key="-1" value="-1">-- Select One --</MenuItem>
           {features &&
             features.length &&
             features.map((feature, i) => {
@@ -157,20 +147,27 @@ function SearchOptions({
       </FormControl>
 
 
-      <Grid item xs={8}>
-        <input type="search"
+      <Grid item xs={8} className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
+        </div>
+        <InputBase type="search"
           key="searchBar"
           value={searchInput}
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
           placeholder={`Search vendors by name e.g. "Kiki's Delivery Service"`}
           onChange={(event) => setSearchInput(event.target.value)}
         />
       </Grid>
+
       <Grid item xs={4}>
         <Button type="submit" onClick={handleSearchInput}>
           Search
         </Button>
       </Grid>
-
 
       <SearchResults hasMadeSearchRequest={hasMadeSearchRequest} />
     </Grid>
