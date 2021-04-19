@@ -1,6 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  drawerAvatar: {
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+    marginBottom: theme.spacing(2)
+  },
   navbar: {
     overflow: 'hidden',
     position: 'fixed',
