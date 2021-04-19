@@ -71,19 +71,19 @@ VALUES ('caterer'), ('venue manager'), ('decorator'), ('party supplier'),
 
 CREATE TABLE "vendors_features" (
 	"id" SERIAL PRIMARY KEY,
-  "vendorUserId" INT REFERENCES "users",
-  "featureId" INT REFERENCES "special_features"
+  "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
+  "featureId" INT REFERENCES "special_features" ON DELETE CASCADE
 );
 
 CREATE TABLE "vendors_services" (
 	"id" SERIAL PRIMARY KEY,
-  "vendorUserId" INT REFERENCES "users",
-  "serviceId" INT REFERENCES "service_types"
+  "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
+  "serviceId" INT REFERENCES "service_types" ON DELETE CASCADE
 );
 
 CREATE TABLE "events" (
   "id" SERIAL PRIMARY KEY,
-  "plannerUserId" INT REFERENCES "users",
+  "plannerUserId" INT REFERENCES "users" ON DELETE CASCADE,
   "dateCreated" TIMESTAMPTZ DEFAULT current_timestamp,
   "dateOfEvent" DATE,
   "timeOfEvent" TIME,
@@ -120,8 +120,8 @@ CREATE TABLE "events_vendors" (
 
 CREATE TABLE "messages" (
   "id" SERIAL PRIMARY KEY,
-  "fromUser" INT REFERENCES "users",
-  "toUser" INT REFERENCES "users",
+  "fromUser" INT REFERENCES "users" ON DELETE CASCADE,
+  "toUser" INT REFERENCES "users" ON DELETE CASCADE,
   "date" TIMESTAMPTZ DEFAULT current_timestamp,
   "message" VARCHAR(1024)
 );
@@ -129,26 +129,26 @@ CREATE TABLE "messages" (
 --Stretch Tables:
 CREATE TABLE "vendors_ratings" (
   "id" SERIAL PRIMARY KEY,
-  "vendorUserId" INT REFERENCES "users",
-  "userId" INT REFERENCES "users",
+  "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
+  "userId" INT REFERENCES "users" ON DELETE CASCADE,
   "rating" INT,
   "comments" VARCHAR(1024)
 );
 
 CREATE TABLE "events_photos" (
   "id" SERIAL PRIMARY KEY,
-  "eventId" INT REFERENCES "events",
+  "eventId" INT REFERENCES "events" ON DELETE CASCADE,
   "photo" VARCHAR(1024)
 );
 
 CREATE TABLE "my_network" (
   "id" SERIAL PRIMARY KEY,
-  "userId" INT REFERENCES "users"
+  "userId" INT REFERENCES "users" ON DELETE CASCADE
 );
 
 CREATE TABLE "my_network_users" (
   "id" SERIAL PRIMARY KEY,
-  "networkId" INT REFERENCES "my_network",
-  "userId" INT REFERENCES "users"
+  "networkId" INT REFERENCES "my_network" ON DELETE CASCADE,
+  "userId" INT REFERENCES "users" ON DELETE CASCADE
 );
 
