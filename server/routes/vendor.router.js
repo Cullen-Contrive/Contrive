@@ -182,6 +182,30 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
 router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
   console.log('%%% vendor.router -> DELETE /api/vendor/delete/:id');
   console.log('%%%% user to delete:', req.params.id);
+
+  const userIdToDelete = req.params.id;
+
+  if (req.user.type !== 'admin') {
+    console.log('***** UNAUTHORIZED PERSONNEL *****');
+    res.sendStatus(404);
+    return;
+  }
+
+  const sqlQuery = `
+  DELETE FROM "users"
+  WHERE "users".id = $1;
+  `;
+
+  pool
+    .query(sqlQuery, [userIdToDelete])
+    .then((dbResponse) => {
+      console.log('SUCCESS in DELETE /api/vendor/delete/:id');
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('ERROR in DELETE /api/vendor/delete/:id', error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
