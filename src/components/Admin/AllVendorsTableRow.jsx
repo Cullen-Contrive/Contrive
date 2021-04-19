@@ -15,6 +15,9 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+// Import Custom Components
+import AlertDialog from '../AlertDialog/AlertDialog';
+
 function AllVendorsTableRow({ vendor }) {
   const dispatch = useDispatch();
 
@@ -36,8 +39,10 @@ function AllVendorsTableRow({ vendor }) {
 
     dispatch({
       type: 'DELETE_VENDOR',
+      // payload: userId,
       payload: { userId: userId, onComplete: handleClose() },
     });
+    handleClose();
   };
 
   return (
@@ -51,7 +56,15 @@ function AllVendorsTableRow({ vendor }) {
           <DeleteIcon color="primary" onClick={handleClickOpen} />
         </TableCell>
       </TableRow>
-      <Dialog
+      <AlertDialog
+        buttonOne={'Cancel'}
+        buttonTwo={'Delete'}
+        dialogText={'This action will permanently delete this vendor.'}
+        dialogTitle={'Delete User?'}
+        handleClose={handleClose}
+        proceedAction={deleteVendor}
+      />
+      {/* <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -72,7 +85,7 @@ function AllVendorsTableRow({ vendor }) {
             Delete
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 }
