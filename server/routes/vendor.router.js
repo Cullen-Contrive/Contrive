@@ -185,11 +185,11 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
 
   const userIdToDelete = req.params.id;
 
-  if (req.user.type !== 'admin') {
-    console.log('***** UNAUTHORIZED PERSONNEL *****');
-    res.sendStatus(404);
-    return;
-  }
+  // if (req.user.type !== 'admin') {
+  //   console.log('***** UNAUTHORIZED PERSONNEL *****');
+  //   res.sendStatus(404);
+  //   return;
+  // }
 
   const sqlQuery = `
   DELETE FROM "users"
