@@ -1,29 +1,20 @@
 // Import Libraries
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Import Styling
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
-  FormControlLabel,
   Grid,
-  IconButton,
   Paper,
-  Switch,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
-  Toolbar,
   Typography,
 } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
 
 // Import Custom Components
 import AllVendorsTableRow from './AllVendorsTableRow';
@@ -57,16 +48,6 @@ function AllVendorsTable() {
 
   const vendors = useSelector((store) => store.allVendors);
 
-  // const deleteVendor = (userId) => {
-  //   console.log('### deleteVendor() ###');
-  //   console.log('\tuserId:', userId);
-
-  //   dispatch({
-  //     type: 'DELETE_VENDOR',
-  //     payload: userId,
-  //   });
-  // };
-
   return (
     <Box>
       <Grid container justify="center">
@@ -97,18 +78,6 @@ function AllVendorsTable() {
                         key={vendor.vendorUserId}
                         vendor={vendor}
                       />
-                      // <TableRow key={vendor.vendorUserId}>
-                      //   <TableCell>{vendor.companyName}</TableCell>
-                      //   <TableCell>{vendor.firstName}</TableCell>
-                      //   <TableCell>{vendor.lastName}</TableCell>
-                      //   <TableCell></TableCell>
-                      //   <TableCell align="left">
-                      //     <DeleteIcon
-                      //       color="primary"
-                      //       onClick={() => deleteVendor(vendor.vendorUserId)}
-                      //     />
-                      //   </TableCell>
-                      // </TableRow>
                     );
                   })}
                 </TableBody>

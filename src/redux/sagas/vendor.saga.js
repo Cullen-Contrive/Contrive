@@ -40,8 +40,8 @@ function* deleteVendor(action) {
   console.log('\tuserId to delete:', action.payload);
 
   try {
-    yield axios.delete(`/api/vendor/delete/${action.payload}`);
-
+    yield axios.delete(`/api/vendor/delete/${action.payload.userId}`);
+    action.payload.onComplete;
     yield put({ type: 'FETCH_ALL_VENDORS' });
   } catch (error) {
     console.error('DELETE vendor request failed:', error);
