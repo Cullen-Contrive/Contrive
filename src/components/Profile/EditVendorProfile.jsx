@@ -62,10 +62,10 @@ function EditVendorProfile() {
         vendor={vendorDetails} 
         editProfileElement={editProfileElement} 
       />
-      {/* <EditVendorSpecialFeatures
+      <EditVendorSpecialFeatures
         vendor={vendorDetails} 
         editProfileElement={editProfileElement} 
-      />       */}
+      /> 
       <ButtonGroup variant="contained">
         <Button color="secondary" onClick={cancelEdit}>Cancel</Button>
         <Button color="primary" onClick={saveEdit}>Save</Button>

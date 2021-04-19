@@ -1,47 +1,55 @@
 import { useDispatch, useSelector } from 'react-redux';
+import useStyles from './EditVendorProfile.styles';
 
 import {
   Checkbox,
+  Chip,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormHelperText,
   FormLabel,
   Grid,
+  Input,
+  InputLabel,
+  MenuItem,
+  Select,
 } from '@material-ui/core';
 
-function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
-  const features = useSelector(store => store.features)
 
+function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
+  const classes = useStyles();
+  const features = useSelector(store => store.features)
+  
   console.log('THESE ARE THE FEATURES', features)
   return(
     <Grid item xs={12}>
-      <FormControl component="fieldset">
-        {features.map((feature, index) => {
-          let checked = false;
-
-          for (let specialFeature of vendor.special_features) {
-            if (specialFeature.id === feature.id) {
-              checked = true; 
-            }
-          }
-
-          return(
-            <FormControlLabel 
-              control={<Checkbox value={feature.id} checked={checked} color="primary" onChange={(event) => editProfileElement('special_features', event.target.value)} name="test" />} 
-              label={feature.name}
-              key={index}
-            />
-          );
-        })}
-        <FormControlLabel 
-          control={<Checkbox color="primary" checked={true} onChange={(event) => editProfileElement('special_features', event.target.value)} name="test" />} 
-          label="test checked"
-        />
-        <FormControlLabel 
-          control={<Checkbox color="primary" checked={false} onChange={() => editProfileElement('')} name="test" />} 
-          label="test unchecked"
-        />
+      <FormControl fullWidth>
+        <InputLabel id="special-features-edit-label">Edit Special Features</InputLabel>
+        <Select
+          labelId="special-features-edit-label"
+          id="special-features-edit"
+          multiple
+          name="Edit Special Features"
+          value={}
+          onChange={event => editProfileElement('specialFeatures', event.target.value) }
+          input={<Input id="select-multiple-features" />}
+          renderValue={(selected) => (
+            <div className={classes.chips}>
+              {selected.map((featureValue) => (
+                <Chip key={featureValue} label={featureValue} className={classes.chip} />
+              ))}
+            </div>
+          )}
+        >
+          {features.map((feature, i) => {
+            return (
+              <MenuItem key={i} value={feature.id}>
+                {feature.name}
+              </MenuItem>
+            );
+          })}
+        </Select>
       </FormControl>
     </Grid>
   );
