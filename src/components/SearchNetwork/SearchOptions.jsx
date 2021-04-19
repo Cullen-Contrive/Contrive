@@ -147,33 +147,33 @@ function SearchOptions({
 
       {/* <Box className={classes.root}>
       <Box align="left"> */}
-      <Grid item xs={12} >
-      <Grid item xs={9} className={classes.search}>
-      <Box border={1} borderRadius={18}>
-        <div className={classes.searchIcon}>
-          <SearchIcon />
-        </div>
-        <InputBase type="search"
-          fullWidth={true}
-          key="searchBar"
-          value={searchInput}
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          placeholder={`Search vendors by name`}
-          onChange={(event) => setSearchInput(event.target.value)}
-        />
-        </Box>
-      </Grid>
-      {/* </Box> */}
-      
-      {/* <Box align="right"> */}
-      <Grid item xs={2}>
-        <Button type="submit" onClick={handleSearchInput}>
-          Search
+      <Grid container >
+        <Grid item xs={9} className={classes.search}>
+
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase type="search"
+            fullWidth={true}
+            key="searchBar"
+            value={searchInput}
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            placeholder={`Search vendors by name`}
+            onChange={(event) => setSearchInput(event.target.value)}
+          />
+
+        </Grid>
+        {/* </Box> */}
+
+        {/* <Box align="right"> */}
+        <Grid item xs={2}>
+          <Button type="submit" onClick={handleSearchInput}>
+            Search
         </Button>
-      </Grid>
+        </Grid>
       </Grid>
       {/* </Box>
       </Box> */}

@@ -7,14 +7,26 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  cardSize: {
+    // height: "100%",
+    height: "200px",
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
     maxWidth: 300,
   },
+  gridContainer: {
+    paddingTop: "10px",
+    padding: theme.spacing(1),
+  },
   img: {
     maxWidth: '100%',
     maxHeight: '100%',
+  },
+  imgSize: {
+    maxHeight: "75px",
+    minHeight: "40px"
   },
   inputRoot: {
     color: 'inherit',
@@ -34,18 +46,15 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
+    borderRadius: 18,
+    border: '1px solid black',
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
+    // width: '100%',
+    // [theme.breakpoints.up('sm')]: {
+    //   marginLeft: theme.spacing(3),
+    //   width: 'auto',
+    // },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
