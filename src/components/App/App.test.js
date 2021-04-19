@@ -72,10 +72,10 @@ test('should login user', async () => {
   expect(screen.getByText('Discover Contrive')).toBeVisible();
 
 
-  // Click on the Search icon link to be routed to /search
+  // Click on ------ to be routed to /-----
   // Compensate for some React-Router bug with leftClick
   // const leftClick = { button: 0 };
-  // userEvent.click(screen.getByText('SearchIcon'), leftClick);
+  // userEvent.click(screen.getByText('-----'), leftClick);
 
   // // Check that /search view rendered properly:
   // expect(screen.getByText('The Network')).toBeVisible();
