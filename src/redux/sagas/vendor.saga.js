@@ -26,19 +26,25 @@ function* updateVendorProfile(action) {
 
     yield put({
       type: 'FETCH_SINGLE_VENDOR',
-      payload: action.payload.data.vendorUserId
-    })
-    
+      payload: action.payload.data.vendorUserId,
+    });
+
     action.payload.onComplete();
   } catch (err) {
     console.error('Get all vendors request failed', err);
   }
 }
 
+function* deleteVendor(action) {
+  console.log('&&&& deleteVendor() Saga &&&&');
+  console.log('\tuserId to delete:', action.payload);
+}
+
 function* vendorSaga() {
   yield takeLatest('FETCH_SINGLE_VENDOR', fetchSingleVendor);
   yield takeLatest('FETCH_ALL_VENDORS', fetchAllVendors);
   yield takeLatest('UPDATE_VENDOR_PROFILE', updateVendorProfile);
+  yield takeLatest('DELETE_VENDOR', deleteVendor);
 }
 
 export default vendorSaga;
