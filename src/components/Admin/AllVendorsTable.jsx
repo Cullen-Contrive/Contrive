@@ -25,6 +25,9 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
+// Import Custom Components
+import AllVendorsTableRow from './AllVendorsTableRow';
+
 const columns = [
   { id: 'companyName', label: 'Company Name', minWidth: 170 },
   { id: 'firstName', label: 'First Name', minWidth: 170 },
@@ -42,7 +45,7 @@ const useStyles = makeStyles({
   },
 });
 
-function AllVendorsList() {
+function AllVendorsTable() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -54,15 +57,15 @@ function AllVendorsList() {
 
   const vendors = useSelector((store) => store.allVendors);
 
-  const deleteVendor = (userId) => {
-    console.log('### deleteVendor() ###');
-    console.log('\tuserId:', userId);
+  // const deleteVendor = (userId) => {
+  //   console.log('### deleteVendor() ###');
+  //   console.log('\tuserId:', userId);
 
-    dispatch({
-      type: 'DELETE_VENDOR',
-      payload: userId,
-    });
-  };
+  //   dispatch({
+  //     type: 'DELETE_VENDOR',
+  //     payload: userId,
+  //   });
+  // };
 
   return (
     <Box>
@@ -90,18 +93,22 @@ function AllVendorsList() {
                 <TableBody>
                   {vendors.map((vendor) => {
                     return (
-                      <TableRow key={vendor.vendorUserId}>
-                        <TableCell>{vendor.companyName}</TableCell>
-                        <TableCell>{vendor.firstName}</TableCell>
-                        <TableCell>{vendor.lastName}</TableCell>
-                        <TableCell></TableCell>
-                        <TableCell align="left">
-                          <DeleteIcon
-                            color="primary"
-                            onClick={() => deleteVendor(vendor.vendorUserId)}
-                          />
-                        </TableCell>
-                      </TableRow>
+                      <AllVendorsTableRow
+                        key={vendor.vendorUserId}
+                        vendor={vendor}
+                      />
+                      // <TableRow key={vendor.vendorUserId}>
+                      //   <TableCell>{vendor.companyName}</TableCell>
+                      //   <TableCell>{vendor.firstName}</TableCell>
+                      //   <TableCell>{vendor.lastName}</TableCell>
+                      //   <TableCell></TableCell>
+                      //   <TableCell align="left">
+                      //     <DeleteIcon
+                      //       color="primary"
+                      //       onClick={() => deleteVendor(vendor.vendorUserId)}
+                      //     />
+                      //   </TableCell>
+                      // </TableRow>
                     );
                   })}
                 </TableBody>
@@ -114,4 +121,4 @@ function AllVendorsList() {
   );
 }
 
-export default AllVendorsList;
+export default AllVendorsTable;

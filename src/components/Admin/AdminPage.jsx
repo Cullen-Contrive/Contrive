@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Import Custom Components
 import AllPlannersList from './AllPlannersList';
-import AllVendorsList from './AllVendorsList';
+import AllVendorsTable from './AllVendorsTable';
 
 // Import Styling
 import { makeStyles } from '@material-ui/core/styles';
@@ -119,7 +119,7 @@ function AdminPage() {
           </Paper>
         </Grid>
       </Grid> */}
-      <AllVendorsList />
+      <AllVendorsTable />
     </Box>
   );
 }
