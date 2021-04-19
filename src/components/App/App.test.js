@@ -28,7 +28,7 @@ let user = {
   "lastName": "Westman",
   "profilePic": "https://karaspartyideas.com/wp-content/uploads/2016/11/Bike-Themed-Birthday-Party-via-Karas-Party-Ideas-KarasPartyIdeas.com28.jpeg",
   "password": "one",
-  "address": "4946 Walnut St",
+  "address": "49 Walnut St",
   "city": "Kansas City",
   "state": "MO",
   "zip": 64112,
@@ -72,7 +72,7 @@ test('should login user', async () => {
   expect(screen.getByText('Discover Contrive')).toBeVisible();
 
 
-  // Click on ------ to be routed to /-----
+  // Click on ------ to be routed to /----- 
   // Compensate for some React-Router bug with leftClick
   // const leftClick = { button: 0 };
   // userEvent.click(screen.getByText('-----'), leftClick);
