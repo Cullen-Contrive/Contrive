@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 // Material UI
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -26,14 +27,7 @@ import SendIcon from '@material-ui/icons/Send';
 // Custom Components
 import Message from './Message';
 
-const Form = styled.form`
-  width: 400px;
-`;
-
 const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
   chatSection: {
     width: '100%',
     height: '80vh',
@@ -140,10 +134,12 @@ function MessageAll() {
     <div>
       <Grid container>
         <Grid item xs={12}>
-          <Button startIcon={<ArrowBackIosIcon />} onClick={goBack}></Button>
-          <Typography variant="h5" className="header-message">
-            {`${toUser.firstName} ${toUser.lastName}`}
-          </Typography>
+          <Box display="flex">
+            <Button startIcon={<ArrowBackIosIcon />} onClick={goBack}></Button>
+            <Typography variant="h5" className="header-message">
+              {`Messages to ${toUser.firstName} ${toUser.lastName}`}
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
       <Grid container component={Paper} className={classes.chatSection}>
