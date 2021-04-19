@@ -42,7 +42,7 @@ function* deleteVendor(action) {
   try {
     yield axios.delete(`/api/vendor/delete/${action.payload}`);
 
-    console.log('&&& DELETED Vendor &&&');
+    yield put({ type: 'FETCH_ALL_VENDORS' });
   } catch (error) {
     console.error('DELETE vendor request failed:', error);
   }

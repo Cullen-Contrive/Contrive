@@ -72,18 +72,18 @@ VALUES ('caterer'), ('venue manager'), ('decorator'), ('party supplier'),
 CREATE TABLE "vendors_features" (
 	"id" SERIAL PRIMARY KEY,
   "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
-  "featureId" INT REFERENCES "special_features"
+  "featureId" INT REFERENCES "special_features" ON DELETE CASCADE
 );
 
 CREATE TABLE "vendors_services" (
 	"id" SERIAL PRIMARY KEY,
   "vendorUserId" INT REFERENCES "users" ON DELETE CASCADE,
-  "serviceId" INT REFERENCES "service_types"
+  "serviceId" INT REFERENCES "service_types" ON DELETE CASCADE
 );
 
 CREATE TABLE "events" (
   "id" SERIAL PRIMARY KEY,
-  "plannerUserId" INT REFERENCES "users",
+  "plannerUserId" INT REFERENCES "users" ON DELETE CASCADE,
   "dateCreated" TIMESTAMPTZ DEFAULT current_timestamp,
   "dateOfEvent" DATE,
   "timeOfEvent" TIME,
@@ -120,8 +120,8 @@ CREATE TABLE "events_vendors" (
 
 CREATE TABLE "messages" (
   "id" SERIAL PRIMARY KEY,
-  "fromUser" INT REFERENCES "users",
-  "toUser" INT REFERENCES "users",
+  "fromUser" INT REFERENCES "users" ON DELETE CASCADE,
+  "toUser" INT REFERENCES "users" ON DELETE CASCADE,
   "date" TIMESTAMPTZ DEFAULT current_timestamp,
   "message" VARCHAR(1024)
 );
