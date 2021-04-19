@@ -122,6 +122,7 @@ router.get('/:id', (req, res) => {
  * POST route for /api/event
  */
 router.post('/', (req, res) => {
+  // For creating events
   const queryText = `
   INSERT INTO "events" 
   ("plannerUserId", 
@@ -135,7 +136,65 @@ router.post('/', (req, res) => {
   "description")
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
 
-  pool.query(queryText);
+  const plannerUserId = req.body.id;
+  const dateOfEvent = req.body.dateOfEvent;
+  const timeOfEvent = req.body.timeOfEvent;
+  const address = req.body.address;
+  const city = req.body.city;
+  const state = req.body.state;
+  const zip = req.body.zip;
+  const numberOfAttendees = req.body.numberOfAttendees;
+  const description = req.body.description;
+
+  pool
+    .query(queryText, [
+      plannerUserId,
+      dateOfEvent,
+      timeOfEvent,
+      address,
+      city,
+      state,
+      zip,
+      numberOfAttendees,
+      description,
+    ])
+    .then((dbRes) => {
+      console.log('SERVER - POST - event creation successful!');
+      console.table(dbRes.rows);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error('SERVER - POST - an error occurred creating event', err);
+      res.sendStatus(500);
+    });
+});
+
+/**
+ * POST route for /api/event/photos
+ */
+router.post('/photos', async (req, res) => {
+  // For adding photos to events
+  try {
+    const queryText = `
+    INSERT INTO 
+    "events_photos" 
+    ("photo", "eventId")
+    VALUES ($1, $2);`;
+    const eventId = req.body.eventId;
+
+    await Promise.all(
+      req.body.photos.map((photoURL) =>
+        pool.query(queryText, [photoURL, eventId])
+      )
+    );
+    console.log(
+      'SERVER - POST - at /api/event/photos added photos successfully'
+    );
+    res.sendStatus(201);
+  } catch (err) {
+    await connection.query('ROLLBACK');
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;
