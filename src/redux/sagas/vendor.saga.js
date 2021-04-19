@@ -38,6 +38,12 @@ function* updateVendorProfile(action) {
 function* deleteVendor(action) {
   console.log('&&&& deleteVendor() Saga &&&&');
   console.log('\tuserId to delete:', action.payload);
+
+  try {
+    yield axios.delete(`/api/vendor/delete/${action.payload}`);
+  } catch (error) {
+    console.error('DELETE vendor request failed:', error);
+  }
 }
 
 function* vendorSaga() {
