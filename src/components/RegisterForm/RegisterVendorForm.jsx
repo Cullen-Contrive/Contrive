@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ImageUpload from '../ImageUpload/ImageUpload';
+import useStyles from './RegisterForm.styles';
 
 // Material-UI
 import {
   Button, // replaces html5 <button> element
   ButtonGroup,
   FormControl,
-  FormHelperText,
   Grid, //
   Input,
   InputLabel,
@@ -17,22 +16,31 @@ import {
   Select,
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
-
+  Chip
 } from '@material-ui/core';
 
+
 function RegisterVendorForm() {
-  // Define history for routing purposes:
+  // Define history for routing purposes, dispatch for Redux communication, and classes for styling:
   const history = useHistory();
+  const dispatch = useDispatch();
+  const classes = useStyles();
+
+
+  /////////////////// BRING IN NECESSARY DATA //////////////////////////////////
+  // Bring in any errors stored in the reducer:
+  const errors = useSelector((store) => store.errors);
 
   // Bring in info held from first Registration Page:
   const vendorInfo = useSelector(store => store.user)
   const profilePic = useSelector(store => store.profilePic);
 
-  // console.log('====================================');
-  // console.log('vendorInfo:', vendorInfo);
-  // console.log('====================================');
+  // Bring in special feature and vendor type options 
+  const features = useSelector((store) => store.features);
+  const services = useSelector((store) => store.vendorTypes);
 
 
+  /////////////////// MANAGE INPUTS //////////////////////////////////
   // Manage state of form inputs:
   const [companyAddress, setCompanyAddress] = useState('');
 
@@ -43,22 +51,74 @@ function RegisterVendorForm() {
   const [companyDescription, setCompanyDescription] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [phone, setPhone] = useState('');
+  const [specialFeatureNames, setSpecialFeatureNames] = useState([]);
+  const [vendorTypeNames, setVendorTypeNames] = useState([]);
 
+
+  // Ensure that the proper info is being captured:
   // console.log('====================================');
   // console.log('companyName:', companyName);
   // console.log('companyAddress:', companyAddress);
   // console.log('city:', city);
   // console.log('state:', state);
-  // const [zip, setZip] = useState('');
+  // console.log('zip:', zip);
   // console.log('companyDescription:', companyDescription);
-  // const [additionalInfo, setAdditionalInfo] = useState('');
+  // console.log('additionalInfo:', additionalInfo);
   // console.log('phone:', phone);
+  // console.log('specialFeatureNames:', specialFeatureNames);
+  // console.log('vendorTypeNames:', vendorTypeNames);
   // console.log('====================================');
 
-  // Bring in any errors stored in the reducer:
-  const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
 
+  const handleFeatureSelection = (event) => {
+    // Convert feature names (needed as value for rendering Chips) info feature ID's:
+    const selectedIdList = [];
+
+    for (let feature of features) {
+      // console.log('feature.name:', feature.name, 'event.target.value', event.target.value);
+
+      for (let selectedOption of event.target.value) {
+        if (feature.name === selectedOption) {
+
+          selectedIdList.push(feature.id);
+          // console.log('selectedIdList Feature:', selectedIdList);
+        }
+      }
+    }
+    // Add the array of selected feature ID's to the vendorInfo that will be used to register
+    vendorInfo.specialFeatures = selectedIdList;
+    // console.log('vendorInfo in features:', vendorInfo);
+
+    // Keep all selected features as the value of the feature dropdown, so they render as chips:
+    setSpecialFeatureNames(event.target.value);
+  };
+
+
+  const handleVendorTypeSelection = (event) => {
+    // Convert service names (needed as value for rendering Chips) info service ID's:
+    const selectedIdList = [];
+
+    for (let service of services) {
+      // console.log('service.name:', service.name, 'event.target.value', event.target.value);
+
+      for (let selectedOption of event.target.value) {
+        if (service.name === selectedOption) {
+
+          selectedIdList.push(service.id);
+          // console.log('selectedIdList Service:', selectedIdList);
+        }
+      }
+    }
+    // Add the array of selected service ID's to the vendorInfo that will be used to register
+    vendorInfo.vendorTypes = selectedIdList;
+    // console.log('vendorInfo in features:', vendorInfo);
+
+    // Keep all selected services as the value of the service dropdown, so they render as chips:
+    setVendorTypeNames(event.target.value);
+  };
+
+
+  /////////////////// REGISTER VENDOR //////////////////////////////////
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -79,6 +139,7 @@ function RegisterVendorForm() {
       payload: vendorInfo,
     });
   }; // end registerUser
+
 
   return (
     <Grid item container spacing={2} xs={12} component={Paper}>
@@ -105,17 +166,6 @@ function RegisterVendorForm() {
             value={companyName}
             required
             onChange={(event) => setCompanyName(event.target.value)}
-          />
-        </FormControl>
-      </Grid>
-
-      <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
-        <Typography variant="body1" align="left">
-          company logo
-        </Typography>
-          <ImageUpload
-          page = "AddProfilePic"
           />
         </FormControl>
       </Grid>
@@ -232,6 +282,64 @@ function RegisterVendorForm() {
           />
         </FormControl>
       </Grid>
+
+
+      <FormControl className={classes.formControl}>
+        <InputLabel id="vendor-type">Services Offered</InputLabel>
+        <Select
+          labelId="vendor-type"
+          id="vendor-type"
+          multiple
+          name="Vendor Types"
+          value={vendorTypeNames}
+          onChange={handleVendorTypeSelection}
+          input={<Input id="select-multiple-features" />}
+          renderValue={(selected) => (
+            <div className={classes.chips}>
+              {selected.map((feature) => (
+                <Chip key={feature} label={feature} className={classes.chip} />
+              ))}
+            </div>
+          )}
+        >
+          {services.map((category, i) => {
+            return (
+              <MenuItem key={i} value={category.name}>
+                {category.name}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+
+
+      <FormControl className={classes.formControl}>
+        <InputLabel id="special-features">Special Features</InputLabel>
+        <Select
+          labelId="special-features"
+          id="special-features"
+          multiple
+          name="Special Features"
+          value={specialFeatureNames}
+          onChange={handleFeatureSelection}
+          input={<Input id="select-multiple-features" />}
+          renderValue={(selected) => (
+            <div className={classes.chips}>
+              {selected.map((featureValue) => (
+                <Chip key={featureValue} label={featureValue} className={classes.chip} />
+              ))}
+            </div>
+          )}
+        >
+          {features.map((feature, i) => {
+            return (
+              <MenuItem key={i} value={feature.name}>
+                {feature.name}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
 
 
       <Grid item container xs={12} justify="center">

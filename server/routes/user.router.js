@@ -18,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
-  // User table info:
+  // Users table info:
   const username = req.body.username;
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -31,12 +31,23 @@ router.post('/register', (req, res, next) => {
   const type = req.body.type;
   const website = req.body.website;
 
+<<<<<<< HEAD
   // Vendor table info:
   const companyName = req.body.companyName;
   // const profilePic = req.body.profilePic;
+=======
+  // Vendors table info:
+  const companyName = req.body.companyName;
+>>>>>>> master
   const description = req.body.description;
   const additionalInfo = req.body.additionalInfo;
   const phone = req.body.phone;
+
+  // Vendors_features table info:
+  const featuresArray = req.body.specialFeatures;
+
+  // Vendors_services table info:
+  const servicesArray = req.body.vendorTypes;
 
   // console.log('username:', username);
   // console.log('firstName', firstName);
@@ -52,6 +63,8 @@ router.post('/register', (req, res, next) => {
   // console.log('companyName', companyName);
   // console.log('phone', phone);
   // console.log('description:', description);
+  console.log('servicesArray', servicesArray);
+  console.log('featuresArray', featuresArray);
 
   const queryText = `INSERT INTO "users" ("username", "firstName", "lastName", 
   "profilePic", "password", "address", "city", "state", "zip", "type", "website")
@@ -75,6 +88,7 @@ router.post('/register', (req, res, next) => {
       if (type === 'vendor') {
         // console.log('dbRes:', dbRes);
         const vendorUserId = dbRes.rows[0].id;
+<<<<<<< HEAD
         const sqlQuery = `INSERT INTO "vendors" ("vendorUserId", "companyName", "profilePic", "description", 
       "additionalInfo", "phone")
         VALUES ($1, $2, $3, $4, $5, $6);`;
@@ -87,6 +101,48 @@ router.post('/register', (req, res, next) => {
           additionalInfo,
           phone,
         ]);
+=======
+        const sqlQuery = `INSERT INTO "vendors" 
+          ("vendorUserId", "companyName", "description", "additionalInfo", "phone")
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING "vendorUserId";`;
+
+        pool.query(sqlQuery, [
+          vendorUserId,
+          companyName,
+          description,
+          additionalInfo,
+          phone,
+        ])
+          .then((dbRes) => {
+            // console.log('dbRes:', dbRes);
+            const vendorUserId = dbRes.rows[0].vendorUserId;
+            // console.log('vendorUserId for vendors_features:', vendorUserId);
+
+            const featureSqlText = `INSERT INTO "vendors_features"
+              ("vendorUserId", "featureId")
+              VALUES ($1, $2);`;
+
+            // Insert each selected special feature from the array into the DB:
+            for (let featureId of featuresArray) {
+              pool.query(featureSqlText, [vendorUserId, featureId])
+            }
+
+            const serviceSqlText = `INSERT INTO "vendors_services"
+            ("vendorUserId", "serviceId")
+            VALUES ($1, $2);`;
+
+            // Insert each selected special feature from the array into the DB:
+            for (let serviceId of servicesArray) {
+              pool.query(serviceSqlText, [vendorUserId, serviceId])
+            }
+
+          })
+          .catch((err) => {
+            console.log('User registration failed at vendors_features insertion: ', err);
+            res.sendStatus(500);
+          });
+>>>>>>> master
       }
 
       res.sendStatus(201);

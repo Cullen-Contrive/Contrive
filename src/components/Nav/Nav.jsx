@@ -3,22 +3,20 @@ import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-import useStyles from './Nav.styles'
+import useStyles from './Nav.styles';
 import { useSelector } from 'react-redux';
+
+import PlannerNav from './PlannerNav';
+import VendorNav from './VendorNav';
 
 // Material-UI Components
 import {
   Avatar,
-  BottomNavigation,
-  BottomNavigationAction,
   Box,
   Button,
   Divider,
   Drawer,
   Grid,
-  List,
-  ListItem,
-  ListItemText,
   Typography
 } from '@material-ui/core';
 
@@ -65,62 +63,63 @@ function Nav() {
 
   return (
 
-    <> {/* if user is not logged in, bottom nav will not render */}
-      {user.id && (
-        <BottomNavigation
+    <> {/* nav bar look depends on user type, vendor or planner */}
+      {user.type === 'vendor' ? 
+        <VendorNav
+          classes={classes}
+          handleChange={handleChange}
           value={value}
-          onChange={handleChange}
-          className={classes.navbar}
-        >
+        />
+        : 
+        <PlannerNav
+          classes={classes}
+          handleChange={handleChange}
+          value={value}
+        />
+      }
 
-          <BottomNavigationAction label="Discover" value="/discover" icon={<LanguageIcon />} />
-          <BottomNavigationAction label="Search" value="/search" icon={<SearchIcon />} />
-          <BottomNavigationAction label="Plan" value="/events/create" icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />} />
-          <BottomNavigationAction label="Messages" value="/messages" icon={<ChatIcon />} />
-          <BottomNavigationAction label="Menu" value="menu" icon={<MenuIcon />} />
+      <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
+        <Box p={1}>
+          <Typography variant='h5' component="h2" gutterBottom>
+            {user.firstName}'s Dashboard
+          </Typography>
+        </Box>
 
-          <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
-            <Box p={1}>
-              <Typography variant='h6' component="h2" gutterBottom>
-                {user.firstName}'s Dashboard
-              </Typography>
-            </Box>
+        {/* Todo - add the user's profile photo here */}
+        <Box p={2}>
+          <center><Avatar alt="Your profile picture." src={user.profilePic} className={classes.drawerAvatar} /></center>
+        </Box>
 
-            {/* Todo - add the user's profile photo here */}
-            <Box p={2}>
-              <center><Avatar>C</Avatar></center>
-            </Box>
+        <Divider />
 
-            <Divider />
-
-            <Box p={2}>
-              <Grid container direction="column" spacing={2} alignItems="center">
-                <Grid item>
-                  <Button color="primary" onClick={() => history.push('/myProfile')}>My Profile</Button>
-                </Grid>
-                <Grid item>
-                  <Button color="primary" onClick={() => history.push('/myNetwork')}>My Network</Button>
-                </Grid>
-                <Grid item>
-                  <Button color="primary" onClick={() => history.push('/myEvents')}>My Events</Button>
-                </Grid>
-                <Grid item>
-                  <Button color="primary" onClick={() => history.push('/myCalendar')}>My Calendar</Button>
-                </Grid>
-                {user.type === 'planner' && (
-                  <Grid item>
-                    <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
-                  </Grid>
-                )}
-                <Grid item>
-                  <LogOutButton className="navLink" />
-                </Grid>
+        <Box p={2}>
+          <Grid container direction="column" spacing={3} alignItems="center">
+            {user.type === 'vendor' && (
+              <Grid item>
+                <Button color="primary" onClick={() => history.push(`/vendor/${user.id}`)}>My Profile</Button>
               </Grid>
-            </Box>
+            )}
+            <Grid item>
+              <Button color="primary" onClick={() => history.push('/myNetwork')}>My Network</Button>
+            </Grid>
+            <Grid item>
+              <Button color="primary" onClick={() => history.push('/myEvents')}>My Events</Button>
+            </Grid>
+            <Grid item>
+              <Button color="primary" onClick={() => history.push('/myCalendar')}>My Calendar</Button>
+            </Grid>
+            {user.type === 'planner' && (
+              <Grid item>
+                <Button color="primary" onClick={() => history.push('/inspiration')}>Inspiration</Button>
+              </Grid>
+            )}
+            <Grid item>
+              <LogOutButton className="navLink" />
+            </Grid>
+          </Grid>
+        </Box>
 
-          </Drawer>
-        </BottomNavigation>
-      )}
+      </Drawer>
     </>
   );
 }
