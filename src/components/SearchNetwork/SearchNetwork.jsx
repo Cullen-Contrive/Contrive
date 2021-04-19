@@ -43,12 +43,13 @@ function SearchNetwork() {
                   The Network
                 </Box>
               </Typography>
-            </Box>
+              </Box>
 
             <SearchOptions
               searchInput={searchInput}
               setSearchInput={setSearchInput}
             />
+
 
           </Box>
         </Box>
