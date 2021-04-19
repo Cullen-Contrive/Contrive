@@ -94,9 +94,11 @@ function Nav() {
 
         <Box p={2}>
           <Grid container direction="column" spacing={2} alignItems="center">
-            <Grid item>
-              <Button color="primary" onClick={() => history.push('/myProfile')}>My Profile</Button>
-            </Grid>
+            {user.type === 'vendor' && (
+              <Grid item>
+                <Button color="primary" onClick={() => history.push(`/vendor/${user.id}`)}>My Profile</Button>
+              </Grid>
+            )}
             <Grid item>
               <Button color="primary" onClick={() => history.push('/myNetwork')}>My Network</Button>
             </Grid>
