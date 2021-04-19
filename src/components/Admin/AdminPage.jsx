@@ -144,13 +144,24 @@ function AdminPage() {
                         <TableCell>{vendor.firstName}</TableCell>
                         <TableCell>{vendor.lastName}</TableCell>
                         <TableCell></TableCell>
-                        <TableCell></TableCell>
+                        <TableCell align="left">
+                          <DeleteIcon color="primary" />
+                        </TableCell>
                       </TableRow>
                     );
                   })}
                 </TableBody>
               </Table>
             </TableContainer>
+            {/* <TablePagination
+              rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+            /> */}
             {/* <TableContainer className={classes.container}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
