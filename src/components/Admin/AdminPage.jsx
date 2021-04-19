@@ -26,6 +26,7 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
 const columns = [
@@ -42,33 +43,33 @@ const columns = [
 
 // const rows =
 
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
+// function descendingComparator(a, b, orderBy) {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
+//   return 0;
+// }
 
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(1, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
+// function getComparator(order, orderBy) {
+//   return order === 'desc'
+//     ? (a, b) => descendingComparator(1, b, orderBy)
+//     : (a, b) => -descendingComparator(a, b, orderBy);
+// }
 
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
+// function stableSort(array, comparator) {
+//   const stabilizedThis = array.map((el, index) => [el, index]);
+//   stabilizedThis.sort((a, b) => {
+//     const order = comparator(a[0], b[0]);
+//     if (order !== 0) {
+//       return order;
+//     }
+//     return a[1] - b[1];
+//   });
+//   return stabilizedThis.map((el) => el[0]);
+// }
 
 const useStyles = makeStyles({
   root: {
@@ -89,14 +90,14 @@ function AdminPage() {
     });
   }, []);
 
-  // let users = useSelector(store => store.)
+  const vendors = useSelector((store) => store.allVendors);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
+  // const createSortHandler = (property) => (event) => {
+  //   onRequestSort(event, property);
+  // };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -122,7 +123,7 @@ function AdminPage() {
             </Typography>
           </Box>
           <Paper className={classes.root}>
-            {/* <TableContainer className={classes.container}>
+            <TableContainer className={classes.container}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   {columns.map((column) => (
@@ -137,17 +138,19 @@ function AdminPage() {
                 </TableHead>
                 <TableBody>
                   {vendors.map((vendor) => {
-                    <TableRow key={vendor.vendorUserId}>
-                      <TableCell>{vendor.companyName}</TableCell>
-                      <TableCell>{vendor.firstName}</TableCell>
-                      <TableCell>{vendor.lastName}</TableCell>
-                      <TableCell></TableCell>
-                      <TableCell></TableCell>
-                    </TableRow>;
+                    return (
+                      <TableRow key={vendor.vendorUserId}>
+                        <TableCell>{vendor.companyName}</TableCell>
+                        <TableCell>{vendor.firstName}</TableCell>
+                        <TableCell>{vendor.lastName}</TableCell>
+                        <TableCell></TableCell>
+                        <TableCell></TableCell>
+                      </TableRow>
+                    );
                   })}
                 </TableBody>
               </Table>
-            </TableContainer> */}
+            </TableContainer>
             {/* <TableContainer className={classes.container}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
