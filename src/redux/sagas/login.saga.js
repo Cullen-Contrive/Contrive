@@ -21,7 +21,6 @@ function* loginUser(action) {
     // after the user has logged in
     // get the user information from the server
     yield put({ type: 'FETCH_USER' });
-
   } catch (error) {
     console.log('Error with user login:', error);
     if (error.response.status === 401) {
@@ -55,6 +54,7 @@ function* logoutUser(action) {
     // remove the client-side user object to let
     // the client-side code know the user is logged out
     yield put({ type: 'UNSET_USER' });
+    action.payload.onComplete();
   } catch (error) {
     console.log('Error with user logout:', error);
   }

@@ -20,11 +20,9 @@ const userDetailsRouter = require('./routes/user.details.router');
 const awsRouter = require('./routes/aws.router');
 const messageRouter = require('./routes/message.router');
 const vendorRouter = require('./routes/vendor.router');
-
-specialFeaturesRouter = require('./routes/specialFeatures.router');
+const specialFeaturesRouter = require('./routes/specialFeatures.router');
 const vendorTypesRouter = require('./routes/vendorTypes.router');
 const searchRouter = require('./routes/search.router');
-
 
 // TODO AWS const
 const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');

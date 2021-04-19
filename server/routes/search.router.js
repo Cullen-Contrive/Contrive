@@ -76,7 +76,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
   }
   // If no special feature nor search term selected, filter only for the vendor type:
   else if (featureId === -1 && searchTerm === "37423573209") {
-    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+    const queryText = `SELECT "vendors"."companyName", "vendors"."vendorUserId", "users"."profilePic" FROM "vendors"
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE "vendorUserId" IN 
                        (SELECT "vendorUserId" FROM "vendors_services"
@@ -96,7 +96,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
   }
   // If no vendor type nor search term selected, filter only for the special feature:
   else if (typeId === -1 && searchTerm === "37423573209") {
-    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+    const queryText = `SELECT "vendors"."companyName", "vendors"."vendorUserId", "users"."profilePic" FROM "vendors"
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE "vendorUserId" IN 
                        ( SELECT "vendorUserId" FROM "vendors_features"
@@ -116,7 +116,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
   }
   // If no special feature nor vendor type selected, filter only for the search term:
   else if (typeId === -1 && featureId === -1) {
-    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+    const queryText = `SELECT "vendors"."companyName", "vendors"."vendorUserId", "users"."profilePic" FROM "vendors"
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE "companyName" ILIKE '%' || $1 || '%'; 
                        `;
@@ -133,7 +133,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
   }
   // If special feature and search term given but no vendor type:
   else if (typeId === -1 && featureId != -1 && searchTerm != "37423573209") {
-    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+    const queryText = `SELECT "vendors"."companyName", "vendors"."vendorUserId", "users"."profilePic" FROM "vendors"
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE ( "vendorUserId" IN 
                        ( SELECT "vendorUserId" FROM "vendors_features" WHERE "featureId" = $1 ))
@@ -153,7 +153,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
   }
   // If vendor type and search term given but no special feature:
   else if (featureId === -1 && typeId != -1 && searchTerm != "37423573209") {
-    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+    const queryText = `SELECT "vendors"."companyName", "vendors"."vendorUserId", "users"."profilePic" FROM "vendors"
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE ("vendorUserId" IN 
                        ( SELECT "vendorUserId" FROM "vendors_services" WHERE "serviceId" = $1 ))
@@ -173,7 +173,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
   }
   // If vendor type and special feature given but no search term:
   else if (searchTerm === "37423573209" && typeId != -1 && featureId != -1) {
-    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+    const queryText = `SELECT "vendors"."companyName", "vendors"."vendorUserId", "users"."profilePic" FROM "vendors"
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE ("vendorUserId" IN 
                        ( SELECT "vendorUserId" FROM "vendors_services" WHERE "serviceId" = $1 ))
@@ -194,7 +194,7 @@ router.get('/typeId=:typeID/featureId=:featureID/searchTerm=:searchTerm', reject
   }
   // If all 3 search options given:
   else if (searchTerm != "37423573209" && typeId != -1 && featureId != -1) {
-    const queryText = `SELECT "vendors"."companyName", "users"."profilePic" FROM "vendors"
+    const queryText = `SELECT "vendors"."companyName", "vendors"."vendorUserId", "users"."profilePic" FROM "vendors"
                        JOIN "users" ON "vendors"."vendorUserId" = "users".id
                        WHERE ("vendorUserId" IN 
                        ( SELECT "vendorUserId" FROM "vendors_services" WHERE "serviceId" = $1 ))
