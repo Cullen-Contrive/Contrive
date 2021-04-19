@@ -108,6 +108,11 @@ function AdminPage() {
     setPage(0);
   };
 
+  const deleteVendor = (userId) => {
+    console.log('### deleteVendor() ###');
+    console.log('\tuserId:', userId);
+  };
+
   return (
     <Box>
       <Box mt={3} mb={3}>
@@ -145,7 +150,10 @@ function AdminPage() {
                         <TableCell>{vendor.lastName}</TableCell>
                         <TableCell></TableCell>
                         <TableCell align="left">
-                          <DeleteIcon color="primary" />
+                          <DeleteIcon
+                            color="primary"
+                            onClick={() => deleteVendor(vendor.vendorUserId)}
+                          />
                         </TableCell>
                       </TableRow>
                     );
