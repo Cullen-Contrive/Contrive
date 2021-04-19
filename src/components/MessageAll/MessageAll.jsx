@@ -137,7 +137,9 @@ function MessageAll() {
           <Box display="flex">
             <Button startIcon={<ArrowBackIosIcon />} onClick={goBack}></Button>
             <Typography variant="h5" className="header-message">
-              {`Messages to ${toUser.firstName} ${toUser.lastName}`}
+              {toUser.companyName == null
+                ? `Messages to ${toUser.firstName} ${toUser.lastName}`
+                : toUser.companyName}
             </Typography>
           </Box>
         </Grid>
