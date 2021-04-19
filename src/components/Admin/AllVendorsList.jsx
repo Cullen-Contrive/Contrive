@@ -2,10 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// Import Custom Components
-import AllPlannersList from './AllPlannersList';
-import AllVendorsList from './AllVendorsList';
-
 // Import Styling
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -46,7 +42,7 @@ const useStyles = makeStyles({
   },
 });
 
-function AdminPage() {
+function AllVendorsList() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -70,12 +66,7 @@ function AdminPage() {
 
   return (
     <Box>
-      <Box mt={3} mb={3}>
-        <Typography variant="h2" component="h1" align="center" gutterBottom>
-          Admin Portal
-        </Typography>
-      </Box>
-      {/* <Grid container justify="center">
+      <Grid container justify="center">
         <Grid item xs={10}>
           <Box mt={3} mb={3}>
             <Typography variant="h4" component="h2" align="left">
@@ -118,10 +109,9 @@ function AdminPage() {
             </TableContainer>
           </Paper>
         </Grid>
-      </Grid> */}
-      <AllVendorsList />
+      </Grid>
     </Box>
   );
 }
 
-export default AdminPage;
+export default AllVendorsList;
