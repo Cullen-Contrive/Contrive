@@ -101,7 +101,7 @@ function SearchOptions({
 
   return (
     <Grid item xs={12}>
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.vendorFormControl}>
         <InputLabel id="vendor-type">Vendor Types</InputLabel>
         <Select
           labelId="vendor-type"
@@ -123,8 +123,10 @@ function SearchOptions({
         </Select>
       </FormControl>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="special-features">Special Features</InputLabel>
+      <FormControl className={classes.featureFormControl}>
+        <InputLabel id="special-features">
+          Special Features
+        </InputLabel>
         <Select
           labelId="special-features"
           id="special-features"
@@ -147,8 +149,8 @@ function SearchOptions({
 
       {/* <Box className={classes.root}>
       <Box align="left"> */}
-      <Grid container >
-        <Grid item xs={9} className={classes.search}>
+      <Grid container className={classes.searchContainer} >
+        <Grid item xs={8} className={classes.search}>
 
           <div className={classes.searchIcon}>
             <SearchIcon />

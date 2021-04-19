@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
     // height: "100%",
     height: "200px",
   },
-  formControl: {
-    margin: theme.spacing(1),
+  featureFormControl: {
+    margin: theme.spacing(2),
+    marginLeft: "25px",
     minWidth: 120,
     maxWidth: 300,
   },
@@ -48,13 +49,17 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     borderRadius: 18,
     border: '1px solid black',
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
     marginLeft: 0,
     // width: '100%',
     // [theme.breakpoints.up('sm')]: {
     //   marginLeft: theme.spacing(3),
     //   width: 'auto',
     // },
+  },
+  searchContainer: {
+    display: "flex",
+    justifyContent: "center",
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -64,6 +69,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  vendorFormControl: {
+    margin: theme.spacing(2),
+    marginRight: "25px",
+    minWidth: 120,
+    maxWidth: 300,
   },
 }))
 
