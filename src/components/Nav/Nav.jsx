@@ -80,23 +80,25 @@ function Nav() {
 
       <Drawer anchor="right" open={state} onClose={() => toggleDrawer(false)} className={classes.menuDrawer}>
         <Box p={1}>
-          <Typography variant='h6' component="h2" gutterBottom>
+          <Typography variant='h5' component="h2" gutterBottom>
             {user.firstName}'s Dashboard
           </Typography>
         </Box>
 
         {/* Todo - add the user's profile photo here */}
         <Box p={2}>
-          <center><Avatar>C</Avatar></center>
+          <center><Avatar alt="Your profile picture." src={user.profilePic} className={classes.drawerAvatar} /></center>
         </Box>
 
         <Divider />
 
         <Box p={2}>
-          <Grid container direction="column" spacing={2} alignItems="center">
-            <Grid item>
-              <Button color="primary" onClick={() => history.push('/myProfile')}>My Profile</Button>
-            </Grid>
+          <Grid container direction="column" spacing={3} alignItems="center">
+            {user.type === 'vendor' && (
+              <Grid item>
+                <Button color="primary" onClick={() => history.push(`/vendor/${user.id}`)}>My Profile</Button>
+              </Grid>
+            )}
             <Grid item>
               <Button color="primary" onClick={() => history.push('/myNetwork')}>My Network</Button>
             </Grid>
