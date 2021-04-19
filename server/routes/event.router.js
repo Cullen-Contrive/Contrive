@@ -58,10 +58,8 @@ router.get('/', (req, res) => {
 });
 
 /**
- * POST route template
+ * POST route for /api/event
  */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+router.post('/', (req, res) => {});
 
 module.exports = router;
