@@ -18,16 +18,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "lastName", 
   "type", 
   "profilePic", 
+  "companyName",
   JSON_AGG(DISTINCT "users_photos".*) AS "userPhotos"
   FROM "users"
   JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
+  LEFT OUTER JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId"
   WHERE "users".id = $1
   GROUP BY 
   "users"."id",
   "firstName", 
   "lastName", 
   "type", 
-  "profilePic";`;
+  "profilePic", 
+  "companyName";`;
 
   pool
     .query(queryText, [userId])
@@ -57,16 +60,19 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "lastName", 
   "type", 
   "profilePic", 
+  "companyName",
   JSON_AGG(DISTINCT "users_photos".*) AS "userPhotos"
   FROM "users"
   JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
+  LEFT OUTER JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId"
   WHERE "users".id = $1
   GROUP BY 
   "users"."id",
   "firstName", 
   "lastName", 
   "type", 
-  "profilePic";`;
+  "profilePic", 
+  "companyName";`;
 
   pool
     .query(queryText, [userId])
