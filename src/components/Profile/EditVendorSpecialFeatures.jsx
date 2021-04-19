@@ -31,20 +31,20 @@ function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
           id="special-features-edit"
           multiple
           name="Edit Special Features"
-          value={}
+          value={vendor.specialFeatures}
           onChange={event => editProfileElement('specialFeatures', event.target.value) }
           input={<Input id="select-multiple-features" />}
           renderValue={(selected) => (
             <div className={classes.chips}>
               {selected.map((featureValue) => (
-                <Chip key={featureValue} label={featureValue} className={classes.chip} />
+                <Chip key={featureValue.id} label={featureValue.name} className={classes.chip} />
               ))}
             </div>
           )}
         >
           {features.map((feature, i) => {
             return (
-              <MenuItem key={i} value={feature.id}>
+              <MenuItem key={i} value={feature}>
                 {feature.name}
               </MenuItem>
             );
