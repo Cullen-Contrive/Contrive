@@ -34,15 +34,22 @@
     "styled-components": "^5.2.3",
     "sweetalert2": "^10.16.0"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
+  },
   "scripts": {
     "start": "node server/server.js",
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.13.12",
+    "jest": "^26.6.0",
     "nodemon": "^2.0.4"
   },
   "browserslist": [
