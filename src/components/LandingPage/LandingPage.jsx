@@ -67,13 +67,13 @@ function LandingPage() {
       <Box align="center" width="100%" className={classes.buttons}>
         <Box className={classes.root}>
 
-          <Button variant="contained" onClick={onLogin} style={{ height: 40 }}>
+          <Button color="secondary" variant="contained" onClick={onLogin} style={{ height: 40 }}>
             <Typography variant="body1">
               Login
         </Typography>
           </Button>
 
-          <Button variant="contained" onClick={onRegister} style={{ height: 40 }}>
+          <Button color="primary" variant="contained" onClick={onRegister} style={{ height: 40 }}>
             <Typography variant="body1">
               Register
         </Typography>

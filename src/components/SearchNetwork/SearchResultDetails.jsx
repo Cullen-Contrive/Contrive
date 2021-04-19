@@ -1,9 +1,15 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function SearchResultDetails({ vendor }) {
   // console.log('vendor:', vendor);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
+    // Bring in vendors to display upon page load:
+  let Vendors = useSelector(store => store.allVendors);
 
   return (
 
