@@ -52,7 +52,10 @@ router.get('/', (req, res) => {
       res.send(dbRes.rows);
     })
     .catch((err) => {
-      console.error('SERVER - GET events at /api/event an error occurred', err);
+      console.error(
+        'SERVER - GET events at /api/event an error occurred!',
+        err
+      );
       res.sendStatus(500);
     });
 });
@@ -111,7 +114,7 @@ router.get('/:id', (req, res) => {
     })
     .catch((err) => {
       console.error(
-        'SERVER - GET events at /api/event/id an error occurred',
+        'SERVER - GET events at /api/event/id an error occurred!',
         err
       );
       res.sendStatus(500);
@@ -164,7 +167,7 @@ router.post('/', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.error('SERVER - POST - an error occurred creating event', err);
+      console.error('SERVER - POST - an error occurred creating event!', err);
       res.sendStatus(500);
     });
 });
@@ -188,7 +191,35 @@ router.post('/photos', async (req, res) => {
       )
     );
     console.log(
-      'SERVER - POST - at /api/event/photos added photos successfully'
+      'SERVER - POST - at /api/event/photos added photos successfully!'
+    );
+    res.sendStatus(201);
+  } catch (err) {
+    await connection.query('ROLLBACK');
+    res.sendStatus(500);
+  }
+});
+
+/**
+ * POST route for /api/event/vendors
+ */
+router.post('/vendors', async (req, res) => {
+  // For adding vendors to events
+  try {
+    const queryText = `
+    INSERT INTO 
+    "events_vendors" 
+    ("vendorUserId", "eventId")
+    VALUES ($1, $2);`;
+    const eventId = req.body.eventId;
+
+    await Promise.all(
+      req.body.vendors.map((vendorId) =>
+        pool.query(queryText, [vendorId, eventId])
+      )
+    );
+    console.log(
+      'SERVER - POST - at /api/event/vendors added vendors successfully!'
     );
     res.sendStatus(201);
   } catch (err) {
