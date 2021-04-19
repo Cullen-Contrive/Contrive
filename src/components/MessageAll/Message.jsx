@@ -4,10 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-
-import makeStyles from '@material-ui/core/styles/makeStyles';
 
 function Message({ messageDetails, toUserId, currentUser, toUser }) {
   return (

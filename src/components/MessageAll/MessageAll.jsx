@@ -16,17 +16,15 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Fab from '@material-ui/core/Fab';
+
+// Icons
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { FavoriteBorder } from '@material-ui/icons';
 import SendIcon from '@material-ui/icons/Send';
 
 // Custom Components
 import Message from './Message';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { FavoriteBorder } from '@material-ui/icons';
 
 const Form = styled.form`
   width: 400px;
@@ -132,6 +130,7 @@ function MessageAll() {
   };
 
   const goBack = () => {
+    // TODO: push to wherever the previous place was
     history.push('/messages');
   };
 
@@ -143,7 +142,7 @@ function MessageAll() {
         <Grid item xs={12}>
           <Button startIcon={<ArrowBackIosIcon />} onClick={goBack}></Button>
           <Typography variant="h5" className="header-message">
-            Chat
+            {`${toUser.firstName} ${toUser.lastName}`}
           </Typography>
         </Grid>
       </Grid>
@@ -178,9 +177,12 @@ function MessageAll() {
                 />
               </Grid>
               <Grid xs={1} align="right">
-                <Fab color="primary" aria-label="add" type="submit">
-                  <SendIcon />
-                </Fab>
+                <Button
+                  color="primary"
+                  aria-label="add"
+                  type="submit"
+                  endIcon={<SendIcon />}
+                ></Button>
               </Grid>
             </Grid>
           </form>
