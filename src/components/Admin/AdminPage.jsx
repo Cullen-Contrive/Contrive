@@ -122,7 +122,7 @@ function AdminPage() {
             </Typography>
           </Box>
           <Paper className={classes.root}>
-            <TableContainer className={classes.container}>
+            {/* <TableContainer className={classes.container}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   {columns.map((column) => (
@@ -147,7 +147,7 @@ function AdminPage() {
                   })}
                 </TableBody>
               </Table>
-            </TableContainer>
+            </TableContainer> */}
             {/* <TableContainer className={classes.container}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>

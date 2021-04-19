@@ -1,6 +1,6 @@
 // Import Libraries
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -14,6 +14,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // CUSTOM COMPONENTS:
 import AdminPage from '../Admin/AdminPage';
 import Nav from '../Nav/Nav';
+import EditVendorProfile from '../Profile/EditVendorProfile';
+import ContriveHeader from '../Header/ContriveHeader'
+import CreateEvent from '../Event/CreateEvent';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import Message from '../MessageAll/MessageAll';
@@ -63,18 +66,20 @@ const contriveTheme = createMuiTheme({
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'FETCH_VENDOR_TYPES' });
-    dispatch({ type: 'FETCH_SPECIAL_FEATURES' });
   }, [dispatch]);
 
   return (
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
-        <Nav />
+
+        <ContriveHeader />
+        {user.id && <Nav />}
+
         <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/welcome, 
@@ -133,11 +138,27 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/vendor/edit/:id" // url will look like "/vendor/2"
+            >
+              <EditVendorProfile />
+            </ProtectedRoute>
+
+            <ProtectedRoute
               // logged in shows Discover else shows LoginPage
               exact
               path="/discover"
             >
               <DiscoverPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // logged in shows Discover else shows LoginPage
+              exact
+              path="/events/create"
+            >
+              <CreateEvent />
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -194,6 +215,7 @@ function App() {
             >
               <LandingPage />
             </ProtectedRoute>
+
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>

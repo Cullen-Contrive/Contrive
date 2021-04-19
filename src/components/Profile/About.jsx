@@ -79,9 +79,11 @@ function About({
           </Grid>
           <Grid item>
             <Typography variant="body2">
-              {serviceTypes.map((service, index) => {
-                return <li key={index}>{capitalize(service)}</li>;
-              })}
+              {serviceTypes && !serviceTypes[0] === null
+                ? serviceTypes.map((service) => {
+                    return <li key={service.id}>{capitalize(service.name)}</li>;
+                  })
+                : ' '}
             </Typography>
           </Grid>
           <Grid item>

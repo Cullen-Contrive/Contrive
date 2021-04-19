@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ImageUpload from '../ImageUpload/ImageUpload';
+import ImageUpload from '../ImageUpload/ImageUploadFunctional';
 
 // Material-UI
 import {
@@ -23,6 +23,13 @@ import {
 function RegisterForm() {
   // Define history for routing purposes:
   const history = useHistory();
+
+  // On page load, request special features and vendor type options to be prepared for RegisterVendorForm:
+  useEffect(() => {
+    dispatch({ type: 'FETCH_VENDOR_TYPES' });
+    dispatch({ type: 'FETCH_SPECIAL_FEATURES' });
+  }, []);
+
 
   // Manage state of form inputs:
   const [username, setUsername] = useState('');

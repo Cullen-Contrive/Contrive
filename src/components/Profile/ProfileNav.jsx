@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import EmailIcon from '@material-ui/icons/Email';
 import MessageIcon from '@material-ui/icons/Message';
@@ -32,18 +33,18 @@ function ProfileNav({
   }));
   const classes = useStyles();
   const history = useHistory();
+  const user = useSelector((store) => store.user)
 
   const goToEditView = () => {
     // handles going to editView if the
     // logged in user matches the vendorId
-    console.log('headed to edit view');
-    // history.push('/somewhere');
+    console.log('headed to edit view'), vendorId;
+    history.push(`/vendor/edit/${vendorId}`);
   };
 
   const goToMessageView = () => {
     // handles going to messageView for this particular vendor
     // passes the vendorId in as the toUser
-    console.log('headed to message view');
     history.push(`/message/${vendorId}`);
   };
 
@@ -65,12 +66,14 @@ function ProfileNav({
             >
               <EmailIcon />
             </IconButton>
-            <IconButton
-              aria-label="begin a message with this vendor"
-              onClick={goToMessageView}
-            >
-              <MessageIcon />
-            </IconButton>
+            {user.id !== vendorId && (
+              <IconButton
+                aria-label="begin a message with this vendor"
+                onClick={goToMessageView}
+              >
+                <MessageIcon />
+              </IconButton>
+            )}
             <IconButton
               aria-label="start a phone call"
               component="a"
@@ -95,9 +98,11 @@ function ProfileNav({
               <LanguageIcon />
             </IconButton>
             {/* Conditionally render this element */}
-            <IconButton aria-label="edit profile" onClick={goToEditView}>
-              <EditIcon />
-            </IconButton>
+            {user.id === vendorId && (
+              <IconButton aria-label="edit profile" onClick={goToEditView}>
+                <EditIcon />
+              </IconButton>
+            )}
           </ButtonGroup>
         </div>
       </Grid>
