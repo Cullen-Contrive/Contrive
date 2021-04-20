@@ -26,6 +26,7 @@ function EditVendorProfile() {
   }, []);
 
   const editProfileElement = (reducerKey, newKeyValue) => {
+    console.log('newKeyValue', newKeyValue)
     dispatch({
       type: 'SET_VENDOR',
       payload: {
