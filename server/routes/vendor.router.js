@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const insertSerializer = require('../modules/insertSerializer');
 const router = express.Router();
 const {
   rejectUnauthenticated,
@@ -122,7 +123,16 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
 
   const userId = req.user.id;
+  const updatedSpecialFeatures = [userId];
+  const updatedServiceTypes = [userId];
+  for (let feature of req.body.specialFeatures) {
+    updatedSpecialFeatures.push(feature.id);
+  }
+  for (let serviceType of req.body.serviceTypes) {
+    updatedServiceTypes.push(serviceType.id);
+  }
   console.log('user id:', userId);
+  console.log('updatedSpecialFeatures', updatedSpecialFeatures)
 
   const sqlTextVendors = `
     UPDATE "vendors"
@@ -146,6 +156,28 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     WHERE "id" = $7;
   `;
 
+  const sqlTextDeleteVendorFeatures = `
+    DELETE FROM "vendors_features"
+    WHERE "vendorUserId" = $1;
+  `;
+  
+  const sqlTextInsertVendorFeatures = `
+    INSERT INTO "vendors_features" ("vendorUserId", "featureId")
+    VALUES ${insertSerializer(req.body.specialFeatures)}
+  `;
+
+  const sqlTextDeleteVendorServices = `
+    DELETE FROM "vendors_services"
+    WHERE "vendorUserId" = $1;
+  `;
+
+    const sqlTextInsertVendorServices = `
+    INSERT INTO "vendors_services" ("vendorUserId", "serviceId")
+    VALUES ${insertSerializer(req.body.serviceTypes)}
+  `;
+
+  console.log('sqlTextInsertUserFeatures', sqlTextInsertVendorFeatures)
+
   const updateValuesVendors = [
     req.body.companyName,
     req.body.description,
@@ -168,6 +200,10 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     await connection.query('BEGIN');
     await connection.query(sqlTextVendors, updateValuesVendors);
     await connection.query(sqlTextUsers, updateValuesUsers);
+    await connection.query(sqlTextDeleteVendorFeatures, [userId]);
+    await connection.query(sqlTextInsertVendorFeatures, updatedSpecialFeatures);
+    await connection.query(sqlTextDeleteVendorServices, [userId]);
+    await connection.query(sqlTextInsertVendorServices, updatedServiceTypes);
     await connection.query('COMMIT');
     res.sendStatus(200);
   } catch (err) {
