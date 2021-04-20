@@ -229,6 +229,36 @@ router.post('/vendors', async (req, res) => {
 });
 
 /**
+ * POST route for /api/event/types
+ */
+router.post('/types', (req, res) => {
+  // For adding photos to events
+  const queryText = `
+  INSERT INTO 
+  "events_types" 
+  ("eventId", "typeId")
+  VALUES (3, 2);`;
+  const eventId = req.body.eventId;
+  const typeId = req.body.typeId;
+  pool
+    .query(queryText, [eventId, typeId])
+    .then((dbRes) => {
+      console.log(
+        'SERVER - POST - at /api/event/types added an event type successfully!'
+      );
+      console.table(dbRes.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(
+        'SERVER - POST at /api/event/types adding an event type an error occurred',
+        err
+      );
+      res.sendStatus(500);
+    });
+});
+
+/**
  * PUT route for /api/event/id
  */
 router.put('/:id', (req, res) => {
