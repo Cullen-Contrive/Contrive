@@ -13,7 +13,7 @@ function EditVendorBasicInfo({vendor, editProfileElement}) {
  
 
   return(
-    <Grid container spacing={2}>
+    <Grid item container spacing={2} xs={12} justify="center">
       <Grid item>
         <Typography variant="h4" align="center" gutterBottom>Upload Photo Goes Here</Typography>
       </Grid>

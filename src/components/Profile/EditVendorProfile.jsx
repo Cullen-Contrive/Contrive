@@ -10,6 +10,7 @@ import EditVendorSpecialFeatures from './EditVendorSpecialFeatures';
 import {
   Button,
   ButtonGroup,
+  Grid,
   Typography
 } from '@material-ui/core';
 
@@ -56,26 +57,30 @@ function EditVendorProfile() {
   return(
     <>
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
-      <EditVendorBasicInfo
-        vendor={vendorDetails}
-        editProfileElement={editProfileElement}
-      />
-      <EditVendorServiceTypes
-        vendor={vendorDetails}
-        editProfileElement={editProfileElement}
-      />
-      <EditVendorContact 
-        vendor={vendorDetails} 
-        editProfileElement={editProfileElement} 
-      />
-      <EditVendorSpecialFeatures
-        vendor={vendorDetails} 
-        editProfileElement={editProfileElement} 
-      /> 
-      <ButtonGroup variant="contained">
-        <Button color="secondary" onClick={cancelEdit}>Cancel</Button>
-        <Button color="primary" onClick={saveEdit}>Save</Button>
-      </ButtonGroup>
+      <Grid container spacing={3} direction="column" alignItems="center">
+        <EditVendorBasicInfo
+          vendor={vendorDetails}
+          editProfileElement={editProfileElement}
+        />
+        <EditVendorServiceTypes
+          vendor={vendorDetails}
+          editProfileElement={editProfileElement}
+        />
+        <EditVendorContact 
+          vendor={vendorDetails} 
+          editProfileElement={editProfileElement} 
+        />
+        <EditVendorSpecialFeatures
+          vendor={vendorDetails} 
+          editProfileElement={editProfileElement} 
+        /> 
+        <Grid item>
+          <ButtonGroup variant="contained">
+            <Button color="secondary" onClick={cancelEdit}>Cancel</Button>
+            <Button color="primary" onClick={saveEdit}>Save</Button>
+          </ButtonGroup>
+        </Grid>
+      </Grid>
     </>
   );
 } // end EditVendorProfile
