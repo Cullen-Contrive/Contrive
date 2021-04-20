@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Grid, Box, Typography } from '@material-ui/core';
 
 // CUSTOM COMPONENTS:
 import SearchResultDetails from './SearchResultDetails';
+
+// MATERIAL UI
+import useStyles from './Search.styles';
+import { Grid, Box, Typography, Card, CardContent } from '@material-ui/core';
+
 
 function SearchResults({ hasMadeSearchRequest }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const classes = useStyles();
+  const [spacing, setSpacing] = React.useState(2);
   // Clear previous search results upon arrival to this page:
   useEffect(() => {
     dispatch({
@@ -42,14 +48,22 @@ function SearchResults({ hasMadeSearchRequest }) {
                     // If no search has been made, default to displaying all vendors on page
                     (allVendors.map((eachVendor, i) => {
                       return (
+                        <Grid xs={6} className={classes.gridContainer} onClick={() => history.push(`/vendor/${eachVendor.vendorUserId}`)}>
+                          <Card className={classes.cardSize}>
+                            <Box height='90px' textAlign='center'>
+                              <CardContent>
+                                <Typography>{eachVendor.companyName}</Typography>
+                              </CardContent>
+                            </Box>
 
-                        <Grid item xs={5} onClick={() => history.push(`/vendor/${eachVendor.vendorUserId}`)}>
-                          <Box mt={3} mb={3}>
-                            <img src={eachVendor.profilePic} alt={eachVendor.companyName} className="vendorProfilePic" />
+                            <Box height='100px' alignContent='center'>
+                              <CardContent>
+                                <img className={classes.imgSize} src={eachVendor.profilePic} alt={eachVendor.companyName} />
+                              </CardContent>
+                            </Box>
                             {/* ToDo: Add Vendor Rating (Stretch) here */}
                             {/* <Box>{vendor.rating}</Box> */}
-                            <Typography>{eachVendor.companyName}</Typography>
-                          </Box>
+                          </Card>
                         </Grid>
                       );
                     }))
