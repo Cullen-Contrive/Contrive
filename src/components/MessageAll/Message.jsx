@@ -1,11 +1,12 @@
-import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+// Component to display individual messages, feeds into MessageAll.jsx
+
+// MATERIAL-UI
+import useStyles from './MessageAll.styles';
+import { Avatar, Divider, Grid, ListItemAvatar, ListItem, ListItemText } from '@material-ui/core';
 
 function Message({ messageDetails, toUserId, currentUser, toUser }) {
+  const classes = useStyles();
+
   return (
     // Conditionally render to or from based on what the user.id is
     // messageDetails.fromUser == currently logged in user id
