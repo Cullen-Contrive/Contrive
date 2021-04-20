@@ -100,7 +100,7 @@ function SearchOptions({
 
 
   return (
-    <Grid container>
+    <Grid item xs={12}>
       <FormControl className={classes.formControl}>
         <InputLabel id="vendor-type">Vendor Types</InputLabel>
         <Select
@@ -145,28 +145,38 @@ function SearchOptions({
         </Select>
       </FormControl>
 
-
-      <Grid item xs={8} className={classes.search}>
+      {/* <Box className={classes.root}>
+      <Box align="left"> */}
+      <Grid item xs={12} >
+      <Grid item xs={9} className={classes.search}>
+      <Box border={1} borderRadius={18}>
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>
         <InputBase type="search"
+          fullWidth={true}
           key="searchBar"
           value={searchInput}
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
-          placeholder={`Search vendors by name e.g. "Kiki's Delivery Service"`}
+          placeholder={`Search vendors by name`}
           onChange={(event) => setSearchInput(event.target.value)}
         />
+        </Box>
       </Grid>
-
-      <Grid item xs={4}>
+      {/* </Box> */}
+      
+      {/* <Box align="right"> */}
+      <Grid item xs={2}>
         <Button type="submit" onClick={handleSearchInput}>
           Search
         </Button>
       </Grid>
+      </Grid>
+      {/* </Box>
+      </Box> */}
 
       <SearchResults hasMadeSearchRequest={hasMadeSearchRequest} />
     </Grid>
