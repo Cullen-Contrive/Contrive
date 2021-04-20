@@ -139,7 +139,7 @@ router.post('/', (req, res) => {
   "description")
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
 
-  const plannerUserId = req.body.id;
+  const plannerUserId = req.user.id;
   const dateOfEvent = req.body.dateOfEvent;
   const timeOfEvent = req.body.timeOfEvent;
   const address = req.body.address;
@@ -226,6 +226,54 @@ router.post('/vendors', async (req, res) => {
     await connection.query('ROLLBACK');
     res.sendStatus(500);
   }
+});
+
+/**
+ * PUT route for /api/event/id
+ */
+router.put('/:id', (req, res) => {
+  // For updating event by id
+  const queryText = `
+  UPDATE "events" 
+  SET 
+  "plannerUserId" = $1,
+  "address" = $2, 
+  "city" = $3, 
+  "state" = $4, 
+  "zip" = $5,
+  "numberOfAttendees" = $6,
+  "description" = $7 
+  WHERE "id" = $8;`;
+
+  const plannerUserId = req.body.plannerUserId;
+  const address = req.body.address;
+  const city = req.body.city;
+  const state = req.body.state;
+  const zip = req.body.zip;
+  const numberOfAttendees = req.body.numberOfAttendees;
+  const description = req.body.description;
+  const eventId = req.params.id;
+
+  pool
+    .query(queryText, [
+      plannerUserId,
+      address,
+      city,
+      state,
+      zip,
+      numberOfAttendees,
+      description,
+      eventId,
+    ])
+    .then((dbRes) => {
+      console.log('SERVER - PUT updating event by id successful!');
+      console.table(dbRes.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error('SERVER - PUT updating event by id an error occurred', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
