@@ -180,9 +180,6 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
 });
 
 router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
-  console.log('%%% vendor.router -> DELETE /api/vendor/delete/:id');
-  console.log('%%%% user to delete:', req.params.id);
-
   const userIdToDelete = req.params.id;
 
   if (req.user.type !== 'admin') {

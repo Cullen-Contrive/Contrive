@@ -18,6 +18,7 @@ function AlertDialog({
   dialogText,
   dialogTitle,
   handleClose,
+  open,
   proceedAction,
 }) {
   return (

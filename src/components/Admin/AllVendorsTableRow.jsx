@@ -33,16 +33,14 @@ function AllVendorsTableRow({ vendor }) {
   };
 
   const deleteVendor = () => {
-    console.log('### deleteVendor() ###');
-
     const userId = vendor.vendorUserId;
+
+    handleClose();
 
     dispatch({
       type: 'DELETE_VENDOR',
-      // payload: userId,
-      payload: { userId: userId, onComplete: handleClose() },
+      payload: userId,
     });
-    handleClose();
   };
 
   return (
@@ -59,16 +57,19 @@ function AllVendorsTableRow({ vendor }) {
       <AlertDialog
         buttonOne={'Cancel'}
         buttonTwo={'Delete'}
-        dialogText={'This action will permanently delete this vendor.'}
+        dialogText={
+          'This action will permanently delete this vendor and all their associated data.'
+        }
         dialogTitle={'Delete User?'}
         handleClose={handleClose}
+        open={open}
         proceedAction={deleteVendor}
       />
       {/* <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
-        aria-describeby="altert-dialog-description"
+        aria-describeby="alert-dialog-description"
       >
         <DialogTitle is="alert-dialog-title">Delete User?</DialogTitle>
         <DialogContent>
