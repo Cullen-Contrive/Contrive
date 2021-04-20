@@ -26,6 +26,7 @@ function EditVendorProfile() {
   }, []);
 
   const editProfileElement = (reducerKey, newKeyValue) => {
+    console.log('newKeyValue', newKeyValue)
     dispatch({
       type: 'SET_VENDOR',
       payload: {
@@ -62,10 +63,10 @@ function EditVendorProfile() {
         vendor={vendorDetails} 
         editProfileElement={editProfileElement} 
       />
-      {/* <EditVendorSpecialFeatures
+      <EditVendorSpecialFeatures
         vendor={vendorDetails} 
         editProfileElement={editProfileElement} 
-      />       */}
+      /> 
       <ButtonGroup variant="contained">
         <Button color="secondary" onClick={cancelEdit}>Cancel</Button>
         <Button color="primary" onClick={saveEdit}>Save</Button>
