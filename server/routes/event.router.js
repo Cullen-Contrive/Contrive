@@ -232,7 +232,7 @@ router.post('/vendors', async (req, res) => {
  * POST route for /api/event/types
  */
 router.post('/types', (req, res) => {
-  // For adding photos to events
+  // For adding types to events
   const queryText = `
   INSERT INTO 
   "events_types" 
@@ -252,6 +252,35 @@ router.post('/types', (req, res) => {
     .catch((err) => {
       console.error(
         'SERVER - POST at /api/event/types adding an event type an error occurred',
+        err
+      );
+      res.sendStatus(500);
+    });
+});
+
+/**
+ * DELETE route for /api/event/types
+ */
+router.delete('/types', (req, res) => {
+  // For deleting types from events
+  const queryText = `
+  DELETE 
+  FROM "events_types"
+  WHERE "eventId" = $1;`;
+  const eventId = req.body.eventId;
+
+  pool
+    .query(queryText, [eventId])
+    .then((dbRes) => {
+      console.log(
+        'SERVER - DELETE - at /api/event/types deleted an event type successfully!'
+      );
+      console.table(dbRes.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(
+        'SERVER - DELETE at /api/event/types deleting an event type an error occurred',
         err
       );
       res.sendStatus(500);
