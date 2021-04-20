@@ -1,18 +1,22 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import useStyles from './EditVendorProfile.styles';
 
 import EditVendorContact from './EditVendorContact';
 import EditVendorBasicInfo from './EditVendorBasicInfo';
+import EditVendorServiceTypes from './EditVendorServiceTypes';
 import EditVendorSpecialFeatures from './EditVendorSpecialFeatures';
 
 import {
   Button,
   ButtonGroup,
+  Grid,
   Typography
 } from '@material-ui/core';
 
 function EditVendorProfile() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
@@ -55,22 +59,30 @@ function EditVendorProfile() {
   return(
     <>
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
-      <EditVendorBasicInfo
-        vendor={vendorDetails}
-        editProfileElement={editProfileElement}
-      />
-      <EditVendorContact 
-        vendor={vendorDetails} 
-        editProfileElement={editProfileElement} 
-      />
-      <EditVendorSpecialFeatures
-        vendor={vendorDetails} 
-        editProfileElement={editProfileElement} 
-      /> 
-      <ButtonGroup variant="contained">
-        <Button color="secondary" onClick={cancelEdit}>Cancel</Button>
-        <Button color="primary" onClick={saveEdit}>Save</Button>
-      </ButtonGroup>
+      <Grid container spacing={3} direction="column" alignItems="center" className={classes.editFormWrapper}>
+        <EditVendorBasicInfo
+          vendor={vendorDetails}
+          editProfileElement={editProfileElement}
+        />
+        <EditVendorServiceTypes
+          vendor={vendorDetails}
+          editProfileElement={editProfileElement}
+        />
+        <EditVendorContact 
+          vendor={vendorDetails} 
+          editProfileElement={editProfileElement} 
+        />
+        <EditVendorSpecialFeatures
+          vendor={vendorDetails} 
+          editProfileElement={editProfileElement} 
+        /> 
+        <Grid item>
+          <ButtonGroup variant="contained">
+            <Button color="secondary" onClick={cancelEdit}>Cancel</Button>
+            <Button color="primary" onClick={saveEdit}>Save</Button>
+          </ButtonGroup>
+        </Grid>
+      </Grid>
     </>
   );
 } // end EditVendorProfile
