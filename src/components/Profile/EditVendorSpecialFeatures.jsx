@@ -1,14 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useStyles from './EditVendorProfile.styles';
 
+// Material-UI Components
 import {
-  Checkbox,
   Chip,
   FormControl,
-  FormControlLabel,
-  FormGroup,
   FormHelperText,
-  FormLabel,
   Grid,
   Input,
   InputLabel,
@@ -28,9 +25,8 @@ function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
     const featureIdArray = [];
 
     // loop through our selected objects and make an array of only the ids
-    for (let feature of event.target.value) {
-      featureIdArray.push(feature.id);
-    }
+    event.target.value.map(feature => featureIdArray.push(feature.id))
+
     console.log('featureIdArray', featureIdArray)
 
     // creates an array of ids that are duplicated within featureIdArray

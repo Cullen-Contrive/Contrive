@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import EditVendorContact from './EditVendorContact';
 import EditVendorBasicInfo from './EditVendorBasicInfo';
+import EditVendorServiceTypes from './EditVendorServiceTypes';
 import EditVendorSpecialFeatures from './EditVendorSpecialFeatures';
 
 import {
@@ -56,6 +57,10 @@ function EditVendorProfile() {
     <>
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
       <EditVendorBasicInfo
+        vendor={vendorDetails}
+        editProfileElement={editProfileElement}
+      />
+      <EditVendorServiceTypes
         vendor={vendorDetails}
         editProfileElement={editProfileElement}
       />
