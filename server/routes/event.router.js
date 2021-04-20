@@ -24,9 +24,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "vendors"."companyName",
   "users"."firstName",
   "users"."lastName",
-  JSON_AGG("events_photos".*) AS "eventsPhotos", 
-  JSON_AGG("events_types".*) AS "eventsTypes", 
-  JSON_AGG("events_vendors".*) AS "eventsVendors"
+  JSON_AGG(DISTINCT "events_photos".*) AS "eventsPhotos", 
+  JSON_AGG(DISTINCT "events_types".*) AS "eventsTypes", 
+  JSON_AGG(DISTINCT "events_vendors".*) AS "eventsVendors"
   FROM "events"
   LEFT OUTER JOIN "events_photos" ON "events"."id" = "events_photos"."eventId" 
   LEFT OUTER JOIN "events_types" ON "events"."id" = "events_types"."eventId" 
@@ -71,8 +71,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `
   SELECT 
   "events"."id",
-  "events"."dateOfEvent", 
-  "events"."timeOfEvent", 
+  to_char("events"."dateOfEvent", 'DD MON YYYY') AS "dateOfEvent",
+  to_char("events"."timeOfEvent", 'HH:MM AM') AS "timeOfEvent",
   "events"."address", 
   "events"."city", 
   "events"."state", 
@@ -82,9 +82,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."companyName",
   "users"."firstName",
   "users"."lastName",
-  JSON_AGG("events_photos".*) AS "eventsPhotos", 
-  JSON_AGG("events_types".*) AS "eventsTypes", 
-  JSON_AGG("events_vendors".*) AS "eventsVendors"
+  JSON_AGG(DISTINCT "events_photos".*) AS "eventsPhotos", 
+  JSON_AGG(DISTINCT "events_types".*) AS "eventsTypes", 
+  JSON_AGG(DISTINCT "events_vendors".*) AS "eventsVendors"
   FROM "events"
   LEFT OUTER JOIN "events_photos" ON "events"."id" = "events_photos"."eventId" 
   LEFT OUTER JOIN "events_types" ON "events"."id" = "events_types"."eventId" 
