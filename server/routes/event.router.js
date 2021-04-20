@@ -1,11 +1,14 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route for /api/event
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   // Grabs all events
   const queryText = `
   SELECT 
@@ -63,7 +66,7 @@ router.get('/', (req, res) => {
 /**
  * GET route for /api/event/id
  */
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   // Grabs an event by id
   const queryText = `
   SELECT 
@@ -124,7 +127,7 @@ router.get('/:id', (req, res) => {
 /**
  * POST route for /api/event
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // For creating events
   const queryText = `
   INSERT INTO "events" 
@@ -175,7 +178,7 @@ router.post('/', (req, res) => {
 /**
  * POST route for /api/event/photos
  */
-router.post('/photos', async (req, res) => {
+router.post('/photos', rejectUnauthenticated, async (req, res) => {
   // For adding photos to events
   try {
     const queryText = `
@@ -203,7 +206,7 @@ router.post('/photos', async (req, res) => {
 /**
  * POST route for /api/event/vendors
  */
-router.post('/vendors', async (req, res) => {
+router.post('/vendors', rejectUnauthenticated, async (req, res) => {
   // For adding vendors to events
   try {
     const queryText = `
@@ -231,7 +234,7 @@ router.post('/vendors', async (req, res) => {
 /**
  * POST route for /api/event/types
  */
-router.post('/types', (req, res) => {
+router.post('/types', rejectUnauthenticated, (req, res) => {
   // For adding types to events
   const queryText = `
   INSERT INTO 
@@ -261,7 +264,7 @@ router.post('/types', (req, res) => {
 /**
  * DELETE route for /api/event/types
  */
-router.delete('/types', (req, res) => {
+router.delete('/types', rejectUnauthenticated, (req, res) => {
   // For deleting types from events
   const queryText = `
   DELETE 
@@ -290,7 +293,7 @@ router.delete('/types', (req, res) => {
 /**
  * DELETE route for /api/event/vendors
  */
-router.delete('/vendors', (req, res) => {
+router.delete('/vendors', rejectUnauthenticated, (req, res) => {
   // For deleting vendors from events
   const queryText = `
   DELETE 
@@ -320,7 +323,7 @@ router.delete('/vendors', (req, res) => {
 /**
  * PUT route for /api/event/id
  */
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
   // For updating event by id
   const queryText = `
   UPDATE "events" 
