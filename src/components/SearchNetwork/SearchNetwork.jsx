@@ -3,11 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-//Import Custom Components
+// CUSTOM COMPONENTS
 import SearchOptions from './SearchOptions';
 
 // MATERIAL UI
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
   Grid,
@@ -43,7 +42,7 @@ function SearchNetwork() {
                   The Network
                 </Box>
               </Typography>
-              </Box>
+            </Box>
 
             <SearchOptions
               searchInput={searchInput}
