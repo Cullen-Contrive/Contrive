@@ -4,12 +4,14 @@ import { useDispatch } from 'react-redux';
 
 // Import Styling
 import {
+  Box,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from '@material-ui/core';
 
 function AlertDialog({
@@ -28,20 +30,32 @@ function AlertDialog({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle is="alert-dialog-title">{dialogTitle}</DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          {dialogText}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          {buttonOne}
-        </Button>
-        <Button onClick={proceedAction} color="primary" autoFocus>
-          {buttonTwo}
-        </Button>
-      </DialogActions>
+      <Box m={3}>
+        <DialogTitle is="alert-dialog-title">
+          <Typography variant="h4" component="h2">
+            {dialogTitle}
+          </Typography>
+        </DialogTitle>
+      </Box>
+      <Box m={3}>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            <Typography variant="body1" component="p">
+              {dialogText}
+            </Typography>
+          </DialogContentText>
+        </DialogContent>
+      </Box>
+      <Box m={3}>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            {buttonOne}
+          </Button>
+          <Button onClick={proceedAction} color="primary" autoFocus>
+            {buttonTwo}
+          </Button>
+        </DialogActions>
+      </Box>
     </Dialog>
   );
 }
