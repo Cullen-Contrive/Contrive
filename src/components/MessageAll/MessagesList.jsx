@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // Material-UI components
+import useStyles from './MessageAll.styles.js'
 import {
   Avatar,
   Box,
@@ -17,7 +18,6 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import useStyles from './MessageAll.styles.js'
 
 function MessagesList() {
   const classes = useStyles();

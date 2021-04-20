@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 
 // Material UI
 import useStyles from './MessageAll.styles';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Box, Button,
   Paper, Grid,
@@ -28,22 +27,6 @@ import SendIcon from '@material-ui/icons/Send';
 // Custom Components
 import Message from './Message';
 
-const useStyles = makeStyles({
-  // chatSection: {
-  //   width: '100%',
-  //   height: '80vh',
-  // },
-  // headBG: {
-  //   backgroundColor: '#e0e0e0',
-  // },
-  // borderRight500: {
-  //   borderRight: '1px solid #e0e0e0',
-  // },
-  // messageArea: {
-  //   height: '70vh',
-  //   overflowY: 'auto',
-  // },
-});
 
 function MessageAll() {
   const classes = useStyles();

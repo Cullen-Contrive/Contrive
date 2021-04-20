@@ -1,3 +1,4 @@
+// Component to display individual messages, feeds into MessageAll.jsx
 
 // MATERIAL-UI
 import useStyles from './MessageAll.styles';
