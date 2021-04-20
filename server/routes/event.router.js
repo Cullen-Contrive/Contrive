@@ -13,8 +13,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
   SELECT 
   "events"."id",
-  "events"."dateOfEvent", 
-  "events"."timeOfEvent", 
+  to_char("events"."dateOfEvent", 'DD MON YYYY') AS "dateOfEvent",
+  to_char("events"."timeOfEvent", 'HH:MM AM') AS "timeOfEvent",
   "events"."address", 
   "events"."city", 
   "events"."state", 
