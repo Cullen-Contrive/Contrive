@@ -288,6 +288,36 @@ router.delete('/types', (req, res) => {
 });
 
 /**
+ * DELETE route for /api/event/vendors
+ */
+router.delete('/vendors', (req, res) => {
+  // For deleting vendors from events
+  const queryText = `
+  DELETE 
+  FROM "events_vendors" 
+  WHERE "vendorUserId" = $1 AND "eventId" = $2;`;
+  const vendorUserId = req.body.vendorUserId;
+  const eventId = req.body.eventId;
+
+  pool
+    .query(queryText, [vendorUserId, eventId])
+    .then((dbRes) => {
+      console.log(
+        'SERVER - DELETE - at /api/event/vendors deleted a vendor successfully!'
+      );
+      console.table(dbRes.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(
+        'SERVER - DELETE at /api/event/vendors deleted a vendor an error occurred',
+        err
+      );
+      res.sendStatus(500);
+    });
+});
+
+/**
  * PUT route for /api/event/id
  */
 router.put('/:id', (req, res) => {
