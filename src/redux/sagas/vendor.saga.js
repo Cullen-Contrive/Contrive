@@ -35,9 +35,18 @@ function* updateVendorProfile(action) {
   }
 }
 
+/**
+ * Function permanently removes a vendor (and all their associated data)
+ * from the DB
+ *
+ * @param {object} action object containing user ID to delete
+ */
 function* deleteVendor(action) {
   try {
+    // Delete Vendor
     yield axios.delete(`/api/vendor/delete/${action.payload}`);
+
+    // Update Vendor List
     yield put({ type: 'FETCH_ALL_VENDORS' });
   } catch (error) {
     console.error('DELETE vendor request failed:', error);
