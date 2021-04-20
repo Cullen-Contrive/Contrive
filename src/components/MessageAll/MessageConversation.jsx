@@ -110,7 +110,8 @@ function MessageConversation() {
 
   const goBack = () => {
     // TODO: push to wherever the previous place was
-    history.push('/messages');
+    // history.push('/messages');
+    history.goBack();
   };
 
 
