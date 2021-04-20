@@ -33,7 +33,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   LEFT OUTER JOIN "types_of_event" ON "events_types"."typeId" = "types_of_event"."id"
   LEFT OUTER JOIN "events_vendors" ON "events"."id" = "events_vendors"."eventId"
   LEFT OUTER JOIN "vendors" ON "events_vendors"."vendorUserId" = "vendors"."vendorUserId"
-  LEFT OUTER JOIN "users" ON "users"."id" = "vendors"."vendorUserId"
+  LEFT OUTER JOIN "users" ON "events"."plannerUserId" = "users"."id"
   GROUP BY 
   "events"."id",
   "events"."dateOfEvent", 
@@ -91,7 +91,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   LEFT OUTER JOIN "types_of_event" ON "events_types"."typeId" = "types_of_event"."id"
   LEFT OUTER JOIN "events_vendors" ON "events"."id" = "events_vendors"."eventId"
   LEFT OUTER JOIN "vendors" ON "events_vendors"."vendorUserId" = "vendors"."vendorUserId"
-  LEFT OUTER JOIN "users" ON "users"."id" = "vendors"."vendorUserId"
+  LEFT OUTER JOIN "users" ON "events"."plannerUserId" = "users"."id"
   WHERE "events"."id" = $1
   GROUP BY 
   "events"."id",

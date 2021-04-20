@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function CreateEvent() {
   const dispatch = useDispatch();
-  const allEvents = useSelector((store) => store.events.allEventsReducer);
+  const event = useSelector((store) => store.events.eventReducer);
   useEffect(() => {
-    dispatch({ type: 'FETCH_ALL_EVENTS' });
+    dispatch({ type: 'FETCH_SINGLE_EVENT', payload: 2 });
   }, []);
 
-  console.log('allEvents', allEvents);
+  console.log('event:', event);
   return (
     <Typography variant="h2">
       We will let you make an event... event...ually. 😂😅

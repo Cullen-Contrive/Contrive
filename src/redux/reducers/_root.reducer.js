@@ -9,7 +9,7 @@ import vendorTypes from './vendorTypes.reducer';
 import vendor from './vendor.reducer';
 import profilePic from './aws.reducer';
 import allVendors from './allVendors.reducer';
-import events from './event.reducer';
+import events from './events.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
