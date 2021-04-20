@@ -59,8 +59,13 @@ test('should login user', async () => {
     </Provider>
   );
 
-  // Check that "Discover" displays on the screen
+  // Check that "Login" displays on the welcome screen
   expect(screen.getByText('Login')).toBeVisible();
+
+  // Click on 'Login' to be routed to /discover 
+  // Compensate for some React-Router bug with leftClick
+  const leftClick = { button: 0 };
+  userEvent.click(screen.getByText('Login'), leftClick);
 
   // await always precedes waitFor
   // Wait for this text to be visible on screen before testing
@@ -71,11 +76,9 @@ test('should login user', async () => {
   // Check that Welcome text is visible (redundant, but c'est la vie)
   expect(screen.getByText('Discover Contrive')).toBeVisible();
 
-
-  // Click on ------ to be routed to /----- 
-  // Compensate for some React-Router bug with leftClick
-  // const leftClick = { button: 0 };
-  // userEvent.click(screen.getByText('-----'), leftClick);
+  // Find search icon and simulate clicking on it:
+  // fireEvent.click(SearchIcon);
+  // expect(SearchIcon).not.toBeNull();
 
   // // Check that /search view rendered properly:
   // expect(screen.getByText('The Network')).toBeVisible();
