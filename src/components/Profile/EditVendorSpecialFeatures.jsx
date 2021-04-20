@@ -67,7 +67,6 @@ function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
           id="special-features-edit"
           multiple
           value={vendor.specialFeatures}
-          // onChange={event => editProfileElement('specialFeatures', event.target.value)}
           onChange={handleFeatureChange}
           input={<Input id="select-multiple-features" />}
           renderValue={(selected) => (
