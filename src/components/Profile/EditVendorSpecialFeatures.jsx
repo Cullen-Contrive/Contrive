@@ -26,20 +26,25 @@ function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
   // checks the new array and Sanitizes data so no repeating values are allowed through to server
   const handleFeatureChange = (event) => {
     const featureIdArray = [];
+
     // loop through our selected objects and make an array of only the ids
     for (let feature of event.target.value) {
       featureIdArray.push(feature.id);
     }
     console.log('featureIdArray', featureIdArray)
 
-
+    // creates an array of ids that are duplicated within featureIdArray
+    // e.g. featureIdArray = [1, 2, 1], duplicateFeatureId = [1]
     const duplicateFeatureId = featureIdArray.filter((featureId, index) => {
       return featureIdArray.indexOf(featureId) !== index;
     })
 
+    // filter through our array, any duplicate ids should be entirely removed
+    // This is how we handle removing items from the selector
     const updatedIdArray = featureIdArray.filter(id => id !== duplicateFeatureId[0]);
     console.log('updatedIdArray', updatedIdArray)
 
+    // specialFeatures array will contain all of the feature objects to be added to reducer
     const specialFeatures = [];
     for (let feature of features) {
       for (let id of updatedIdArray) {
@@ -48,7 +53,6 @@ function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
         }
       } 
     }
-
     console.log('specialFeatures', specialFeatures);
 
     editProfileElement('specialFeatures', specialFeatures);
