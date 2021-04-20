@@ -15,8 +15,31 @@ import {
 
 function EditVendorServiceTypes({vendor, editProfileElement}) {
   const classes = useStyles();
-  const serviceTypes = useSelector(store => store.vendorTypes);
+  const vendorTypes = useSelector(store => store.vendorTypes);
 
+  const handleServiceTypeChange = (event) => {
+    const serviceTypeIdArray = [];
+
+    event.target.value.map(serviceType => serviceTypeIdArray.push(serviceType.id));
+
+    const duplicateServiceTypeId = serviceTypeIdArray.filter((serviceTypeId, index) => {
+      return serviceTypeIdArray.indexOf(serviceTypeId) !== index;
+    });
+
+    const updatedIdArray = serviceTypeIdArray.filter(id => id !== duplicateServiceTypeId[0]);
+
+    const serviceTypes = [];
+    for (let serviceType of vendorTypes) {
+      for (let id of updatedIdArray) {
+        if (serviceType.id === id) {
+          serviceTypes.push(serviceType);
+        }
+      }
+    }
+    console.log('serviceTypes is now:', serviceTypes);
+
+    editProfileElement('serviceTypes', serviceTypes)
+  }
 
   return(
     <Grid item xs={12}>
@@ -27,7 +50,7 @@ function EditVendorServiceTypes({vendor, editProfileElement}) {
           id="service-types-edit"
           multiple
           value={vendor.serviceTypes}
-          //onChange={handleFeatureChange}
+          onChange={handleServiceTypeChange}
           input={<Input id="select-multiple-types" />}
           renderValue={(selected) => (
             <div className={classes.chips}>
@@ -37,7 +60,7 @@ function EditVendorServiceTypes({vendor, editProfileElement}) {
             </div>
           )}
         >
-          {serviceTypes.map((serviceType, i) => {
+          {vendorTypes.map((serviceType, i) => {
             return (
               <MenuItem key={i} value={serviceType}>
                 {serviceType.name}

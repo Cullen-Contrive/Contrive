@@ -16,8 +16,6 @@ import {
 function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
   const classes = useStyles();
   const features = useSelector(store => store.features)
-  
-  console.log('THESE ARE THE FEATURES', features)
 
   // Handles the change of the feature's selector
   // checks the new array and Sanitizes data so no repeating values are allowed through to server
