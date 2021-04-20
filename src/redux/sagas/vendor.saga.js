@@ -11,7 +11,7 @@ function* fetchSingleVendor(action) {
   }
 }
 
-function* fetchAllVendors(action) {
+function* fetchAllVendors() {
   try {
     const response = yield axios.get('/api/vendor/all');
     yield put({ type: 'SET_ALL_VENDORS', payload: response.data });
@@ -26,9 +26,9 @@ function* updateVendorProfile(action) {
 
     yield put({
       type: 'FETCH_SINGLE_VENDOR',
-      payload: action.payload.data.vendorUserId
-    })
-    
+      payload: action.payload.data.vendorUserId,
+    });
+
     action.payload.onComplete();
   } catch (err) {
     console.error('Get all vendors request failed', err);
