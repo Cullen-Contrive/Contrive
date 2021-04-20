@@ -16,6 +16,8 @@ function* fetchSingleEvent(action) {
 function* fetchAllEvents() {
   try {
     const response = yield axios.get('/api/event');
+    // console.log('fetching all events');
+    // console.table('events:', response.data);
     yield put({ type: 'SET_ALL_EVENTS', payload: response.data });
   } catch (err) {
     console.error('Get all events request failed', err);
@@ -80,7 +82,7 @@ function* addTypeToEvent(action) {
   }
 }
 
-function* eventSaga() {
+function* eventsSaga() {
   yield takeLatest('FETCH_SINGLE_EVENT', fetchSingleEvent);
   yield takeLatest('FETCH_ALL_EVENTS', fetchAllEvents);
   yield takeLatest('ADD_EVENT', addEvent);
@@ -89,4 +91,4 @@ function* eventSaga() {
   yield takeLatest('ADD_TYPE_TO_EVENT', addTypeToEvent);
 }
 
-export default eventSaga;
+export default eventsSaga;
