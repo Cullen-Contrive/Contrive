@@ -109,8 +109,7 @@ function MessageConversation() {
   };
 
   const goBack = () => {
-    // TODO: push to wherever the previous place was
-    // history.push('/messages');
+    // Take user back to most recent page visited (either messageList or vendor profile)
     history.goBack();
   };
 
