@@ -123,7 +123,7 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
 
   const userId = req.user.id;
-  const updatedSpecialFeatures = [];
+  const updatedSpecialFeatures = [userId];
   for (let feature of req.body.specialFeatures) {
     updatedSpecialFeatures.push(feature.id);
   }
@@ -159,7 +159,7 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
   
   const sqlTextInsertUserFeatures = `
     INSERT INTO "vendors_features" ("vendorUserId", "featureId")
-    VALUES ${insertSerializer(updatedSpecialFeatures)}
+    VALUES ${insertSerializer(req.body.specialFeatures)}
   `;
 
   console.log('sqlTextInsertUserFeatures', sqlTextInsertUserFeatures)
