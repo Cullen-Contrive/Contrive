@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const insertSerializer = require('../modules/insertSerializer');
 const router = express.Router();
 const {
   rejectUnauthenticated,
@@ -122,7 +123,12 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
 
   const userId = req.user.id;
+  const updatedSpecialFeatures = [userId];
+  for (let feature of req.body.specialFeatures) {
+    updatedSpecialFeatures.push(feature.id);
+  }
   console.log('user id:', userId);
+  console.log('updatedSpecialFeatures', updatedSpecialFeatures)
 
   const sqlTextVendors = `
     UPDATE "vendors"
@@ -146,6 +152,18 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     WHERE "id" = $7;
   `;
 
+  const sqlTextDeleteUserFeatures = `
+    DELETE FROM "vendors_features"
+    WHERE "vendorUserId" = $1;
+  `;
+  
+  const sqlTextInsertUserFeatures = `
+    INSERT INTO "vendors_features" ("vendorUserId", "featureId")
+    VALUES ${insertSerializer(req.body.specialFeatures)}
+  `;
+
+  console.log('sqlTextInsertUserFeatures', sqlTextInsertUserFeatures)
+
   const updateValuesVendors = [
     req.body.companyName,
     req.body.description,
@@ -168,6 +186,8 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     await connection.query('BEGIN');
     await connection.query(sqlTextVendors, updateValuesVendors);
     await connection.query(sqlTextUsers, updateValuesUsers);
+    await connection.query(sqlTextDeleteUserFeatures, [userId]);
+    await connection.query(sqlTextInsertUserFeatures, updatedSpecialFeatures);
     await connection.query('COMMIT');
     res.sendStatus(200);
   } catch (err) {
