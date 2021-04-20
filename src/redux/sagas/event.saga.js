@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 // worker Saga: will be fired on "FETCH_SINGLE_EVENT" action
 function* fetchSingleEvent(action) {
   try {
-    // payload used for accessing event by id
+    // payload: id -> integer
     const response = yield axios.get(`/api/event/${action.payload}`);
     yield put({ type: 'SET_EVENT', payload: response.data });
   } catch (err) {
@@ -22,29 +22,71 @@ function* fetchAllEvents() {
   }
 }
 
+// worker Saga: will be fired on "ADD_EVENT" action
+function* addEvent(action) {
+  try {
+    // payload: {
+    // plannerUserId -> integer
+    // dateOfEvent -> date
+    // timeOfEvent -> string
+    // address -> string
+    // city -> string
+    // state -> string
+    // zip -> integer
+    // numberOfAttendees -> integer
+    // description -> string
+    // }
+    yield axios.post('/api/event', action.payload);
+  } catch (err) {
+    console.error('Adding event request failed', err);
+  }
+}
+
 // worker Saga: will be fired on "ADD_PHOTO_TO_EVENT" action
 function* addPhotoToEvent(action) {
   try {
-    // payload used for posting data to db
-    yield axios.post('/api/event', action.payload);
+    // payload: {
+    // expected photo -> Image URL - string
+    // expected eventId -> integer
+    // }
+    yield axios.post('/api/event/photos', action.payload);
   } catch (err) {
     console.error('Post photo to event request failed', err);
   }
 }
 
+// worker Saga: will be fired on "ADD_VENDOR_TO_EVENT" action
 function* addVendorToEvent(action) {
   try {
-    yield axios.post('/api/vendor', action.payload);
+    // payload: {
+    // expected vendorUserId -> integer
+    // expected eventId -> integer
+    // }
+    yield axios.post('/api/event/vendors', action.payload);
   } catch (err) {
     console.error('Post vendor to event request failed', err);
+  }
+}
+
+function* addTypeToEvent(action) {
+  try {
+    // payload: {
+    // expected eventId -> integer
+    // expected typeId -> integer
+    // }
+    yield axios.post('/api/event/types', action.payload);
+  } catch (err) {
+    console.error('Post type to event request failed', err);
   }
 }
 
 function* eventSaga() {
   yield takeLatest('FETCH_SINGLE_EVENT', fetchSingleEvent);
   yield takeLatest('FETCH_ALL_EVENTS', fetchAllEvents);
+  yield takeLatest('ADD_EVENT', addEvent);
   yield takeLatest('ADD_PHOTO_TO_EVENT', addPhotoToEvent);
   yield takeLatest('ADD_VENDOR_TO_EVENT', addVendorToEvent);
+  yield takeLatest('ADD_TYPE_TO_EVENT', addTypeToEvent);
 }
 
 export default eventSaga;
