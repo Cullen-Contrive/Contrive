@@ -82,10 +82,8 @@ test('should login user', async () => {
   const searchIcon = getById(dom.container, 'searchIcon');
   userEvent.click(searchIcon);
   expect(screen.getByText('The Network')).toBeVisible();
-  // userEvent.click(SearchIcon);
-  // expect(SearchIcon).not.toBeNull();
 
-  // // Check that /search view rendered properly:
-  // expect(screen.getByText('The Network')).toBeVisible();
-  // expect(screen.getByText('Vendor Types')).toBeVisible();
+  // Check that /search view rendered properly:
+  expect(screen.getByText('The Network')).toBeVisible();
+  expect(screen.getByText('Vendor Types')).toBeVisible();
 });
