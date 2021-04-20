@@ -82,6 +82,26 @@ function* addTypeToEvent(action) {
   }
 }
 
+function* updateEvent(action) {
+  try {
+    // payload: {
+    // plannerUserId -> integer
+    // address -> string
+    // city -> string
+    // state -> string
+    // zip -> integer
+    // numberOfAttendees -> integer
+    // description -> string
+    // dateOfEvent -> date
+    // timeOfEvent -> string
+    // eventId -> integer
+    // }
+    yield axios.put(`/api/event/${action.payload.eventId}`, action.payload);
+  } catch (err) {
+    console.error('Update event details request failed', err);
+  }
+}
+
 function* eventsSaga() {
   yield takeLatest('FETCH_SINGLE_EVENT', fetchSingleEvent);
   yield takeLatest('FETCH_ALL_EVENTS', fetchAllEvents);
@@ -89,6 +109,7 @@ function* eventsSaga() {
   yield takeLatest('ADD_PHOTO_TO_EVENT', addPhotoToEvent);
   yield takeLatest('ADD_VENDOR_TO_EVENT', addVendorToEvent);
   yield takeLatest('ADD_TYPE_TO_EVENT', addTypeToEvent);
+  yield takeLatest('UPDATE_EVENT', updateEvent);
 }
 
 export default eventsSaga;
