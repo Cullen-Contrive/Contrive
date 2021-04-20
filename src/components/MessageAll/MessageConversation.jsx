@@ -28,7 +28,7 @@ import SendIcon from '@material-ui/icons/Send';
 import Message from './Message';
 
 
-function MessageAll() {
+function MessageConversation() {
   const classes = useStyles();
   const socketRef = useRef();
   const dispatch = useDispatch();
@@ -175,4 +175,4 @@ function MessageAll() {
   );
 }
 
-export default MessageAll;
+export default MessageConversation;

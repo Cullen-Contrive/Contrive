@@ -19,7 +19,7 @@ import ContriveHeader from '../Header/ContriveHeader'
 import CreateEvent from '../Event/CreateEvent';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
-import Message from '../MessageAll/MessageAll';
+import Message from '../MessageAll/MessageConversation';
 import MessagesList from '../MessageAll/MessagesList';
 // import MessageDetail from '../MessageDetail/MessageDetail';
 import UserPage from '../UserPage/UserPage';
