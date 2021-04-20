@@ -16,21 +16,25 @@ function PlannerNav({ classes, handleChange, value }) {
     >
       <BottomNavigationAction
         label="Discover"
+        id="discoverIcon"
         value="/discover"
         icon={<ExploreIcon />}
       />
       <BottomNavigationAction
         label="Search"
+        id="searchIcon"
         value="/search"
         icon={<SearchIcon />}
       />
       <BottomNavigationAction
         label="Plan"
+        id="createEventIcon"
         value="/events/create"
         icon={<AddCircleIcon fontSize="large" style={{ color: '#B38208' }} />}
       />
       <BottomNavigationAction
         label="Messages"
+        id="messageIcon"
         value="/messages"
         icon={<ChatIcon />}
       />
