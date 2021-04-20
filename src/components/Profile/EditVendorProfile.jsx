@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import useStyles from './EditVendorProfile.styles';
 
 import EditVendorContact from './EditVendorContact';
 import EditVendorBasicInfo from './EditVendorBasicInfo';
@@ -15,6 +16,7 @@ import {
 } from '@material-ui/core';
 
 function EditVendorProfile() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
@@ -57,7 +59,7 @@ function EditVendorProfile() {
   return(
     <>
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
-      <Grid container spacing={3} direction="column" alignItems="center">
+      <Grid container spacing={3} direction="column" alignItems="center" className={classes.editFormWrapper}>
         <EditVendorBasicInfo
           vendor={vendorDetails}
           editProfileElement={editProfileElement}
