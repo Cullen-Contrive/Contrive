@@ -67,6 +67,11 @@ VALUES
 ('djhydan@gmail.com', 'Hydan', '', 'http://static1.squarespace.com/static/5a01c7c5d7bdce98fb7e8b06/t/5a5bfa57652dea17cc3219c4/1574230673654/?format=original', 'one', '', 'Kansas City', 'KS', 66101, 'vendor', 'http://djhydan.com/', 'HYDAN is an open format vinyl DJ based out of Kansas City. HYDAN grew up with a background in music, teaching himself how to play the piano at a very young age. HYDAN went on to play piano professionally until he discovered his passion for DJing while studying at the University of Kansas. In Lawrence, HYDAN helped build huge followings to what has become one of the most popular bars in the city and HYDAN quickly became one of the most followed DJs in Lawrence.'),
 ('info@levity.com', 'Derek', 'Styles', 'https://lirp.cdn-website.com/4fb9608c/dms3rep/multi/opt/Gray_Levity_Logo_Transparent_Background-cropped-426w.png', 'one', '1633 Swift St', 'Kansas City', 'MO', 64116, 'vendor', 'https://www.kcmobiledj.com/', 'Making Celebrations Easier');
 
+--Add Admin User
+INSERT INTO "users"
+("username", "firstName", "lastName", "profilePic", "password", "type")
+VALUES
+('admin@contrive.com', 'Aretha', 'McDonald', '', '$2a$10$GoLEVEfdugtGJxO/yJz1buXeR2JkS23p/GgLoKCAjRBnFO9Ia2uVu', 'admin');
 
 --USERS_PHOTOS:
 --Fill users_photos with fake user's profile photos:
