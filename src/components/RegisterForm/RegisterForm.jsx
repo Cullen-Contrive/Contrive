@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import useStyles from './RegisterForm.styles';
 import ImageUpload from '../ImageUpload/ImageUpload';
 
 // Material-UI
@@ -17,13 +18,16 @@ import {
   Select,
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
+  Box,
+  makeStyles,
 
 } from '@material-ui/core';
 
 function RegisterForm() {
   // Define history for routing purposes:
   const history = useHistory();
-
+  const classes = useStyles();
+  
   // On page load, request special features and vendor type options to be prepared for RegisterVendorForm:
   useEffect(() => {
     dispatch({ type: 'FETCH_VENDOR_TYPES' });
@@ -38,6 +42,7 @@ function RegisterForm() {
   const [lastName, setLastName] = useState('');
   const [website, setWebsite] = useState('');
   const [userType, setUserType] = useState('');
+  
 
   // console.log('====================================');
   // console.log('username:', username);
@@ -214,6 +219,7 @@ function RegisterForm() {
       </Grid>
 
       <Grid item container xs={12} justify="center">
+      <Box className={classes.root}>
         <Button color="secondary" variant="contained"
           type="button"
           onClick={() => {
@@ -229,7 +235,7 @@ function RegisterForm() {
             (userType === 'vendor' ? (() => vendorRegistration()) :
               ((event) => registerUser(event)))}>Next
         </Button>
-
+        </Box>
       </Grid>
     </Grid>
   );
