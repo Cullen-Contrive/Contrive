@@ -16,7 +16,8 @@ import {
   Select,
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
-  Chip
+  Chip,
+  Box
 } from '@material-ui/core';
 
 
@@ -343,6 +344,7 @@ function RegisterVendorForm() {
 
 
       <Grid item container xs={12} justify="center">
+      <Box className={classes.root}>
         <Button color="secondary" variant="contained"
           type="button"
           onClick={() => {
@@ -355,7 +357,7 @@ function RegisterVendorForm() {
           onClick={registerUser}>
           Register
         </Button>
-
+        </Box>
       </Grid>
     </Grid>
   );
