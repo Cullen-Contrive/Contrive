@@ -16,11 +16,21 @@ import {
   Select,
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
-
+  makeStyles,
+  Box,
 } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 function LoginForm() {
   const history = useHistory();
+  const classes = useStyles();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -42,6 +52,22 @@ function LoginForm() {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
   }; // end login
+
+  let keyPressed = (event) => {
+    if (event.key === "Enter") {
+      if (username && password) {
+        dispatch({
+          type: 'LOGIN',
+          payload: {
+            username: username,
+            password: password,
+          },
+        });
+      } else {
+        dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      }
+    }
+  };
 
   return (
     <Grid item container spacing={2} xs={12} component={Paper}>
@@ -81,10 +107,15 @@ function LoginForm() {
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
+            onKeyPress={keyPressed}
           />
         </FormControl>
       </Grid>
+
+
       <Grid item container xs={12} justify="center">
+      <Box align = "center">
+      <Box className={classes.root}>
         <Button color="secondary" variant="contained"
           type="button"
           onClick={() => {
@@ -97,6 +128,8 @@ function LoginForm() {
           onClick={login}>
           Log In
         </Button>
+        </Box>
+      </Box>
       </Grid>
     </Grid>
   );

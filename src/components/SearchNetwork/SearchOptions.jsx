@@ -98,6 +98,14 @@ function SearchOptions({
     })
   };
 
+  let keyPressed = (event) => {
+    if (event.key === "Enter") {
+      handleSearchInput();
+    }
+  };
+
+  const runSearchEnter = (searchSelections) =>
+    keyPressed();
 
   return (
     <Grid item xs={12}>
@@ -165,6 +173,7 @@ function SearchOptions({
             }}
             placeholder={`Search vendors by name`}
             onChange={(event) => setSearchInput(event.target.value)}
+            onKeyPress={keyPressed}
           />
 
         </Grid>
