@@ -1,5 +1,5 @@
 // Similar to ReactDOM.render that we use in index.js
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, queryByAttribute, fireEvent } from '@testing-library/react';
 // for click events:
 import userEvent from '@testing-library/user-event';
 // import component you will be testing:
@@ -15,6 +15,8 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import SearchIcon from '@material-ui/icons/Search';
 
+// Set up ability to select App elements by ID (i.e. icons without words on DOM):
+const getById = queryByAttribute.bind(null, 'id');
 
 ///////////// SET UP MOCK SERVER ///////////////////////
 // Once a user is logged in, they can do a GET /api/user
@@ -53,7 +55,7 @@ afterAll(() => server.close());
 
 
 test('should login user', async () => {
-  render(
+  const dom = render(
     <Provider store={store}>
       <App />
     </Provider>
@@ -77,7 +79,10 @@ test('should login user', async () => {
   expect(screen.getByText('Discover Contrive')).toBeVisible();
 
   // Find search icon and simulate clicking on it:
-  // fireEvent.click(SearchIcon);
+  const searchIcon = getById(dom.container, 'searchIcon');
+  userEvent.click(searchIcon);
+  expect(screen.getByText('The Network')).toBeVisible();
+  // userEvent.click(SearchIcon);
   // expect(SearchIcon).not.toBeNull();
 
   // // Check that /search view rendered properly:
