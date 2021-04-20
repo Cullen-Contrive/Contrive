@@ -39,12 +39,11 @@ function MessageConversation() {
   const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const existingMessages = useSelector((store) => store.chat.chatReducer);
-  const currentUser = useSelector(
-    (store) => store.userDetails.loggedInUserDetailsReducer
-  );
+  const currentUser = useSelector((store) => store.user);
   const toUser = useSelector(
-    (store) => store.userDetails.otherUserDetailsReducer
+    (store) => store.userDetails
   );
+  console.log('toUser:', toUser);
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
@@ -55,18 +54,12 @@ function MessageConversation() {
     });
     // Fetch current messages
     fetchMessages();
-    fetchLoggedInUserDetails();
     fetchToUserDetails();
   }, []);
 
   const fetchMessages = () => {
     // Fetches messages between fromUser and toUser
     dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
-  };
-
-  const fetchLoggedInUserDetails = () => {
-    // Fetches display info for logged in user of conversation
-    dispatch({ type: 'FETCH_LOGGED_IN_USER_DETAILS' });
   };
 
   const fetchToUserDetails = () => {

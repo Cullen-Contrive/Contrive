@@ -15,25 +15,8 @@ function* fetchUserDetailsById(action) {
   }
 }
 
-function* fetchLoggedInUserDetails() {
-  // Fetches logged-in user's details
-  // No incoming payload - Server uses req.user.id
-  console.log('FETCHING logged in user details');
-  const response = yield axios.get('/api/user/details/');
-  console.log('FETCHED', response.data);
-  yield put({
-    type: 'SET_LOGGED_IN_USER_DETAILS',
-    payload: response.data,
-  });
-  try {
-  } catch (err) {
-    console.error('an error occurred fetching logged-in user details');
-  }
-}
-
 function* userDetailsSaga() {
   yield takeLatest('FETCH_USER_DETAILS_BY_ID', fetchUserDetailsById);
-  yield takeLatest('FETCH_LOGGED_IN_USER_DETAILS', fetchLoggedInUserDetails);
 }
 
 export default userDetailsSaga;

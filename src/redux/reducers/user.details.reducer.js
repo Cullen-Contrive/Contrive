@@ -11,16 +11,4 @@ const otherUserDetailsReducer = (state = {}, action) => {
   }
 };
 
-const loggedInUserDetailsReducer = (state = {}, action) => {
-  switch (action.type) {
-    case 'SET_LOGGED_IN_USER_DETAILS':
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export default combineReducers({
-  otherUserDetailsReducer,
-  loggedInUserDetailsReducer,
-});
+export default otherUserDetailsReducer;
