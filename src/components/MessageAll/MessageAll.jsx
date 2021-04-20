@@ -1,5 +1,7 @@
-// View of all messages related to the logged-in user.
-// Reached by path '/message'
+// View of all message thread between logged-in user and one specific other user.
+// Reached by path '/message/${messageId}'
+
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,16 +10,15 @@ import io from 'socket.io-client';
 import Swal from 'sweetalert2';
 
 // Material UI
-import React from 'react';
+import useStyles from './MessageAll.styles';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
+import {
+  Box, Button,
+  Paper, Grid,
+  TextField, Typography,
+  List, ListItemText
+} from '@material-ui/core';
+
 
 // Icons
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -28,30 +29,31 @@ import SendIcon from '@material-ui/icons/Send';
 import Message from './Message';
 
 const useStyles = makeStyles({
-  chatSection: {
-    width: '100%',
-    height: '80vh',
-  },
-  headBG: {
-    backgroundColor: '#e0e0e0',
-  },
-  borderRight500: {
-    borderRight: '1px solid #e0e0e0',
-  },
-  messageArea: {
-    height: '70vh',
-    overflowY: 'auto',
-  },
+  // chatSection: {
+  //   width: '100%',
+  //   height: '80vh',
+  // },
+  // headBG: {
+  //   backgroundColor: '#e0e0e0',
+  // },
+  // borderRight500: {
+  //   borderRight: '1px solid #e0e0e0',
+  // },
+  // messageArea: {
+  //   height: '70vh',
+  //   overflowY: 'auto',
+  // },
 });
 
 function MessageAll() {
-  const [message, setMessage] = useState('');
-  const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
-
+  const classes = useStyles();
   const socketRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
+
+  const [message, setMessage] = useState('');
+  const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const existingMessages = useSelector((store) => store.chat.chatReducer);
   const currentUser = useSelector(
@@ -128,7 +130,7 @@ function MessageAll() {
     history.push('/messages');
   };
 
-  const classes = useStyles();
+
 
   return (
     <div>

@@ -1,9 +1,12 @@
+// View of all messages (with any other users) related to the logged-in user.
+// Reached by path '/messages'
+
 import { Fragment, useEffect, } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // Material-UI components
-import { 
+import {
   Avatar,
   Box,
   Divider,
@@ -16,7 +19,7 @@ import {
 
 import useStyles from './MessageAll.styles.js'
 
-function MessagesList(){
+function MessagesList() {
   const classes = useStyles();
   const user = useSelector((store) => store.user);
   const conversations = useSelector((store) => store.chat.allMessagesReducer);
@@ -24,7 +27,7 @@ function MessagesList(){
   const history = useHistory();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_ALL_MESSAGES', payload: user.id})
+    dispatch({ type: 'FETCH_ALL_MESSAGES', payload: user.id })
   }, [])
 
   const viewConversation = (messengerId) => {
@@ -33,28 +36,28 @@ function MessagesList(){
   }
 
   console.log('list of conversations:', conversations);
-  return(
+  return (
     <>
       <Box p={1}>
         <Typography variant="h2" align="center">Messages</Typography>
       </Box>
 
-      <Divider/>
+      <Divider />
 
       <List className={classes.messagesList}>
         {conversations.map((conversation, index) => {
           // this will be the id of the user that the logged in user is having a conversation with
           let messenger;
-          
+
           if (conversation.greatest === user.id) {
             messenger = conversation.least;
           } else {
             messenger = conversation.greatest;
           }
 
-          return(
+          return (
             <div key={index}>
-              <ListItem alignItems="flex-start"onClick={() => viewConversation(messenger)}>
+              <ListItem alignItems="flex-start" onClick={() => viewConversation(messenger)}>
                 {/* This is the profile pic of the user that the logged in user is having a conversation with */}
                 <ListItemAvatar className={classes.chatAvatar}>
                   <Avatar className={classes.chatAvatar} alt={conversation.companyName} src={conversation.profilePic} />
