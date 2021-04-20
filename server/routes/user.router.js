@@ -87,13 +87,14 @@ router.post('/register', (req, res, next) => {
         VALUES ($1, $2, $3, $4, $5)
         RETURNING "vendorUserId";`;
 
-        pool.query(sqlQuery, [
-          vendorUserId,
-          companyName,
-          description,
-          additionalInfo,
-          phone,
-        ])
+        pool
+          .query(sqlQuery, [
+            vendorUserId,
+            companyName,
+            description,
+            additionalInfo,
+            phone,
+          ])
           .then((dbRes) => {
             // console.log('dbRes:', dbRes);
             const vendorUserId = dbRes.rows[0].vendorUserId;
@@ -105,7 +106,7 @@ router.post('/register', (req, res, next) => {
 
             // Insert each selected special feature from the array into the DB:
             for (let featureId of featuresArray) {
-              pool.query(featureSqlText, [vendorUserId, featureId])
+              pool.query(featureSqlText, [vendorUserId, featureId]);
             }
 
             const serviceSqlText = `INSERT INTO "vendors_services"
@@ -114,12 +115,14 @@ router.post('/register', (req, res, next) => {
 
             // Insert each selected special feature from the array into the DB:
             for (let serviceId of servicesArray) {
-              pool.query(serviceSqlText, [vendorUserId, serviceId])
+              pool.query(serviceSqlText, [vendorUserId, serviceId]);
             }
-
           })
           .catch((err) => {
-            console.log('User registration failed at vendors_features insertion: ', err);
+            console.log(
+              'User registration failed at vendors_features insertion: ',
+              err
+            );
             res.sendStatus(500);
           });
       }

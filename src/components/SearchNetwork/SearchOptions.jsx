@@ -100,8 +100,8 @@ function SearchOptions({
 
 
   return (
-    <Grid container>
-      <FormControl className={classes.formControl}>
+    <Grid item xs={12}>
+      <FormControl className={classes.vendorFormControl}>
         <InputLabel id="vendor-type">Vendor Types</InputLabel>
         <Select
           labelId="vendor-type"
@@ -123,8 +123,10 @@ function SearchOptions({
         </Select>
       </FormControl>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="special-features">Special Features</InputLabel>
+      <FormControl className={classes.featureFormControl}>
+        <InputLabel id="special-features">
+          Special Features
+        </InputLabel>
         <Select
           labelId="special-features"
           id="special-features"
@@ -145,28 +147,38 @@ function SearchOptions({
         </Select>
       </FormControl>
 
+      {/* <Box className={classes.root}>
+      <Box align="left"> */}
+      <Grid container className={classes.searchContainer} >
+        <Grid item xs={8} className={classes.search}>
 
-      <Grid item xs={8} className={classes.search}>
-        <div className={classes.searchIcon}>
-          <SearchIcon />
-        </div>
-        <InputBase type="search"
-          key="searchBar"
-          value={searchInput}
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          placeholder={`Search vendors by name e.g. "Kiki's Delivery Service"`}
-          onChange={(event) => setSearchInput(event.target.value)}
-        />
-      </Grid>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase type="search"
+            fullWidth={true}
+            key="searchBar"
+            value={searchInput}
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            placeholder={`Search vendors by name`}
+            onChange={(event) => setSearchInput(event.target.value)}
+          />
 
-      <Grid item xs={4}>
-        <Button type="submit" onClick={handleSearchInput}>
-          Search
+        </Grid>
+        {/* </Box> */}
+
+        {/* <Box align="right"> */}
+        <Grid item xs={2}>
+          <Button type="submit" onClick={handleSearchInput}>
+            Search
         </Button>
+        </Grid>
       </Grid>
+      {/* </Box>
+      </Box> */}
 
       <SearchResults hasMadeSearchRequest={hasMadeSearchRequest} />
     </Grid>
