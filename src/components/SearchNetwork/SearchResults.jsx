@@ -1,26 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Grid, Box, Typography, Card, CardContent } from '@material-ui/core';
 
 // CUSTOM COMPONENTS:
 import SearchResultDetails from './SearchResultDetails';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  gridContainer: {
-    paddingTop: "10px",
-    padding: theme.spacing(1),
-  },
-  cardSize:{
-    // height: "100%",
-    height: "200px",
-  },
-  img: {
-    maxHeight: "75px",
-    minHeight: "40px"
-  }
-}));
+// MATERIAL UI
+import useStyles from './Search.styles';
+import { Grid, Box, Typography, Card, CardContent } from '@material-ui/core';
+
+
 function SearchResults({ hasMadeSearchRequest }) {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -62,15 +51,15 @@ function SearchResults({ hasMadeSearchRequest }) {
                         <Grid xs={6} className={classes.gridContainer} onClick={() => history.push(`/vendor/${eachVendor.vendorUserId}`)}>
                           <Card className={classes.cardSize}>
                             <Box height='90px' textAlign='center'>
-                            <CardContent>
-                              <Typography>{eachVendor.companyName}</Typography>
-                            </CardContent>
+                              <CardContent>
+                                <Typography>{eachVendor.companyName}</Typography>
+                              </CardContent>
                             </Box>
 
                             <Box height='100px' alignContent='center'>
-                            <CardContent>
-                              <img className={classes.img} src={eachVendor.profilePic} alt={eachVendor.companyName} />
-                            </CardContent>
+                              <CardContent>
+                                <img className={classes.imgSize} src={eachVendor.profilePic} alt={eachVendor.companyName} />
+                              </CardContent>
                             </Box>
                             {/* ToDo: Add Vendor Rating (Stretch) here */}
                             {/* <Box>{vendor.rating}</Box> */}
