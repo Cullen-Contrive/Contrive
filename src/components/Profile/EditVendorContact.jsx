@@ -6,7 +6,7 @@ import {
 
 function EditVendorContact({vendor, editProfileElement}) {
   return(
-    <Grid container spacing={2}>
+    <Grid item container spacing={2} xs={12}>
       <Grid item xs={12}>
         <FormControl fullWidth>
           <TextField 
