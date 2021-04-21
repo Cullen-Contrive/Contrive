@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '80vh',
   },
+  mainMessageContent: {
+    zIndex: '-1',
+    position: 'relative',
+  },
   messageArea: {
     // height: '70vh',
     overflowY: 'auto',
