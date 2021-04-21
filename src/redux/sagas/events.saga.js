@@ -37,16 +37,14 @@ function* addEvent(action) {
     // zip -> integer
     // numberOfAttendees -> integer
     // description -> string
-    // photo -> Image URL - string
+    // photos -> array of Image URLs
     // onComplete -> function
     // }
     const response = yield axios.post('/api/event', action.payload);
-    console.log('action.payload', action.payload);
-    if (action.payload.photo) {
-      console.log('photo does exist');
+    if (action.payload.photos) {
       yield put({
         type: 'ADD_PHOTO_TO_EVENT',
-        payload: { photo: action.payload.photo, eventId: response.data },
+        payload: { photos: action.payload.photos, eventId: response.data },
       });
     }
     action.payload.onComplete();
@@ -59,7 +57,7 @@ function* addEvent(action) {
 function* addPhotoToEvent(action) {
   try {
     // payload: {
-    // expected photo -> Image URL - string
+    // expected photos -> array of Image URLs
     // expected eventId -> integer
     // }
     console.log('addPhotoToEvent', action.payload);

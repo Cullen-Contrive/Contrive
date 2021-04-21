@@ -167,8 +167,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     ])
     .then((dbRes) => {
       console.log('SERVER - POST - event creation successful!');
-      console.table(dbRes.rows);
-      res.sendStatus(201);
+      res.send(dbRes.rows[0]); // send back id
     })
     .catch((err) => {
       console.error('SERVER - POST - an error occurred creating event!', err);
@@ -187,7 +186,7 @@ router.post('/photos', rejectUnauthenticated, async (req, res) => {
     "events_photos" 
     ("photo", "eventId")
     VALUES ($1, $2);`;
-    const eventId = req.body.eventId;
+    const eventId = req.body.eventId.id;
 
     await Promise.all(
       req.body.photos.map((photoURL) =>
@@ -199,7 +198,6 @@ router.post('/photos', rejectUnauthenticated, async (req, res) => {
     );
     res.sendStatus(201);
   } catch (err) {
-    await connection.query('ROLLBACK');
     res.sendStatus(500);
   }
 });

@@ -67,7 +67,7 @@ function CreateEvent() {
         zip,
         numberOfAttendees,
         description,
-        photo: eventPhoto,
+        photos: [eventPhoto],
         onComplete: () => {
           console.log('completed!');
           history.push('/events/confirmation');
