@@ -2,7 +2,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-// import Avatar from '@material-ui/core/Avatar';
 import useStyles from './EditVendorProfile.styles';
 import { Grid, Box, Typography, Avatar } from '@material-ui/core';
 
