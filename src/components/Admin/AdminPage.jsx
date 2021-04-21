@@ -6,25 +6,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography } from '@material-ui/core';
 
 // Import Custom Components
-import AllPlannersList from './AllPlannersList';
+import AllPlannersTable from './AllPlannersTable';
 import AllVendorsTable from './AllVendorsTable';
 
 /**
  * Component houses Admin functionality. Tasks that can be
  * accomplished from this page:
- * - Search through table of vendors
- * - Permanently remove a vendor (and all their associated data)
- * - Certify a vendor (future)
- * - Search through table of planners (future)
- * - Permanently remove a planner (and all their associated data) (future)
- * - Certify a vendor (future)
+ * - Vendors
+ *  - Search through table of vendors
+ *  - Permanently remove a vendor (and all their associated data)
+ *  - Certify a vendor (future)
+ *
+ * - Planners
+ *  - Search through table of planners
+ *  - Permanently remove a planner (and all their associated data)
+ *  - Certify a planner (future)
  *
  * @returns {jsx} renders the Admin Portal page
  */
 function AdminPage() {
   const dispatch = useDispatch();
 
-  // Get all vendors on page load
+  // Get all vendors and planners on page load
   useEffect(() => {
     dispatch({
       type: 'FETCH_ALL_VENDORS',
@@ -42,7 +45,14 @@ function AdminPage() {
       </Box>
 
       {/* Vendors Table */}
-      <AllVendorsTable />
+      <Box mt={5} mb={5}>
+        <AllVendorsTable />
+      </Box>
+
+      {/* Planners Table */}
+      <Box mt={5} mb={5}>
+        <AllPlannersTable />
+      </Box>
     </Box>
   );
 }
