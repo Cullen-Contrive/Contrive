@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     position: 'fixed',
     bottom: 0,
-    width: '100%'
+    width: '100%',
+    zIndex: '2',
   },
   menuDrawer: {
     width: '45%',
