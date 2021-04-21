@@ -7,6 +7,7 @@ import ProfileNav from './ProfileNav';
 import PublicPhotos from './PublicPhotos';
 import About from './About';
 import SpecialFeatures from './SpecialFeatures';
+import VendorTypes from './VendorTypes';
 
 function VendorProfile() {
   const params = useParams();
@@ -62,6 +63,7 @@ function VendorProfile() {
         state={vendorDetails.state}
       />
       <SpecialFeatures features={vendorDetails.specialFeatures} />
+      <VendorTypes services={vendorDetails.serviceTypes} />
     </>
   );
 }
