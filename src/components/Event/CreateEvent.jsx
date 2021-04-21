@@ -27,11 +27,9 @@ function CreateEvent() {
   const planner = useSelector(
     (store) => store.userDetails.loggedInUserDetailsReducer
   );
-  // const event = useSelector((store) => store.events.eventReducer);
-
+  const eventPhoto = useSelector((store) => store.eventPhoto);
   // Local state variables
   const [open, setOpen] = useState(false); // used for tracking whether select is open
-
   const [dateOfEvent, setDateOfEvent] = useState('');
   const [timeOfEvent, setTimeOfEvent] = useState('07:30');
   const [address, setAddress] = useState('');
@@ -47,16 +45,16 @@ function CreateEvent() {
 
   // handles form submission and creating event
   const handleFormSubmission = () => {
-    console.log('handling form submission');
-    console.log('dateofevent:', dateOfEvent);
-    console.log('timeofevent:', timeOfEvent);
-    console.log('address:', address);
-    console.log('city:', city);
-    console.log('state:', state);
-    console.log('zip:', zip);
-    console.log('numberofattendees:', numberOfAttendees);
-    console.log('description:', description);
-    console.log('plannerUserId', planner.id);
+    // console.log('handling form submission');
+    // console.log('dateofevent:', dateOfEvent);
+    // console.log('timeofevent:', timeOfEvent);
+    // console.log('address:', address);
+    // console.log('city:', city);
+    // console.log('state:', state);
+    // console.log('zip:', zip);
+    // console.log('numberofattendees:', numberOfAttendees);
+    // console.log('description:', description);
+    // console.log('plannerUserId', planner.id);
     dispatch({
       type: 'ADD_EVENT',
       payload: {
@@ -69,9 +67,10 @@ function CreateEvent() {
         zip,
         numberOfAttendees,
         description,
+        photo: eventPhoto,
         onComplete: () => {
           console.log('completed!');
-          // history.push('/welcome');
+          history.push('/events/confirmation');
         },
       },
     });
@@ -100,7 +99,7 @@ function CreateEvent() {
             <Typography variant="body1" align="left">
               Event Picture
             </Typography>
-            <ImageUpload page="AddProfilePic" />
+            <ImageUpload page="AddEventPhoto" />
           </FormControl>
         </Grid>
 
@@ -201,7 +200,6 @@ function CreateEvent() {
               label="Time of Event"
               type="time"
               value={timeOfEvent}
-              defaultValue="07:30"
               onChange={(evt) => setTimeOfEvent(evt.target.value)}
               required
             />

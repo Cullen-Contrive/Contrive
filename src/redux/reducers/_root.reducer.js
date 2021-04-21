@@ -8,6 +8,7 @@ import features from './specialFeatures.reducer';
 import vendorTypes from './vendorTypes.reducer';
 import vendor from './vendor.reducer';
 import profilePic from './aws.reducer';
+import eventPhoto from './aws.event.reducer';
 import allVendors from './allVendors.reducer';
 import events from './events.reducer';
 // rootReducer is the primary reducer for our entire project
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   vendorTypes,
   vendor,
   profilePic,
+  eventPhoto,
   allVendors,
   events,
 });

@@ -17,11 +17,9 @@ function ImageUpload(props) {
         type: 'SET_PROFILE_PIC',
         payload: info.fileUrl,
       });
-    }
-
-    if (props.page === 'AddEventPhoto') {
+    } else if (props.page === 'AddEventPhoto') {
       dispatch({
-        type: 'ADD_EVENT_PHOTO',
+        type: 'SET_EVENT_PHOTO',
         payload: info.fileUrl,
       });
     }

@@ -19,7 +19,6 @@ function* fetchAllEvents() {
     // console.log('fetching all events');
     // console.table('events:', response.data);
     yield put({ type: 'SET_ALL_EVENTS', payload: response.data });
-    action.payload.onComplete();
   } catch (err) {
     console.error('Get all events request failed', err);
   }
@@ -38,8 +37,19 @@ function* addEvent(action) {
     // zip -> integer
     // numberOfAttendees -> integer
     // description -> string
+    // photo -> Image URL - string
+    // onComplete -> function
     // }
-    yield axios.post('/api/event', action.payload);
+    const response = yield axios.post('/api/event', action.payload);
+    console.log('action.payload', action.payload);
+    if (action.payload.photo) {
+      console.log('photo does exist');
+      yield put({
+        type: 'ADD_PHOTO_TO_EVENT',
+        payload: { photo: action.payload.photo, eventId: response.data },
+      });
+    }
+    action.payload.onComplete();
   } catch (err) {
     console.error('Adding event request failed', err);
   }
@@ -52,6 +62,7 @@ function* addPhotoToEvent(action) {
     // expected photo -> Image URL - string
     // expected eventId -> integer
     // }
+    console.log('addPhotoToEvent', action.payload);
     yield axios.post('/api/event/photos', action.payload);
   } catch (err) {
     console.error('Post photo to event request failed', err);

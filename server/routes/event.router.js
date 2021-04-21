@@ -140,7 +140,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   "zip", 
   "numberOfAttendees", 
   "description")
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+  RETURNING "id";`;
 
   const plannerUserId = req.user.id;
   const dateOfEvent = req.body.dateOfEvent;
