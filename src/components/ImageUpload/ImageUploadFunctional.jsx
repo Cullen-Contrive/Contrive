@@ -18,7 +18,9 @@ function ImageUpload(props) {
         payload: info.fileUrl
       });
     } else if ( props.page === "EditVendorProfilePic" ) {
-      
+      // editProfileElement passed through from EditVendorBasicInfo. 
+      // dispatches data into edit vendor profile reducer
+      props.editProfileElement('profilePic', info.fileUrl);
     }
   }
 

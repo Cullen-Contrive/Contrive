@@ -19,7 +19,9 @@ function EditVendorBasicInfo({vendor, editProfileElement}) {
       <Grid item>
         {/* <Typography variant="h4" align="center" gutterBottom>Upload Photo Goes Here</Typography> */}
         <ImageUpload
-          page="EditProfilePic"
+          page="EditVendorProfilePic"
+          editProfileElement={editProfileElement}
+          profilePic={vendor.profilePic}
         />
       </Grid>
 
