@@ -66,6 +66,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
+
   const sqlText = `
   SELECT
   "users"."username",
