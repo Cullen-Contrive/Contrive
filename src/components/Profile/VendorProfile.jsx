@@ -13,9 +13,7 @@ function VendorProfile() {
   const params = useParams();
   const dispatch = useDispatch();
   const vendorDetails = useSelector((store) => store.vendor);
-  const vendorPhotos = useSelector(
-    (store) => store.userDetails.otherUserDetailsReducer
-  );
+  const vendorPhotos = useSelector((store) => store.otherUserDetails);
 
   useEffect(() => {
     fetchVendorDetails();

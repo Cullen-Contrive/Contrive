@@ -1,12 +1,15 @@
-import { Grid, Box, Typography } from '@material-ui/core';
+
 import IconButton from '@material-ui/core/IconButton';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import Avatar from '@material-ui/core/Avatar';
+import useStyles from './EditVendorProfile.styles';
+import { Grid, Box, Typography, Avatar } from '@material-ui/core';
 
 import starsImg from '../Images/stars.jpg';
 
 function ProfileName({ name, certified, profilePhoto }) {
+  const classes = useStyles();
+
   return (
     <Grid container spacing={3}>
       {/* Beginning of Profile Name */}
@@ -28,7 +31,7 @@ function ProfileName({ name, certified, profilePhoto }) {
       <Grid item xs={5}>
         <center>
           {profilePhoto ? (
-            <Avatar alt={name} src={profilePhoto} />
+            <Avatar className={classes.profilePic} alt={name} src={profilePhoto} />
           ) : (
             <Avatar>A</Avatar>
           )}

@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     // maxWidth: 300,
   },
+  profilePic: {
+    height: '100px',
+    width: 'auto',
+  }
 }))
 
 export default useStyles;

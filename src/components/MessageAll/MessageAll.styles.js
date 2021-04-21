@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     height: '80vh',
   },
   messageArea: {
-    height: '70vh',
+    // height: '70vh',
     overflowY: 'auto',
   },
 }));
