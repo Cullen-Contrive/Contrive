@@ -19,6 +19,7 @@ function* fetchAllEvents() {
     // console.log('fetching all events');
     // console.table('events:', response.data);
     yield put({ type: 'SET_ALL_EVENTS', payload: response.data });
+    action.payload.onComplete();
   } catch (err) {
     console.error('Get all events request failed', err);
   }

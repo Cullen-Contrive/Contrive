@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import ImageUpload from '../ImageUpload/ImageUploadFunctional';
+import getStates from '../../helpers/states';
 
 // Material-UI
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -21,12 +23,15 @@ import {
 
 function CreateEvent() {
   const dispatch = useDispatch();
-  const event = useSelector((store) => store.events.eventReducer);
+  const history = useHistory();
+  const planner = useSelector(
+    (store) => store.userDetails.loggedInUserDetailsReducer
+  );
+  // const event = useSelector((store) => store.events.eventReducer);
 
   // Local state variables
   const [open, setOpen] = useState(false); // used for tracking whether select is open
 
-  const [plannerUserId, setPlannerUserId] = useState(0);
   const [dateOfEvent, setDateOfEvent] = useState('');
   const [timeOfEvent, setTimeOfEvent] = useState('07:30');
   const [address, setAddress] = useState('');
@@ -37,15 +42,39 @@ function CreateEvent() {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_SINGLE_EVENT', payload: 2 });
+    dispatch({ type: 'FETCH_LOGGED_IN_USER_DETAILS' });
   }, []);
 
+  // handles form submission and creating event
   const handleFormSubmission = () => {
     console.log('handling form submission');
-  };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+    console.log('dateofevent:', dateOfEvent);
+    console.log('timeofevent:', timeOfEvent);
+    console.log('address:', address);
+    console.log('city:', city);
+    console.log('state:', state);
+    console.log('zip:', zip);
+    console.log('numberofattendees:', numberOfAttendees);
+    console.log('description:', description);
+    console.log('plannerUserId', planner.id);
+    dispatch({
+      type: 'ADD_EVENT',
+      payload: {
+        plannerUserId: planner.id,
+        dateOfEvent,
+        timeOfEvent,
+        address,
+        city,
+        state,
+        zip,
+        numberOfAttendees,
+        description,
+        onComplete: () => {
+          console.log('completed!');
+          // history.push('/welcome');
+        },
+      },
+    });
   };
 
   // Handles opening and closing the select
@@ -91,24 +120,29 @@ function CreateEvent() {
           </FormControl>
         </Grid>
 
+        {/* State Selection */}
         <Grid item xs={4}>
           <FormControl variant="outlined" fullWidth>
-            <InputLabel id="controlled-open-select-label">State</InputLabel>
+            <InputLabel htmlFor="controlled-open-select">State</InputLabel>
             <Select
-              labelId="controlled-open-select-label"
-              id="demo-controlled-open-select"
+              id="controlled-open-select"
               open={open}
               onClose={handleClose}
               onOpen={handleOpen}
               value={state}
               onChange={(evt) => setState(evt.target.value)}
+              required
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {getStates().map((state, index) => {
+                return (
+                  <MenuItem key={index} value={state.abbreviation}>
+                    {state.name}
+                  </MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
         </Grid>
@@ -168,6 +202,8 @@ function CreateEvent() {
               type="time"
               value={timeOfEvent}
               defaultValue="07:30"
+              onChange={(evt) => setTimeOfEvent(evt.target.value)}
+              required
             />
           </FormControl>
         </Grid>
@@ -210,7 +246,7 @@ function CreateEvent() {
             variant="contained"
             onClick={handleFormSubmission}
           >
-            Submit
+            Create Event
           </Button>
         </Grid>
       </Grid>
