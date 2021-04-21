@@ -20,4 +20,17 @@ const eventReducer = (state = [], action) => {
   }
 };
 
-export default combineReducers({ allEventsReducer, eventReducer });
+const typesOfEventsReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_TYPES_OF_EVENTS':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  allEventsReducer,
+  eventReducer,
+  typesOfEventsReducer,
+});

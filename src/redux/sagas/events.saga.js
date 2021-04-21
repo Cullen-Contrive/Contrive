@@ -24,6 +24,16 @@ function* fetchAllEvents() {
   }
 }
 
+function* fetchTypesOfEvent() {
+  try {
+    const response = yield axios.get('/api/event/types');
+    console.log('fetching types of events', response.data);
+    yield put({ type: 'SET_TYPES_OF_EVENTS', payload: response.data });
+  } catch (err) {
+    console.error('Get all types of events request failed', err);
+  }
+}
+
 // worker Saga: will be fired on "ADD_EVENT" action
 function* addEvent(action) {
   try {
@@ -115,6 +125,7 @@ function* updateEvent(action) {
 function* eventsSaga() {
   yield takeLatest('FETCH_SINGLE_EVENT', fetchSingleEvent);
   yield takeLatest('FETCH_ALL_EVENTS', fetchAllEvents);
+  yield takeLatest('FETCH_TYPES_OF_EVENT', fetchTypesOfEvent);
   yield takeLatest('ADD_EVENT', addEvent);
   yield takeLatest('ADD_PHOTO_TO_EVENT', addPhotoToEvent);
   yield takeLatest('ADD_VENDOR_TO_EVENT', addVendorToEvent);
