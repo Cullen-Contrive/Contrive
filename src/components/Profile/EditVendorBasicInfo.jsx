@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import useStyles from './EditVendorProfile.styles';
 
 // Material-UI
 import { 
@@ -13,12 +14,13 @@ import {
 import ImageUpload from '../ImageUpload/ImageUploadFunctional';
 
 function EditVendorBasicInfo({vendor, editProfileElement}) {
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   return(
-    <Grid item container spacing={2} xs={12} justify="center" alignItems="center">
-      <Grid item xs={2}>
-        <Avatar alt="Your current profile picture." src={vendor.profilePic} />
+    <Grid item container spacing={3} xs={12} justify="center" alignItems="center">
+      <Grid item xs={3.5}>
+        <Avatar alt="Your current profile picture." src={vendor.profilePic} className={classes.profilePicAvatarPreview} />
       </Grid>
 
       <Grid item xs={8}> 
@@ -27,6 +29,10 @@ function EditVendorBasicInfo({vendor, editProfileElement}) {
           editProfileElement={editProfileElement}
           profilePic={vendor.profilePic}
         />
+      </Grid>
+
+      <Grid item xs={12} gutterBottom>
+        <Typography variant="body1">The image on the left is how your profile picture is displayed to others. Click within the dotted lines to upload an image.</Typography>
       </Grid>
 
       <Grid item xs={12}>

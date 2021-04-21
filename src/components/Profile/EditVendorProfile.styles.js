@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     // maxWidth: 300,
   },
+  profilePicAvatarPreview: {
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+  }
 }))
 
 export default useStyles;
