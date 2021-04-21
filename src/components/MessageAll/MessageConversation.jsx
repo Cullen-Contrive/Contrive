@@ -107,7 +107,7 @@ function MessageConversation() {
 
 
   return (
-    <div >
+    <div className={classes.mainMessageContent}>
       <Grid container>
         <Grid item xs={12}>
           <Box display="flex">

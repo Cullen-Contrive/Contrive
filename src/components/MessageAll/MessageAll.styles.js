@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     height: '80vh',
   },
   mainMessageContent: {
-    zIndex: '-1',
+    zIndex: '0',
     position: 'relative',
   },
   messageArea: {
