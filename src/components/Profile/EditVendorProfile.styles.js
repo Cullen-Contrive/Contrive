@@ -19,7 +19,11 @@ const useStyles = makeStyles((theme) => ({
   profilePicAvatarPreview: {
     width: theme.spacing(10),
     height: theme.spacing(10),
-  }
+  },
+  profilePic: {
+    height: '100px',
+    width: 'auto',
+  },
 }))
 
 export default useStyles;

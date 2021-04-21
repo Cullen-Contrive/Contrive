@@ -8,7 +8,10 @@ const {
 router.get('/all', rejectUnauthenticated, (req, res) => {
   // GET ROUTE - Gets all messages for currently logged-in user
   const user = req.user.id;
-  const queryText = `
+
+  let queryText;
+  if (req.user.type === 'planner') {
+    queryText = `
     SELECT DISTINCT 
       ON(GREATEST("fromUser", "toUser"), LEAST("fromUser", "toUser")) 
       GREATEST("fromUser", "toUser"), 
@@ -28,6 +31,24 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
       OR "toUser" = $1
     ORDER BY GREATEST("fromUser", "toUser"), LEAST("fromUser", "toUser"), "maxDate" ASC;
   `;
+  } else if (req.user.type === 'vendor') {
+    queryText = `
+    SELECT DISTINCT 
+    ON(GREATEST("fromUser", "toUser"), LEAST("fromUser", "toUser")) 
+    GREATEST("fromUser", "toUser"), 
+    LEAST("fromUser", "toUser"), 
+    "date" AS "maxDate", 
+    "message",
+    "users"."firstName",
+    "users"."lastName",
+    "users"."profilePic"
+  FROM "messages"
+  RIGHT JOIN "users"
+    ON "messages"."fromUser" = "users"."id" OR "messages"."toUser" = "users"."id"
+  WHERE "fromUser" = $1
+    OR "toUser" = $1
+  ORDER BY GREATEST("fromUser", "toUser"), LEAST("fromUser", "toUser"), "maxDate" ASC;`;
+  }
 
   pool
     .query(queryText, [user])
@@ -51,11 +72,12 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   const toUser = req.params.id;
   console.log('toUser', toUser);
   const queryText = `SELECT "fromUser", "toUser", "message", 
-  to_char("date", 'DD MON YYYY HH:MI AM') AS "date"
+  to_char("date", 'DD MON YYYY HH:MI AM') AS "dateReceived"
   FROM "messages" 
   WHERE 
   "messages"."fromUser" = $1 AND "messages"."toUser" = $2
-  OR "messages"."toUser" = $1 AND "messages"."fromUser" = $2;`;
+  OR "messages"."toUser" = $1 AND "messages"."fromUser" = $2
+  ORDER BY "date" ASC;`;
 
   pool
     .query(queryText, [fromUser, toUser])

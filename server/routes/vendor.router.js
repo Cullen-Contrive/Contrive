@@ -66,6 +66,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
+
   const sqlText = `
   SELECT
   "users"."username",
@@ -132,7 +133,7 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     updatedServiceTypes.push(serviceType.id);
   }
   console.log('user id:', userId);
-  console.log('updatedSpecialFeatures', updatedSpecialFeatures)
+  console.log('updatedSpecialFeatures', updatedSpecialFeatures);
 
   const sqlTextVendors = `
     UPDATE "vendors"
@@ -160,7 +161,7 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     DELETE FROM "vendors_features"
     WHERE "vendorUserId" = $1;
   `;
-  
+
   const sqlTextInsertVendorFeatures = `
     INSERT INTO "vendors_features" ("vendorUserId", "featureId")
     VALUES ${insertSerializer(req.body.specialFeatures)}
@@ -171,12 +172,12 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     WHERE "vendorUserId" = $1;
   `;
 
-    const sqlTextInsertVendorServices = `
+  const sqlTextInsertVendorServices = `
     INSERT INTO "vendors_services" ("vendorUserId", "serviceId")
     VALUES ${insertSerializer(req.body.serviceTypes)}
   `;
 
-  console.log('sqlTextInsertUserFeatures', sqlTextInsertVendorFeatures)
+  console.log('sqlTextInsertUserFeatures', sqlTextInsertVendorFeatures);
 
   const updateValuesVendors = [
     req.body.companyName,
@@ -213,6 +214,43 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
   } finally {
     connection.release();
   }
+});
+
+/**
+ * DELETE endpoint for /api/vendor/delete/:id
+ *
+ * req.params.id looks like:
+ * {
+ *  23  int
+ * }
+ */
+router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
+  // Variable to replace "magic number"
+  const userIdToDelete = req.params.id;
+
+  // Only allow administrators to remove vendors from DB
+  if (req.user.type !== 'admin') {
+    console.log('***** UNAUTHORIZED PERSONNEL *****');
+    res.sendStatus(404);
+    return;
+  }
+
+  // Query used on DB
+  const sqlQuery = `
+  DELETE FROM "users"
+  WHERE "users".id = $1;
+  `;
+
+  // SQL Transaction
+  pool
+    .query(sqlQuery, [userIdToDelete])
+    .then((dbResponse) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('ERROR in DELETE /api/vendor/delete/:id', error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

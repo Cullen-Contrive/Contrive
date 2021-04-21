@@ -7,14 +7,13 @@ import ProfileNav from './ProfileNav';
 import PublicPhotos from './PublicPhotos';
 import About from './About';
 import SpecialFeatures from './SpecialFeatures';
+import VendorTypes from './VendorTypes';
 
 function VendorProfile() {
   const params = useParams();
   const dispatch = useDispatch();
   const vendorDetails = useSelector((store) => store.vendor);
-  const vendorPhotos = useSelector(
-    (store) => store.userDetails.otherUserDetailsReducer
-  );
+  const vendorPhotos = useSelector((store) => store.otherUserDetails);
 
   useEffect(() => {
     fetchVendorDetails();
@@ -64,6 +63,7 @@ function VendorProfile() {
         state={vendorDetails.state}
       />
       <SpecialFeatures features={vendorDetails.specialFeatures} />
+      <VendorTypes services={vendorDetails.serviceTypes} />
     </>
   );
 }
