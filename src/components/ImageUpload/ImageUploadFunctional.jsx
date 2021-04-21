@@ -12,33 +12,34 @@ function ImageUpload(props) {
     console.log('File uploaded with filename: ', info.filename);
     console.log('Access it on s3 at: ', info.fileUrl);
 
-    if( props.page === "AddProfilePic" )
-      {
+    if( props.page === "AddProfilePic" ) {
       dispatch({
         type: 'SET_PROFILE_PIC',
         payload: info.fileUrl
       });
-      }
+    } else if ( props.page === "EditVendorProfilePic" ) {
+      
+    }
   }
 
-    const uploadOptions = {
-      server: 'http://localhost:5000',
-      // Works with or without, used to assign url query params, can look up later
-      // signingUrlQueryParams: {uploadType: 'avatar'},
-    }
+  const uploadOptions = {
+    server: 'http://localhost:5000',
+    // Works with or without, used to assign url query params, can look up later
+    // signingUrlQueryParams: {uploadType: 'avatar'},
+  }
 
-    const s3Url = process.env.REACT_APP_S3_URL;
+  const s3Url = process.env.REACT_APP_S3_URL;
 
-    return (
-      <DropzoneS3Uploader
-        // children={innerDropElement}
-        onFinish={handleFinishedUpload}
-        // style={dropzoneStyle}
-        s3Url={s3Url}
-        maxSize={1024 * 1024 * 5}
-        upload={uploadOptions}
-      />
-    )
+  return (
+    <DropzoneS3Uploader
+      // children={innerDropElement}
+      onFinish={handleFinishedUpload}
+      // style={dropzoneStyle}
+      s3Url={s3Url}
+      maxSize={1024 * 1024 * 5}
+      upload={uploadOptions}
+    />
+  )
 }
 
 export default connect()(ImageUpload);
