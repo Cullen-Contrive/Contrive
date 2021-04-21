@@ -56,7 +56,7 @@ function MessagesList() {
           }
 
           return (
-            <div key={index} className={classes.mainMessageContent}>
+            <div key={index}>
               <ListItem alignItems="flex-start" onClick={() => viewConversation(messenger)}>
                 {/* This is the profile pic of the user that the logged in user is having a conversation with */}
                 <ListItemAvatar className={classes.chatAvatar}>
