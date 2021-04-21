@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Material-UI
 import { 
+  Avatar,
   FormControl,
   Grid,
   TextField,
@@ -15,9 +16,12 @@ function EditVendorBasicInfo({vendor, editProfileElement}) {
   const dispatch = useDispatch();
 
   return(
-    <Grid item container spacing={2} xs={12} justify="center">
-      <Grid item>
-        {/* <Typography variant="h4" align="center" gutterBottom>Upload Photo Goes Here</Typography> */}
+    <Grid item container spacing={2} xs={12} justify="center" alignItems="center">
+      <Grid item xs={2}>
+        <Avatar alt="Your current profile picture." src={vendor.profilePic} />
+      </Grid>
+
+      <Grid item xs={8}> 
         <ImageUpload
           page="EditVendorProfilePic"
           editProfileElement={editProfileElement}
