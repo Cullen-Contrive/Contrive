@@ -43,7 +43,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
     "users"."lastName",
     "users"."profilePic"
   FROM "messages"
-  JOIN "users"
+  FULL OUTER JOIN "users"
     ON "messages"."fromUser" = "users"."id" OR "messages"."toUser" = "users"."id"
   WHERE "fromUser" = $1
     OR "toUser" = $1
