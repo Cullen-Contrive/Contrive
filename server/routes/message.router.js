@@ -72,11 +72,12 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   const toUser = req.params.id;
   console.log('toUser', toUser);
   const queryText = `SELECT "fromUser", "toUser", "message", 
-  to_char("date", 'DD MON YYYY HH:MI AM') AS "date"
+  to_char("date", 'DD MON YYYY HH:MI AM') AS "dateReceived"
   FROM "messages" 
   WHERE 
   "messages"."fromUser" = $1 AND "messages"."toUser" = $2
-  OR "messages"."toUser" = $1 AND "messages"."fromUser" = $2;`;
+  OR "messages"."toUser" = $1 AND "messages"."fromUser" = $2
+  ORDER BY "date" ASC;`;
 
   pool
     .query(queryText, [fromUser, toUser])

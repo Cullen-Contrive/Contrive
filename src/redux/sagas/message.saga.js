@@ -2,11 +2,12 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchMessages(action) {
+  const toUserId = action.payload;
   try {
-    // Fetches messages from server/db based on toUser id
+    // Fetches messages between logged in user and one other user from server/db based on toUser id
     // toUser -> Integer
     // fromUser will be req.user.id, toUser needs to be passed in
-    const response = yield axios.get(`/api/message/${action.payload}`);
+    const response = yield axios.get(`/api/message/${toUserId}`);
     yield put({ type: 'SET_MESSAGES', payload: response.data });
   } catch (err) {
     console.error('CLIENT - SAGAS - an error occurred fetching messages');
