@@ -46,7 +46,7 @@ function MessagesList() {
 
       <List className={classes.messagesList}>
         {conversations.map((conversation, index) => {
-          // this will be the id of the user that the logged in user is having a conversation with
+          // this will be the id of the otherUser that the logged in user is having a conversation with
           let messenger;
 
           if (conversation.greatest === user.id) {
