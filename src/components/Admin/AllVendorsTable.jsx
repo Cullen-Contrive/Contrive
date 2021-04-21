@@ -1,6 +1,6 @@
 // Import Libraries
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 // Import Styling
 import { makeStyles } from '@material-ui/core/styles';
@@ -57,7 +57,6 @@ const useStyles = makeStyles({
  */
 function AllVendorsTable() {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   // Grab list of all vendors from the Redux store
   const vendors = useSelector((store) => store.allVendors);
