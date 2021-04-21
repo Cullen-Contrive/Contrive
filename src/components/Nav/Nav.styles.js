@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: 0,
     width: '100%',
-    zIndex: '1',
+    zIndex: '2',
   },
   menuDrawer: {
     width: '45%',
