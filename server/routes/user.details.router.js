@@ -6,7 +6,8 @@ const {
 } = require('../modules/authentication-middleware');
 
 /**
- * GET route for /api/user/details/
+ * GET route for /api/user/details/ 
+ * yields all messages linked with the logged in user
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Gets user info based on currently logged in user
@@ -48,22 +49,32 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 /**
  * GET route for /api/user/details/id
+ * yields all messages between the logged in user and one other user
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   // Gets user info based on passed in params
   // Used for gathering info on conversation partner for display
-  const userId = req.params.id;
-  const queryText = `
-  SELECT 
+  const otherUserId = req.params.id;
+
+  const queryText = `SELECT 
   "users"."id",
+  "username",
   "firstName", 
-  "lastName", 
-  "type", 
+  "lastName",
   "profilePic", 
-  "companyName",
-  JSON_AGG(DISTINCT "users_photos".*) AS "userPhotos"
+  "address",
+  "city",
+  "state",
+  "zip",
+  "type", 
+  "website",
+  "bio",
+  "companyName", 
+  "description", 
+  "additionalInfo", 
+  "phone", 
+  "certified"
   FROM "users"
-  JOIN "users_photos" ON "users"."id" = "users_photos"."userId" 
   LEFT OUTER JOIN "vendors" ON "users"."id" = "vendors"."vendorUserId"
   WHERE "users".id = $1
   GROUP BY 
@@ -72,10 +83,11 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "lastName", 
   "type", 
   "profilePic", 
-  "companyName";`;
+  "companyName",
+  "description", "additionalInfo", "phone", "certified";`;
 
   pool
-    .query(queryText, [userId])
+    .query(queryText, [otherUserId])
     .then((dbRes) => {
       console.log('SERVER - GET - user details by id successful!');
       res.send(dbRes.rows[0]);

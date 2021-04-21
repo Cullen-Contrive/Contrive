@@ -15,8 +15,8 @@ function* fetchUserDetailsById(action) {
   }
 }
 
-function* userDetailsSaga() {
+function* otherUserDetailsSaga() {
   yield takeLatest('FETCH_USER_DETAILS_BY_ID', fetchUserDetailsById);
 }
 
-export default userDetailsSaga;
+export default otherUserDetailsSaga;

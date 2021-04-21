@@ -40,10 +40,8 @@ function MessageConversation() {
 
   const existingMessages = useSelector((store) => store.chat.chatReducer);
   const currentUser = useSelector((store) => store.user);
-  const toUser = useSelector(
-    (store) => store.userDetails
-  );
-  console.log('toUser:', toUser);
+  const toUser = useSelector((store) => store.otherUserDetails);
+
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
