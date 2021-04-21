@@ -84,13 +84,14 @@ function Nav() {
         onClose={() => toggleDrawer(false)}
         className={classes.menuDrawer}
       >
+        {/* Display User's Name */}
         <Box p={1}>
           <Typography variant="h5" component="h2" gutterBottom>
             {user.firstName}'s Dashboard
           </Typography>
         </Box>
 
-        {/* Todo - add the user's profile photo here */}
+        {/* User's Profile Picture - Avatar */}
         <Box p={2}>
           <center>
             <Avatar
@@ -143,6 +144,13 @@ function Nav() {
                   onClick={() => history.push('/inspiration')}
                 >
                   Inspiration
+                </Button>
+              </Grid>
+            )}
+            {user.type === 'admin' && (
+              <Grid item>
+                <Button color="primary" onClick={() => history.push('/admin')}>
+                  Admin Portal
                 </Button>
               </Grid>
             )}
