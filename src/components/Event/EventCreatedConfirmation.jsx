@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-  buttons: {
-    position: 'absolute',
-    bottom: theme.spacing.unit * 25,
-  },
 }));
 
 function EventCreatedConfirmation() {
@@ -24,10 +20,10 @@ function EventCreatedConfirmation() {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Box display="flex" align="center">
+        <Box display="flex" align="center" justify="center">
           <Typography variant="h2">Event Created!</Typography>
         </Box>
-        <Box display="flex" align="center">
+        <Box display="flex" align="center" justify="center">
           <Typography variant="body1">
             Your event was successfully created. If you'd like to start inviting
             vendors to work at your event, feel free to connect with the
@@ -42,7 +38,7 @@ function EventCreatedConfirmation() {
         <EventNetworkAccordion />
       </Grid>
 
-      <Box align="center" width="100%" className={classes.buttons}>
+      <Box align="center" width="100%">
         <Box className={classes.root}>
           {/* Buttons go here */}
           <Button color="primary" variant="contained">

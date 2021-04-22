@@ -22,7 +22,6 @@ function EventNetworkAccordion() {
           Vendors in Your Network
         </Typography>
       </AccordionSummary>
-
       <AccordionDetails>
         <Grid item>{/* Vendors in Your Network goes here... */}</Grid>
       </AccordionDetails>
