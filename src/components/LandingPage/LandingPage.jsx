@@ -7,10 +7,7 @@ import { useHistory } from 'react-router-dom';
 import useStyles from './LandingPage.styles';
 
 // MATERIAL UI
-
-import { Typography } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
 
 function LandingPage() {
   const history = useHistory();
@@ -25,28 +22,40 @@ function LandingPage() {
   };
 
   return (
+    <>
+      <Box className={classes.paperContainer} />
 
-    <Box className={classes.paperContainer}>
-
-      <Box align="center" width="100%" className={classes.buttons}>
-        <Box className={classes.root}>
-
-          <Button color="secondary" variant="contained" onClick={onLogin} size="large">
-            <Typography variant="body1">
+      <Grid 
+        className={classes.welcomeButtonsContainer}
+        container
+        justify='space-evenly'
+        spacing={2}
+      >
+        <Grid item>
+          <Button
+            className={classes.welcomeButton}
+            color="secondary" 
+            onClick={onLogin}
+            size="large"
+            variant="contained" 
+          >
               Login
-            </Typography>
           </Button>
+        </Grid>
 
-          <Button color="primary" variant="contained" onClick={onRegister} size="large">
-            <Typography variant="body1">
+        <Grid item>
+          <Button
+            className={classes.welcomeButton}
+            color="primary"
+            variant="contained"
+            onClick={onRegister}
+            size="large"
+          >
               Register
-            </Typography>
           </Button>
-
-        </Box>
-      </Box>
-
-    </Box>
+        </Grid>
+      </Grid>
+    </>
   );
 }
 
