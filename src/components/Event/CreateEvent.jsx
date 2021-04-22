@@ -48,8 +48,6 @@ function CreateEvent() {
     dispatch({ type: 'FETCH_TYPES_OF_EVENT' });
   }, []);
 
-  console.log('typesofevents:', typesOfEvents);
-
   // handles form submission and creating event
   const handleFormSubmission = () => {
     // console.log('handling form submission');
