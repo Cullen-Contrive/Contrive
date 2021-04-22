@@ -7,7 +7,7 @@ const {
 
 router.get('/all', rejectUnauthenticated, async (req, res) => {
   // GET ROUTE - Gets all messages for currently logged-in user
-  const userId = req.user.id;
+  const userId = req.user.id; // logged-in user's id
 
   if (req.user.type === 'planner') {
     const plannerQueryText = `
@@ -46,11 +46,10 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
       });
 
   } else if (req.user.type === 'vendor') {
-    console.log('ITS A VENDOR! ID:', userId);
+    // console.log('ITS A VENDOR! ID:', userId);
+
     // Array to hold all individualCommunicator objects
     const communicationList = [];
-
-
 
     // Query to select all other users who have messaged with this vendor (userId)
     const vendorQueryText = `
@@ -81,6 +80,7 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
       // capture individual user information in individualCommunicator object
       const allOtherUsers = dbRes.rows;
       for (let otherUser of allOtherUsers) {
+
         // Object to hold each individual "other user's" details
         let individualCommunicator = {
           otherUserId: 0,
@@ -91,15 +91,16 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
           messageDate: '',
           userId,
         };
+
+        // for each otherUser (who is NOT the logged-in user), capture their info in the created object
         if (otherUser.id != userId) {
           individualCommunicator.otherUserId = otherUser.id;
           individualCommunicator.firstName = otherUser.firstName;
           individualCommunicator.lastName = otherUser.lastName;
           individualCommunicator.profilePic = otherUser.profilePic;
+          // console.log('11111111111111.2: individualCommunicator AFTER FIRST QUERY:', individualCommunicator);
 
-          console.log('11111111111111.2: individualCommunicator AFTER FIRST QUERY:', individualCommunicator);
-
-
+          // use each other user's id to get the most recent message between them and the logged-in user
           let messageInfo = await connection.query(`
             SELECT "messages"."message", to_char("date", 'DD MON YYYY HH:MI AM') AS "dateReceived" 
             FROM "messages" 
@@ -107,69 +108,28 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
             ORDER BY "dateReceived"  DESC
             LIMIT 1;
             `, [userId, otherUser.id]);
+          // console.log('messageInfo.rows:', messageInfo.rows);
 
-          console.log('!@!@!#!#%!@%$@ messageInfo.rows:', messageInfo.rows);
-          // Add message information to individualCommunicator object
-          individualCommunicator.message = messageInfo.rows[0].message;
-          individualCommunicator.messageDate = messageInfo.rows[0].dateReceived;
-
-          console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
+          // Add message information to individualCommunicator object (only if a message was returned)
+          if (messageInfo.rows[0].message !== '') {
+            individualCommunicator.message = messageInfo.rows[0].message;
+            individualCommunicator.messageDate = messageInfo.rows[0].dateReceived;
+            // console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
+          }
 
           // Add each individualCommunicator object to an array 
           communicationList.push(individualCommunicator);
-          console.log('communicationList after BOTH QUERIES:', communicationList);
-
-
+          // console.log('communicationList after BOTH QUERIES:', communicationList);
 
           await connection.query('COMMIT');
-
-
         }
       }
       // After looping through each of the other user Id's and retrieving their most recent 
-      // message with logged-in user, end this info back to the client
+      // message with logged-in user, send this array of info back to the client
       res.send(communicationList);
     }
 
-    // pool
-    //   .query(vendorQueryText, [userId])
-    //   .then((dbRes) => {
-    //     console.log('11111111111111 VENDOR DBRES TO GET USER LIST:', dbRes.rows);
-
-    //     const allOtherUsers = dbRes.rows;
-    //     for (let otherUser of allOtherUsers) {
-    //       if (otherUser.id != userId) {
-    //         individualCommunicator.otherUserId = otherUser.id;
-    //         individualCommunicator.firstName = otherUser.firstName;
-    //         individualCommunicator.lastName = otherUser.lastName;
-    //         individualCommunicator.profilePic = otherUser.profilePic;
-
-    //         console.log('11111111111111.2: individualCommunicator AFTER FIRST QUERY:', individualCommunicator);
-    // communicationList.push(individualCommunicator);
-
-    // console.log('11111111111111.3: communicationList after FIRST QUERY:', communicationList);
-
-    //     const messageQueryText = `
-    // SELECT "messages"."message", to_char("date", 'DD MON YYYY HH:MI AM') AS "dateReceived" 
-    // FROM "messages" 
-    // WHERE "messages"."fromUser" IN ($1, $2) AND "messages"."toUser" IN ($1, $2)
-    // ORDER BY "dateReceived"  DESC
-    // LIMIT 1;
-    // `;
-    //     pool.query(messageQueryText, [userId, otherUser.id])
-    //         .then((dbResult) => {
-    // console.log('MESSAGE QUERY dbRes.rows:', dbResult.rows);
-    // let messageInfo = dbResult.rows[0];
-
-    // individualCommunicator.message = messageInfo.message;
-    // individualCommunicator.messageDate = messageInfo.dateReceived;
-
-    // console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
-
-    // communicationList.push(individualCommunicator);
-    // console.log('communicationList after BOTH QUERIES:', communicationList);
-
-    // })
+    // Send an error to the terminal if the above doesn't function properly
     catch (err) {
       console.error(
         'SERVER - GET at /api/message/all for VENDOR MESSAGES - an error occurred',
@@ -177,10 +137,9 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
       );
       res.sendStatus(500);
     }
+
     finally {
-      // Finally runs whether the `try` block succeeded or not
-      //
-      // Release our connection. You're free, connection!
+      // Finally runs whether the `try` block succeeded or not to release our connection
       connection.release()
     }
   }
