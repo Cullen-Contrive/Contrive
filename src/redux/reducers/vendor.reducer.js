@@ -6,7 +6,7 @@ const vendorReducer = (
     companyName: '',
     description: '',
     phone: '',
-    profilePic: '#',
+    profilePic: '',
     specialFeatures: [],
     serviceTypes: [],
     state: '',

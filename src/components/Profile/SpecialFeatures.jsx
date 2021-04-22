@@ -1,3 +1,4 @@
+// This component feeds into VendorProfile to display the Special Features that the Vendor selected
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -31,8 +32,8 @@ function SpecialFeatures({ features }) {
           <Typography variant="body2">
             {features && features[0] !== null
               ? features.map((feature) => {
-                  return <li key={feature.id}>{capitalize(feature.name)}</li>;
-                })
+                return <li key={feature.id}>{capitalize(feature.name)}</li>;
+              })
               : ' '}
           </Typography>
         </Grid>

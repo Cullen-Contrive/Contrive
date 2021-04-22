@@ -35,10 +35,30 @@ function* updateVendorProfile(action) {
   }
 }
 
+/**
+ * Function permanently removes a vendor (and all their associated data)
+ * from the DB
+ *
+ * @param {object} action object containing user ID to delete
+ */
+function* deleteVendor(action) {
+  try {
+    // Delete Vendor
+    yield axios.delete(`/api/vendor/delete/${action.payload}`);
+
+    // Update Vendor List
+    yield put({ type: 'FETCH_ALL_VENDORS' });
+  } catch (error) {
+    console.error('DELETE vendor request failed:', error);
+  }
+}
+
 function* vendorSaga() {
   yield takeLatest('FETCH_SINGLE_VENDOR', fetchSingleVendor);
   yield takeLatest('FETCH_ALL_VENDORS', fetchAllVendors);
   yield takeLatest('UPDATE_VENDOR_PROFILE', updateVendorProfile);
+  yield takeLatest('DELETE_VENDOR', deleteVendor);
+  yield takeLatest('FETCH_ALL_USERS', fetchAllVendors);
 }
 
 export default vendorSaga;

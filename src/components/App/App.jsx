@@ -20,7 +20,7 @@ import CreateEvent from '../Event/CreateEvent';
 import EventCreatedConfirmation from '../Event/EventCreatedConfirmation';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
-import Message from '../MessageAll/MessageAll';
+import Message from '../MessageAll/MessageConversation';
 import MessagesList from '../MessageAll/MessagesList';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';

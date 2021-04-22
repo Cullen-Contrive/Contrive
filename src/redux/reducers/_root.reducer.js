@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-import userDetails from './user.details.reducer';
+import otherUserDetails from './user.details.reducer';
 import chat from './message.reducer';
 import search from './search.reducer';
 import features from './specialFeatures.reducer';
@@ -10,7 +10,12 @@ import vendor from './vendor.reducer';
 import profilePic from './aws.reducer';
 import eventPhoto from './aws.event.reducer';
 import allVendors from './allVendors.reducer';
+<<<<<<< HEAD
 import events from './events.reducer';
+=======
+import allPlanners from './allPlanners.reducer';
+
+>>>>>>> 3db6abcd51080037f64b2cb96dc69f4d10195991
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -20,7 +25,7 @@ import events from './events.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  userDetails,
+  otherUserDetails,
   chat,
   search, // search results based off vendor name keyword
   features,
@@ -29,7 +34,11 @@ const rootReducer = combineReducers({
   profilePic,
   eventPhoto,
   allVendors,
+<<<<<<< HEAD
   events,
+=======
+  allPlanners,
+>>>>>>> 3db6abcd51080037f64b2cb96dc69f4d10195991
 });
 
 export default rootReducer;
