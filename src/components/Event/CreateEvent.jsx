@@ -9,10 +9,9 @@ import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DatePicker from '@material-ui/lab/DatePicker';
 import {
-  Button, // replaces html5 <button> element
+  Button,
   FormControl,
-  Grid, //
-  Input,
+  Grid,
   InputLabel,
   MenuItem,
   Paper,
@@ -32,7 +31,9 @@ function CreateEvent() {
   );
   const eventPhoto = useSelector((store) => store.eventPhoto);
   // Local state variables
-  const [open, setOpen] = useState(false); // used for tracking whether select is open
+  const [openState, setStateOpen] = useState(false); // used for tracking whether select is open
+  const [openType, setTypeOpen] = useState(false);
+  const [typeOfEvent, setTypeOfEvent] = useState(''); // array used for potentially selecting multiple
   const [dateOfEvent, setDateOfEvent] = useState('');
   const [timeOfEvent, setTimeOfEvent] = useState('07:30');
   const [address, setAddress] = useState('');
@@ -44,6 +45,7 @@ function CreateEvent() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_LOGGED_IN_USER_DETAILS' });
+    dispatch({ type: 'FETCH_TYPES_OF_EVENT' });
   }, []);
 
   console.log('typesofevents:', typesOfEvents);
@@ -60,6 +62,7 @@ function CreateEvent() {
     // console.log('numberofattendees:', numberOfAttendees);
     // console.log('description:', description);
     // console.log('plannerUserId', planner.id);
+    // console.log('typeofevent:', typeOfEvent);
     dispatch({
       type: 'ADD_EVENT',
       payload: {
@@ -73,21 +76,35 @@ function CreateEvent() {
         numberOfAttendees,
         description,
         photos: [eventPhoto],
+        typeOfEvent: [typeOfEvent],
         onComplete: () => {
-          console.log('completed!');
           history.push('/events/confirmation');
         },
       },
     });
   };
 
-  // Handles opening and closing the select
-  const handleClose = () => {
-    setOpen(false);
+  // Capitalizes first character of string
+  const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
+  // Handles opening and closing the select
+  const handleStateClose = () => {
+    setStateOpen(false);
+  };
+
+  const handleStateOpen = () => {
+    setStateOpen(true);
+  };
+
+  // Handles opening and closing the select
+  const handleTypeClose = () => {
+    setTypeOpen(false);
+  };
+
+  const handleTypeOpen = () => {
+    setTypeOpen(true);
   };
 
   return (
@@ -105,6 +122,35 @@ function CreateEvent() {
               Event Picture
             </Typography>
             <ImageUpload page="AddEventPhoto" />
+          </FormControl>
+        </Grid>
+
+        {/* Type of Event Selection */}
+        <Grid item xs={12}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel htmlFor="controlled-open-select">
+              Type of Event
+            </InputLabel>
+            <Select
+              id="controlled-open-select"
+              open={openType}
+              onClose={handleTypeClose}
+              onOpen={handleTypeOpen}
+              value={typeOfEvent}
+              onChange={(evt) => setTypeOfEvent(evt.target.value)}
+              required
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {typesOfEvents.map((event) => {
+                return (
+                  <MenuItem key={event.id} value={event.id}>
+                    {capitalize(event.name)}
+                  </MenuItem>
+                );
+              })}
+            </Select>
           </FormControl>
         </Grid>
 
@@ -130,9 +176,9 @@ function CreateEvent() {
             <InputLabel htmlFor="controlled-open-select">State</InputLabel>
             <Select
               id="controlled-open-select"
-              open={open}
-              onClose={handleClose}
-              onOpen={handleOpen}
+              open={openState}
+              onClose={handleStateClose}
+              onOpen={handleStateOpen}
               value={state}
               onChange={(evt) => setState(evt.target.value)}
               required

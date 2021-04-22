@@ -26,7 +26,7 @@ function* fetchAllEvents() {
 
 function* fetchTypesOfEvent() {
   try {
-    const response = yield axios.get('/api/event/types');
+    const response = yield axios.get('/api/types');
     console.log('fetching types of events', response.data);
     yield put({ type: 'SET_TYPES_OF_EVENTS', payload: response.data });
   } catch (err) {
