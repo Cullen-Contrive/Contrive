@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 function EventVendorsAccordion() {
   // Bring in all vendors to display upon page load:
   let allVendors = useSelector((store) => store.allVendors);
-
+  let someVendors = allVendors.slice;
   function vendors() {
     for (let i = 0; i < 3; i++) {
       return <h1>Hello World</h1>;
