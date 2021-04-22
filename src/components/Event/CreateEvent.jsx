@@ -63,6 +63,9 @@ function CreateEvent() {
     // console.log('description:', description);
     // console.log('plannerUserId', planner.id);
     // console.log('typeofevent:', typeOfEvent);
+
+    // TODO: Add validation for checking inputs coming in and do not dispatch unless
+    // fields are filled out
     dispatch({
       type: 'ADD_EVENT',
       payload: {
