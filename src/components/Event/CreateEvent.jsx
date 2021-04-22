@@ -5,9 +5,9 @@ import ImageUpload from '../ImageUpload/ImageUpload';
 import getStates from '../../helpers/states';
 
 // Material-UI
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DatePicker from '@material-ui/lab/DatePicker';
+// import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+// import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// import DatePicker from '@material-ui/lab/DatePicker';
 import {
   Button,
   FormControl,
@@ -108,198 +108,197 @@ function CreateEvent() {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Grid item container spacing={2} xs={12} component={Paper}>
-        {/* Header */}
-        <Typography variant="h2" component="h2" align="center">
-          Create Event
-        </Typography>
+    <Grid item container spacing={2} xs={12} component={Paper}>
+      {/* Header */}
+      <Typography variant="h2" component="h2" align="center">
+        Create Event
+      </Typography>
 
-        {/* Image Upload */}
-        <Grid item xs={12}>
-          <FormControl variant="outlined" fullWidth>
-            <Typography variant="body1" align="left">
-              Event Picture
-            </Typography>
-            <ImageUpload page="AddEventPhoto" />
-          </FormControl>
-        </Grid>
-
-        {/* Type of Event Selection */}
-        <Grid item xs={12}>
-          <FormControl variant="outlined" fullWidth>
-            <InputLabel htmlFor="controlled-open-select">
-              Type of Event
-            </InputLabel>
-            <Select
-              id="controlled-open-select"
-              open={openType}
-              onClose={handleTypeClose}
-              onOpen={handleTypeOpen}
-              value={typeOfEvent}
-              onChange={(evt) => setTypeOfEvent(evt.target.value)}
-              required
-            >
-              <MenuItem value={0}>
-                <em>None</em>
-              </MenuItem>
-              {typesOfEvents.map((event) => {
-                return (
-                  <MenuItem key={event.id} value={event.id}>
-                    {capitalize(event.name)}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        {/*  Address */}
-        <Grid item xs={8}>
-          <FormControl variant="outlined" fullWidth>
-            <TextField
-              id="address"
-              label="Address"
-              type="text"
-              autoComplete="current-address"
-              variant="outlined"
-              value={address}
-              required
-              onChange={(event) => setAddress(event.target.value)}
-            />
-          </FormControl>
-        </Grid>
-
-        {/* State Selection */}
-        <Grid item xs={4}>
-          <FormControl variant="outlined" fullWidth>
-            <InputLabel htmlFor="controlled-open-select">State</InputLabel>
-            <Select
-              id="controlled-open-select"
-              open={openState}
-              onClose={handleStateClose}
-              onOpen={handleStateOpen}
-              value={state}
-              onChange={(evt) => setState(evt.target.value)}
-              required
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {getStates().map((state, index) => {
-                return (
-                  <MenuItem key={index} value={state.abbreviation}>
-                    {state.name}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        {/* City */}
-        <Grid item xs={6}>
-          <FormControl variant="outlined" fullWidth>
-            <TextField
-              id="city"
-              label="City"
-              type="text"
-              autoComplete="current-city"
-              variant="outlined"
-              value={city}
-              required
-              onChange={(event) => setCity(event.target.value)}
-            />
-          </FormControl>
-        </Grid>
-
-        {/* Zip Code */}
-        <Grid item xs={6}>
-          <FormControl variant="outlined" fullWidth>
-            <TextField
-              id="zip"
-              label="Zip Code"
-              type="text"
-              autoComplete="current-zip-code"
-              variant="outlined"
-              value={zip}
-              required
-              onChange={(event) => setZip(event.target.value)}
-            />
-          </FormControl>
-        </Grid>
-
-        {/* Event Date */}
-        <Grid item xs={6}>
-          <FormControl variant="outlined" fullWidth>
-            <DatePicker
-              label="Event Date"
-              value={dateOfEvent}
-              onChange={(newValue) => {
-                setDateOfEvent(newValue);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </FormControl>
-        </Grid>
-
-        {/* Time of Event */}
-        <Grid item xs={6}>
-          <FormControl variant="outlined" fullWidth>
-            <TextField
-              id="time"
-              label="Time of Event"
-              type="time"
-              value={timeOfEvent}
-              onChange={(evt) => setTimeOfEvent(evt.target.value)}
-              required
-            />
-          </FormControl>
-        </Grid>
-
-        {/* Number of Attendees */}
-        <Grid item xs={12}>
-          <FormControl variant="outlined" fullWidth>
-            <TextField
-              id="numberOfAttendees"
-              label="Number Of Attendees"
-              type="text"
-              autoComplete="current-number-of-attendees"
-              variant="outlined"
-              value={numberOfAttendees}
-              required
-              onChange={(event) => setNumberOfAttendees(event.target.value)}
-            />
-          </FormControl>
-        </Grid>
-
-        {/*  Description */}
-        <Grid item xs={12}>
-          <FormControl variant="outlined" fullWidth>
-            <TextField
-              id="description"
-              label="Description"
-              type="text"
-              autoComplete="current-description-of-event"
-              variant="outlined"
-              value={description}
-              required
-              onChange={(event) => setDescription(event.target.value)}
-            />
-          </FormControl>
-        </Grid>
-
-        <Grid item container xs={12} justify="center">
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={handleFormSubmission}
-          >
-            Create Event
-          </Button>
-        </Grid>
+      {/* Image Upload */}
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <Typography variant="body1" align="left">
+            Event Picture
+          </Typography>
+          <ImageUpload page="AddEventPhoto" />
+        </FormControl>
       </Grid>
-    </LocalizationProvider>
+
+      {/* Type of Event Selection */}
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <InputLabel htmlFor="controlled-open-select">
+            Type of Event
+          </InputLabel>
+          <Select
+            id="controlled-open-select"
+            open={openType}
+            onClose={handleTypeClose}
+            onOpen={handleTypeOpen}
+            value={typeOfEvent}
+            onChange={(evt) => setTypeOfEvent(evt.target.value)}
+            required
+          >
+            <MenuItem value={0}>
+              <em>None</em>
+            </MenuItem>
+            {typesOfEvents.map((event) => {
+              return (
+                <MenuItem key={event.id} value={event.id}>
+                  {capitalize(event.name)}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Grid>
+
+      {/*  Address */}
+      <Grid item xs={8}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="address"
+            label="Address"
+            type="text"
+            autoComplete="current-address"
+            variant="outlined"
+            value={address}
+            required
+            onChange={(event) => setAddress(event.target.value)}
+          />
+        </FormControl>
+      </Grid>
+
+      {/* State Selection */}
+      <Grid item xs={4}>
+        <FormControl variant="outlined" fullWidth>
+          <InputLabel htmlFor="controlled-open-select">State</InputLabel>
+          <Select
+            id="controlled-open-select"
+            open={openState}
+            onClose={handleStateClose}
+            onOpen={handleStateOpen}
+            value={state}
+            onChange={(evt) => setState(evt.target.value)}
+            required
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            {getStates().map((state, index) => {
+              return (
+                <MenuItem key={index} value={state.abbreviation}>
+                  {state.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Grid>
+
+      {/* City */}
+      <Grid item xs={6}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="city"
+            label="City"
+            type="text"
+            autoComplete="current-city"
+            variant="outlined"
+            value={city}
+            required
+            onChange={(event) => setCity(event.target.value)}
+          />
+        </FormControl>
+      </Grid>
+
+      {/* Zip Code */}
+      <Grid item xs={6}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="zip"
+            label="Zip Code"
+            type="text"
+            autoComplete="current-zip-code"
+            variant="outlined"
+            value={zip}
+            required
+            onChange={(event) => setZip(event.target.value)}
+          />
+        </FormControl>
+      </Grid>
+
+      {/* Event Date */}
+      <Grid item xs={6}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="date"
+            label="Date of Event"
+            type="date"
+            value={dateOfEvent}
+            onChange={(evt) => {
+              setDateOfEvent(evt.target.value);
+            }}
+          />
+        </FormControl>
+      </Grid>
+
+      {/* Time of Event */}
+      <Grid item xs={6}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="time"
+            label="Time of Event"
+            type="time"
+            value={timeOfEvent}
+            onChange={(evt) => setTimeOfEvent(evt.target.value)}
+            required
+          />
+        </FormControl>
+      </Grid>
+
+      {/* Number of Attendees */}
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="numberOfAttendees"
+            label="Number Of Attendees"
+            type="text"
+            autoComplete="current-number-of-attendees"
+            variant="outlined"
+            value={numberOfAttendees}
+            required
+            onChange={(event) => setNumberOfAttendees(event.target.value)}
+          />
+        </FormControl>
+      </Grid>
+
+      {/*  Description */}
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth>
+          <TextField
+            id="description"
+            label="Description"
+            type="text"
+            autoComplete="current-description-of-event"
+            variant="outlined"
+            value={description}
+            required
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </FormControl>
+      </Grid>
+
+      <Grid item container xs={12} justify="center">
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleFormSubmission}
+        >
+          Create Event
+        </Button>
+      </Grid>
+    </Grid>
   );
 } // end CreateEvent
 

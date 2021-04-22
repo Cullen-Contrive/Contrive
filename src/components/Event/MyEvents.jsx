@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
-import ListItem from '@material-ui/coreListItem';
+import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
 
 function MyEvents() {
   const dispatch = useDispatch();
