@@ -46,13 +46,15 @@ function MessagesList() {
 
       <List className={classes.messagesList}>
         {conversations.map((conversation, index) => {
-          // this will be the id of the otherUser that the logged in user is having a conversation with
-          let messenger;
+          // this will be the id of the otherUser that the logged-in user is having a conversation with
+          let messenger = conversation.otherUserId;
 
-          if (conversation.greatest === user.id) {
-            messenger = conversation.least;
+          // Account for non-vendors not having companyNames to display:
+          let otherUserGreeting;
+          if (user.type === 'planner') {
+            otherUserGreeting = conversation.companyName;
           } else {
-            messenger = conversation.greatest;
+            otherUserGreeting = conversation.firstName + ' ' + conversation.lastName;
           }
 
           return (
@@ -60,13 +62,14 @@ function MessagesList() {
               <ListItem alignItems="flex-start" onClick={() => viewConversation(messenger)}>
                 {/* This is the profile pic of the user that the logged in user is having a conversation with */}
                 <ListItemAvatar className={classes.chatAvatar}>
-                  <Avatar className={classes.chatAvatar} alt={conversation.companyName} src={conversation.profilePic} />
+                  <Avatar className={classes.chatAvatar}
+                    alt={otherUserGreeting} src={conversation.profilePic} />
                 </ListItemAvatar>
 
                 {/* The primary text is the name of the user that the logged in user is having a conversation with,
                     The secondary text is a preview of the last message sent in the conversation. */}
                 <ListItemText
-                  primary={conversation.companyName} // primary text will be rendered from reducer
+                  primary={otherUserGreeting} // primary text will be rendered from reducer
                   secondary={
                     <Fragment>
                       <Typography

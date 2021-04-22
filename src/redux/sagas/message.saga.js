@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* fetchMessages(action) {
-  const toUserId = action.payload;
+function* fetchMessageConversation(action) {
+  const otherUserId = action.payload;
   try {
-    // Fetches messages between logged in user and one other user from server/db based on toUser id
-    // toUser -> Integer
-    // fromUser will be req.user.id, toUser needs to be passed in
-    const response = yield axios.get(`/api/message/${toUserId}`);
+    // Fetches messages between logged-in user (userId) and one other user
+    // userId will be req.user.id, otherUser needs to be passed in:
+    const response = yield axios.get(`/api/message/${otherUserId}`);
     yield put({ type: 'SET_MESSAGES', payload: response.data });
   } catch (err) {
     console.error('CLIENT - SAGAS - an error occurred fetching messages');
@@ -54,7 +53,7 @@ function* postMessage(action) {
 }
 
 function* chatSaga() {
-  yield takeLatest('FETCH_MESSAGES', fetchMessages);
+  yield takeLatest('FETCH_MESSAGES', fetchMessageConversation);
   yield takeLatest('FETCH_ALL_MESSAGES', fetchAllMessages);
   yield takeLatest('POST_OUTGOING_MESSAGES', postOutgoingMessages);
   yield takeLatest('POST_MESSAGE', postMessage);
