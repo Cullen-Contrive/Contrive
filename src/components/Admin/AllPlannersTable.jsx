@@ -21,14 +21,13 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 
 // Import Custom Components
-import AllVendorsTableRow from './AllVendorsTableRow';
+import AllPlannersTableRow from './AllPlannersTableRow';
 
 // Header columns for table
 const columns = [
-  { id: 'companyName', label: 'Company Name', minWidth: 170 },
   { id: 'firstName', label: 'First Name', minWidth: 170 },
   { id: 'lastName', label: 'Last Name', minWidth: 170 },
-  /* Column to be added for Vendor Certification */
+  /* Column to be added for Planner Certification */
   // { id: 'certified', label: 'Certified', minWidth: 170 },
   { id: 'remove', label: 'Remove', minWidth: 170 },
 ];
@@ -44,22 +43,21 @@ const useStyles = makeStyles({
 });
 
 /**
- * Component displays all vendors in a table format listing their:
- * - Company Name
+ * Component displays all planners in a table format listing their:
  * - First Name
  * - Last Name
  *
  * Functionality added to allow an Admin to:
- * - Permanently delete vendor (and all their associated data)
- * - Certify a vendor (future)
+ * - Permanently delete planner (and all their associated data)
+ * - Certify a planner (future)
  *
- * @returns {jsx} function renders Vendors table
+ * @returns {jsx} function renders Planners table
  */
-function AllVendorsTable() {
+function AllPlannersTable() {
   const classes = useStyles();
 
-  // Grab list of all vendors from the Redux store
-  const vendors = useSelector((store) => store.allVendors);
+  // Grab list of all planners from the Redux store
+  const planners = useSelector((store) => store.allPlanners);
 
   // Local state variable for capturing filter input
   const [tableFilter, setTableFilter] = useState('');
@@ -68,25 +66,21 @@ function AllVendorsTable() {
   let data = [];
   let lowerCaseQuery = tableFilter.toLowerCase();
 
-  // Create array of vendors to pass to table for rendering
+  // Create array of planners to pass to table for rendering
   // No filter
   if (tableFilter === '') {
-    data = vendors;
+    data = planners;
   }
   // Filter input
   else {
-    for (let vendor of vendors) {
-      // Grab vendors that match filter text on company name
-      if (vendor.companyName.toLowerCase().includes(lowerCaseQuery)) {
-        data.push(vendor);
+    for (let planner of planners) {
+      // Grab planners that match filter text on first name
+      if (planner.firstName.toLowerCase().includes(lowerCaseQuery)) {
+        data.push(planner);
       }
-      // Grab vendors that match filter text on first name
-      else if (vendor.firstName.toLowerCase().includes(lowerCaseQuery)) {
-        data.push(vendor);
-      }
-      // Grab vendors that match filter text on last name
-      else if (vendor.lastName.toLowerCase().includes(lowerCaseQuery)) {
-        data.push(vendor);
+      // Grab planners that match filter text on last name
+      else if (planner.lastName.toLowerCase().includes(lowerCaseQuery)) {
+        data.push(planner);
       }
     }
   }
@@ -101,7 +95,7 @@ function AllVendorsTable() {
               {/* Table Title */}
               <Grid item xs={3}>
                 <Typography variant="h4" component="h2" align="left">
-                  Vendors
+                  Planners
                 </Typography>
               </Grid>
 
@@ -112,7 +106,7 @@ function AllVendorsTable() {
                     id="search"
                     color="primary"
                     value={tableFilter}
-                    placeholder="Company Name / First Name / Last Name"
+                    placeholder="First Name / Last Name"
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
@@ -145,14 +139,11 @@ function AllVendorsTable() {
                   ))}
                 </TableHead>
 
-                {/* Display Vendors */}
+                {/* Display Planners */}
                 <TableBody>
-                  {data.map((vendor) => {
+                  {data.map((planner) => {
                     return (
-                      <AllVendorsTableRow
-                        key={vendor.vendorUserId}
-                        vendor={vendor}
-                      />
+                      <AllPlannersTableRow key={planner.id} planner={planner} />
                     );
                   })}
                 </TableBody>
@@ -165,4 +156,4 @@ function AllVendorsTable() {
   );
 }
 
-export default AllVendorsTable;
+export default AllPlannersTable;
