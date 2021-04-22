@@ -5,7 +5,7 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-router.get('/all', rejectUnauthenticated, (req, res) => {
+router.get('/all', rejectUnauthenticated, async (req, res) => {
   // GET ROUTE - Gets all messages for currently logged-in user
   const userId = req.user.id;
 
@@ -42,6 +42,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
           err
         );
         res.sendStatus(500);
+        return;
       });
 
   } else if (req.user.type === 'vendor') {
@@ -62,82 +63,123 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 
     // Query to select all other users who have messaged with this vendor (userId)
     const vendorQueryText = `
-    WITH "sendingUsers" AS 
-  	(SELECT "fromUser", "toUser", "date", "message" 
-  		FROM "messages" 
-  		WHERE "fromUser" = $1  OR "toUser" = $1 
-  		ORDER BY "date" DESC ),
-  "receivingUsers" AS 
-  (SELECT "fromUser", "toUser" 
-  		FROM "messages" 
-  		WHERE "fromUser" = $1 OR "toUser" = $1  
-  		ORDER BY "date" DESC ) 
-    SELECT DISTINCT "users".id, "users"."firstName", "users"."lastName", "users"."profilePic" 
-    FROM "users"
-    JOIN "sendingUsers" ON "users".id = "sendingUsers"."fromUser" 
-    JOIN "receivingUsers" ON "users".id = "receivingUsers"."toUser"
-    WHERE "users".id = "sendingUsers"."fromUser" OR "users".id = "receivingUsers"."toUser";
-`;
-    pool
-      .query(vendorQueryText, [userId])
-      .then((dbRes) => {
-        console.log('11111111111111 VENDOR DBRES TO GET USER LIST:', dbRes.rows);
+            WITH "sendingUsers" AS 
+            (SELECT "fromUser", "toUser", "date", "message" 
+              FROM "messages" 
+              WHERE "fromUser" = $1  OR "toUser" = $1 
+              ORDER BY "date" DESC ),
+          "receivingUsers" AS 
+          (SELECT "fromUser", "toUser" 
+              FROM "messages" 
+              WHERE "fromUser" = $1 OR "toUser" = $1  
+              ORDER BY "date" DESC ) 
+            SELECT DISTINCT "users".id, "users"."firstName", "users"."lastName", "users"."profilePic" 
+            FROM "users"
+            JOIN "sendingUsers" ON "users".id = "sendingUsers"."fromUser" 
+            JOIN "receivingUsers" ON "users".id = "receivingUsers"."toUser"
+            WHERE "users".id = "sendingUsers"."fromUser" OR "users".id = "receivingUsers"."toUser";
+        `;
 
-        const allOtherUsers = dbRes.rows;
-        for (let otherUser of allOtherUsers) {
-          if (otherUser.id != userId) {
-            individualCommunicator.otherUserId = otherUser.id;
-            individualCommunicator.firstName = otherUser.firstName;
-            individualCommunicator.lastName = otherUser.lastName;
-            individualCommunicator.profilePic = otherUser.profilePic;
+    // setup a connection to use for all our queries.
+    const connection = await pool.connect();
 
-            console.log('11111111111111.2: individualCommunicator AFTER FIRST QUERY:', individualCommunicator);
-            // communicationList.push(individualCommunicator);
+    try {
+      await connection.query('BEGIN');
+      // Get list of all users messaging with this vendor
+      let dbRes = await connection.query(vendorQueryText, [userId]);
+      // capture individual user information in individualCommunicator object
+      const allOtherUsers = dbRes.rows;
+      for (let otherUser of allOtherUsers) {
+        if (otherUser.id != userId) {
+          individualCommunicator.otherUserId = otherUser.id;
+          individualCommunicator.firstName = otherUser.firstName;
+          individualCommunicator.lastName = otherUser.lastName;
+          individualCommunicator.profilePic = otherUser.profilePic;
 
-            // console.log('11111111111111.3: communicationList after FIRST QUERY:', communicationList);
+          console.log('11111111111111.2: individualCommunicator AFTER FIRST QUERY:', individualCommunicator);
 
-            const messageQueryText = `
+
+          let messageInfo = await connection.query(`
             SELECT "messages"."message", to_char("date", 'DD MON YYYY HH:MI AM') AS "dateReceived" 
             FROM "messages" 
             WHERE "messages"."fromUser" IN ($1, $2) AND "messages"."toUser" IN ($1, $2)
             ORDER BY "dateReceived"  DESC
             LIMIT 1;
-            `;
-            pool.query(messageQueryText, [userId, otherUser.id])
-              .then((dbResult) => {
-                console.log('MESSAGE QUERY dbRes.rows:', dbResult.rows);
-                let messageInfo = dbResult.rows[0];
+            `, [userId, otherUser.id]);
 
-                individualCommunicator.message = messageInfo.message;
-                individualCommunicator.messageDate = messageInfo.dateReceived;
+          // Add message information to individualCommunicator object
+          individualCommunicator.message = messageInfo.message;
+          individualCommunicator.messageDate = messageInfo.dateReceived;
 
-                console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
+          console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
 
-                communicationList.push(individualCommunicator);
-                console.log('communicationList after BOTH QUERIES:', communicationList);
+          // Add each individualCommunicator object to an array 
+          communicationList.push(individualCommunicator);
+          console.log('communicationList after BOTH QUERIES:', communicationList);
 
-              })
-              .catch((err) => {
-                console.error(
-                  'SERVER - GET at /api/message/all for VENDOR MESSAGES - an error occurred',
-                  err
-                );
-                res.sendStatus(500);
-              })
-          }
+
+
+          await connection.query('COMMIT');
+
+          // After looping through each of the other user Id's and retrieving their most recent 
+          // message with logged-in user, end this info back to the client
+          res.send(communicationList);
         }
+      }
+    }
 
-        // After looping through each of the other user Id's and retrieving their most recent 
-        // message with logged-in user, end this info back to the client
-        res.send(communicationList);
-      })
-      .catch((err) => {
-        console.error(
-          'SERVER - GET at /api/message/all for VENDOR - an error occurred',
-          err
-        );
-        res.sendStatus(500);
-      });
+    // pool
+    //   .query(vendorQueryText, [userId])
+    //   .then((dbRes) => {
+    //     console.log('11111111111111 VENDOR DBRES TO GET USER LIST:', dbRes.rows);
+
+    //     const allOtherUsers = dbRes.rows;
+    //     for (let otherUser of allOtherUsers) {
+    //       if (otherUser.id != userId) {
+    //         individualCommunicator.otherUserId = otherUser.id;
+    //         individualCommunicator.firstName = otherUser.firstName;
+    //         individualCommunicator.lastName = otherUser.lastName;
+    //         individualCommunicator.profilePic = otherUser.profilePic;
+
+    //         console.log('11111111111111.2: individualCommunicator AFTER FIRST QUERY:', individualCommunicator);
+    // communicationList.push(individualCommunicator);
+
+    // console.log('11111111111111.3: communicationList after FIRST QUERY:', communicationList);
+
+    //     const messageQueryText = `
+    // SELECT "messages"."message", to_char("date", 'DD MON YYYY HH:MI AM') AS "dateReceived" 
+    // FROM "messages" 
+    // WHERE "messages"."fromUser" IN ($1, $2) AND "messages"."toUser" IN ($1, $2)
+    // ORDER BY "dateReceived"  DESC
+    // LIMIT 1;
+    // `;
+    //     pool.query(messageQueryText, [userId, otherUser.id])
+    //         .then((dbResult) => {
+    // console.log('MESSAGE QUERY dbRes.rows:', dbResult.rows);
+    // let messageInfo = dbResult.rows[0];
+
+    // individualCommunicator.message = messageInfo.message;
+    // individualCommunicator.messageDate = messageInfo.dateReceived;
+
+    // console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
+
+    // communicationList.push(individualCommunicator);
+    // console.log('communicationList after BOTH QUERIES:', communicationList);
+
+    // })
+    catch (err) {
+      console.error(
+        'SERVER - GET at /api/message/all for VENDOR MESSAGES - an error occurred',
+        err
+      );
+      res.sendStatus(500);
+    }
+    finally {
+      // Finally runs whether the `try` block succeeded or not
+      //
+      // Release our connection. You're free, connection!
+      connection.release()
+    }
   }
 }); // end get All messages for one user
 
