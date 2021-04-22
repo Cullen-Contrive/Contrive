@@ -33,7 +33,7 @@ function CreateEvent() {
   // Local state variables
   const [openState, setStateOpen] = useState(false); // used for tracking whether select is open
   const [openType, setTypeOpen] = useState(false);
-  const [typeOfEvent, setTypeOfEvent] = useState(''); // array used for potentially selecting multiple
+  const [typeOfEvent, setTypeOfEvent] = useState(0); // array used for potentially selecting multiple
   const [dateOfEvent, setDateOfEvent] = useState('');
   const [timeOfEvent, setTimeOfEvent] = useState('07:30');
   const [address, setAddress] = useState('');
@@ -76,7 +76,7 @@ function CreateEvent() {
         numberOfAttendees,
         description,
         photos: [eventPhoto],
-        typeOfEvent: [typeOfEvent],
+        typeId: typeOfEvent,
         onComplete: () => {
           history.push('/events/confirmation');
         },
@@ -140,7 +140,7 @@ function CreateEvent() {
               onChange={(evt) => setTypeOfEvent(evt.target.value)}
               required
             >
-              <MenuItem value="">
+              <MenuItem value={0}>
                 <em>None</em>
               </MenuItem>
               {typesOfEvents.map((event) => {

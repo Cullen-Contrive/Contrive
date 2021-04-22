@@ -241,8 +241,9 @@ router.post('/types', rejectUnauthenticated, (req, res) => {
   INSERT INTO 
   "events_types" 
   ("eventId", "typeId")
-  VALUES (3, 2);`;
-  const eventId = req.body.eventId;
+  VALUES ($1, $2);`;
+  console.log('in POST types', req.body);
+  const eventId = req.body.eventId.id;
   const typeId = req.body.typeId;
   pool
     .query(queryText, [eventId, typeId])

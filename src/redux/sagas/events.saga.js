@@ -48,15 +48,21 @@ function* addEvent(action) {
     // numberOfAttendees -> integer
     // description -> string
     // photos -> array of Image URLs
+    // typeId -> integer
     // onComplete -> function
     // }
     const response = yield axios.post('/api/event', action.payload);
+    console.log('response.data', response.data);
     if (action.payload.photos) {
       yield put({
         type: 'ADD_PHOTO_TO_EVENT',
         payload: { photos: action.payload.photos, eventId: response.data },
       });
     }
+    yield put({
+      type: 'ADD_TYPE_TO_EVENT',
+      payload: { eventId: response.data, typeId: action.payload.typeId },
+    });
     action.payload.onComplete();
   } catch (err) {
     console.error('Adding event request failed', err);
