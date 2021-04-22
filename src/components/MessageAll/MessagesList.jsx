@@ -36,6 +36,7 @@ function MessagesList() {
   }
 
   console.log('list of conversations:', conversations);
+
   return (
     <>
       <Box p={1}>
@@ -45,53 +46,62 @@ function MessagesList() {
       <Divider />
 
       <List className={classes.messagesList}>
-        {conversations.map((conversation, index) => {
-          // this will be the id of the otherUser that the logged in user is having a conversation with
-          let messenger;
+        {
+          conversations.length === 0 ? (
+            <ListItem alignItems="flex-start">You have no messages at this time.</ListItem>
+          ) : (
+            conversations.map((conversation, index) => {
+              // this will be the id of the otherUser that the logged-in user is having a conversation with
+              let messenger = conversation.otherUserId;
 
-          if (conversation.greatest === user.id) {
-            messenger = conversation.least;
-          } else {
-            messenger = conversation.greatest;
-          }
+              // Account for non-vendors not having companyNames to display:
+              let otherUserGreeting;
+              if (user.type === 'planner') {
+                otherUserGreeting = conversation.companyName;
+              } else {
+                otherUserGreeting = conversation.firstName + ' ' + conversation.lastName;
+              }
 
-          return (
-            <div key={index} >
-              <ListItem alignItems="flex-start" onClick={() => viewConversation(messenger)}>
-                {/* This is the profile pic of the user that the logged in user is having a conversation with */}
-                <ListItemAvatar className={classes.chatAvatar}>
-                  <Avatar className={classes.chatAvatar} alt={conversation.companyName} src={conversation.profilePic} />
-                </ListItemAvatar>
+              return (
+                <div key={index} >
+                  <ListItem alignItems="flex-start" onClick={() => viewConversation(messenger)}>
+                    {/* This is the profile pic of the user that the logged in user is having a conversation with */}
+                    <ListItemAvatar className={classes.chatAvatar}>
+                      <Avatar className={classes.chatAvatar}
+                        alt={otherUserGreeting} src={conversation.profilePic} />
+                    </ListItemAvatar>
 
-                {/* The primary text is the name of the user that the logged in user is having a conversation with,
-                    The secondary text is a preview of the last message sent in the conversation. */}
-                <ListItemText
-                  primary={conversation.companyName} // primary text will be rendered from reducer
-                  secondary={
-                    <Fragment>
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        className={classes.inline}
-                        noWrap
-                        color="textPrimary"
-                      >
-                        {conversation.message}
-                      </Typography>
-                    </Fragment>
-                  }
-                />
-              </ListItem>
+                    {/* The primary text is the name of the user that the logged in user is having a conversation with,
+                   The secondary text is a preview of the last message sent in the conversation. */}
+                    <ListItemText
+                      primary={otherUserGreeting} // primary text will be rendered from reducer
+                      secondary={
+                        <Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            noWrap
+                            color="textPrimary"
+                          >
+                            {conversation.message}
+                          </Typography>
+                        </Fragment>
+                      }
+                    />
+                  </ListItem>
 
-              {/* Creates Divider Line Between Each List item */}
-              <Divider variant="middle" component="li" />
-            </div>
-          );
-        })}
+                  {/* Creates Divider Line Between Each List item */}
+                  <Divider variant="middle" component="li" />
+                </div>
+              );
+            })
+          )
+        }
 
       </List>
     </>
-  );
+  ); // end JSX
 } // end MessagesList
 
 export default MessagesList;
