@@ -39,7 +39,7 @@ function AllPlannersTableRow({ planner }) {
 
   // Permanently removes planner from the DB
   const deletePlanner = () => {
-    const userId = planner.plannerUserId;
+    const userId = planner.id;
 
     // Close AlertDialog
     handleClose();

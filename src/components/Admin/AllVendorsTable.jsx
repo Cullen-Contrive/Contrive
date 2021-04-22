@@ -98,7 +98,7 @@ function AllVendorsTable() {
         <Grid item xs={10}>
           <Box mt={3} mb={3}>
             <Grid container justify="space-between" alignItems="center">
-              {/* Table Titel */}
+              {/* Table Title */}
               <Grid item xs={3}>
                 <Typography variant="h4" component="h2" align="left">
                   Vendors

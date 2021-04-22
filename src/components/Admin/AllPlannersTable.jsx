@@ -59,8 +59,6 @@ function AllPlannersTable() {
   // Grab list of all planners from the Redux store
   const planners = useSelector((store) => store.allPlanners);
 
-  console.log('##$$## planners:', planners);
-
   // Local state variable for capturing filter input
   const [tableFilter, setTableFilter] = useState('');
 

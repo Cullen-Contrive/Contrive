@@ -26,7 +26,8 @@ router.get('/admin', rejectUnauthenticated, (req, res) => {
   pool
     .query(sqlQuery)
     .then((dbResponse) => {
-      res.send(dbResponse);
+      // console.log('!!!!!!! dbResponse.rows:', dbResponse.rows);
+      res.send(dbResponse.rows);
     })
     .catch((error) => {
       console.log('ERROR in GET /api/planner/admin:', error);

@@ -11,8 +11,18 @@ function* fetchAllPlanners(action) {
   }
 }
 
+function* deletePlanner(action) {
+  console.log('##$$## SAGA -> deletePlanner() ##$$##');
+  console.log('\tuserId to delete:', action.payload);
+  // try {
+  // } catch (error) {
+  //   console.error('DELETE planner request failed:', error);
+  // }
+}
+
 function* plannerSaga() {
   yield takeLatest('FETCH_ALL_USERS', fetchAllPlanners);
+  yield takeLatest('DELETE_PLANNER', deletePlanner);
 }
 
 export default plannerSaga;
