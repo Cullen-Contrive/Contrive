@@ -70,16 +70,18 @@ function LoginForm() {
   };
 
   return (
-    <Grid item container spacing={2} xs={12} component={Paper}>
+    <Grid item container spacing={2} component={Paper}>
       <Typography variant="h2" component="h2" align="center">
         Login
       </Typography>
+
       {errors.loginMessage && (
         <Typography variant="h3" component="h3" align="center"
           className="alert" role="alert">
           {errors.loginMessage}
         </Typography>
       )}
+
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
           <TextField
@@ -95,6 +97,7 @@ function LoginForm() {
           />
         </FormControl>
       </Grid>
+
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
           <TextField
@@ -115,19 +118,19 @@ function LoginForm() {
 
       <Grid item container xs={12} justify="center">
       <Box align = "center">
-      <Box className={classes.root}>
-        <Button color="secondary" variant="contained"
-          type="button"
-          onClick={() => {
-            history.push('/registration');
-          }}
-        >
-          Register
-        </Button>
-        <Button color="primary" variant="contained"
-          onClick={login}>
-          Log In
-        </Button>
+        <Box className={classes.root}>
+          <Button color="secondary" variant="contained"
+            type="button"
+            onClick={() => {
+              history.push('/registration');
+            }}
+          >
+            Register
+          </Button>
+          <Button color="primary" variant="contained"
+            onClick={login}>
+            Log In
+          </Button>
         </Box>
       </Box>
       </Grid>
