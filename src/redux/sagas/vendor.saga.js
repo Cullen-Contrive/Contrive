@@ -58,6 +58,7 @@ function* vendorSaga() {
   yield takeLatest('FETCH_ALL_VENDORS', fetchAllVendors);
   yield takeLatest('UPDATE_VENDOR_PROFILE', updateVendorProfile);
   yield takeLatest('DELETE_VENDOR', deleteVendor);
+  yield takeLatest('FETCH_ALL_USERS', fetchAllVendors);
 }
 
 export default vendorSaga;
