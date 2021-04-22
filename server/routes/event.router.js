@@ -10,6 +10,7 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Grabs all events
+  console.log('all');
   const queryText = `
   SELECT 
   "events"."id",
@@ -68,6 +69,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   // Grabs an event by id
+  console.log('get by id');
   const queryText = `
   SELECT 
   "events"."id",
@@ -121,25 +123,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         err
       );
       res.sendStatus(500);
-    });
-});
-
-/**
- * GET route for /api/event/types
- */
-router.get('/types', (req, res) => {
-  // Used for grabbing all types of events to display a list of options for user
-  const queryText = `
-  SELECT * 
-  FROM "types_of_event";`;
-  pool
-    .query(queryText)
-    .then((dbRes) => {
-      console.log('SERVER - GET at /api/event/types successful!');
-      res.send(dbRes.rows);
-    })
-    .catch((err) => {
-      console.error('SERVER - GET at /api/event/types an error occurred!', err);
     });
 });
 

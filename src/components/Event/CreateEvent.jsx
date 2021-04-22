@@ -27,6 +27,9 @@ function CreateEvent() {
   const planner = useSelector(
     (store) => store.userDetails.loggedInUserDetailsReducer
   );
+  const typesOfEvents = useSelector(
+    (store) => store.events.typesOfEventsReducer
+  );
   const eventPhoto = useSelector((store) => store.eventPhoto);
   // Local state variables
   const [open, setOpen] = useState(false); // used for tracking whether select is open
@@ -42,6 +45,8 @@ function CreateEvent() {
   useEffect(() => {
     dispatch({ type: 'FETCH_LOGGED_IN_USER_DETAILS' });
   }, []);
+
+  console.log('typesofevents:', typesOfEvents);
 
   // handles form submission and creating event
   const handleFormSubmission = () => {
