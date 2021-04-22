@@ -57,7 +57,7 @@ function MessageConversation() {
 
   const fetchMessages = () => {
     // Fetches messages between fromUser and toUser
-    dispatch({ type: 'FETCH_MESSAGES', payload: params.id });
+    dispatch({ type: 'FETCH_MESSAGE_CONVERSATION', payload: params.id });
   };
 
   const fetchToUserDetails = () => {
