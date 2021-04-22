@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   pool
     .query(queryText)
     .then((result) => {
-      console.log('retrieve vendor types list is:', result.rows);
+      // console.log('retrieve vendor types list is:', result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
