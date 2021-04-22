@@ -1,10 +1,21 @@
+// Import Libraries
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+/**
+ * Function GETs a list of all planners from the "users" table.
+ *
+ * Parameters returned from "users" table:
+ * - id
+ * - firstName
+ * - lastName
+ */
 function* fetchAllPlanners(action) {
   try {
+    // Get Planners
     const response = yield axios.get('/api/planner/admin');
 
+    // Save list of planners in Redux store
     yield put({ type: 'SET_ALL_PLANNERS', payload: response.data });
   } catch (err) {
     console.error('ERROR in GET /api/planner', err);

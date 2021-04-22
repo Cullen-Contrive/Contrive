@@ -1,4 +1,4 @@
-// All Vendors to display on search page before filtering
+// All Planners to display on admin page before filtering
 const allPlannersReducer = (
   state = [
     {

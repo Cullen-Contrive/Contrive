@@ -26,7 +26,6 @@ router.get('/admin', rejectUnauthenticated, (req, res) => {
   pool
     .query(sqlQuery)
     .then((dbResponse) => {
-      // console.log('!!!!!!! dbResponse.rows:', dbResponse.rows);
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -54,13 +53,13 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
     return;
   }
 
-  // Query used on DB
+  // Query used to ping DB
   const sqlQuery = `
   DELETE FROM "users"
   WHERE "users".id = $1;
   `;
 
-  // SQL Transaction
+  // SQL Transaction to remove a planner from the DB
   pool
     .query(sqlQuery, [userIdToDelete])
     .then((dbResponse) => {
