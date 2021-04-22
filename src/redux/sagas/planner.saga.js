@@ -11,16 +11,27 @@ function* fetchAllPlanners(action) {
   }
 }
 
+/**
+ * Function permanently removes a planner (and all their associated data)
+ * from the DB
+ *
+ * @param {object} action object containing "user".id to delete
+ */
 function* deletePlanner(action) {
-  console.log('##$$## SAGA -> deletePlanner() ##$$##');
-  console.log('\tuserId to delete:', action.payload);
-  // try {
-  // } catch (error) {
-  //   console.error('DELETE planner request failed:', error);
-  // }
+  const deleteId = action.payload;
+  try {
+    // Delete Planner
+    yield axios.delete(`/api/planner/delete/${deleteId}`);
+
+    // Update Planner List
+    yield put({ type: 'FETCH_ALL_PLANNERS' });
+  } catch (error) {
+    console.error('DELETE planner request failed:', error);
+  }
 }
 
 function* plannerSaga() {
+  yield takeLatest('FETCH_ALL_PLANNERS', fetchAllPlanners);
   yield takeLatest('FETCH_ALL_USERS', fetchAllPlanners);
   yield takeLatest('DELETE_PLANNER', deletePlanner);
 }

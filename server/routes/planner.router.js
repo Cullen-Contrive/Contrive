@@ -35,4 +35,41 @@ router.get('/admin', rejectUnauthenticated, (req, res) => {
     });
 });
 
+/**
+ * DELETE endpoint for /api/planner/delete/:id
+ *
+ * req.params.id looks like:
+ * {
+ *  5  int
+ * }
+ */
+router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
+  // Variable to replace "magic number"
+  const userIdToDelete = req.params.id;
+
+  // Only allow administrators to remove planners from DB
+  if (req.user.type !== 'admin') {
+    console.log('***** UNAUTHORIZED PERSONNEL *****');
+    res.sendStatus(404);
+    return;
+  }
+
+  // Query used on DB
+  const sqlQuery = `
+  DELETE FROM "users"
+  WHERE "users".id = $1;
+  `;
+
+  // SQL Transaction
+  pool
+    .query(sqlQuery, [userIdToDelete])
+    .then((dbResponse) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('ERROR in DELETE /api/planner/delete/:id:', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
