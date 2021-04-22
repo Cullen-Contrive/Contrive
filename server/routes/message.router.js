@@ -50,16 +50,7 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
     // Array to hold all individualCommunicator objects
     const communicationList = [];
 
-    // Object to hold each individual "other user's" details
-    let individualCommunicator = {
-      otherUserId: 0,
-      firstName: '',
-      lastName: '',
-      profilePic: '',
-      message: '',
-      messageDate: '',
-      userId,
-    };
+
 
     // Query to select all other users who have messaged with this vendor (userId)
     const vendorQueryText = `
@@ -90,6 +81,16 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
       // capture individual user information in individualCommunicator object
       const allOtherUsers = dbRes.rows;
       for (let otherUser of allOtherUsers) {
+        // Object to hold each individual "other user's" details
+        let individualCommunicator = {
+          otherUserId: 0,
+          firstName: '',
+          lastName: '',
+          profilePic: '',
+          message: '',
+          messageDate: '',
+          userId,
+        };
         if (otherUser.id != userId) {
           individualCommunicator.otherUserId = otherUser.id;
           individualCommunicator.firstName = otherUser.firstName;
@@ -107,9 +108,10 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
             LIMIT 1;
             `, [userId, otherUser.id]);
 
+          console.log('!@!@!#!#%!@%$@ messageInfo.rows:', messageInfo.rows);
           // Add message information to individualCommunicator object
-          individualCommunicator.message = messageInfo.message;
-          individualCommunicator.messageDate = messageInfo.dateReceived;
+          individualCommunicator.message = messageInfo.rows[0].message;
+          individualCommunicator.messageDate = messageInfo.rows[0].dateReceived;
 
           console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
 
@@ -121,11 +123,12 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
 
           await connection.query('COMMIT');
 
-          // After looping through each of the other user Id's and retrieving their most recent 
-          // message with logged-in user, end this info back to the client
-          res.send(communicationList);
+
         }
       }
+      // After looping through each of the other user Id's and retrieving their most recent 
+      // message with logged-in user, end this info back to the client
+      res.send(communicationList);
     }
 
     // pool
