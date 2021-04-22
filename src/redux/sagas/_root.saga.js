@@ -7,11 +7,8 @@ import messageSaga from './message.saga';
 import searchSaga from './search.saga';
 import dropdownSaga from './dropdown.saga';
 import vendorSaga from './vendor.saga';
-<<<<<<< HEAD
 import eventsSaga from './events.saga';
-=======
 import plannerSaga from './planner.saga';
->>>>>>> 3db6abcd51080037f64b2cb96dc69f4d10195991
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -30,10 +27,7 @@ export default function* rootSaga() {
     searchSaga(),
     dropdownSaga(),
     vendorSaga(),
-<<<<<<< HEAD
     eventsSaga(),
-=======
     plannerSaga(),
->>>>>>> 3db6abcd51080037f64b2cb96dc69f4d10195991
   ]);
 }
