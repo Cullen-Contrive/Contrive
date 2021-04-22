@@ -77,7 +77,7 @@ function App() {
       <CssBaseline />
       <Router>
 
-        <ContriveHeader />
+        {user.id && <ContriveHeader />}
         {user.id && <Nav />}
 
         <div>
@@ -180,6 +180,7 @@ function App() {
               path="/login"
               authRedirect="/discover"
             >
+              <ContriveHeader />
               <LoginPage />
             </ProtectedRoute>
 
@@ -191,6 +192,7 @@ function App() {
               path="/registration"
               authRedirect="/discover"
             >
+              <ContriveHeader />
               <RegisterPage />
             </ProtectedRoute>
 

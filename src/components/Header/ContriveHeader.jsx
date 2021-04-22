@@ -13,29 +13,26 @@ function ContriveHeader() {
   const user = useSelector((store) => store.user);
 
   return (
-    <> {/* if user is not logged in, header will not render */}
-      {user.id && (
-        <Grid container direction="row" alignItems="center" justifyContent="flex-start" spacing={0} className={classes.contriveHeader}>
-          <Grid item xs={4}>
-            <img
-              className={classes.headerLogo}
-              src={contriveLogo}
-            />
-          </Grid>
+    <Grid container direction="row" alignItems="center" justifyContent="flex-start" spacing={0} className={classes.contriveHeader}>
+      
+      <Grid item xs={4}>
+        <img
+          className={classes.headerLogo}
+          src={contriveLogo}
+        />
+      </Grid>
 
-          <Grid item xs={8}>
-            <Typography
-              variant="h2"
-              component="h1"
-              className={classes.headerText}
-            >
-              Contrive
-            </Typography>
-          </Grid>
+      <Grid item xs={8}>
+        <Typography
+          variant="h2"
+          component="h1"
+          className={classes.headerText}
+        >
+          Contrive
+        </Typography>
+      </Grid>
 
-        </Grid>
-      )}
-    </>
+    </Grid>
   );
 }
 
