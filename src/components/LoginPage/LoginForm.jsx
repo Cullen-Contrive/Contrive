@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import useStyles from './LoginPage.styles';
 
 // Material-UI
 import {
@@ -16,17 +17,9 @@ import {
   Select,
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
-  makeStyles,
   Box,
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
 
 function LoginForm() {
   const history = useHistory();
@@ -70,7 +63,7 @@ function LoginForm() {
   };
 
   return (
-    <Grid item container spacing={2} component={Paper}>
+    <Grid item container spacing={2} component={Paper} className={classes.loginPaper}>
       <Grid item xs={12}>
         <Typography variant="h2" component="h2" align="center">
           Login
@@ -78,7 +71,7 @@ function LoginForm() {
       </Grid>
 
       {errors.loginMessage && (
-        <Grid item>
+        <Grid item xs={12}>
           <Typography variant="h3" component="h3" align="center"
             className="alert" role="alert">
             {errors.loginMessage}
