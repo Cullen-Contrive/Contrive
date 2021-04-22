@@ -65,8 +65,8 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
               ORDER BY "date" DESC ) 
             SELECT DISTINCT "users".id, "users"."firstName", "users"."lastName", "users"."profilePic" 
             FROM "users"
-            JOIN "sendingUsers" ON "users".id = "sendingUsers"."fromUser" 
-            JOIN "receivingUsers" ON "users".id = "receivingUsers"."toUser"
+            JOIN "sendingUsers" ON "users".id = "sendingUsers"."fromUser" OR "users".id = "sendingUsers"."toUser"
+            JOIN "receivingUsers" ON "users".id = "receivingUsers"."toUser" OR "users".id = "receivingUsers"."fromUser"
             WHERE "users".id = "sendingUsers"."fromUser" OR "users".id = "receivingUsers"."toUser";
         `;
 
