@@ -6,7 +6,7 @@ import DropzoneS3Uploader from 'react-dropzone-s3-uploader';
 import { useParams } from 'react-router-dom';
 
 // Calls function to set user uploaded image url onto database
-function ImageUpload(props) {
+function ImageUploadFunctional(props) {
   const dispatch = useDispatch();
   let handleFinishedUpload = (info) => {
     console.log('File uploaded with filename: ', info.filename);
@@ -49,4 +49,4 @@ function ImageUpload(props) {
   };
 }
 
-export default connect()(ImageUpload);
+export default connect()(ImageUploadFunctional);

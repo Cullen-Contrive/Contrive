@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ImageUpload from '../ImageUpload/ImageUploadFunctional';
+import ImageUpload from '../ImageUpload/ImageUpload';
 import getStates from '../../helpers/states';
 
 // Material-UI
@@ -23,9 +23,7 @@ import {
 function CreateEvent() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const planner = useSelector(
-    (store) => store.userDetails.loggedInUserDetailsReducer
-  );
+  const planner = useSelector((store) => store.user);
   const typesOfEvents = useSelector(
     (store) => store.events.typesOfEventsReducer
   );
@@ -44,9 +42,10 @@ function CreateEvent() {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_LOGGED_IN_USER_DETAILS' });
     dispatch({ type: 'FETCH_TYPES_OF_EVENT' });
   }, []);
+
+  console.log('user:', planner);
 
   // handles form submission and creating event
   const handleFormSubmission = () => {

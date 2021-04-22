@@ -35,6 +35,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   LEFT OUTER JOIN "events_vendors" ON "events"."id" = "events_vendors"."eventId"
   LEFT OUTER JOIN "vendors" ON "events_vendors"."vendorUserId" = "vendors"."vendorUserId"
   LEFT OUTER JOIN "users" ON "events"."plannerUserId" = "users"."id"
+  WHERE "events"."plannerUserId" = $1
   GROUP BY 
   "events"."id",
   "events"."dateOfEvent", 
@@ -48,9 +49,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "vendors"."companyName", 
   "users"."firstName",
   "users"."lastName";`;
+  const userId = req.user.id;
 
   pool
-    .query(queryText)
+    .query(queryText, [userId])
     .then((dbRes) => {
       console.log('SERVER - GET events at /api/event successful!');
       res.send(dbRes.rows);
