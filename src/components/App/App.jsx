@@ -22,6 +22,7 @@ import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import Message from '../MessageAll/MessageConversation';
 import MessagesList from '../MessageAll/MessagesList';
+import MyEvents from '../Event/MyEvents';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -158,6 +159,14 @@ function App() {
               path="/events/create"
             >
               <CreateEvent />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // logged in shows Discover else shows LoginPage
+              exact
+              path="/my/events"
+            >
+              <MyEvents />
             </ProtectedRoute>
 
             <ProtectedRoute

@@ -4,8 +4,18 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Grid from '@material-ui/core/Grid';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
+import { useSelector } from 'react-redux';
 
 function EventVendorsAccordion() {
+  // Bring in all vendors to display upon page load:
+  let allVendors = useSelector((store) => store.allVendors);
+
+  function vendors() {
+    for (let i = 0; i < 3; i++) {
+      return <h1>Hello World</h1>;
+    }
+  }
+
   return (
     <Accordion>
       <AccordionSummary
@@ -23,7 +33,27 @@ function EventVendorsAccordion() {
       </AccordionSummary>
       {/* Buttons go here */}
       <AccordionDetails>
-        <Grid item></Grid>
+        {vendors()}
+        {/* {allVendors.map(function(eachVendor, i))} */}
+        {/* (allVendors.map((eachVendor, i) => {
+                      return (
+                        <Grid xs={6} className={classes.gridContainer} onClick={() => history.push(`/vendor/${eachVendor.vendorUserId}`)}>
+                          <Card className={classes.cardSize}>
+                            <Box height='90px' textAlign='center'>
+                              <CardContent>
+                                <Typography>{eachVendor.companyName}</Typography>
+                              </CardContent>
+                            </Box>
+
+                            <Box height='100px' alignContent='center'>
+                              <CardContent>
+                                <img className={classes.imgSize} src={eachVendor.profilePic} alt={eachVendor.companyName} />
+                              </CardContent>
+                            </Box>
+                          </Card>
+                        </Grid>
+                      );
+                    })) */}
       </AccordionDetails>
     </Accordion>
   );
