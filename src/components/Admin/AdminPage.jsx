@@ -30,7 +30,7 @@ function AdminPage() {
   // Get all vendors and planners on page load
   useEffect(() => {
     dispatch({
-      type: 'FETCH_ALL_VENDORS',
+      type: 'FETCH_ALL_USERS',
     });
   }, []);
 

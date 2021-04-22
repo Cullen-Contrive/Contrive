@@ -57,7 +57,9 @@ function AllPlannersTable() {
   const classes = useStyles();
 
   // Grab list of all planners from the Redux store
-  const planners = useSelector((store) => store.allVendors);
+  const planners = useSelector((store) => store.allPlanners);
+
+  console.log('##$$## planners:', planners);
 
   // Local state variable for capturing filter input
   const [tableFilter, setTableFilter] = useState('');
@@ -92,7 +94,7 @@ function AllPlannersTable() {
         <Grid item xs={10}>
           <Box mt={3} mb={3}>
             <Grid container justify="space-between" alignItems="center">
-              {/* Table Titel */}
+              {/* Table Title */}
               <Grid item xs={3}>
                 <Typography variant="h4" component="h2" align="left">
                   Planners
@@ -143,10 +145,7 @@ function AllPlannersTable() {
                 <TableBody>
                   {data.map((planner) => {
                     return (
-                      <AllPlannersTableRow
-                        key={planner.vendorUserId}
-                        planner={planner}
-                      />
+                      <AllPlannersTableRow key={planner.id} planner={planner} />
                     );
                   })}
                 </TableBody>
