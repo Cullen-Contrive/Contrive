@@ -53,7 +53,7 @@ function* postMessage(action) {
 }
 
 function* chatSaga() {
-  yield takeLatest('FETCH_MESSAGES', fetchMessageConversation);
+  yield takeLatest('FETCH_MESSAGE_CONVERSATION', fetchMessageConversation);
   yield takeLatest('FETCH_ALL_MESSAGES', fetchAllMessages);
   yield takeLatest('POST_OUTGOING_MESSAGES', postOutgoingMessages);
   yield takeLatest('POST_MESSAGE', postMessage);
