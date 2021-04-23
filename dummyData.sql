@@ -210,13 +210,23 @@ VALUES (1, 2, 'What is your rate for 100 people?'),
 (68, 61, 'Do you serve other things besides Macaroni?  I want to make sure I have a selection of food for my guests to choose from.'),
 (61, 68, 'Absolutely!  Check out our menu here: https://www.houseofmac.com/menu/catering-menu/'),
 (70, 61, 'We recently ate your food at a party and were blown away!  We would love to have you cater an upcoming birthday party - can we set up a time to speak on the phone?'),
-(61, 70, 'So great to hear that you loved my food! Either 9 AM or 3 PM are the best times to contact me any week day- what day works for you?');
+(61, 70, 'So great to hear that you loved my food! Either 9 AM or 3 PM are the best times to contact me any week day- what day works for you?'),
+(14, 75, 'What are the requirements to become a certified vendor?'),
+(75, 14, 'There is an application process and small fee. I will email you the details.'),
+(59, 75, 'Have you considered audio uploads?'),
+(16, 75, 'Can we registers as both a planner and a vendor?'),
+(24, 75, 'You should add a vendor type of "Planner" for professional planners.'),
+(47, 75, 'Can I link a 2nd account?'),
+(46, 75, 'Banana Yeah'),
+(2, 75, 'Can I upload video clips?'),
+(75, 2, 'That is a feature enchancement in the works.');
 
 
 --Insert fake responses to fake messages separately so that the timestamp is different:
 INSERT INTO "messages" ("fromUser", "toUser", "message")
 VALUES (2, 1, 'I would like to discuss what activities you would like included- are you available to speak over the phone?'), 
-(4, 3, 'What day in August?');
+(4, 3, 'What day in August?'),
+(33, 75, 'I have retired and closed my shop. Please remove my account.');
 
 
 --EVENTS:
