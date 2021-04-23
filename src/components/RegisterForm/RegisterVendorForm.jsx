@@ -300,7 +300,7 @@ function RegisterVendorForm() {
             name="Vendor Types"
             value={vendorTypeNames}
             onChange={handleVendorTypeSelection}
-            input={<Input id="select-multiple-features" />}
+            input={<Input id="select-multiple-types" />}
             renderValue={(selected) => (
               <div className={classes.chips}>
                 {selected.map((feature) => (
