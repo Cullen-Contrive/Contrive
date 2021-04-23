@@ -13,7 +13,7 @@ function LoginPage() {
   const history = useHistory();
 
   return (
-    <Grid container className={classes.loginFormContainer}>
+    <Grid alignItems="center" container className={classes.loginFormContainer}>
       <LoginForm />
     </Grid>
   );

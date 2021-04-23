@@ -1,13 +1,11 @@
 // First welcome page for new users, (if logged in, will reroute user to /discover)
 // reached at path /welcome
-
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
 import useStyles from './LandingPage.styles';
 
 // MATERIAL UI
-import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Grid } from '@material-ui/core';
 
 function LandingPage() {
   const history = useHistory();
@@ -39,7 +37,7 @@ function LandingPage() {
             size="large"
             variant="contained" 
           >
-              Login
+            Login
           </Button>
         </Grid>
 
@@ -51,7 +49,7 @@ function LandingPage() {
             onClick={onRegister}
             size="large"
           >
-              Register
+            Register
           </Button>
         </Grid>
       </Grid>
