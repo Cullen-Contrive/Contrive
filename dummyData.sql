@@ -8,7 +8,7 @@ INSERT INTO "users"
 VALUES 
 ('Mac@gmail.com', 'McKynlee', 'Westman', 'https://scontent.fmci2-1.fna.fbcdn.net/v/t1.18169-9/12654507_1066875546711985_2770048930465075836_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=Ry_N-wpmUEYAX9FxXgp&_nc_ht=scontent.fmci2-1.fna&oh=1f648584208d563120111200eecc87c4&oe=60A8B935', '$2a$10$d.tw3AyrHON3AynvQDuoN.my8uxemJ7KZhzc7fcRMAHiuMpxIwh/u', '4946 Walnut St', 'Kansas City', 'MO', 64112, 'planner', 'https://mckynlee.github.io/', 'Avid organizer of bike rallies - the non-motorized kind!'),
 ('SirBill@gmail.com', 'William', 'Krug', 'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/819485', '$2a$10$mnm8InlV1d1tnUTAGywETO1w6u/p/2kD.iUN9kJ25Ww6cBxNaHjzi', '11 Knights Way', 'Minneapolis', 'MN', 55111, 'vendor', 'https://www.imdb.com/title/tt0183790/', 'Ready to help you plan your next Rennaissance affair down to the hilt of your sword!'),
-('LilRusty@gmail.com', 'Dusty', 'Meyers', 'http://basementrejects.com/wp-content/uploads/2014/08/dungeons-dragons-2000-thora-birch-riding-dragon-savina-300x166.jpg', '$2a$10$nxWzD4fOt4n72TbnMlYXQO/yZknXnREW7s9DJY9IP0dIJG2PzsbiW', '77 DnD Blvd', 'Lawrence', 'KS', 66044, 'planner', 'https://www.imdb.com/title/tt0190374/', 'Looking to plan the wedding of my lifetime!'),
+('dusty@gmail.com', 'Dusty', 'Meyers', 'https://media-exp1.licdn.com/dms/image/C5603AQF6yPc-qFTjlQ/profile-displayphoto-shrink_[…]92800&v=beta&t=l8UVSpEjvEDbykf_qk-bmLE3FoLP2JAyNmfswlhV29U', '$2a$10$nxWzD4fOt4n72TbnMlYXQO/yZknXnREW7s9DJY9IP0dIJG2PzsbiW', '77 DnD Blvd', 'Lawrence', 'KS', 66044, 'planner', 'https://www.imdb.com/title/tt0190374/', 'Looking to plan the wedding of my lifetime!'),
 ('JDog@gmail.com', 'John', 'Shands', 'https://www.rawmusictv.com/images/og-share-image/best-swedish-rock-bands.jpg', '$2a$10$vSH/PXClWlf3vPlHKRLNXu5TRQPamdzbn921Q7tgtiDsK20SVTB2m', '69 Woodstock Lane', 'Liberty', 'MO', 64068, 'vendor', 'https://www.libertymissouri.gov/1500/Liberty-Summer-Band', 'Able to provide a musical experience that your guests will never forget.'),
 ('RedRevolt@gmail.com', 'Jason', 'Lin', 'https://www.alpineartscenter.org/images/stories/setup_pictures/birthday%20copy.jpg', '$2a$10$coxFv5Ll23qca8Dp4LZ9T.UNlQTDQ32BM1FHXrKVqNwEJVmwWs8hG', '123 Four Ave', 'St. Cloud', 'MN', 56301, 'planner', 'https://memes.com/', 'Helping local artists plan gallery-openings throughout the Twin Cities.'),
 ('MushroomMan@gmail.com', 'Edan', 'Schwartz', 'https://images.ctfassets.net/cnu0m8re1exe/4jaJ338Mbgu42tfIVnvWbp/e2c7e11773ff21b6d6f073fe8b87ece7/shutterstock_734992102.jpg?w=650&h=433&fit=fill', '$2a$10$y1VJWv.1EEpl5cbpp8csguhA8OuXfou32w/wWTA.yrOzrmv6i2zMW', '1 Magic Mushy Rd', 'Minneapolis', 'MN', 55404, 'vendor', 'https://www.birdsandblooms.com/stuff-we-love/gardening-stuff/mushroom-growing-kits/', 'Mushroom-catering specialty; guaranteed to serve only the non-toxic kind.'),
@@ -66,6 +66,7 @@ VALUES
 ('dancefactory@gmail.com', 'Devon', 'Paul', '', 'one', '', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.wedj4u.com/home.html', 'Our specialty is filling dance floors and making sure you and your guests have a great time!  We moved here in 2014 and since have performed at over 200 venues in and around Kansas City; winning The Knot Bridal Magazines "Best of Weddings" award 6-years in-a-row, supported numerous area charities, and are extremely proud to have been selected as the Official DJs for The Kansas City Chiefs ​"Ultimate Tailgate Party" held inside Arrowhead Stadium!​'),
 ('djhydan@gmail.com', 'Hydan', '', 'http://static1.squarespace.com/static/5a01c7c5d7bdce98fb7e8b06/t/5a5bfa57652dea17cc3219c4/1574230673654/?format=original', 'one', '', 'Kansas City', 'KS', 66101, 'vendor', 'http://djhydan.com/', 'HYDAN is an open format vinyl DJ based out of Kansas City. HYDAN grew up with a background in music, teaching himself how to play the piano at a very young age. HYDAN went on to play piano professionally until he discovered his passion for DJing while studying at the University of Kansas. In Lawrence, HYDAN helped build huge followings to what has become one of the most popular bars in the city and HYDAN quickly became one of the most followed DJs in Lawrence.'),
 ('info@levity.com', 'Derek', 'Styles', 'https://lirp.cdn-website.com/4fb9608c/dms3rep/multi/opt/Gray_Levity_Logo_Transparent_Background-cropped-426w.png', 'one', '1633 Swift St', 'Kansas City', 'MO', 64116, 'vendor', 'https://www.kcmobiledj.com/', 'Making Celebrations Easier'),
+('info@houseofmac.com', 'McKynlee', 'Westman', 'https://images.getbento.com/accounts/970eb35c758b542a585d521e7841c5df/media/accounts/media/4Ug9z7LMQXavcIkf6SCy_Derrick%20Turton%20-%20House%20Of%20Mac%20Logo.png', '$2a$10$d.tw3AyrHON3AynvQDuoN.my8uxemJ7KZhzc7fcRMAHiuMpxIwh/u', '5423 Cheese Lane', 'Kansas City', 'MO', 64116, 'vendor', 'https://www.houseofmac.com/', 'World Famouse House of Mac is known for their unique spin on traditional cuisine.'),
 ('info@intothewild.com', 'Christopher', 'McCandless', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGnzyQA6jdZc50Wae7yCFz7QSvFXGWh_IH4Q&usqp=CAU', 'one', '876 Wild Way', 'Nowhere', 'Maine', 65422, 'planner', 'https://en.wikipedia.org/wiki/Into_the_Wild_(film)', ''),
 ('jayne@serenity.com', 'Jayne', 'Cobb', 'https://static.wikia.nocookie.net/firefly/images/9/92/Jaynes_hat.jpg/revision/latest/scale-to-width-down/200?cb=20101105225014', 'one', '', '', '', 55442, 'planner', '', 'Lets be bad guys'),
 ('geralt@thewitcher.com', 'Geralt', 'Rivia', 'https://upload.wikimedia.org/wikipedia/en/c/c9/Geralt_of_Rivia_Witcher.png', 'one', '', '', '', 55442, 'planner', '', ''),
@@ -85,7 +86,7 @@ VALUES
 INSERT INTO "users"
 ("username", "firstName", "lastName", "profilePic", "password", "type")
 VALUES
-('admin@contrive.com', 'Aretha', 'McDonald', '', '$2a$10$GoLEVEfdugtGJxO/yJz1buXeR2JkS23p/GgLoKCAjRBnFO9Ia2uVu', 'admin');
+('admin@contrive.com', 'Contrive', '', 'https://trello-attachments.s3.amazonaws.com/606b2735fb112c58bbc368bd/500x500/7dccd4782b0d37da67d5226e729a6772/CONTRIVE_update2.png', '$2a$10$GoLEVEfdugtGJxO/yJz1buXeR2JkS23p/GgLoKCAjRBnFO9Ia2uVu', 'admin');
 
 --USERS_PHOTOS:
 --Fill users_photos with fake user's profile photos:
@@ -95,7 +96,10 @@ VALUES (1, 'https://karaspartyideas.com/wp-content/uploads/2016/11/Bike-Themed-B
 (3, 'http://basementrejects.com/wp-content/uploads/2014/08/dungeons-dragons-2000-thora-birch-riding-dragon-savina-300x166.jpg'), 
 (4, 'https://www.rawmusictv.com/images/og-share-image/best-swedish-rock-bands.jpg'), 
 (5, 'https://www.alpineartscenter.org/images/stories/setup_pictures/birthday%20copy.jpg'), 
-(6, 'https://images.ctfassets.net/cnu0m8re1exe/4jaJ338Mbgu42tfIVnvWbp/e2c7e11773ff21b6d6f073fe8b87ece7/shutterstock_734992102.jpg?w=650&h=433&fit=fill');
+(6, 'https://images.ctfassets.net/cnu0m8re1exe/4jaJ338Mbgu42tfIVnvWbp/e2c7e11773ff21b6d6f073fe8b87ece7/shutterstock_734992102.jpg?w=650&h=433&fit=fill'),
+(61, 'http://macandcheeseshop.com/wp-content/uploads/2017/11/macs-header-image-catering-1.jpg'),
+(61, 'https://messinascatering.com/wp-content/uploads/2019/09/mac-and-cheese-bar-1024x683.jpeg'),
+(61, 'https://i.pinimg.com/564x/e5/9c/d5/e59cd5ad3c5d2daada28e14ef13ba7c9.jpg');
 
 
 --VENDORS:
@@ -159,7 +163,8 @@ VALUES
 (57, 'DJ Alex Reed', 'I was born and raised in Kansas growing up in Shawnee, where I graduated high school and went to Pittsburg State University for my undergraduate degree. Music has always been a passion of mine growing up playing different instruments and listening to a variety of genres. I began DJing in the summer of 2010 because I was tired of listening to the same music at parties, weddings and bars. I have a vast knowledge of music and an eye for the crowd, so I decided to put my skills to work.', '', '913-744-9641'),
 (58, 'The Dance Factory', 'Our specialty is filling dance floors and making sure you and your guests have a great time!  We moved here in 2014 and since have performed at over 200 venues in and around Kansas City; winning The Knot Bridal Magazine`s "Best of Weddings" award 6-years in-a-row, supported numerous area charities, and are extremely proud to have been selected as the Official DJ`s for The Kansas City Chief`s ​"Ultimate Tailgate Party" held inside Arrowhead Stadium!​', '', '816-260-7379'),
 (59, 'DJ Hydan', 'HYDAN is an open format vinyl DJ based out of Kansas City. HYDAN grew up with a background in music, teaching himself how to play the piano at a very young age. HYDAN went on to play piano professionally until he discovered his passion for DJing while studying at the University of Kansas. In Lawrence, HYDAN helped build huge followings to what has become one of the most popular bars in the city and HYDAN quickly became one of the most followed DJs in Lawrence.', '', '913-708-5277'),
-(60, 'Levity Weddings & Events', 'Making Celebrations Easier', 'Owning a business is more than providing an amazing product or stellar service.  It`s important to be able to use the privilege of our success and give back to make a positive impact in our community.  Levity takes pride in donating services each year to benefit worthy causes.  From birthday parties for under-privileged youth, fundraisers that help homeless families get off the streets for good or assisting organizations trying to give every child a warm and loving home.  On top of that, all of our past and present heroes of the armed forces receive a 10% upgrade credit.', '816-974-3005');
+(60, 'Levity Weddings & Events', 'Making Celebrations Easier', 'Owning a business is more than providing an amazing product or stellar service.  It`s important to be able to use the privilege of our success and give back to make a positive impact in our community.  Levity takes pride in donating services each year to benefit worthy causes.  From birthday parties for under-privileged youth, fundraisers that help homeless families get off the streets for good or assisting organizations trying to give every child a warm and loving home.  On top of that, all of our past and present heroes of the armed forces receive a 10% upgrade credit.', '816-974-3005'),
+(61, 'House of Mac', 'World Famous House of Mac is known for their unique spin on traditional cuisine.', 'From small gatherings to large events, World Famous House of Mac has you covered!', '816-974-3005');
 
 
 --Fill vendors_features table with real special_features data for the fake vendors:
@@ -170,7 +175,7 @@ VALUES
 (14, 3), (15, 1), (16, 3), (17, 2), (18, 1), (19, 1), (21, 1), (22, 1), (23, 3),
 (24, 2), (25, 3), (26, 2), (27, 2), (28, 1), (29, 2), (30, 3), (31, 1), (32, 2),
 (35, 3), (36, 3), (37, 1), (39, 2), (41, 1), (43, 1), (44, 2), (45, 3), (47, 3),
-(49, 1), (51, 3), (52, 2), (55, 3), (57, 3), (59, 3);
+(49, 1), (51, 3), (52, 2), (55, 3), (57, 3), (59, 3), (61, 1);
 
 --Fill vendors_services table with real service_types data for the fake vendors:
 INSERT INTO "vendors_services"
@@ -182,7 +187,7 @@ VALUES
 (29, 4), (30, 4), (31, 5), (32, 5), (33, 5), (34, 5), (35, 5), (36, 5), (37, 1),
 (38, 1), (39, 1), (40, 1), (41, 1), (42, 1), (43, 2), (44, 2), (45, 2), (46, 2),
 (47, 2), (48, 2), (49, 4), (50, 4), (51, 4), (52, 4), (53, 4), (54, 4), (55, 5),
-(56, 5), (57, 5), (58, 5), (59, 5), (60, 5);
+(56, 5), (57, 5), (58, 5), (59, 5), (60, 5), (61, 1);
 
 
 --MESSAGES
