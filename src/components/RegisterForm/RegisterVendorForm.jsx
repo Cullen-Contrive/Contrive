@@ -153,15 +153,6 @@ function RegisterVendorForm() {
         </Typography>
       </Grid>
 
-      {errors.registrationMessage && (
-        <Grid item xs={12}>
-          <Typography variant="h3" component="h3" align="center"
-            className="alert" role="alert">
-            {errors.registrationMessage}
-          </Typography>
-        </Grid>
-      )}
-
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
           <TextField
@@ -349,6 +340,20 @@ function RegisterVendorForm() {
           </Select>
         </FormControl>
       </Grid>
+
+      {errors.registrationMessage && (
+        <Grid item xs={12}>
+          <Typography 
+            align="center"
+            className="alert" 
+            component="h3" 
+            role="alert"
+            variant="h3" 
+          >
+            {errors.registrationMessage}
+          </Typography>
+        </Grid>
+      )}
 
       <Grid
         className={classes.registerFormButtonContainer}

@@ -103,16 +103,6 @@ function RegisterForm() {
         </Typography>
       </Grid>
 
-      {/* Error messages displayed here during registration error */}
-      {errors.registrationMessage && (
-        <Grid item xs={12}>
-          <Typography variant="h3" component="h3" align="center"
-            className="alert" role="alert">
-            {errors.registrationMessage}
-          </Typography>
-        </Grid>
-      )}
-
       {/* Username (email) input  */}
       <Grid item xs={12}>
         <FormControl fullWidth>
@@ -226,6 +216,21 @@ function RegisterForm() {
           </Select>
         </FormControl>
       </Grid>
+
+      {/* Error messages displayed here during registration error */}
+      {errors.registrationMessage && (
+          <Grid item xs={12}>
+            <Typography
+              align="center"
+              className="alert" 
+              component="h3"
+              role="alert"
+              variant="h3"
+            >
+              {errors.registrationMessage}
+            </Typography>
+          </Grid>
+        )}
 
       <Grid
         className={classes.registerFormButtonContainer}
