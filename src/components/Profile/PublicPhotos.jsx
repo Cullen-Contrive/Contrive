@@ -29,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
+  publicPhotosTop: {
+    margin: '0 0 10px 0'
+  },
+  publicPhotos: {
+    margin: '10px 0'
+  },
 }));
 
 function PublicPhotos({ photos }) {
@@ -67,7 +73,15 @@ function PublicPhotos({ photos }) {
               return <img key={singlePhoto.id} src={singlePhoto.photo} />;
             })
           ) : (
-            <img src={placeholderImg} />
+            // <img src={placeholderImg} />
+            <>
+              <img src="http://macandcheeseshop.com/wp-content/uploads/2017/11/macs-header-image-catering-1.jpg"
+                alt="Catered Mac & Cheese" className={classes.publicPhotosTop} />
+              <img src="https://messinascatering.com/wp-content/uploads/2019/09/mac-and-cheese-bar-1024x683.jpeg"
+                alt="Catered Mac & Cheese" className={classes.publicPhotos} />
+              <img src="https://i.pinimg.com/564x/e5/9c/d5/e59cd5ad3c5d2daada28e14ef13ba7c9.jpg"
+                alt="Catered Mac & Cheese" className={classes.publicPhotos} />
+            </>
           )}
         </Grid>
       </AccordionDetails>

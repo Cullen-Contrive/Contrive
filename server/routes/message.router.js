@@ -45,7 +45,7 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
         return;
       });
 
-  } else if (req.user.type === 'vendor') {
+  } else {
     // console.log('ITS A VENDOR! ID:', userId);
 
     // Array to hold all individualCommunicator objects
