@@ -15,13 +15,14 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AdminPage from '../Admin/AdminPage';
 import Nav from '../Nav/Nav';
 import EditVendorProfile from '../Profile/EditVendorProfile';
-import ContriveHeader from '../Header/ContriveHeader'
+import ContriveHeader from '../Header/ContriveHeader';
 import CreateEvent from '../Event/CreateEvent';
+import EventCreatedConfirmation from '../Event/EventCreatedConfirmation';
 import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import Message from '../MessageAll/MessageConversation';
 import MessagesList from '../MessageAll/MessagesList';
-// import MessageDetail from '../MessageDetail/MessageDetail';
+import MyEvents from '../Event/MyEvents';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -76,7 +77,6 @@ function App() {
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
-
         <ContriveHeader />
         {user.id && <Nav />}
 
@@ -162,6 +162,22 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
+              // logged in shows Discover else shows LoginPage
+              exact
+              path="/my/events"
+            >
+              <MyEvents />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // logged in shows Discover else shows LoginPage
+              exact
+              path="/events/confirmation"
+            >
+              <EventCreatedConfirmation />
+            </ProtectedRoute>
+
+            <ProtectedRoute
               // logged in shows Search else shows LoginPage
               exact
               path="/search"
@@ -215,7 +231,6 @@ function App() {
             >
               <LandingPage />
             </ProtectedRoute>
-
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
