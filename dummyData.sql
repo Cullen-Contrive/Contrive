@@ -219,7 +219,12 @@ VALUES (1, 2, 'What is your rate for 100 people?'),
 (47, 75, 'Can I link a 2nd account?'),
 (46, 75, 'Banana Yeah'),
 (2, 75, 'Can I upload video clips?'),
-(75, 2, 'That is a feature enchancement in the works.');
+(75, 2, 'That is a feature enchancement in the works.'),
+(3, 52, 'What is your rate for a 3 pole party tent?'),
+(3, 59, 'Do you work in Lawerence?'),
+(3, 47, 'What is the occupancy limit at Cellar?'),
+(3, 44, 'Which of your venues are available on August 13th?'),
+(3, 51, 'Do you have dunk tanks?');
 
 
 --Insert fake responses to fake messages separately so that the timestamp is different:
