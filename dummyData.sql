@@ -201,9 +201,14 @@ VALUES (1, 2, 'What is your rate for 100 people?'),
 (61, 73, 'I have done up to 1000 people before, how large is your event?'),
 (72, 61, 'I have an expansive family and would like to host a party at my home- do you cater to private residences?'),
 (71, 61, 'I LOOOVE macaroni and cheese! Can you make it with bacon and potatoes?'),
-(62, 61, "I've got a retirement party for 50 people coming up in June and would love to have you cater, can you give me your rate?"),
+(61, 71, 'Absolutely!  Check out our menu here: https://www.houseofmac.com/menu/catering-menu/'),
+(71, 61, 'Excellent!  I will give you a call later this week to discuss details.')
+(62, 61, 'I have a retirement party for 50 people coming up in June and would love to have you cater, can you give me your rate?'),
+(61, 62, 'Retirement is the best - I cannot wait to get there myself!  I generally do ~$20/person for events.  Does that fit in your budget?')
 (64, 61, 'Mac n Cheese - what could be better?!  Are you available for a party of 25 on May 15th?'),
+(61, 64, 'I absolutely am!  Where will the party be taking place?')
 (68, 61, 'Do you serve other things besides Macaroni?  I want to make sure I have a selection of food for my guests to choose from.'),
+(61, 68, 'Absolutely!  Check out our menu here: https://www.houseofmac.com/menu/catering-menu/'),
 (70, 61, 'We recently ate your food at a party and were blown away!  We would love to have you cater an upcoming birthday party - can we set up a time to speak on the phone?'),
 (61, 70, 'So great to hear that you loved my food! Either 9 AM or 3 PM are the best times to contact me any week day- what day works for you?');
 
