@@ -180,12 +180,16 @@ function RegisterForm() {
       </Grid>
 
       {/* Profile Picture Upload */}
-      <Grid item xs={12}>        
-        <Typography variant="body1" align="left">
-          Profile Picture/Company Logo
-        </Typography>
+      <Grid alignItems='center' item container direction='column' xs={12}>
+        <Grid item>
+          <Typography variant="body1" align="left">
+            Profile Picture/Company Logo
+          </Typography>
+        </Grid>
 
-        <ImageUpload page="AddProfilePic" />
+        <Grid item>
+          <ImageUpload page="AddProfilePic" />
+        </Grid>
       </Grid>
 
       {/* Website input */}
@@ -223,7 +227,7 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
-      <Grid item container xs={12} justify="center">
+      <Grid item container xs={12} spacing={2} justify="space-evenly">
         <Grid item>
           <Button color="secondary" variant="contained"
             type="button"
