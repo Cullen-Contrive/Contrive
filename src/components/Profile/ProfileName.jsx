@@ -24,7 +24,7 @@ function ProfileName({ name, certified, profilePhoto }) {
             {/* Conditionally render name of Vendor here */}
             {name ? name : 'Name goes here..'}
           </Typography>
-          {certified ? <CheckCircleIcon /> : 'Not certified'}
+          {/* {certified ? <CheckCircleIcon /> : 'Not certified'} */}
           <img src={starsImg} style={{ height: '50px' }} />
         </Box>
       </Grid>
