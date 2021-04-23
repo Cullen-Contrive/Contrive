@@ -89,11 +89,12 @@ function RegisterForm() {
   }
 
   return (
-    <Grid 
+    <Grid
       item
       className={classes.registerFormContainer}
       component={Paper}
       container
+      justify="center"
       spacing={2}
     >
       <Grid item xs={12}>
@@ -121,7 +122,6 @@ function RegisterForm() {
             helperText="Your email will be used as your username."
             type="text"
             autoComplete="current-email"
-            // helperText=""
             variant="outlined"
             value={username}
             required
@@ -138,7 +138,6 @@ function RegisterForm() {
             label="first name"
             type="text"
             autoComplete="current-firstName"
-            // helperText=""
             variant="outlined"
             value={firstName}
             required
@@ -155,7 +154,6 @@ function RegisterForm() {
             label="last name"
             type="text"
             autoComplete="current-lastName"
-            // helperText=""
             variant="outlined"
             value={lastName}
             required
@@ -168,15 +166,15 @@ function RegisterForm() {
       <Grid item xs={12}>
         <FormControl fullWidth>
           <TextField
-            id="password"
-            label="password"
-            type="password"
             autoComplete="current-password"
             helperText="Your password can include symbols and numbers."
-            variant="outlined"
-            value={password}
-            required
+            label="password"
+            id="password"
             onChange={(event) => setPassword(event.target.value)}
+            required
+            type="password"
+            value={password}
+            variant="outlined"
           />
         </FormControl>
       </Grid>
@@ -207,11 +205,11 @@ function RegisterForm() {
       </Grid>
 
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <InputLabel id="vendor-or-not">
             Are you a Vendor?
           </InputLabel>
-          
+
           <Select
             value={userType}
             onChange={(event) => setUserType(event.target.value)}
@@ -226,7 +224,7 @@ function RegisterForm() {
       </Grid>
 
       <Grid item container xs={12} justify="center">
-        <Box className={classes.root}>
+        <Grid item>
           <Button color="secondary" variant="contained"
             type="button"
             onClick={() => {
@@ -235,7 +233,9 @@ function RegisterForm() {
           >
             Already Registered
           </Button>
+        </Grid>
 
+        <Grid item>
           <Button color="primary" variant="contained"
             onClick={
               userType === 'vendor' ? (
@@ -247,7 +247,7 @@ function RegisterForm() {
           >
             Next
           </Button>
-        </Box>
+        </Grid>
       </Grid>
     </Grid>
   );

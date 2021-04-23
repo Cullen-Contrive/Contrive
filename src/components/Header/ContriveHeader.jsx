@@ -13,7 +13,7 @@ function ContriveHeader() {
   const user = useSelector((store) => store.user);
 
   return (
-    <Grid container direction="row" alignItems="center" justifyContent="flex-start" spacing={0} className={classes.contriveHeader}>
+    <Grid container direction="row" alignItems="center" spacing={0} className={classes.contriveHeader}>
       
       <Grid item xs={4}>
         <img
