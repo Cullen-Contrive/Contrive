@@ -40,6 +40,7 @@ function MyEvents() {
                 {event.dateOfEvent ? event.dateOfEvent : ''}
               </ListItemText>
 
+              {/* TODO: Setup a way to delete an event from my events */}
               <IconButton
                 color="primary"
                 aria-label="delete event"
