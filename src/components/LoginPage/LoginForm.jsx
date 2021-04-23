@@ -13,7 +13,6 @@ import {
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
 } from '@material-ui/core';
 
-
 function LoginForm() {
   const history = useHistory();
   const classes = useStyles();
@@ -53,20 +52,32 @@ function LoginForm() {
         dispatch({ type: 'LOGIN_INPUT_ERROR' });
       }
     }
-  };
+  }; // end keyPressed
 
   return (
-    <Grid item container spacing={4} component={Paper} className={classes.loginPaper}>
+    <Grid
+      item
+      className={classes.loginPaper}
+      component={Paper}
+      container
+      spacing={4}
+    >
       <Grid item xs={12}>
         <Typography variant="h2" component="h2" align="center">
           Login
         </Typography>
       </Grid>
 
+      {/* Shows login error */}
       {errors.loginMessage && (
         <Grid item xs={12}>
-          <Typography variant="h3" component="h3" align="center"
-            className="alert" role="alert">
+          <Typography 
+            align="center"
+            className="alert"
+            component="h3"
+            role="alert"
+            variant="h3"
+          >
             {errors.loginMessage}
           </Typography>
         </Grid>
@@ -105,18 +116,18 @@ function LoginForm() {
         </FormControl>
       </Grid>
 
-
       <Grid 
-        item 
-        container 
-        xs={12} 
+        item
+        className={classes.loginPageButtonWrapper}
+        container
+        xs={12}
         justify="space-evenly"
         spacing={2}
       >
         <Grid item>
           <Button
             className={classes.loginPageButton}
-            color="secondary" 
+            color="secondary"
             variant="contained"
             type="button"
             onClick={() => {
@@ -130,12 +141,12 @@ function LoginForm() {
         <Grid item>
           <Button
             className={classes.loginPageButton}
-            color="primary" 
+            color="primary"
             variant="contained"
             onClick={login}
           >
             Log In
-          </Button>        
+          </Button>
         </Grid>
       </Grid>
     </Grid>

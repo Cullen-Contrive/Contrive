@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.spacing(2.75),
     width: theme.spacing(15)
   },
+  loginPageButtonWrapper:{
+    marginTop: theme.spacing(2),
+  },
   loginPaper:{
     padding: theme.spacing(2),
   }
