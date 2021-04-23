@@ -187,7 +187,10 @@ function Nav() {
 
             {/* My Events */}
             <Grid item>
-              <Button color="primary" onClick={() => history.push('/myEvents')}>
+              <Button
+                color="primary"
+                onClick={() => history.push('/my/events')}
+              >
                 My Events
               </Button>
             </Grid>

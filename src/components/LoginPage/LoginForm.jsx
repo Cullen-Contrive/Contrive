@@ -14,13 +14,13 @@ import {
 } from '@material-ui/core';
 
 function LoginForm() {
-  const history = useHistory();
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const errors = useSelector(store => store.errors);
+  const history = useHistory();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const errors = useSelector(store => store.errors);
-  const dispatch = useDispatch();
 
   const login = (event) => {
     event.preventDefault();
@@ -83,6 +83,7 @@ function LoginForm() {
         </Grid>
       )}
 
+      {/* Username (email) input */}
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
           <TextField
@@ -98,7 +99,8 @@ function LoginForm() {
           />
         </FormControl>
       </Grid>
-
+      
+      {/* Password input */}
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
           <TextField
@@ -115,7 +117,8 @@ function LoginForm() {
           />
         </FormControl>
       </Grid>
-
+      
+      {/* This Grid item container contains both the login and register buttons. */}
       <Grid 
         item
         className={classes.loginPageButtonWrapper}

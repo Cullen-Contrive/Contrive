@@ -34,6 +34,7 @@ function ProfileNav({
   const classes = useStyles();
   const history = useHistory();
   const user = useSelector((store) => store.user)
+  console.log('123123123123132  user.website:', user.website);
 
   const goToEditView = () => {
     // handles going to editView if the
@@ -89,14 +90,17 @@ function ProfileNav({
             >
               <LocationOnIcon />
             </IconButton>
-            <IconButton
-              aria-label="open this vendor's website"
-              component="a"
-              href={website}
-              target="_blank"
-            >
-              <LanguageIcon />
-            </IconButton>
+            { // Only render globe if website exists in user info
+              user.website !== null && (
+                <IconButton
+                  aria-label="open this vendor's website"
+                  component="a"
+                  href={website}
+                  target="_blank"
+                >
+                  <LanguageIcon />
+                </IconButton>)
+            }
             {/* Conditionally render this element */}
             {user.id === vendorId && (
               <IconButton aria-label="edit profile" onClick={goToEditView}>

@@ -7,6 +7,7 @@ import messageSaga from './message.saga';
 import searchSaga from './search.saga';
 import dropdownSaga from './dropdown.saga';
 import vendorSaga from './vendor.saga';
+import eventsSaga from './events.saga';
 import plannerSaga from './planner.saga';
 
 // rootSaga is the primary saga.
@@ -26,6 +27,7 @@ export default function* rootSaga() {
     searchSaga(),
     dropdownSaga(),
     vendorSaga(),
+    eventsSaga(),
     plannerSaga(),
   ]);
 }

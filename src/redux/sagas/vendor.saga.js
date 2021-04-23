@@ -11,7 +11,7 @@ function* fetchSingleVendor(action) {
   }
 }
 
-function* fetchAllVendors(action) {
+function* fetchAllVendors() {
   try {
     const response = yield axios.get('/api/vendor/all');
     yield put({ type: 'SET_ALL_VENDORS', payload: response.data });

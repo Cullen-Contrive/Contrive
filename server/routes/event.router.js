@@ -10,11 +10,12 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Grabs all events
+  console.log('all');
   const queryText = `
   SELECT 
   "events"."id",
-  "events"."dateOfEvent", 
-  "events"."timeOfEvent", 
+  to_char("events"."dateOfEvent", 'DD MON YYYY') AS "dateOfEvent",
+  to_char("events"."timeOfEvent", 'HH:MM AM') AS "timeOfEvent",
   "events"."address", 
   "events"."city", 
   "events"."state", 
@@ -24,16 +25,17 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "vendors"."companyName",
   "users"."firstName",
   "users"."lastName",
-  JSON_AGG("events_photos".*) AS "eventsPhotos", 
-  JSON_AGG("events_types".*) AS "eventsTypes", 
-  JSON_AGG("events_vendors".*) AS "eventsVendors"
+  JSON_AGG(DISTINCT "events_photos".*) AS "eventsPhotos", 
+  JSON_AGG(DISTINCT "events_types".*) AS "eventsTypes", 
+  JSON_AGG(DISTINCT "events_vendors".*) AS "eventsVendors"
   FROM "events"
   LEFT OUTER JOIN "events_photos" ON "events"."id" = "events_photos"."eventId" 
   LEFT OUTER JOIN "events_types" ON "events"."id" = "events_types"."eventId" 
   LEFT OUTER JOIN "types_of_event" ON "events_types"."typeId" = "types_of_event"."id"
   LEFT OUTER JOIN "events_vendors" ON "events"."id" = "events_vendors"."eventId"
   LEFT OUTER JOIN "vendors" ON "events_vendors"."vendorUserId" = "vendors"."vendorUserId"
-  LEFT OUTER JOIN "users" ON "users"."id" = "vendors"."vendorUserId"
+  LEFT OUTER JOIN "users" ON "events"."plannerUserId" = "users"."id"
+  WHERE "events"."plannerUserId" = $1
   GROUP BY 
   "events"."id",
   "events"."dateOfEvent", 
@@ -47,9 +49,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "vendors"."companyName", 
   "users"."firstName",
   "users"."lastName";`;
+  const userId = req.user.id;
 
   pool
-    .query(queryText)
+    .query(queryText, [userId])
     .then((dbRes) => {
       console.log('SERVER - GET events at /api/event successful!');
       res.send(dbRes.rows);
@@ -68,11 +71,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   // Grabs an event by id
+  console.log('get by id');
   const queryText = `
   SELECT 
   "events"."id",
-  "events"."dateOfEvent", 
-  "events"."timeOfEvent", 
+  to_char("events"."dateOfEvent", 'DD MON YYYY') AS "dateOfEvent",
+  to_char("events"."timeOfEvent", 'HH:MM AM') AS "timeOfEvent",
   "events"."address", 
   "events"."city", 
   "events"."state", 
@@ -82,16 +86,16 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "vendors"."companyName",
   "users"."firstName",
   "users"."lastName",
-  JSON_AGG("events_photos".*) AS "eventsPhotos", 
-  JSON_AGG("events_types".*) AS "eventsTypes", 
-  JSON_AGG("events_vendors".*) AS "eventsVendors"
+  JSON_AGG(DISTINCT "events_photos".*) AS "eventsPhotos", 
+  JSON_AGG(DISTINCT "events_types".*) AS "eventsTypes", 
+  JSON_AGG(DISTINCT "events_vendors".*) AS "eventsVendors"
   FROM "events"
   LEFT OUTER JOIN "events_photos" ON "events"."id" = "events_photos"."eventId" 
   LEFT OUTER JOIN "events_types" ON "events"."id" = "events_types"."eventId" 
   LEFT OUTER JOIN "types_of_event" ON "events_types"."typeId" = "types_of_event"."id"
   LEFT OUTER JOIN "events_vendors" ON "events"."id" = "events_vendors"."eventId"
   LEFT OUTER JOIN "vendors" ON "events_vendors"."vendorUserId" = "vendors"."vendorUserId"
-  LEFT OUTER JOIN "users" ON "users"."id" = "vendors"."vendorUserId"
+  LEFT OUTER JOIN "users" ON "events"."plannerUserId" = "users"."id"
   WHERE "events"."id" = $1
   GROUP BY 
   "events"."id",
@@ -140,7 +144,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   "zip", 
   "numberOfAttendees", 
   "description")
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+  RETURNING "id";`;
 
   const plannerUserId = req.user.id;
   const dateOfEvent = req.body.dateOfEvent;
@@ -166,8 +171,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     ])
     .then((dbRes) => {
       console.log('SERVER - POST - event creation successful!');
-      console.table(dbRes.rows);
-      res.sendStatus(201);
+      res.send(dbRes.rows[0]); // send back id
     })
     .catch((err) => {
       console.error('SERVER - POST - an error occurred creating event!', err);
@@ -186,7 +190,7 @@ router.post('/photos', rejectUnauthenticated, async (req, res) => {
     "events_photos" 
     ("photo", "eventId")
     VALUES ($1, $2);`;
-    const eventId = req.body.eventId;
+    const eventId = req.body.eventId.id;
 
     await Promise.all(
       req.body.photos.map((photoURL) =>
@@ -198,7 +202,6 @@ router.post('/photos', rejectUnauthenticated, async (req, res) => {
     );
     res.sendStatus(201);
   } catch (err) {
-    await connection.query('ROLLBACK');
     res.sendStatus(500);
   }
 });
@@ -240,8 +243,9 @@ router.post('/types', rejectUnauthenticated, (req, res) => {
   INSERT INTO 
   "events_types" 
   ("eventId", "typeId")
-  VALUES (3, 2);`;
-  const eventId = req.body.eventId;
+  VALUES ($1, $2);`;
+  console.log('in POST types', req.body);
+  const eventId = req.body.eventId.id;
   const typeId = req.body.typeId;
   pool
     .query(queryText, [eventId, typeId])
@@ -335,7 +339,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   "zip" = $5,
   "numberOfAttendees" = $6,
   "description" = $7 
-  WHERE "id" = $8;`;
+  "dateOfEvent" = $8
+  "timeOfEvent" = $9
+  WHERE "id" = $10;`;
 
   const plannerUserId = req.body.plannerUserId;
   const address = req.body.address;
@@ -344,6 +350,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const zip = req.body.zip;
   const numberOfAttendees = req.body.numberOfAttendees;
   const description = req.body.description;
+  const dateOfEvent = req.body.dateOfEvent;
+  const timeOfEvent = req.body.timeOfEvent;
   const eventId = req.params.id;
 
   pool
@@ -355,6 +363,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       zip,
       numberOfAttendees,
       description,
+      dateOfEvent,
+      timeOfEvent,
       eventId,
     ])
     .then((dbRes) => {
