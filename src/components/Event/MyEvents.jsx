@@ -41,8 +41,6 @@ function MyEvents() {
               />
               <ListItemText>
                 {event.description ? event.description : ''}
-              </ListItemText>
-              <ListItemText>
                 {event.dateOfEvent ? event.dateOfEvent : ''}
               </ListItemText>
             </ListItem>
