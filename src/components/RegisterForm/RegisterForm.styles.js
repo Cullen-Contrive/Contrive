@@ -18,8 +18,15 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     // maxWidth: 300,
   },
+  registerFormButton: {
+    fontSize: theme.spacing(2.75),
+    width: theme.spacing(15)
+  },
+  registerFormButtonContainer:{
+    marginTop: theme.spacing(2),
+  },
   registerFormContainer: {
-    padding: theme.spacing(1.5),
+    padding: theme.spacing(2),
   },
 }))
 

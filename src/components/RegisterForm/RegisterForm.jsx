@@ -95,7 +95,7 @@ function RegisterForm() {
       component={Paper}
       container
       justify="center"
-      spacing={2}
+      spacing={3}
     >
       <Grid item xs={12}>
         <Typography variant="h2" component="h2" align="center">
@@ -227,20 +227,31 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
-      <Grid item container xs={12} spacing={2} justify="space-evenly">
+      <Grid
+        className={classes.registerFormButtonContainer}
+        container
+        item
+        justify="space-evenly"
+        spacing={2}
+        xs={12}
+      >
         <Grid item>
-          <Button color="secondary" variant="contained"
-            type="button"
+          <Button 
+            className={classes.registerFormButton}
+            color="secondary"
             onClick={() => {
               history.push('/login');
             }}
+            variant="contained"
           >
-            Already Registered
+            Cancel
           </Button>
         </Grid>
 
         <Grid item>
-          <Button color="primary" variant="contained"
+          <Button
+            className={classes.registerFormButton}
+            color="primary"          
             onClick={
               userType === 'vendor' ? (
                 () => vendorRegistration()
@@ -248,6 +259,7 @@ function RegisterForm() {
                 (event) => registerUser(event)
               )
             }
+            variant="contained"
           >
             Next
           </Button>
