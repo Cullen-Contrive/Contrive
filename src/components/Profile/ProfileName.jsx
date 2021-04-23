@@ -31,7 +31,7 @@ function ProfileName({ name, certified, profilePhoto }) {
       <Grid item xs={5}>
         <center>
           {profilePhoto ? (
-            <Avatar className={classes.profilePic} alt={name} src={profilePhoto} />
+            <Avatar className={classes.profilePicAvatarPreview} alt={name} src={profilePhoto} />
           ) : (
             <Avatar>A</Avatar>
           )}
