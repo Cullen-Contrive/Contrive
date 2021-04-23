@@ -7,6 +7,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import placeholderImage from '../Images/placeholder.png';
 
 function MyEvents() {
@@ -31,18 +34,19 @@ function MyEvents() {
         {myEvents.map((event, index) => {
           return (
             <ListItem key={index}>
-              <ListItemAvatar
-                src={
-                  event.eventsPhotos[0] !== null
-                    ? event.eventsPhotos[0].photo
-                    : { placeholderImage }
-                }
-                alt={event.description ? event.description + 'photo' : ''}
-              />
+              {/* Avatar goes here */}
               <ListItemText>
                 {event.description ? event.description : ''}
                 {event.dateOfEvent ? event.dateOfEvent : ''}
               </ListItemText>
+
+              <IconButton
+                color="primary"
+                aria-label="delete event"
+                component="span"
+              >
+                <DeleteIcon />
+              </IconButton>
             </ListItem>
           );
         })}
