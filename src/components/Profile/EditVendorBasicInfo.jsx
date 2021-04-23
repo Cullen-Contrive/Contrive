@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 
 // custom components
-import ImageUpload from '../ImageUpload/ImageUploadFunctional';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 function EditVendorBasicInfo({vendor, editProfileElement}) {
   const classes = useStyles();
