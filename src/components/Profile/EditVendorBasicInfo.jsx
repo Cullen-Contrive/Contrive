@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './EditVendorProfile.styles';
 
 // Material-UI
-import { 
+import {
   Avatar,
   FormControl,
   Grid,
@@ -11,19 +11,19 @@ import {
 } from '@material-ui/core';
 
 // custom components
-import ImageUpload from '../ImageUpload/ImageUploadFunctional';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
-function EditVendorBasicInfo({vendor, editProfileElement}) {
+function EditVendorBasicInfo({ vendor, editProfileElement }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  return(
+  return (
     <Grid item container spacing={3} xs={12} justify="center" alignItems="center">
       <Grid item xs={3.5}>
         <Avatar alt="Your current profile picture." src={vendor.profilePic} className={classes.profilePicAvatarPreview} />
       </Grid>
 
-      <Grid item xs={8}> 
+      <Grid item xs={8}>
         <ImageUpload
           page="EditVendorProfilePic"
           editProfileElement={editProfileElement}
@@ -37,34 +37,34 @@ function EditVendorBasicInfo({vendor, editProfileElement}) {
 
       <Grid item xs={12}>
         <FormControl fullWidth>
-          <TextField 
+          <TextField
             id="edit-companyName-input"
             helperText="Edit your company's display name."
             label="Company Name"
             type="text"
-            onChange={event => editProfileElement('companyName', event.target.value) }
-            variant="outlined" 
-            value={vendor.companyName} 
+            onChange={event => editProfileElement('companyName', event.target.value)}
+            variant="outlined"
+            value={vendor.companyName}
           />
-        </FormControl>      
+        </FormControl>
       </Grid>
 
       <Grid item xs={12}>
         <FormControl fullWidth>
-          <TextField 
+          <TextField
             id="edit-companyName-input"
             helperText="Edit your company's description."
             label="Company Description"
             type="text"
-            variant="outlined" 
-            value={vendor.description} 
+            variant="outlined"
+            value={vendor.description}
             onChange={event => editProfileElement('description', event.target.value)}
             multiline
             rows={4}
           />
-        </FormControl>      
+        </FormControl>
       </Grid>
-    
+
     </Grid>
   );
 } // end EditVendorBasicInfo
