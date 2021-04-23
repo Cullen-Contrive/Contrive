@@ -3,7 +3,7 @@ import Image from '../Images/contriveLanding.png';
 
 const useStyles = makeStyles((theme) => ({
   paperContainer: {
-    height: '750px',
+    height: '725px',
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
