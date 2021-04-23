@@ -6,21 +6,16 @@ import ImageUpload from '../ImageUpload/ImageUpload';
 
 // Material-UI
 import {
+  Box,
   Button, // replaces html5 <button> element
-  ButtonGroup,
   FormControl,
-  FormHelperText,
   Grid, //
-  Input,
   InputLabel,
   MenuItem,
   Paper,
   Select,
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
-  Box,
-  makeStyles,
-
 } from '@material-ui/core';
 
 function RegisterForm() {
@@ -34,7 +29,6 @@ function RegisterForm() {
     dispatch({ type: 'FETCH_SPECIAL_FEATURES' });
   }, []);
 
-
   // Manage state of form inputs:
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -42,7 +36,6 @@ function RegisterForm() {
   const [lastName, setLastName] = useState('');
   const [website, setWebsite] = useState('');
   const [userType, setUserType] = useState('');
-  
 
   // console.log('====================================');
   // console.log('username:', username);
@@ -96,23 +89,36 @@ function RegisterForm() {
   }
 
   return (
-    <Grid item container spacing={2} xs={12} component={Paper}>
-      <Typography variant="h2" component="h2" align="center">
-        Register User
-      </Typography>
-
-      {errors.registrationMessage && (
-        <Typography variant="h3" component="h3" align="center"
-          className="alert" role="alert">
-          {errors.registrationMessage}
+    <Grid 
+      item
+      className={classes.registerFormContainer}
+      component={Paper}
+      container
+      spacing={2}
+    >
+      <Grid item xs={12}>
+        <Typography variant="h2" component="h2" align="center">
+          Register User
         </Typography>
+      </Grid>
+
+      {/* Error messages displayed here during registration error */}
+      {errors.registrationMessage && (
+        <Grid item xs={12}>
+          <Typography variant="h3" component="h3" align="center"
+            className="alert" role="alert">
+            {errors.registrationMessage}
+          </Typography>
+        </Grid>
       )}
 
+      {/* Username (email) input  */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
             id="email"
             label="email"
+            helperText="Your email will be used as your username."
             type="text"
             autoComplete="current-email"
             // helperText=""
@@ -124,8 +130,9 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
+      {/* First name input */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
             id="firstName"
             label="first name"
@@ -140,8 +147,9 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
+      {/* Last name input */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
             id="lastName"
             label="last name"
@@ -156,8 +164,9 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
+      {/* Password input */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
             id="password"
             label="password"
@@ -172,19 +181,18 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
-      <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
-          <Typography variant="body1" align="left">
-            Profile Picture/Company Logo
+      {/* Profile Picture Upload */}
+      <Grid item xs={12}>        
+        <Typography variant="body1" align="left">
+          Profile Picture/Company Logo
         </Typography>
-          <ImageUpload
-            page="AddProfilePic"
-          />
-        </FormControl>
+
+        <ImageUpload page="AddProfilePic" />
       </Grid>
 
+      {/* Website input */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
             id="website"
             label="website"
@@ -193,7 +201,6 @@ function RegisterForm() {
             helperText="Optional: share your website with other users."
             variant="outlined"
             value={website}
-            required
             onChange={(event) => setWebsite(event.target.value)}
           />
         </FormControl>
@@ -203,7 +210,8 @@ function RegisterForm() {
         <FormControl variant="outlined" fullWidth>
           <InputLabel id="vendor-or-not">
             Are you a Vendor?
-              </InputLabel>
+          </InputLabel>
+          
           <Select
             value={userType}
             onChange={(event) => setUserType(event.target.value)}
@@ -211,30 +219,34 @@ function RegisterForm() {
             id="selector-example"
             label="Are you a Vendor?" // this must be the same string from this selector's <InputLabel />
           >
-            {/* <MenuItem value=""><em>Choose One</em></MenuItem> */}
-            <MenuItem value='planner' defaultValue>No- I am not a Vendor</MenuItem>
-            <MenuItem value='vendor'>Yes- I am a Vendor</MenuItem>
+            <MenuItem value='planner' defaultValue>No, I am not a Vendor.</MenuItem>
+            <MenuItem value='vendor'>Yes, I am a Vendor.</MenuItem>
           </Select>
         </FormControl>
       </Grid>
 
       <Grid item container xs={12} justify="center">
-      <Box className={classes.root}>
-        <Button color="secondary" variant="contained"
-          type="button"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Already Registered
-        </Button>
+        <Box className={classes.root}>
+          <Button color="secondary" variant="contained"
+            type="button"
+            onClick={() => {
+              history.push('/login');
+            }}
+          >
+            Already Registered
+          </Button>
 
-
-        <Button color="primary" variant="contained"
-          onClick={
-            (userType === 'vendor' ? (() => vendorRegistration()) :
-              ((event) => registerUser(event)))}>Next
-        </Button>
+          <Button color="primary" variant="contained"
+            onClick={
+              userType === 'vendor' ? (
+                () => vendorRegistration()
+              ) : (
+                (event) => registerUser(event)
+              )
+            }
+          >
+            Next
+          </Button>
         </Box>
       </Grid>
     </Grid>

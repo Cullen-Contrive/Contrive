@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     // maxWidth: 300,
   },
+  registerFormContainer: {
+    padding: theme.spacing(1.5),
+  },
 }))
 
 export default useStyles;
