@@ -8,14 +8,21 @@ import SearchResultDetails from './SearchResultDetails';
 
 // MATERIAL UI
 import useStyles from './Search.styles';
-import { Grid, Box, Typography, Card, CardContent } from '@material-ui/core';
+import {
+  Avatar,
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 
 function SearchResults({ hasMadeSearchRequest }) {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const classes = useStyles();
-  const [spacing, setSpacing] = React.useState(2);
+
   // Clear previous search results upon arrival to this page:
   useEffect(() => {
     dispatch({
@@ -31,56 +38,62 @@ function SearchResults({ hasMadeSearchRequest }) {
   // console.log('searchResults in component:', searchResults);
 
   return (
-    <div>
-      <Grid container justify="space-around">
-        {searchResults.map((vendor, i) => {
-          return (
-            <>
-              {searchResults[0].id !== 0 ? (
-                <SearchResultDetails key={i} vendor={vendor} />
-              ) : hasMadeSearchRequest !== 0 ? (
-                <div key={i}>
-                  No search results, please broaden your search.
-                </div>
-              ) : (
-                // If no search has been made, default to displaying all vendors on page
-                allVendors.map((eachVendor, i) => {
-                  return (
-                    <Grid
-                      xs={6}
-                      className={classes.gridContainer}
-                      onClick={() =>
-                        history.push(`/vendor/${eachVendor.vendorUserId}`)
-                      }
-                    >
-                      <Card className={classes.cardSize}>
-                        <Box height="90px" textAlign="center">
-                          <CardContent>
-                            <Typography>{eachVendor.companyName}</Typography>
-                          </CardContent>
-                        </Box>
+    <Grid container item spacing={3} className={classes.searchResultsContainer}>
+      {searchResults.map((vendor, i) => {
+        return (
+          <>
+            {searchResults[0].id !== 0 ? (
+              <SearchResultDetails key={i} vendor={vendor} />
+            ) : hasMadeSearchRequest !== 0 ? (
+              <div key={i}>
+                No search results, please broaden your search.
+              </div>
+            ) : (
+              // If no search has been made, default to displaying all vendors on page
+              allVendors.map((eachVendor, i) => {
+                return (
+                  <Grid
+                    item
+                    xs={6}
+                    onClick={() =>
+                      history.push(`/vendor/${eachVendor.vendorUserId}`)
+                    }
+                  >
+                    <Card className={classes.cardSize} variant="outlined">
+                      {/* <CardContent> */}
+                        <Grid
+                          className={classes.cardInteriorWrapper}
+                          container 
+                          spacing={4} 
+                          direction="column" 
+                          alignItems="center" 
+                          justify="space-between"
+                        >
+                          <Grid item>
+                            <Typography variant="body1" align="center" className={classes.resultCardHeader}>
+                              <strong>{eachVendor.companyName}</strong>
+                            </Typography>
+                          </Grid>
 
-                        <Box height="100px" alignContent="center">
-                          <CardContent>
-                            <img
+                          <Grid item>
+                            <Avatar
+                              alt={eachVendor.companyName}
                               className={classes.imgSize}
                               src={eachVendor.profilePic}
-                              alt={eachVendor.companyName}
+                              variant="rounded"
                             />
-                          </CardContent>
-                        </Box>
-                        {/* ToDo: Add Vendor Rating (Stretch) here */}
-                        {/* <Box>{vendor.rating}</Box> */}
-                      </Card>
-                    </Grid>
-                  );
-                })
-              )}
-            </>
-          );
-        })}
-      </Grid>
-    </div>
+                          </Grid>
+                        </Grid>
+                      {/* </CardContent> */}
+                    </Card>
+                  </Grid>
+                );
+              })
+            )}
+          </>
+        );
+      })}
+    </Grid>
   );
 }
 
