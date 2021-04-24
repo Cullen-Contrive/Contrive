@@ -180,7 +180,7 @@ function SearchOptions({
           </FormControl>
         </Grid>
 
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <Button color="primary" variant="contained" type="submit" onClick={handleSearchInput}>
             Search
           </Button>
