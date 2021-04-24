@@ -5,19 +5,22 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import io from 'socket.io-client';
 import Swal from 'sweetalert2';
 
 // Material UI
 import useStyles from './MessageAll.styles';
 import {
-  Box, Button,
-  Paper, Grid,
-  TextField, Typography,
-  List, ListItemText
+  Box,
+  Button,
+  IconButton,
+  Paper,
+  Grid,
+  TextField,
+  Typography,
+  List,
+  ListItemText,
 } from '@material-ui/core';
-
 
 // Icons
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -26,7 +29,6 @@ import SendIcon from '@material-ui/icons/Send';
 
 // Custom Components
 import Message from './Message';
-
 
 function MessageConversation() {
   const classes = useStyles();
@@ -41,7 +43,6 @@ function MessageConversation() {
   const existingMessages = useSelector((store) => store.chat.chatReducer);
   const currentUser = useSelector((store) => store.user);
   const toUser = useSelector((store) => store.otherUserDetails);
-
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
@@ -104,18 +105,22 @@ function MessageConversation() {
     history.goBack();
   };
 
-
-
   return (
-    <div >
+    <div>
       <Grid container>
         <Grid item xs={12}>
           <Box display="flex">
-            <Button startIcon={<ArrowBackIosIcon />} onClick={goBack}></Button>
-            <Typography variant="h5" className="header-message">
+            <Button
+              color="primary"
+              startIcon={<ArrowBackIosIcon />}
+              onClick={goBack}
+            >
+              Go Back
+            </Button>
+            <Typography variant="h5" className="headerMessage">
               {toUser.companyName == null
                 ? `Messages with ${toUser.firstName} ${toUser.lastName}`
-                : toUser.companyName}
+                : `Messages with ${toUser.companyName}`}
             </Typography>
           </Box>
         </Grid>
@@ -136,12 +141,35 @@ function MessageConversation() {
                 );
               })
             ) : (
-              <ListItemText align="left">Start a conversation!</ListItemText>
+              <Grid item xs={12}>
+                <ListItem>
+                  <div className={classes.chatBubbleRight}>
+                    <ListItemText
+                      align="right"
+                      primary="Start a Conversation"
+                    ></ListItemText>
+                  </div>
+                  <ListItemAvatar align="right">
+                    <Avatar
+                      alt={currentUser.firstName + 'photo'}
+                      src={currentUser.profilePic}
+                    />
+                  </ListItemAvatar>
+                </ListItem>
+                <Divider />
+              </Grid>
             )}
           </List>
           <form onSubmit={sendMessage}>
-            <Grid container style={{ padding: '20px' }}>
-              <Grid item xs={11}>
+            <Grid
+              container
+              style={{
+                padding: 20,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Grid item xs={9}>
                 <TextField
                   id="outlined-basic-email"
                   label="Type Something"
@@ -150,13 +178,14 @@ function MessageConversation() {
                   fullWidth
                 />
               </Grid>
-              <Grid xs={1} align="right">
-                <Button
+              <Grid xs={3} align="right">
+                <IconButton
                   color="primary"
-                  aria-label="add"
+                  aria-label="send message"
                   type="submit"
-                  endIcon={<SendIcon />}
-                ></Button>
+                >
+                  <SendIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </form>
