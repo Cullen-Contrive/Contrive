@@ -47,37 +47,37 @@ function VendorProfile() {
 
   return (
     // pass props to children
-    <>
-      <Grid className={classes.vendorProfileContainer}>
-        <ProfileName
-          name={vendorDetails.companyName}
-          certified={vendorDetails.certified}
-          profilePhoto={vendorDetails.profilePic}
-        />
-        <ProfileNav
-          email={vendorDetails.username}
-          phone={vendorDetails.phone}
-          website={vendorDetails.website}
-          address={vendorDetails.address}
-          city={vendorDetails.city}
-          state={vendorDetails.state}
-          zip={vendorDetails.zip}
-          vendorId={vendorDetails.vendorUserId}
-        />
-        <PublicPhotos photos={vendorPhotos.userPhotos} />
-        <About
-          description={vendorDetails.description}
-          additionalInfo={vendorDetails.additionalInfo}
-          serviceTypes={vendorDetails.serviceTypes}
-          website={vendorDetails.website}
-          phone={vendorDetails.phone}
-          city={vendorDetails.city}
-          state={vendorDetails.state}
-        />
-        <SpecialFeatures features={vendorDetails.specialFeatures} />
-        <VendorTypes services={vendorDetails.serviceTypes} />
-      </Grid>
-    </>
+    <Grid className={classes.vendorProfileContainer}>
+
+      <ProfileName
+        name={vendorDetails.companyName}
+        certified={vendorDetails.certified}
+        profilePhoto={vendorDetails.profilePic}
+      />
+
+      <ProfileNav
+        email={vendorDetails.username}
+        phone={vendorDetails.phone}
+        website={vendorDetails.website}
+        address={vendorDetails.address}
+        city={vendorDetails.city}
+        state={vendorDetails.state}
+        zip={vendorDetails.zip}
+        vendorId={vendorDetails.vendorUserId}
+      />
+      <PublicPhotos photos={vendorPhotos.userPhotos} />
+      <About
+        description={vendorDetails.description}
+        additionalInfo={vendorDetails.additionalInfo}
+        serviceTypes={vendorDetails.serviceTypes}
+        website={vendorDetails.website}
+        phone={vendorDetails.phone}
+        city={vendorDetails.city}
+        state={vendorDetails.state}
+      />
+      <SpecialFeatures features={vendorDetails.specialFeatures} />
+      <VendorTypes services={vendorDetails.serviceTypes} />
+    </Grid>
   );
 }
 

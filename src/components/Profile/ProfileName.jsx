@@ -13,15 +13,10 @@ function ProfileName({ name, certified, profilePhoto }) {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} alignItems="center">
       {/* Beginning of Profile Name */}
       <Grid item xs={7}>
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
+        <Grid container className={classes.profileNameContainer}>
           <Typography variant="h5" className={classes.inlineBlock}>
             {/* Conditionally render name of Vendor here */}
             <strong>
@@ -30,7 +25,7 @@ function ProfileName({ name, certified, profilePhoto }) {
           </Typography>
           {/* {certified ? <CheckCircleIcon /> : 'Not certified'} */}
           <img src={starsImg} style={{ height: '50px' }} />
-        </Box>
+        </Grid>
       </Grid>
       <Grid item xs={5}>
         <center>

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 2,
   },
   editFormWrapper: {
-    padding: theme.spacing(1.25)
+    padding: theme.spacing(2)
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -39,9 +39,16 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  profileNameContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
   profilePicAvatarPreview: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
+    width: theme.spacing(13),
+    height: theme.spacing(13),
   },
   publicPhotosTop: {
     margin: '0 0 10px 0',

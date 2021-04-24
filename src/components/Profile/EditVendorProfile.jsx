@@ -66,9 +66,9 @@ function EditVendorProfile() {
   } // end saveEdit
 
   return (
-    <>
+    <Grid >
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
-      <Grid container spacing={3} direction="column" alignItems="center" className={classes.editFormWrapper}>
+      <Grid container direction="column" alignItems="center" className={classes.editFormWrapper}>
         <EditVendorBasicInfo
           vendor={vendorDetails}
           editProfileElement={editProfileElement}
@@ -92,7 +92,7 @@ function EditVendorProfile() {
           </ButtonGroup>
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 } // end EditVendorProfile
 

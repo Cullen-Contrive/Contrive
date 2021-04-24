@@ -67,7 +67,7 @@ function EditVendorBasicInfo({ vendor, editProfileElement }) {
       </Grid>
 
       <Grid item xs={12}>
-        <FormControl fullWidth>
+        <FormControl fullWidth >
           <TextField
             id="edit-companyName-input"
             helperText="Edit your company's description."
