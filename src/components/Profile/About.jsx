@@ -1,12 +1,13 @@
-import { useState } from 'react';
+// This component feeds into the VendorProfile page and
+// handles all the expanding/collapsing accordions of vendor information
 
 import clsx from 'clsx';
 
 //MATERIAL-UI
 import useStyles from './Profile.styles';
 import {
-  Accordion, AccordionSummary, AccordionDetails,
-  Collapse, Grid, IconButton, Link,
+  Accordion, AccordionSummary,
+  AccordionDetails, Grid,
   Typography
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -21,15 +22,9 @@ function About({
   city,
   state,
 }) {
-  // const [expanded, setExpanded] = useState(false);
 
   // Classes for styling
   const classes = useStyles();
-
-  // // Event handler for collapsing photos
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
