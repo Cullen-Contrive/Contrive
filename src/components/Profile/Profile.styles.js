@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     //width: '100%',
+  },
+  vendorProfileContainer: {
+    padding: theme.spacing(2),
   }
 }))
 

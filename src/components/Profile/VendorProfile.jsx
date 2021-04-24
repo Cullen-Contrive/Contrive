@@ -5,6 +5,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+// Material-UI
+import useStyles from './Profile.styles';
+import { Grid } from '@material-ui/core';
+
 // Custom components
 import ProfileName from './ProfileName';
 import ProfileNav from './ProfileNav';
@@ -16,6 +20,7 @@ import VendorTypes from './VendorTypes';
 function VendorProfile() {
   const params = useParams();
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const vendorDetails = useSelector((store) => store.vendor);
   const vendorPhotos = useSelector((store) => store.otherUserDetails);
@@ -43,33 +48,35 @@ function VendorProfile() {
   return (
     // pass props to children
     <>
-      <ProfileName
-        name={vendorDetails.companyName}
-        certified={vendorDetails.certified}
-        profilePhoto={vendorDetails.profilePic}
-      />
-      <ProfileNav
-        email={vendorDetails.username}
-        phone={vendorDetails.phone}
-        website={vendorDetails.website}
-        address={vendorDetails.address}
-        city={vendorDetails.city}
-        state={vendorDetails.state}
-        zip={vendorDetails.zip}
-        vendorId={vendorDetails.vendorUserId}
-      />
-      <PublicPhotos photos={vendorPhotos.userPhotos} />
-      <About
-        description={vendorDetails.description}
-        additionalInfo={vendorDetails.additionalInfo}
-        serviceTypes={vendorDetails.serviceTypes}
-        website={vendorDetails.website}
-        phone={vendorDetails.phone}
-        city={vendorDetails.city}
-        state={vendorDetails.state}
-      />
-      <SpecialFeatures features={vendorDetails.specialFeatures} />
-      <VendorTypes services={vendorDetails.serviceTypes} />
+      <Grid className={classes.vendorProfileContainer}>
+        <ProfileName
+          name={vendorDetails.companyName}
+          certified={vendorDetails.certified}
+          profilePhoto={vendorDetails.profilePic}
+        />
+        <ProfileNav
+          email={vendorDetails.username}
+          phone={vendorDetails.phone}
+          website={vendorDetails.website}
+          address={vendorDetails.address}
+          city={vendorDetails.city}
+          state={vendorDetails.state}
+          zip={vendorDetails.zip}
+          vendorId={vendorDetails.vendorUserId}
+        />
+        <PublicPhotos photos={vendorPhotos.userPhotos} />
+        <About
+          description={vendorDetails.description}
+          additionalInfo={vendorDetails.additionalInfo}
+          serviceTypes={vendorDetails.serviceTypes}
+          website={vendorDetails.website}
+          phone={vendorDetails.phone}
+          city={vendorDetails.city}
+          state={vendorDetails.state}
+        />
+        <SpecialFeatures features={vendorDetails.specialFeatures} />
+        <VendorTypes services={vendorDetails.serviceTypes} />
+      </Grid>
     </>
   );
 }
