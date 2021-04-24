@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -34,7 +35,13 @@ function MyEvents() {
         {myEvents.map((event, index) => {
           return (
             <ListItem key={index}>
-              {/* Avatar goes here */}
+              {event.eventsPhotos[0] !== null ? (
+                <ListItemAvatar>
+                  <Avatar src={event.eventsPhotos[0].photo} />
+                </ListItemAvatar>
+              ) : (
+                ''
+              )}
               <ListItemText>
                 {event.description ? event.description : ''}
                 {event.dateOfEvent ? event.dateOfEvent : ''}
