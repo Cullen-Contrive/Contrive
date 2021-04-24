@@ -221,6 +221,7 @@ function App() {
               path="/registration/vendor"
               authRedirect="/discover"
             >
+              <ContriveHeader />
               <RegisterVendorPage />
             </ProtectedRoute>
 

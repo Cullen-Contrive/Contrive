@@ -20,13 +20,11 @@ import {
   Box
 } from '@material-ui/core';
 
-
 function RegisterVendorForm() {
   // Define history for routing purposes, dispatch for Redux communication, and classes for styling:
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
-
 
   /////////////////// BRING IN NECESSARY DATA //////////////////////////////////
   // Bring in any errors stored in the reducer:
@@ -40,11 +38,9 @@ function RegisterVendorForm() {
   const features = useSelector((store) => store.features);
   const services = useSelector((store) => store.vendorTypes);
 
-
   /////////////////// MANAGE INPUTS //////////////////////////////////
   // Manage state of form inputs:
   const [companyAddress, setCompanyAddress] = useState('');
-
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
@@ -143,17 +139,19 @@ function RegisterVendorForm() {
 
 
   return (
-    <Grid item container spacing={2} xs={12} component={Paper}>
-      <Typography variant="h2" component="h2" align="center">
-        Register User
-      </Typography>
-
-      {errors.registrationMessage && (
-        <Typography variant="h3" component="h3" align="center"
-          className="alert" role="alert">
-          {errors.registrationMessage}
+    <Grid 
+      item 
+      className={classes.registerFormContainer}
+      component={Paper} 
+      container
+      justify="center"
+      spacing={3} 
+    >
+      <Grid item xs={12}>
+        <Typography variant="h2" component="h2" align="center">
+          Register User
         </Typography>
-      )}
+      </Grid>
 
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
@@ -251,7 +249,6 @@ function RegisterVendorForm() {
         </FormControl>
       </Grid>
 
-
       <Grid item xs={12}>
         <FormControl variant="outlined" fullWidth>
           <TextField
@@ -284,80 +281,111 @@ function RegisterVendorForm() {
         </FormControl>
       </Grid>
 
+      <Grid item xs={11}>
+        <FormControl fullWidth>
+          <InputLabel id="vendor-type">Services Offered</InputLabel>
+          <Select
+            labelId="vendor-type"
+            id="vendor-type"
+            multiple
+            name="Vendor Types"
+            value={vendorTypeNames}
+            onChange={handleVendorTypeSelection}
+            input={<Input id="select-multiple-types" />}
+            renderValue={(selected) => (
+              <div className={classes.chips}>
+                {selected.map((feature) => (
+                  <Chip key={feature} label={feature} className={classes.chip} />
+                ))}
+              </div>
+            )}
+          >
+            {services.map((category, i) => {
+              return (
+                <MenuItem key={i} value={category.name}>
+                  {category.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Grid>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="vendor-type">Services Offered</InputLabel>
-        <Select
-          labelId="vendor-type"
-          id="vendor-type"
-          multiple
-          name="Vendor Types"
-          value={vendorTypeNames}
-          onChange={handleVendorTypeSelection}
-          input={<Input id="select-multiple-features" />}
-          renderValue={(selected) => (
-            <div className={classes.chips}>
-              {selected.map((feature) => (
-                <Chip key={feature} label={feature} className={classes.chip} />
-              ))}
-            </div>
-          )}
-        >
-          {services.map((category, i) => {
-            return (
-              <MenuItem key={i} value={category.name}>
-                {category.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+      <Grid item xs={11}>
+        <FormControl fullWidth>
+          <InputLabel id="special-features">Special Features</InputLabel>
+          <Select
+            labelId="special-features"
+            id="special-features"
+            multiple
+            name="Special Features"
+            value={specialFeatureNames}
+            onChange={handleFeatureSelection}
+            input={<Input id="select-multiple-features" />}
+            renderValue={(selected) => (
+              <div className={classes.chips}>
+                {selected.map((featureValue) => (
+                  <Chip key={featureValue} label={featureValue} className={classes.chip} />
+                ))}
+              </div>
+            )}
+          >
+            {features.map((feature, i) => {
+              return (
+                <MenuItem key={i} value={feature.name}>
+                  {feature.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Grid>
 
+      {errors.registrationMessage && (
+        <Grid item xs={12}>
+          <Typography 
+            align="center"
+            className="alert" 
+            component="h3" 
+            role="alert"
+            variant="h3" 
+          >
+            {errors.registrationMessage}
+          </Typography>
+        </Grid>
+      )}
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="special-features">Special Features</InputLabel>
-        <Select
-          labelId="special-features"
-          id="special-features"
-          multiple
-          name="Special Features"
-          value={specialFeatureNames}
-          onChange={handleFeatureSelection}
-          input={<Input id="select-multiple-features" />}
-          renderValue={(selected) => (
-            <div className={classes.chips}>
-              {selected.map((featureValue) => (
-                <Chip key={featureValue} label={featureValue} className={classes.chip} />
-              ))}
-            </div>
-          )}
-        >
-          {features.map((feature, i) => {
-            return (
-              <MenuItem key={i} value={feature.name}>
-                {feature.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+      <Grid
+        className={classes.registerFormButtonContainer}
+        container 
+        item 
+        justify="space-evenly"
+        xs={12}
+      >
+        <Grid item>
+          <Button
+            className={classes.registerFormButton}
+            color="secondary" 
+            variant="contained"
+            type="button"
+            onClick={() => {
+              history.push('/login');
+            }}
+          >
+            Cancel
+          </Button>
+        </Grid>
 
-
-      <Grid item container xs={12} justify="center">
-      <Box className={classes.root}>
-        <Button color="secondary" variant="contained"
-          type="button"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Already Registered
-        </Button>
-        <Button color="primary" variant="contained"
-          onClick={registerUser}>
-          Register
-        </Button>
-        </Box>
+        <Grid item>
+          <Button
+            className={classes.registerFormButton}
+            color="primary" 
+            variant="contained"
+            onClick={registerUser}
+          >
+            Register
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
