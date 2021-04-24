@@ -1,9 +1,11 @@
+// This component feeds into VendorProfile and manages
+// Vendor name, certification, rating, and avatar display
 
-import IconButton from '@material-ui/core/IconButton';
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+// Material-UI
 import useStyles from './Profile.styles';
 import { Grid, Box, Typography, Avatar } from '@material-ui/core';
+// CheckCircleIcon is set up for eventual vendor certification
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import starsImg from '../Images/stars.jpg';
 
@@ -22,7 +24,7 @@ function ProfileName({ name, certified, profilePhoto }) {
         >
           <Typography variant="h5" style={{ display: 'inline-block' }}>
             {/* Conditionally render name of Vendor here */}
-            {name ? name : 'Name goes here..'}
+            {name ? name : 'We currently do not have a name for this Vendor.'}
           </Typography>
           {/* {certified ? <CheckCircleIcon /> : 'Not certified'} */}
           <img src={starsImg} style={{ height: '50px' }} />
@@ -31,14 +33,12 @@ function ProfileName({ name, certified, profilePhoto }) {
       <Grid item xs={5}>
         <center>
           {profilePhoto ? (
-            <Avatar className={classes.profilePicAvatarPreview} alt={name} src={profilePhoto} />
+            <Avatar className={classes.profilePicAvatarPreview}
+              alt={name} src={profilePhoto} />
           ) : (
             <Avatar>A</Avatar>
           )}
 
-          {/* <IconButton size="large">
-            <AddAPhotoIcon />
-          </IconButton> */}
         </center>
       </Grid>
     </Grid>

@@ -1,7 +1,11 @@
+// This is the parent component for all vendor profile components
+// reached by path '/vendor/:id'
+
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+// Custom components
 import ProfileName from './ProfileName';
 import ProfileNav from './ProfileNav';
 import PublicPhotos from './PublicPhotos';
