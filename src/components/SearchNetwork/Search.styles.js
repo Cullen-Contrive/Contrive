@@ -7,27 +7,16 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  cardInteriorWrapper: {
+    height: "100%",
+    // paddingTop: theme.spacing(1)
+  },
   cardSize: {
-    // height: "100%",
-    height: "200px",
-  },
-  featureFormControl: {
-    // margin: theme.spacing(2),
-    // marginLeft: "25px",
-    // minWidth: 120,
-    // maxWidth: 300,
-  },
-  gridContainer: {
-    paddingTop: "10px",
-    padding: theme.spacing(1),
-  },
-  img: {
-    maxWidth: '100%',
-    maxHeight: '100%',
+    height: theme.spacing(29),
   },
   imgSize: {
-    maxHeight: "75px",
-    minHeight: "40px"
+    height: theme.spacing(10),
+    width: theme.spacing(10)
   },
   inputRoot: {
     color: 'inherit',
@@ -38,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
   networkSearchContainer: {
     padding: theme.spacing(2),
+  },
+  resultCardHeader: {
+    marginTop: theme.spacing(1.5),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1)
   },
   search: {
     position: 'relative',
@@ -58,12 +52,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  vendorFormControl: {
-    // margin: theme.spacing(2),
-    // marginRight: "25px",
-    // minWidth: 120,
-    // maxWidth: 300,
   },
 }))
 

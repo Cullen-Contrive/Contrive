@@ -11,6 +11,7 @@ import useStyles from './Search.styles';
 import {
   Button,
   FormControl,
+  FormHelperText,
   Grid,
   InputBase,
   InputLabel,
@@ -98,7 +99,9 @@ function SearchOptions({
     keyPressed();
 
   return (
-    <Grid container item xs={12} spacing={3} direction="column">
+    <Grid container item spacing={3} direction="column" className={classes.networkSearchContainer}>
+
+      {/* This container holds both Vendor Types and Special Features drop downs in one line */}
       <Grid container item spacing={3} justify="center">
         <Grid item xs={5}>
           <FormControl className={classes.vendorFormControl}>
@@ -151,29 +154,34 @@ function SearchOptions({
         </Grid>
       </Grid>
 
-      <Grid container className={classes.searchContainer} >
-        <Grid item xs={8} className={classes.search}>
+      <Grid container item className={classes.searchContainer} justify="center" spacing={1}>
+        <Grid item xs={8}>
+          <FormControl>
+            <div  className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
 
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase type="search"
-            fullWidth={true}
-            key="searchBar"
-            value={searchInput}
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            placeholder={`Search vendors by name`}
-            onChange={(event) => setSearchInput(event.target.value)}
-            onKeyPress={keyPressed}
-          />
-
+              <InputBase 
+                type="search"
+                fullWidth={true}
+                key="searchBar"
+                value={searchInput}
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                placeholder="Search vendors"
+                onChange={(event) => setSearchInput(event.target.value)}
+                onKeyPress={keyPressed}
+              />
+            </div>
+            <FormHelperText variant="outlined">Try searching for vendors by name.</FormHelperText>
+          </FormControl>
         </Grid>
 
         <Grid item xs={2}>
-          <Button type="submit" onClick={handleSearchInput}>
+          <Button color="primary" variant="contained" type="submit" onClick={handleSearchInput}>
             Search
           </Button>
         </Grid>

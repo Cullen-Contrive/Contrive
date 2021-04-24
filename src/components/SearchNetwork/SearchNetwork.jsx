@@ -30,7 +30,7 @@ function SearchNetwork() {
   const [searchInput, setSearchInput] = useState('');
 
   return (
-    <Grid container className={classes.networkSearchContainer}>
+    <Grid container className={classes.networkSearchContainer} direction="column">
 
       <Grid item xs={12}>
         <Typography variant="h3" align="center">
