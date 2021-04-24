@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
-import useStyles from './Profile.styles';
+// This component feeds into EditVendorProfile and handles
+// entire edit form, with inputs filled with most recent vendor information
 
 // Material-UI
+import useStyles from './Profile.styles';
 import {
   Avatar,
   FormControl,
@@ -15,7 +16,6 @@ import ImageUpload from '../ImageUpload/ImageUpload';
 
 function EditVendorBasicInfo({ vendor, editProfileElement }) {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   return (
     <Grid
@@ -45,7 +45,7 @@ function EditVendorBasicInfo({ vendor, editProfileElement }) {
       <Grid item xs={12} gutterBottom>
         <Typography variant="body1">
           The image on the left is how your profile picture is displayed to
-          others. Click within the dotted lines to upload an image.
+          others. Click within the dotted lines to upload a replacement image.
         </Typography>
       </Grid>
 
