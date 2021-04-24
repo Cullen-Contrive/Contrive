@@ -1,6 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  alignLeft: {
+    alignItems: 'flex-start',
+  },
+  alignRight: {
+    alignItems: 'flex-end',
+  },
   borderRight500: {
     borderRight: '1px solid #e0e0e0',
   },

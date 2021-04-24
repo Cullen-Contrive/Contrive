@@ -34,17 +34,6 @@ function Message({ messageDetails, toUserId, currentUser, toUser }) {
                   secondary={messageDetails.dateReceived}
                 ></ListItemText>
               </div>
-              {/* {currentUser.companyName ? (
-                <ListItemText
-                  align="right"
-                  primary={currentUser.companyName}
-                ></ListItemText>
-              ) : (
-                <ListItemText
-                  align="right"
-                  primary={currentUser.firstName}
-                ></ListItemText>
-              )} */}
               <ListItemAvatar align="right">
                 <Avatar
                   alt={currentUser.firstName + 'photo'}
@@ -57,6 +46,12 @@ function Message({ messageDetails, toUserId, currentUser, toUser }) {
         ) : (
           <Grid item xs={12}>
             <ListItem>
+              <ListItemAvatar align="left">
+                <Avatar
+                  alt={toUser.firstName + 'photo'}
+                  src={toUser.profilePic}
+                />
+              </ListItemAvatar>
               <div className={classes.chatBubbleLeft}>
                 <ListItemText
                   align="left"
@@ -64,12 +59,6 @@ function Message({ messageDetails, toUserId, currentUser, toUser }) {
                   secondary={messageDetails.dateReceived}
                 ></ListItemText>
               </div>
-              <ListItemAvatar align="left">
-                <Avatar
-                  alt={toUser.firstName + 'photo'}
-                  src={toUser.profilePic}
-                />
-              </ListItemAvatar>
             </ListItem>
             <Divider />
           </Grid>
