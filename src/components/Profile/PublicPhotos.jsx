@@ -1,31 +1,23 @@
-import { useState } from 'react';
+// This component feeds into VendorProfile and manages
+// NOT SET UP YET: displaying all public photos the vendor has in the users_photos db
 
 import clsx from 'clsx';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Typography from '@material-ui/core/Typography';
-import { PhotoSizeSelectSmallTwoTone } from '@material-ui/icons';
 
+// Material-UI
+import useStyles from './Profile.styles'
+import {
+  Accordion, AccordionDetails, AccordionSummary,
+  Grid, Typography
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+// locally-saved placeholder image used when no photos saved for vendor in users_photos db table
 import placeholderImg from '../Images/placeholder.png';
 
-import useStyles from './Profile.styles'
-
 function PublicPhotos({ photos }) {
-  const [expanded, setExpanded] = useState(false);
-
   // Classes for styling
   const classes = useStyles();
 
-  // Event handler for collapsing photos
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <Accordion>
@@ -34,11 +26,7 @@ function PublicPhotos({ photos }) {
         aria-controls="public-photos-panel-content"
         id="public-photos-panel-header"
       >
-        <Typography
-          style={{
-            display: 'inline-block',
-          }}
-        >
+        <Typography className={classes.inlineBlock}>
           Public Photos
         </Typography>
       </AccordionSummary>
