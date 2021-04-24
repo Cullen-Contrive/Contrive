@@ -1,5 +1,6 @@
 // This component feeds into EditVendorProfile and handles
-// entire edit form, with inputs filled with most recent vendor information
+// Profile photo, company name and company description edit form, 
+// inputs are pre-filled with most recent vendor information
 
 // Material-UI
 import useStyles from './Profile.styles';

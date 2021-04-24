@@ -1,11 +1,14 @@
+// This component feeds into EditVendorProfile and handles
+// Service Type (also called Vendor Type) edit form, 
+// inputs are pre-filled with most recent vendor information
+
 import { useSelector } from 'react-redux';
-import useStyles from './Profile.styles';
 
 // Material-UI Components
+import useStyles from './Profile.styles';
 import {
   Chip,
   FormControl,
-  FormHelperText,
   Grid,
   Input,
   InputLabel,
@@ -51,7 +54,7 @@ function EditVendorServiceTypes({ vendor, editProfileElement }) {
   return (
     <Grid item container xs={11}>
       <FormControl fullWidth>
-        <InputLabel id="service-types-edit-label">Edit ServiceTypes</InputLabel>
+        <InputLabel id="service-types-edit-label">Edit Service Types</InputLabel>
         <Select
           labelId="service-types-edit-label"
           id="service-types-edit"
