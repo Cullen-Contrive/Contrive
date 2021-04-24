@@ -1,7 +1,36 @@
 import { combineReducers } from 'redux';
 
 // Stores all events
-const allEventsReducer = (state = [], action) => {
+const allEventsReducer = (
+  state = [
+    {
+      eventsPhotos: [
+        {
+          id: '',
+          photo: '',
+        },
+      ],
+      eventsTypes: [{}],
+      eventsVendors: [{}],
+    },
+  ],
+  action
+) => {
+  // {"id":1,
+  // "dateOfEvent":"30 APR 2021",
+  // "timeOfEvent":"03:00 AM",
+  // "address":"5600 Walnut",
+  // "city":"Smithville",
+  // "state":"MO",
+  // "zip":"64089",
+  // "numberOfAttendees":50,
+  // "description":"Graduation celebration!",
+  // "companyName":"Sir Knights Rentals",
+  // "firstName":"McKynlee","lastName":"Westman",
+  // "eventsPhotos":[null],
+  // "eventsTypes":[{"id":1,"eventId":1,"typeId":5}],
+  // "eventsVendors":[{"id":1,"vendorUserId":2,"eventId":1}]}
+
   switch (action.type) {
     case 'SET_ALL_EVENTS':
       return action.payload;

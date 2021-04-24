@@ -4,12 +4,22 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Grid from '@material-ui/core/Grid';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 function EventVendorsAccordion() {
+  // // Dispatch a request on page load for retrieving all vendors
+  // useEffect(() => {
+  //   dispatch({
+  //     type: 'FETCH_ALL_VENDORS',
+  //   });
+  // }, []);
+
   // Bring in all vendors to display upon page load:
   let allVendors = useSelector((store) => store.allVendors);
-  let someVendors = allVendors.slice;
+  console.log('allVendors', allVendors);
+  let someVendors = allVendors.slice(0, 0 + 5);
+  console.log('some vendors', someVendors);
   function vendors() {
     for (let i = 0; i < 3; i++) {
       return <h1>Hello World</h1>;
