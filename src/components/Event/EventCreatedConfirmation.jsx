@@ -1,5 +1,4 @@
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -19,6 +18,17 @@ const useStyles = makeStyles((theme) => ({
 
 function EventCreatedConfirmation() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const goToSearch = () => {
+    // for redirecting to /search page where planners can search for vendors
+    history.push('/search');
+  };
+
+  const goToMyEvents = () => {
+    // for redirecting to /my/events where planners will see their list of events
+    history.push('/my/events');
+  };
 
   return (
     <Grid container>
@@ -44,10 +54,10 @@ function EventCreatedConfirmation() {
       <Box align="center" width="100%">
         <Box className={classes.root}>
           {/* Buttons go here */}
-          <Button color="primary" variant="contained">
+          <Button color="primary" variant="contained" onClick={goToSearch}>
             Search Vendors
           </Button>
-          <Button color="secondary" variant="contained">
+          <Button color="secondary" variant="contained" onClick={goToMyEvents}>
             Skip for Now
           </Button>
         </Box>
