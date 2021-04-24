@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import useStyles from './EditVendorProfile.styles';
+import useStyles from './Profile.styles';
 
 import EditVendorContact from './EditVendorContact';
 import EditVendorBasicInfo from './EditVendorBasicInfo';
@@ -56,7 +56,7 @@ function EditVendorProfile() {
     })
   } // end saveEdit
 
-  return(
+  return (
     <>
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
       <Grid container spacing={3} direction="column" alignItems="center" className={classes.editFormWrapper}>
@@ -68,14 +68,14 @@ function EditVendorProfile() {
           vendor={vendorDetails}
           editProfileElement={editProfileElement}
         />
-        <EditVendorContact 
-          vendor={vendorDetails} 
-          editProfileElement={editProfileElement} 
+        <EditVendorContact
+          vendor={vendorDetails}
+          editProfileElement={editProfileElement}
         />
         <EditVendorSpecialFeatures
-          vendor={vendorDetails} 
-          editProfileElement={editProfileElement} 
-        /> 
+          vendor={vendorDetails}
+          editProfileElement={editProfileElement}
+        />
         <Grid item>
           <ButtonGroup variant="contained">
             <Button color="secondary" onClick={cancelEdit}>Cancel</Button>

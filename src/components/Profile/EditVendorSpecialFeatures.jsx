@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import useStyles from './EditVendorProfile.styles';
+import useStyles from './Profile.styles';
 
 // Material-UI Components
 import {
@@ -44,14 +44,14 @@ function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
         if (feature.id === id) {
           specialFeatures.push(feature);
         }
-      } 
+      }
     }
     // console.log('specialFeatures', specialFeatures);
 
     editProfileElement('specialFeatures', specialFeatures);
   }
 
-  return(
+  return (
     <Grid item container xs={11}>
       <FormControl fullWidth>
         <InputLabel id="special-features-edit-label">Edit Special Features</InputLabel>

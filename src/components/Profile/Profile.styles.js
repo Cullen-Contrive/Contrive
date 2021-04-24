@@ -11,14 +11,37 @@ const useStyles = makeStyles((theme) => ({
   editFormWrapper: {
     padding: theme.spacing(1.25)
   },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
     // maxWidth: 300,
   },
+  inlineBlock: {
+    display: 'inline-block',
+  },
   profilePicAvatarPreview: {
     width: theme.spacing(10),
     height: theme.spacing(10),
+  },
+  publicPhotosTop: {
+    margin: '0 0 10px 0'
+  },
+  publicPhotos: {
+    margin: '10px 0'
+  },
+  root: {
+    flexGrow: 1,
+    //width: '100%',
   }
 }))
 

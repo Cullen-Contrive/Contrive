@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+
 import clsx from 'clsx';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -14,28 +14,7 @@ import { PhotoSizeSelectSmallTwoTone } from '@material-ui/icons';
 
 import placeholderImg from '../Images/placeholder.png';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // flexGrow: 1,
-    //width: '100%',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  publicPhotosTop: {
-    margin: '0 0 10px 0'
-  },
-  publicPhotos: {
-    margin: '10px 0'
-  },
-}));
+import useStyles from './Profile.styles'
 
 function PublicPhotos({ photos }) {
   const [expanded, setExpanded] = useState(false);

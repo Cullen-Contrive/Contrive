@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import useStyles from './EditVendorProfile.styles';
+import useStyles from './Profile.styles';
 
 // Material-UI
 import {

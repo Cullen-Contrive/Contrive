@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import useStyles from './EditVendorProfile.styles';
+import useStyles from './Profile.styles';
 
 // Material-UI Components
 import {
@@ -13,7 +13,7 @@ import {
   Select,
 } from '@material-ui/core';
 
-function EditVendorServiceTypes({vendor, editProfileElement}) {
+function EditVendorServiceTypes({ vendor, editProfileElement }) {
   const classes = useStyles();
   const vendorTypes = useSelector(store => store.vendorTypes);
 
@@ -48,7 +48,7 @@ function EditVendorServiceTypes({vendor, editProfileElement}) {
     editProfileElement('serviceTypes', serviceTypes)
   }
 
-  return(
+  return (
     <Grid item container xs={11}>
       <FormControl fullWidth>
         <InputLabel id="service-types-edit-label">Edit ServiceTypes</InputLabel>
