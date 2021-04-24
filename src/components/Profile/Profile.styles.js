@@ -1,6 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  buttonGroup: {
+    width: '100%',
+    justifyContent: 'space-between',
+  },
   chips: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -28,6 +32,12 @@ const useStyles = makeStyles((theme) => ({
   },
   inlineBlock: {
     display: 'inline-block',
+  },
+  navContainer: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
   profilePicAvatarPreview: {
     width: theme.spacing(10),
