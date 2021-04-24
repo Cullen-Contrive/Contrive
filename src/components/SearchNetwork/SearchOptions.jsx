@@ -103,8 +103,8 @@ function SearchOptions({
 
       {/* This container holds both Vendor Types and Special Features drop downs in one line */}
       <Grid container item spacing={3} justify="center">
-        <Grid item xs={5}>
-          <FormControl className={classes.vendorFormControl}>
+        <Grid item xs={6}>
+          <FormControl fullWidth>
             <InputLabel id="vendor-type">Vendor Types</InputLabel>
             <Select
               labelId="vendor-type"
@@ -127,8 +127,8 @@ function SearchOptions({
           </FormControl>
         </Grid>
         
-        <Grid item xs={5}>
-          <FormControl className={classes.featureFormControl}>
+        <Grid item xs={6}>
+          <FormControl fullWidth>
             <InputLabel id="special-features">
               Special Features
             </InputLabel>
