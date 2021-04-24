@@ -6,21 +6,16 @@ import ImageUpload from '../ImageUpload/ImageUpload';
 
 // Material-UI
 import {
+  Box,
   Button, // replaces html5 <button> element
-  ButtonGroup,
   FormControl,
-  FormHelperText,
   Grid, //
-  Input,
   InputLabel,
   MenuItem,
   Paper,
   Select,
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
-  Box,
-  makeStyles,
-
 } from '@material-ui/core';
 
 function RegisterForm() {
@@ -34,7 +29,6 @@ function RegisterForm() {
     dispatch({ type: 'FETCH_SPECIAL_FEATURES' });
   }, []);
 
-
   // Manage state of form inputs:
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -42,7 +36,6 @@ function RegisterForm() {
   const [lastName, setLastName] = useState('');
   const [website, setWebsite] = useState('');
   const [userType, setUserType] = useState('');
-  
 
   // console.log('====================================');
   // console.log('username:', username);
@@ -96,26 +89,29 @@ function RegisterForm() {
   }
 
   return (
-    <Grid item container spacing={2} xs={12} component={Paper}>
-      <Typography variant="h2" component="h2" align="center">
-        Register User
-      </Typography>
-
-      {errors.registrationMessage && (
-        <Typography variant="h3" component="h3" align="center"
-          className="alert" role="alert">
-          {errors.registrationMessage}
-        </Typography>
-      )}
-
+    <Grid
+      item
+      className={classes.registerFormContainer}
+      component={Paper}
+      container
+      justify="center"
+      spacing={3}
+    >
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <Typography variant="h2" component="h2" align="center">
+          Register User
+        </Typography>
+      </Grid>
+
+      {/* Username (email) input  */}
+      <Grid item xs={12}>
+        <FormControl fullWidth>
           <TextField
             id="email"
             label="email"
+            helperText="Your email will be used as your username."
             type="text"
             autoComplete="current-email"
-            // helperText=""
             variant="outlined"
             value={username}
             required
@@ -124,14 +120,14 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
+      {/* First name input */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
             id="firstName"
             label="first name"
             type="text"
             autoComplete="current-firstName"
-            // helperText=""
             variant="outlined"
             value={firstName}
             required
@@ -140,14 +136,14 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
+      {/* Last name input */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
             id="lastName"
             label="last name"
             type="text"
             autoComplete="current-lastName"
-            // helperText=""
             variant="outlined"
             value={lastName}
             required
@@ -156,35 +152,39 @@ function RegisterForm() {
         </FormControl>
       </Grid>
 
+      {/* Password input */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
-            id="password"
-            label="password"
-            type="password"
             autoComplete="current-password"
             helperText="Your password can include symbols and numbers."
-            variant="outlined"
-            value={password}
-            required
+            label="password"
+            id="password"
             onChange={(event) => setPassword(event.target.value)}
+            required
+            type="password"
+            value={password}
+            variant="outlined"
           />
         </FormControl>
       </Grid>
 
-      <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+      {/* Profile Picture Upload */}
+      <Grid alignItems='center' item container direction='column' xs={12}>
+        <Grid item>
           <Typography variant="body1" align="left">
             Profile Picture/Company Logo
-        </Typography>
-          <ImageUpload
-            page="AddProfilePic"
-          />
-        </FormControl>
+          </Typography>
+        </Grid>
+
+        <Grid item>
+          <ImageUpload page="AddProfilePic" />
+        </Grid>
       </Grid>
 
+      {/* Website input */}
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <TextField
             id="website"
             label="website"
@@ -193,17 +193,17 @@ function RegisterForm() {
             helperText="Optional: share your website with other users."
             variant="outlined"
             value={website}
-            required
             onChange={(event) => setWebsite(event.target.value)}
           />
         </FormControl>
       </Grid>
 
       <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth>
+        <FormControl fullWidth>
           <InputLabel id="vendor-or-not">
             Are you a Vendor?
-              </InputLabel>
+          </InputLabel>
+
           <Select
             value={userType}
             onChange={(event) => setUserType(event.target.value)}
@@ -211,31 +211,64 @@ function RegisterForm() {
             id="selector-example"
             label="Are you a Vendor?" // this must be the same string from this selector's <InputLabel />
           >
-            {/* <MenuItem value=""><em>Choose One</em></MenuItem> */}
-            <MenuItem value='planner' defaultValue>No- I am not a Vendor</MenuItem>
-            <MenuItem value='vendor'>Yes- I am a Vendor</MenuItem>
+            <MenuItem value='planner' defaultValue>No, I am not a Vendor.</MenuItem>
+            <MenuItem value='vendor'>Yes, I am a Vendor.</MenuItem>
           </Select>
         </FormControl>
       </Grid>
 
-      <Grid item container xs={12} justify="center">
-      <Box className={classes.root}>
-        <Button color="secondary" variant="contained"
-          type="button"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Already Registered
-        </Button>
+      {/* Error messages displayed here during registration error */}
+      {errors.registrationMessage && (
+          <Grid item xs={12}>
+            <Typography
+              align="center"
+              className="alert" 
+              component="h3"
+              role="alert"
+              variant="h3"
+            >
+              {errors.registrationMessage}
+            </Typography>
+          </Grid>
+        )}
 
+      <Grid
+        className={classes.registerFormButtonContainer}
+        container
+        item
+        justify="space-evenly"
+        spacing={2}
+        xs={12}
+      >
+        <Grid item>
+          <Button 
+            className={classes.registerFormButton}
+            color="secondary"
+            onClick={() => {
+              history.push('/login');
+            }}
+            variant="contained"
+          >
+            Cancel
+          </Button>
+        </Grid>
 
-        <Button color="primary" variant="contained"
-          onClick={
-            (userType === 'vendor' ? (() => vendorRegistration()) :
-              ((event) => registerUser(event)))}>Next
-        </Button>
-        </Box>
+        <Grid item>
+          <Button
+            className={classes.registerFormButton}
+            color="primary"          
+            onClick={
+              userType === 'vendor' ? (
+                () => vendorRegistration()
+              ) : (
+                (event) => registerUser(event)
+              )
+            }
+            variant="contained"
+          >
+            Next
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
