@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
     height: "200px",
   },
   featureFormControl: {
-    margin: theme.spacing(2),
-    marginLeft: "25px",
-    minWidth: 120,
-    maxWidth: 300,
+    // margin: theme.spacing(2),
+    // marginLeft: "25px",
+    // minWidth: 120,
+    // maxWidth: 300,
   },
   gridContainer: {
     paddingTop: "10px",
@@ -35,15 +35,9 @@ const useStyles = makeStyles((theme) => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     marginLeft: '50px',
-    // textAlign: "center"
-    // margin: '1',
-    // vertical padding + font size from searchIcon
-    // paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    // transition: theme.transitions.create('width'),
-    // width: '100%',
-    // [theme.breakpoints.up('md')]: {
-    //   width: '20ch',
-    // },
+  },
+  networkSearchContainer: {
+    padding: theme.spacing(2),
   },
   search: {
     position: 'relative',
@@ -51,11 +45,6 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid black',
     marginRight: theme.spacing(1),
     marginLeft: 0,
-    // width: '100%',
-    // [theme.breakpoints.up('sm')]: {
-    //   marginLeft: theme.spacing(3),
-    //   width: 'auto',
-    // },
   },
   searchContainer: {
     display: "flex",
@@ -71,10 +60,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   vendorFormControl: {
-    margin: theme.spacing(2),
-    marginRight: "25px",
-    minWidth: 120,
-    maxWidth: 300,
+    // margin: theme.spacing(2),
+    // marginRight: "25px",
+    // minWidth: 120,
+    // maxWidth: 300,
   },
 }))
 

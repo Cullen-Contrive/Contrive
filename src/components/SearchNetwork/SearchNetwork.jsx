@@ -15,7 +15,6 @@ import {
 import useStyles from './Search.styles';
 import { spacing } from '@material-ui/system';
 
-
 function SearchNetwork() {
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -30,30 +29,21 @@ function SearchNetwork() {
   // Variable to capture search word inputs with local state:
   const [searchInput, setSearchInput] = useState('');
 
-
   return (
-    <div>
-      <main>
-        <Box align="center" width="100%">
-          <Box className={classes.root}>
-            <Box mb={2} align="center" width="100%">
-              <Typography variant="h3">
-                <Box mt={4} align="center" lineHeight={1}>
-                  The Network
-                </Box>
-              </Typography>
-            </Box>
+    <Grid container className={classes.networkSearchContainer}>
 
-            <SearchOptions
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
-            />
+      <Grid item xs={12}>
+        <Typography variant="h3" align="center">
+            The Network              
+        </Typography>
+      </Grid>
 
+      <SearchOptions
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+      />
 
-          </Box>
-        </Box>
-      </main>
-    </div>
+    </Grid>
   );
 }
 
