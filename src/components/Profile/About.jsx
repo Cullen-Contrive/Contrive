@@ -3,7 +3,7 @@
 
 import clsx from 'clsx';
 
-//MATERIAL-UI
+//Material-UI
 import useStyles from './Profile.styles';
 import {
   Accordion, AccordionSummary,

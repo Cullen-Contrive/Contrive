@@ -1,7 +1,11 @@
-import { useSelector } from 'react-redux';
-import useStyles from './Profile.styles';
+// This component feeds into EditVendorProfile and handles
+// Special Features edit form, 
+// inputs are pre-filled with most recent vendor information
 
-// Material-UI Components
+import { useSelector } from 'react-redux';
+
+// Material-UI
+import useStyles from './Profile.styles';
 import {
   Chip,
   FormControl,
