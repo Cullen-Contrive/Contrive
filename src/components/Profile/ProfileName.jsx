@@ -22,9 +22,11 @@ function ProfileName({ name, certified, profilePhoto }) {
           alignItems="center"
           justifyContent="center"
         >
-          <Typography variant="h5" style={{ display: 'inline-block' }}>
+          <Typography variant="h5" className={classes.inlineBlock}>
             {/* Conditionally render name of Vendor here */}
-            {name ? name : 'We currently do not have a name for this Vendor.'}
+            <strong>
+              {name ? name : 'We currently do not have a name for this Vendor.'}
+            </strong>
           </Typography>
           {/* {certified ? <CheckCircleIcon /> : 'Not certified'} */}
           <img src={starsImg} style={{ height: '50px' }} />

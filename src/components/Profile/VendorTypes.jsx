@@ -24,13 +24,13 @@ function VendorTypes({ services }) {
         id="vendor-types-panel-header"
       >
         <Typography className={classes.inlineBlock}>
-          Service Types
+          <strong>Service Types</strong>
         </Typography>
       </AccordionSummary>
 
       <AccordionDetails>
         <Grid item>
-          <Typography variant="body2">
+          <Typography variant="body1">
             {services && services[0] !== null
               ? services.map((service) => {
                 return <li key={service.id}>{capitalize(service.name)}</li>;

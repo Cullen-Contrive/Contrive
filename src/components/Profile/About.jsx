@@ -40,7 +40,7 @@ function About({
         <Typography
           className={classes.inlineBlock}
         >
-          About
+          <strong>About</strong>
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
@@ -53,15 +53,6 @@ function About({
           <Grid item>
             <Typography variant="body1" component="p">
               {additionalInfo ? additionalInfo : 'no information found.'}
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body2">
-              {serviceTypes && !serviceTypes[0] === null
-                ? serviceTypes.map((service) => {
-                  return <li key={service.id}>{capitalize(service.name)}</li>;
-                })
-                : ' '}
             </Typography>
           </Grid>
           <Grid item>

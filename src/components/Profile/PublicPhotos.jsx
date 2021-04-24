@@ -27,7 +27,7 @@ function PublicPhotos({ photos }) {
         id="public-photos-panel-header"
       >
         <Typography className={classes.inlineBlock}>
-          Public Photos
+          <strong>Public Photos</strong>
         </Typography>
       </AccordionSummary>
 
@@ -43,11 +43,11 @@ function PublicPhotos({ photos }) {
             // <img src={placeholderImg} />
             <>
               <img src="https://i.pinimg.com/564x/e5/9c/d5/e59cd5ad3c5d2daada28e14ef13ba7c9.jpg"
-                alt="Catered Mac & Cheese" className={classes.publicPhotos} />
+                alt="Catered Mac & Cheese" className={classes.publicPhotosTop} />
               <img src="https://messinascatering.com/wp-content/uploads/2019/09/mac-and-cheese-bar-1024x683.jpeg"
                 alt="Catered Mac & Cheese" className={classes.publicPhotos} />
               <img src="http://macandcheeseshop.com/wp-content/uploads/2017/11/macs-header-image-catering-1.jpg"
-                alt="Catered Mac & Cheese" className={classes.publicPhotosTop} />
+                alt="Catered Mac & Cheese" className={classes.publicPhotos} />
             </>
           )}
         </Grid>

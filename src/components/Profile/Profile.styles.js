@@ -44,10 +44,12 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(10),
   },
   publicPhotosTop: {
-    margin: '0 0 10px 0'
+    margin: '0 0 10px 0',
+    borderRadius: '5px',
   },
   publicPhotos: {
-    margin: '10px 0'
+    margin: '10px 0',
+    borderRadius: '5px',
   },
   root: {
     flexGrow: 1,

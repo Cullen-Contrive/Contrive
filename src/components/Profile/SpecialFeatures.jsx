@@ -23,13 +23,13 @@ function SpecialFeatures({ features }) {
         id="special-features-panel-header"
       >
         <Typography className={classes.inlineBlock}>
-          Special Features
+          <strong>Special Features</strong>
         </Typography>
       </AccordionSummary>
 
       <AccordionDetails>
         <Grid item>
-          <Typography variant="body2">
+          <Typography variant="body1">
             {features && features[0] !== null
               ? features.map((feature) => {
                 return <li key={feature.id}>{capitalize(feature.name)}</li>;
