@@ -1,12 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  alignLeft: {
-    alignItems: 'flex-start',
-  },
-  alignRight: {
-    alignItems: 'flex-end',
-  },
   borderRight500: {
     borderRight: '1px solid #e0e0e0',
   },
@@ -29,20 +23,29 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   chatBubbleLeft: {
-    display: 'block',
+    display: 'flex',
     padding: 10,
     borderRadius: '20px 20px 20px 0',
     backgroundColor: '#dfe6e9',
   },
   chatBubbleRight: {
-    display: 'block',
+    display: 'flex',
     padding: 10,
     borderRadius: '20px 20px 0 20px',
     backgroundColor: '#dff9fb',
   },
   chatSection: {
     width: '100%',
-    height: '80vh',
+    height: '70vh',
+  },
+  chatSendMessage: {
+    margin: 10,
+    marginTop: 150,
+    padding: 10,
+    position: 'fixed',
+  },
+  chatSpacing: {
+    margin: 10,
   },
   messageArea: {
     overflowY: 'auto',

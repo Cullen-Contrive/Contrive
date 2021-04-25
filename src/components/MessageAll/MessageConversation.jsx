@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 // Material UI
 import useStyles from './MessageAll.styles';
 import {
+  Avatar,
   Box,
   Button,
   IconButton,
@@ -19,6 +20,8 @@ import {
   TextField,
   Typography,
   List,
+  ListItemAvatar,
+  ListItem,
   ListItemText,
 } from '@material-ui/core';
 
@@ -107,25 +110,27 @@ function MessageConversation() {
 
   return (
     <div>
-      <Grid container>
-        <Grid item xs={12}>
-          <Box display="flex">
-            <Button
-              color="primary"
-              startIcon={<ArrowBackIosIcon />}
-              onClick={goBack}
-            >
-              Go Back
-            </Button>
-            <Typography variant="h5" className="headerMessage">
-              {toUser.companyName == null
-                ? `Messages with ${toUser.firstName} ${toUser.lastName}`
-                : `Messages with ${toUser.companyName}`}
-            </Typography>
-          </Box>
+      {/* Header */}
+      <Grid container className={classes.chatSpacing}>
+        <Grid item xs={3}>
+          <Button
+            color="primary"
+            startIcon={<ArrowBackIosIcon />}
+            onClick={goBack}
+          >
+            Go Back
+          </Button>
+        </Grid>
+        <Grid item xs={9}>
+          <Typography variant="h5" className="headerMessage">
+            {toUser.companyName == null
+              ? `${toUser.firstName} ${toUser.lastName}`
+              : `${toUser.companyName}`}
+          </Typography>
         </Grid>
       </Grid>
-      <Grid container component={Paper} className={classes.chatSection}>
+      {/* Chat Section */}
+      <Grid container className={classes.chatSection}>
         <Grid item xs={12}>
           <List className={classes.messageArea}>
             {existingMessages.length > 0 ? (
@@ -141,34 +146,22 @@ function MessageConversation() {
                 );
               })
             ) : (
-              <Grid item xs={12}>
-                <ListItem>
+              //
+              <ListItem>
+                <Grid item xs={6}></Grid>
+                <Grid item xs={6}>
                   <div className={classes.chatBubbleRight}>
                     <ListItemText
                       align="right"
-                      primary="Start a Conversation"
+                      primary="Start a Conversation!"
                     ></ListItemText>
                   </div>
-                  <ListItemAvatar align="right">
-                    <Avatar
-                      alt={currentUser.firstName + 'photo'}
-                      src={currentUser.profilePic}
-                    />
-                  </ListItemAvatar>
-                </ListItem>
-                <Divider />
-              </Grid>
+                </Grid>
+              </ListItem>
             )}
           </List>
           <form onSubmit={sendMessage}>
-            <Grid
-              container
-              style={{
-                padding: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
+            <Grid container className={classes.chatSendMessage}>
               <Grid item xs={9}>
                 <TextField
                   id="outlined-basic-email"
@@ -178,14 +171,10 @@ function MessageConversation() {
                   fullWidth
                 />
               </Grid>
-              <Grid xs={3} align="right">
-                <IconButton
-                  color="primary"
-                  aria-label="send message"
-                  type="submit"
-                >
-                  <SendIcon />
-                </IconButton>
+              <Grid xs={3}>
+                <Button color="primary" type="submit" endIcon={<SendIcon />}>
+                  Send
+                </Button>
               </Grid>
             </Grid>
           </form>

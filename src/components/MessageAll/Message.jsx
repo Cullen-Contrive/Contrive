@@ -27,38 +27,60 @@ function Message({ messageDetails, toUserId, currentUser, toUser }) {
         {messageDetails.toUser == toUserId ? (
           <Grid item xs={12}>
             <ListItem>
-              <div className={classes.chatBubbleRight}>
+              <Grid item xs={9}>
+                <div className={classes.chatBubbleRight}>
+                  <ListItemText
+                    align="right"
+                    primary={messageDetails.message}
+                    secondary={messageDetails.dateReceived}
+                  ></ListItemText>
+                </div>
+              </Grid>
+              <Grid item xs={3}>
                 <ListItemText
-                  align="right"
-                  primary={messageDetails.message}
-                  secondary={messageDetails.dateReceived}
+                  align="center"
+                  primary={
+                    currentUser.companyName
+                      ? currentUser.companyName
+                      : currentUser.firstName
+                  }
                 ></ListItemText>
-              </div>
-              <ListItemAvatar align="right">
-                <Avatar
-                  alt={currentUser.firstName + 'photo'}
-                  src={currentUser.profilePic}
-                />
-              </ListItemAvatar>
+                <ListItemAvatar align="center">
+                  <Avatar
+                    alt={currentUser.firstName + 'photo'}
+                    src={currentUser.profilePic}
+                  />
+                </ListItemAvatar>
+              </Grid>
             </ListItem>
             <Divider />
           </Grid>
         ) : (
           <Grid item xs={12}>
             <ListItem>
-              <ListItemAvatar align="left">
-                <Avatar
-                  alt={toUser.firstName + 'photo'}
-                  src={toUser.profilePic}
-                />
-              </ListItemAvatar>
-              <div className={classes.chatBubbleLeft}>
+              <Grid item xs={3}>
                 <ListItemText
-                  align="left"
-                  primary={messageDetails.message}
-                  secondary={messageDetails.dateReceived}
+                  align="center"
+                  primary={
+                    toUser.companyName ? toUser.companyName : toUser.firstName
+                  }
                 ></ListItemText>
-              </div>
+                <ListItemAvatar align="center">
+                  <Avatar
+                    alt={toUser.firstName + 'photo'}
+                    src={toUser.profilePic}
+                  />
+                </ListItemAvatar>
+              </Grid>
+              <Grid item xs={9}>
+                <div className={classes.chatBubbleLeft}>
+                  <ListItemText
+                    align="left"
+                    primary={messageDetails.message}
+                    secondary={messageDetails.dateReceived}
+                  ></ListItemText>
+                </div>
+              </Grid>
             </ListItem>
             <Divider />
           </Grid>
