@@ -7,23 +7,48 @@ const useStyles = makeStyles((theme) => ({
   headBG: {
     backgroundColor: '#e0e0e0',
   },
+  headerMessage: {
+    display: 'block',
+    margin: '0 auto',
+  },
   inline: {
     display: 'inline-block',
     width: '90%',
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   chatAvatar: {
     width: theme.spacing(7),
     height: theme.spacing(7),
     marginRight: theme.spacing(2),
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
+  },
+  chatBubbleLeft: {
+    display: 'flex',
+    padding: 10,
+    borderRadius: '20px 20px 20px 0',
+    backgroundColor: '#dfe6e9',
+  },
+  chatBubbleRight: {
+    display: 'flex',
+    padding: 10,
+    borderRadius: '20px 20px 0 20px',
+    backgroundColor: '#dff9fb',
   },
   chatSection: {
     width: '100%',
-    height: '80vh',
+    height: '70vh',
+  },
+  chatSendMessage: {
+    margin: 10,
+    marginTop: 30,
+    padding: 10,
+    bottom: 50,
+    position: 'relative',
+  },
+  chatSpacing: {
+    margin: 10,
   },
   messageArea: {
-    // height: '70vh',
     overflowY: 'auto',
   },
 }));

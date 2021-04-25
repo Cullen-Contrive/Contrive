@@ -5,28 +5,27 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import io from 'socket.io-client';
 import Swal from 'sweetalert2';
 
 // Material UI
 import useStyles from './MessageAll.styles';
 import {
-  Box, Button,
-  Paper, Grid,
-  TextField, Typography,
-  List, ListItemText
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
 } from '@material-ui/core';
-
 
 // Icons
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { FavoriteBorder } from '@material-ui/icons';
 import SendIcon from '@material-ui/icons/Send';
 
 // Custom Components
 import Message from './Message';
-
 
 function MessageConversation() {
   const classes = useStyles();
@@ -41,7 +40,6 @@ function MessageConversation() {
   const existingMessages = useSelector((store) => store.chat.chatReducer);
   const currentUser = useSelector((store) => store.user);
   const toUser = useSelector((store) => store.otherUserDetails);
-
 
   useEffect(() => {
     socketRef.current = io.connect(ENDPOINT);
@@ -104,23 +102,29 @@ function MessageConversation() {
     history.goBack();
   };
 
-
-
   return (
-    <div >
-      <Grid container>
-        <Grid item xs={12}>
-          <Box display="flex">
-            <Button startIcon={<ArrowBackIosIcon />} onClick={goBack}></Button>
-            <Typography variant="h5" className="header-message">
-              {toUser.companyName == null
-                ? `Messages with ${toUser.firstName} ${toUser.lastName}`
-                : toUser.companyName}
-            </Typography>
-          </Box>
+    <div>
+      <Grid container className={classes.chatSpacing}>
+        {/* Header */}
+        <Grid item xs={3}>
+          <Button
+            color="primary"
+            startIcon={<ArrowBackIosIcon />}
+            onClick={goBack}
+          >
+            Go Back
+          </Button>
+        </Grid>
+        <Grid item xs={9}>
+          <Typography variant="h5" className="headerMessage">
+            {toUser.companyName == null
+              ? `${toUser.firstName} ${toUser.lastName}`
+              : `${toUser.companyName}`}
+          </Typography>
         </Grid>
       </Grid>
-      <Grid container component={Paper} className={classes.chatSection}>
+      {/* Chat Section */}
+      <Grid container className={classes.chatSection}>
         <Grid item xs={12}>
           <List className={classes.messageArea}>
             {existingMessages.length > 0 ? (
@@ -136,27 +140,42 @@ function MessageConversation() {
                 );
               })
             ) : (
-              <ListItemText align="left">Start a conversation!</ListItemText>
+              //
+              <ListItem>
+                <Grid item xs={6}></Grid>
+                <Grid item xs={6}>
+                  <div className={classes.chatBubbleRight}>
+                    <ListItemText
+                      align="right"
+                      primary="Start a Conversation!"
+                    ></ListItemText>
+                  </div>
+                </Grid>
+              </ListItem>
             )}
           </List>
+          {/* Form */}
           <form onSubmit={sendMessage}>
-            <Grid container style={{ padding: '20px' }}>
-              <Grid item xs={11}>
+            <Grid
+              container
+              className={classes.chatSendMessage}
+              alignItems="flex-end"
+              justify="space-between"
+            >
+              <Grid item xs={8}>
                 <TextField
                   id="outlined-basic-email"
                   label="Type Something"
+                  multiline
                   value={message}
                   onChange={(evt) => setMessage(evt.target.value)}
                   fullWidth
                 />
               </Grid>
-              <Grid xs={1} align="right">
-                <Button
-                  color="primary"
-                  aria-label="add"
-                  type="submit"
-                  endIcon={<SendIcon />}
-                ></Button>
+              <Grid xs={3}>
+                <Button color="primary" type="submit" endIcon={<SendIcon />}>
+                  Send
+                </Button>
               </Grid>
             </Grid>
           </form>
