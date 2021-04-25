@@ -1,8 +1,9 @@
-
 # Contrive Application
-Contrive is an event management software platform that connects Event Planners with their local Vendors.  With enhanced search features, Planners can find the types of Vendors they most want to do business with and can easily connect with them utilizing the message feature.
+
+Contrive is an event management software platform that connects Event Planners with their local Vendors. With enhanced search features, Planners can find the types of Vendors they most want to do business with and can easily connect with them utilizing the message feature.
 
 ## Built with:
+
 JS, HTML, CSS, React, Material-UI, Moment.js, Redux, Redux-Sagas, Node, Express, Passport, Socket.io, AWS, Postico and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
 ## Prerequisites
@@ -14,8 +15,10 @@ Before you get started, make sure you have the following software installed on y
 - [Nodemon](https://nodemon.io/)
 
 ## Create database and table
+
 ### Application Database:
-Create a new postgreSQL database named `contrive_db` and copy all text in the database.sql file saved in the root folder of this repository.  Paste all the copied text as a SQL query (Postico was used for original database creation) and execute the queries sequentially (Note: DROP TABLE queries at the top of the document will not do anything on initial setup since there are no tables yet created, and these DROP TABLE queries should be used carefully, as they permanently delete tables and any stored data therein.)
+
+Create a new postgreSQL database named `contrive_db` and copy all text in the database.sql file saved in the root folder of this repository. Paste all the copied text as a SQL query (Postico was used for original database creation) and execute the queries sequentially (Note: DROP TABLE queries at the top of the document will not do anything on initial setup since there are no tables yet created, and these DROP TABLE queries should be used carefully, as they permanently delete tables and any stored data therein.)
 
 ### Location Database:
 
@@ -43,18 +46,18 @@ Directory Structure:
 - `build/` contains the transpiled code from `src/` and `public/` that will be viewed on the production site (Heroku)
 - `server/` contains the Express App
 
-This code is commented in each individual file with the aim to make it accessible. 
+This code is commented in each individual file with the aim to make it accessible.
 
 ## Authors
-* Dusty Meyers [Dusty's Site](https://)
-* Jason Lin [Jason's Site](https://)
-* John Shands [John's Site](https://)
-* McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
-* William Krug [William's Site](https://)
+
+- Dusty Meyers [Dusty's Site](https://)
+- Jason Lin [Jason's Site](https://)
+- John Shands [John's Site](https://www.johnshands.com/)
+- McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
+- William Krug [William's Site](https://)
 
 ## License
 
-
 ## Acknowledgement
 
-Thanks to [Prime Digital Academy](https://www.primeacademy.io/) who equipped us with the skills to make this application a reality. 
+Thanks to [Prime Digital Academy](https://www.primeacademy.io/) who equipped us with the skills to make this application a reality.
