@@ -1,7 +1,15 @@
+// This is the parent component for all vendor profile components
+// reached by path '/vendor/:id'
+
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+// Material-UI
+import useStyles from './Profile.styles';
+import { Grid } from '@material-ui/core';
+
+// Custom components
 import ProfileName from './ProfileName';
 import ProfileNav from './ProfileNav';
 import PublicPhotos from './PublicPhotos';
@@ -12,9 +20,12 @@ import VendorTypes from './VendorTypes';
 function VendorProfile() {
   const params = useParams();
   const dispatch = useDispatch();
+  const classes = useStyles();
+
   const vendorDetails = useSelector((store) => store.vendor);
   const vendorPhotos = useSelector((store) => store.otherUserDetails);
 
+  // On page load, request Information that will be displayed on the page:
   useEffect(() => {
     fetchVendorDetails();
     fetchVendorPhotos();
@@ -36,12 +47,14 @@ function VendorProfile() {
 
   return (
     // pass props to children
-    <>
+    <Grid className={classes.vendorProfileContainer}>
+
       <ProfileName
         name={vendorDetails.companyName}
         certified={vendorDetails.certified}
         profilePhoto={vendorDetails.profilePic}
       />
+
       <ProfileNav
         email={vendorDetails.username}
         phone={vendorDetails.phone}
@@ -64,7 +77,7 @@ function VendorProfile() {
       />
       <SpecialFeatures features={vendorDetails.specialFeatures} />
       <VendorTypes services={vendorDetails.serviceTypes} />
-    </>
+    </Grid>
   );
 }
 

@@ -1,7 +1,11 @@
-import { useSelector } from 'react-redux';
-import useStyles from './EditVendorProfile.styles';
+// This component feeds into EditVendorProfile and handles
+// Special Features edit form, 
+// inputs are pre-filled with most recent vendor information
 
-// Material-UI Components
+import { useSelector } from 'react-redux';
+
+// Material-UI
+import useStyles from './Profile.styles';
 import {
   Chip,
   FormControl,
@@ -44,14 +48,14 @@ function EditVendorSpecialFeatures({ editProfileElement, vendor }) {
         if (feature.id === id) {
           specialFeatures.push(feature);
         }
-      } 
+      }
     }
     // console.log('specialFeatures', specialFeatures);
 
     editProfileElement('specialFeatures', specialFeatures);
   }
 
-  return(
+  return (
     <Grid item container xs={11}>
       <FormControl fullWidth>
         <InputLabel id="special-features-edit-label">Edit Special Features</InputLabel>

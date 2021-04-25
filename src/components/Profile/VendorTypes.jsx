@@ -1,12 +1,17 @@
-// This component feeds into VendorProfile to display the Vendor Types that the Vendor selected
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Grid from '@material-ui/core/Grid';
+// This component feeds into VendorProfile and manages
+// displaying the Vendor Service Types that the Vendor selected
+
+// Material-UI
+import useStyles from './Profile.styles';
+import {
+  Accordion, AccordionDetails, AccordionSummary,
+  Grid, Typography
+} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Typography from '@material-ui/core/Typography';
+
 
 function VendorTypes({ services }) {
+  const classes = useStyles();
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
@@ -18,18 +23,14 @@ function VendorTypes({ services }) {
         aria-controls="vendor-types-panel-content"
         id="vendor-types-panel-header"
       >
-        <Typography
-          style={{
-            display: 'inline-block',
-          }}
-        >
-          Service Types
+        <Typography className={classes.inlineBlock}>
+          <strong>Service Types</strong>
         </Typography>
       </AccordionSummary>
 
       <AccordionDetails>
         <Grid item>
-          <Typography variant="body2">
+          <Typography variant="body1">
             {services && services[0] !== null
               ? services.map((service) => {
                 return <li key={service.id}>{capitalize(service.name)}</li>;

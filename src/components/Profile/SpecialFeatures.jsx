@@ -1,12 +1,16 @@
-// This component feeds into VendorProfile to display the Special Features that the Vendor selected
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Grid from '@material-ui/core/Grid';
+// This component feeds into VendorProfile and manages
+// displaying the Special Features that the Vendor selected
+
+// Material-UI
+import useStyles from './Profile.styles';
+import {
+  Accordion, AccordionDetails, AccordionSummary,
+  Grid, Typography
+} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Typography from '@material-ui/core/Typography';
 
 function SpecialFeatures({ features }) {
+  const classes = useStyles();
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
@@ -18,18 +22,14 @@ function SpecialFeatures({ features }) {
         aria-controls="special-features-panel-content"
         id="special-features-panel-header"
       >
-        <Typography
-          style={{
-            display: 'inline-block',
-          }}
-        >
-          Special Features
+        <Typography className={classes.inlineBlock}>
+          <strong>Special Features</strong>
         </Typography>
       </AccordionSummary>
 
       <AccordionDetails>
         <Grid item>
-          <Typography variant="body2">
+          <Typography variant="body1">
             {features && features[0] !== null
               ? features.map((feature) => {
                 return <li key={feature.id}>{capitalize(feature.name)}</li>;

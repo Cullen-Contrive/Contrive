@@ -1,15 +1,17 @@
-import { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// This component feeds into the VendorProfile page and
+// handles all the expanding/collapsing accordions of vendor information
+
 import clsx from 'clsx';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Collapse from '@material-ui/core/Collapse';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
+
+//Material-UI
+import useStyles from './Profile.styles';
+import {
+  Accordion, AccordionSummary,
+  AccordionDetails, Grid,
+  Typography
+} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+
 
 function About({
   description,
@@ -20,31 +22,9 @@ function About({
   city,
   state,
 }) {
-  const [expanded, setExpanded] = useState(false);
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-    expandOpen: {
-      transform: 'rotate(180deg)',
-    },
-  }));
 
   // Classes for styling
   const classes = useStyles();
-
-  // Event handler for collapsing photos
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -58,11 +38,9 @@ function About({
         id="vendor-about-header"
       >
         <Typography
-          style={{
-            display: 'inline-block',
-          }}
+          className={classes.inlineBlock}
         >
-          About
+          <strong>About</strong>
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
@@ -75,15 +53,6 @@ function About({
           <Grid item>
             <Typography variant="body1" component="p">
               {additionalInfo ? additionalInfo : 'no information found.'}
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body2">
-              {serviceTypes && !serviceTypes[0] === null
-                ? serviceTypes.map((service) => {
-                    return <li key={service.id}>{capitalize(service.name)}</li>;
-                  })
-                : ' '}
             </Typography>
           </Grid>
           <Grid item>

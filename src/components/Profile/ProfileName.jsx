@@ -1,9 +1,11 @@
+// This component feeds into VendorProfile and manages
+// Vendor name, certification, rating, and avatar display
 
-import IconButton from '@material-ui/core/IconButton';
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import useStyles from './EditVendorProfile.styles';
+// Material-UI
+import useStyles from './Profile.styles';
 import { Grid, Box, Typography, Avatar } from '@material-ui/core';
+// CheckCircleIcon is set up for eventual vendor certification
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import starsImg from '../Images/stars.jpg';
 
@@ -11,34 +13,29 @@ function ProfileName({ name, certified, profilePhoto }) {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} alignItems="center">
       {/* Beginning of Profile Name */}
       <Grid item xs={7}>
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Typography variant="h5" style={{ display: 'inline-block' }}>
+        <Grid container className={classes.profileNameContainer}>
+          <Typography variant="h5" className={classes.inlineBlock}>
             {/* Conditionally render name of Vendor here */}
-            {name ? name : 'Name goes here..'}
+            <strong>
+              {name ? name : 'We currently do not have a name for this Vendor.'}
+            </strong>
           </Typography>
-          {certified ? <CheckCircleIcon /> : 'Not certified'}
+          {/* {certified ? <CheckCircleIcon /> : 'Not certified'} */}
           <img src={starsImg} style={{ height: '50px' }} />
-        </Box>
+        </Grid>
       </Grid>
       <Grid item xs={5}>
         <center>
           {profilePhoto ? (
-            <Avatar className={classes.profilePic} alt={name} src={profilePhoto} />
+            <Avatar className={classes.profilePicAvatarPreview}
+              alt={name} src={profilePhoto} />
           ) : (
             <Avatar>A</Avatar>
           )}
 
-          {/* <IconButton size="large">
-            <AddAPhotoIcon />
-          </IconButton> */}
         </center>
       </Grid>
     </Grid>
