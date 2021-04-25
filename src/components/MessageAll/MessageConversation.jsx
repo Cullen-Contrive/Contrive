@@ -104,8 +104,8 @@ function MessageConversation() {
 
   return (
     <div>
-      {/* Header */}
       <Grid container className={classes.chatSpacing}>
+        {/* Header */}
         <Grid item xs={3}>
           <Button
             color="primary"
@@ -154,12 +154,19 @@ function MessageConversation() {
               </ListItem>
             )}
           </List>
+          {/* Form */}
           <form onSubmit={sendMessage}>
-            <Grid container className={classes.chatSendMessage}>
-              <Grid item xs={9}>
+            <Grid
+              container
+              className={classes.chatSendMessage}
+              alignItems="flex-end"
+              justify="space-between"
+            >
+              <Grid item xs={8}>
                 <TextField
                   id="outlined-basic-email"
                   label="Type Something"
+                  multiline
                   value={message}
                   onChange={(evt) => setMessage(evt.target.value)}
                   fullWidth
