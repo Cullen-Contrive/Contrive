@@ -1,17 +1,18 @@
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+// This component feeds into VendorProfile and manages
+// the vendor-specific navigation that routes to email, phone, address, website and edit
 
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+// Material-UI
+import useStyles from './Profile.styles';
 import EmailIcon from '@material-ui/icons/Email';
 import MessageIcon from '@material-ui/icons/Message';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LanguageIcon from '@material-ui/icons/Language';
 import EditIcon from '@material-ui/icons/Edit';
-
-import { makeStyles } from '@material-ui/core/styles';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
+import { ButtonGroup, IconButton, Grid } from '@material-ui/core';
 
 function ProfileNav({
   email,
@@ -23,42 +24,28 @@ function ProfileNav({
   zip,
   vendorId,
 }) {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
   const classes = useStyles();
   const history = useHistory();
   const user = useSelector((store) => store.user)
-  console.log('123123123123132  user.website:', user.website);
 
   const goToEditView = () => {
     // handles going to editView if the
     // logged in user matches the vendorId
-    console.log('headed to edit view'), vendorId;
+    console.log('headed to edit view', vendorId);
     history.push(`/vendor/edit/${vendorId}`);
   };
 
   const goToMessageView = () => {
     // handles going to messageView for this particular vendor
-    // passes the vendorId in as the toUser
+    // passes the vendorId in as the logged-in user
     history.push(`/message/${vendorId}`);
   };
 
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <div className={classes.root}>
-          <ButtonGroup
-            style={{
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          >
+        <div className={classes.navContainer}>
+          <ButtonGroup className={classes.buttonGroup}>
             <IconButton
               aria-label="email"
               component="a"

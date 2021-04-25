@@ -9,7 +9,6 @@ import SearchResults from './SearchResults';
 // MATERIAL UI
 import useStyles from './Search.styles';
 import {
-  Box,
   Button,
   FormControl,
   FormHelperText,
@@ -20,26 +19,22 @@ import {
   Select,
   Typography,
 } from '@material-ui/core';
-import { spacing } from '@material-ui/system';
 import SearchIcon from '@material-ui/icons/Search';
-
 
 function SearchOptions({
   searchInput,
-  setSearchInput }) {
+  setSearchInput 
+}) {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-
   /////////////////// TRACK IF SEARCH REQUEST MADE //////////////////////////////////
   const [hasMadeSearchRequest, setHasMadeSearchRequest] = useState(0);
-
 
   /////////////////// MANAGE DROPDOWNS //////////////////////////////////
   // Bring in special feature and vendor type options 
   const features = useSelector((store) => store.features);
   const service = useSelector((store) => store.vendorTypes);
-
 
   // Variable to capture changes in the dropdown selections (vendor type and special feature):
   // Initial values are set to identify which of the three filter options have been selected-
@@ -47,7 +42,6 @@ function SearchOptions({
   // The searchTermInput is for a company name, so we set the initial value to 37423573209, which is unlikely to ever be input as a search term
   const [selections, setSelections] = useState({ typeId: -1, featureId: -1, searchTermInput: 37423573209 });
   console.log('selections at start:', selections);
-
 
   // Function to set the value corresponding with selected vendor type in dropdown:
   const handleTypeSelection = (evt) => {
@@ -61,7 +55,6 @@ function SearchOptions({
     runSearch(selectedType);
   };
 
-
   // Function to set the value corresponding with selected special feature in dropdown:
   const handleFeatureSelection = (evt) => {
     //show that a search request has been made:
@@ -73,7 +66,6 @@ function SearchOptions({
     // Call function that will pass data to Saga (and then on to server/DB)
     runSearch(selectedFeature);
   };
-
 
   /////////////////// MANAGE SEARCH BAR //////////////////////////////////
   // Function to set the value corresponding with keyword typed in search bar:
@@ -87,7 +79,6 @@ function SearchOptions({
     // Call function that will pass data to Saga (and then on to server/DB)
     runSearch(searchTermObject);
   }
-
 
   /////////////////// GET SEARCH RESULTS //////////////////////////////////
   // Send any/all selections to the Saga
@@ -108,87 +99,94 @@ function SearchOptions({
     keyPressed();
 
   return (
-    <Grid item xs={12}>
-      <FormControl className={classes.vendorFormControl}>
-        <InputLabel id="vendor-type">Vendor Types</InputLabel>
-        <Select
-          labelId="vendor-type"
-          id="vendor-type"
-          name="Vendor Types"
-          value={selections.typeId}
-          onChange={handleTypeSelection}
-        >
-          <MenuItem key="-1" value="-1">-- Select One --</MenuItem>
-          {service &&
-            service.length &&
-            service.map((category, i) => {
-              return (
-                <MenuItem key={i} value={category.id}>
-                  {category.name}
-                </MenuItem>
-              );
-            })}
-        </Select>
-      </FormControl>
+    <Grid container item spacing={3} direction="column" className={classes.networkSearchContainer}>
 
-      <FormControl className={classes.featureFormControl}>
-        <InputLabel id="special-features">
-          Special Features
-        </InputLabel>
-        <Select
-          labelId="special-features"
-          id="special-features"
-          name="Special Features"
-          value={selections.featureId}
-          onChange={handleFeatureSelection}
-        >
-          <MenuItem key="-1" value="-1">-- Select One --</MenuItem>
-          {features &&
-            features.length &&
-            features.map((feature, i) => {
-              return (
-                <MenuItem key={i} value={feature.id}>
-                  {feature.name}
-                </MenuItem>
-              );
-            })}
-        </Select>
-      </FormControl>
-
-      {/* <Box className={classes.root}>
-      <Box align="left"> */}
-      <Grid container className={classes.searchContainer} >
-        <Grid item xs={8} className={classes.search}>
-
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase type="search"
-            fullWidth={true}
-            key="searchBar"
-            value={searchInput}
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            placeholder={`Search vendors by name`}
-            onChange={(event) => setSearchInput(event.target.value)}
-            onKeyPress={keyPressed}
-          />
-
+      {/* This container holds both Vendor Types and Special Features drop downs in one line */}
+      <Grid container item spacing={3} justify="center">
+        <Grid item xs={6}>
+          <FormControl fullWidth>
+            <InputLabel id="vendor-type">Vendor Types</InputLabel>
+            <Select
+              labelId="vendor-type"
+              id="vendor-type"
+              name="Vendor Types"
+              value={selections.typeId}
+              onChange={handleTypeSelection}
+            >
+              <MenuItem key="-1" value="-1">-- Select One --</MenuItem>
+              {service &&
+                service.length &&
+                service.map((category, i) => {
+                  return (
+                    <MenuItem key={i} value={category.id}>
+                      {category.name}
+                    </MenuItem>
+                  );
+                })}
+            </Select>
+          </FormControl>
         </Grid>
-        {/* </Box> */}
-
-        {/* <Box align="right"> */}
-        <Grid item xs={2}>
-          <Button type="submit" onClick={handleSearchInput}>
-            Search
-        </Button>
+        
+        <Grid item xs={6}>
+          <FormControl fullWidth>
+            <InputLabel id="special-features">
+              Special Features
+            </InputLabel>
+            <Select
+              labelId="special-features"
+              id="special-features"
+              name="Special Features"
+              value={selections.featureId}
+              onChange={handleFeatureSelection}
+            >
+              <MenuItem key="-1" value="-1">-- Select One --</MenuItem>
+              {features &&
+                features.length &&
+                features.map((feature, i) => {
+                  return (
+                    <MenuItem key={i} value={feature.id}>
+                      {feature.name}
+                    </MenuItem>
+                  );
+                })}
+            </Select>
+          </FormControl>
         </Grid>
       </Grid>
-      {/* </Box>
-      </Box> */}
 
+      <Grid container item className={classes.searchContainer} justify="center" spacing={1}>
+        <Grid item xs={8}>
+          <FormControl>
+            <div  className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+
+              <InputBase 
+                type="search"
+                fullWidth={true}
+                key="searchBar"
+                value={searchInput}
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                placeholder="Search vendors"
+                onChange={(event) => setSearchInput(event.target.value)}
+                onKeyPress={keyPressed}
+              />
+            </div>
+            <FormHelperText variant="outlined">Try searching for vendors by name.</FormHelperText>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={4}>
+          <Button color="primary" variant="contained" type="submit" onClick={handleSearchInput}>
+            Search
+          </Button>
+        </Grid>
+      </Grid>
+      
       <SearchResults hasMadeSearchRequest={hasMadeSearchRequest} />
     </Grid>
   );

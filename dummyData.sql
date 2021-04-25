@@ -66,7 +66,7 @@ VALUES
 ('dancefactory@gmail.com', 'Devon', 'Paul', '', 'one', '', 'Kansas City', 'MO', 64108, 'vendor', 'https://www.wedj4u.com/home.html', 'Our specialty is filling dance floors and making sure you and your guests have a great time!  We moved here in 2014 and since have performed at over 200 venues in and around Kansas City; winning The Knot Bridal Magazines "Best of Weddings" award 6-years in-a-row, supported numerous area charities, and are extremely proud to have been selected as the Official DJs for The Kansas City Chiefs ​"Ultimate Tailgate Party" held inside Arrowhead Stadium!​'),
 ('djhydan@gmail.com', 'Hydan', '', 'http://static1.squarespace.com/static/5a01c7c5d7bdce98fb7e8b06/t/5a5bfa57652dea17cc3219c4/1574230673654/?format=original', 'one', '', 'Kansas City', 'KS', 66101, 'vendor', 'http://djhydan.com/', 'HYDAN is an open format vinyl DJ based out of Kansas City. HYDAN grew up with a background in music, teaching himself how to play the piano at a very young age. HYDAN went on to play piano professionally until he discovered his passion for DJing while studying at the University of Kansas. In Lawrence, HYDAN helped build huge followings to what has become one of the most popular bars in the city and HYDAN quickly became one of the most followed DJs in Lawrence.'),
 ('info@levity.com', 'Derek', 'Styles', 'https://lirp.cdn-website.com/4fb9608c/dms3rep/multi/opt/Gray_Levity_Logo_Transparent_Background-cropped-426w.png', 'one', '1633 Swift St', 'Kansas City', 'MO', 64116, 'vendor', 'https://www.kcmobiledj.com/', 'Making Celebrations Easier'),
-('info@houseofmac.com', 'McKynlee', 'Westman', 'https://images.getbento.com/accounts/970eb35c758b542a585d521e7841c5df/media/accounts/media/4Ug9z7LMQXavcIkf6SCy_Derrick%20Turton%20-%20House%20Of%20Mac%20Logo.png', '$2a$10$d.tw3AyrHON3AynvQDuoN.my8uxemJ7KZhzc7fcRMAHiuMpxIwh/u', '5423 Cheese Lane', 'Kansas City', 'MO', 64116, 'vendor', 'https://www.houseofmac.com/', 'World Famouse House of Mac is known for their unique spin on traditional cuisine.'),
+('info@houseofmac.com', 'McKynlee', 'Westman', 'https://images.getbento.com/accounts/970eb35c758b542a585d521e7841c5df/media/accounts/media/4Ug9z7LMQXavcIkf6SCy_Derrick%20Turton%20-%20House%20Of%20Mac%20Logo.png', '$2a$10$d.tw3AyrHON3AynvQDuoN.my8uxemJ7KZhzc7fcRMAHiuMpxIwh/u', '1200 Main Street', 'Kansas City', 'MO', 64105, 'vendor', 'https://www.houseofmac.com/', 'World Famouse House of Mac is known for their unique spin on traditional cuisine.'),
 ('info@intothewild.com', 'Christopher', 'McCandless', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGnzyQA6jdZc50Wae7yCFz7QSvFXGWh_IH4Q&usqp=CAU', 'one', '876 Wild Way', 'Nowhere', 'Maine', 65422, 'planner', 'https://en.wikipedia.org/wiki/Into_the_Wild_(film)', ''),
 ('jayne@serenity.com', 'Jayne', 'Cobb', 'https://static.wikia.nocookie.net/firefly/images/9/92/Jaynes_hat.jpg/revision/latest/scale-to-width-down/200?cb=20101105225014', 'one', '', '', '', 55442, 'planner', '', 'Lets be bad guys'),
 ('geralt@thewitcher.com', 'Geralt', 'Rivia', 'https://upload.wikimedia.org/wikipedia/en/c/c9/Geralt_of_Rivia_Witcher.png', 'one', '', '', '', 55442, 'planner', '', ''),
@@ -230,8 +230,7 @@ VALUES (1, 2, 'What is your rate for 100 people?'),
 --Insert fake responses to fake messages separately so that the timestamp is different:
 INSERT INTO "messages" ("fromUser", "toUser", "message")
 VALUES (2, 1, 'I would like to discuss what activities you would like included- are you available to speak over the phone?'), 
-(4, 3, 'What day in August?'),
-(33, 75, 'I have retired and closed my shop. Please remove my account.');
+(4, 3, 'What day in August?');
 
 
 --EVENTS:
