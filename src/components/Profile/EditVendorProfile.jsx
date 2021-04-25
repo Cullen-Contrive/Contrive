@@ -68,7 +68,8 @@ function EditVendorProfile() {
   return (
     <Grid >
       <Typography variant="h2" align="center" gutterBottom>Edit Profile</Typography>
-      <Grid container direction="column" alignItems="center" className={classes.editFormWrapper}>
+      <Grid container direction="column" alignItems="center"
+        spacing={3} className={classes.editFormWrapper}>
         <EditVendorBasicInfo
           vendor={vendorDetails}
           editProfileElement={editProfileElement}

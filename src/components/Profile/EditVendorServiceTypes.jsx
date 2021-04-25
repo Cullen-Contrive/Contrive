@@ -52,7 +52,7 @@ function EditVendorServiceTypes({ vendor, editProfileElement }) {
   }
 
   return (
-    <Grid item container xs={11} >
+    <Grid item container xs={11}>
       <FormControl fullWidth>
         <InputLabel id="service-types-edit-label">Edit Service Types</InputLabel>
         <Select
