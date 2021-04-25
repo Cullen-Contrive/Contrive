@@ -11,23 +11,17 @@ import Swal from 'sweetalert2';
 // Material UI
 import useStyles from './MessageAll.styles';
 import {
-  Avatar,
-  Box,
   Button,
-  IconButton,
-  Paper,
   Grid,
   TextField,
   Typography,
   List,
-  ListItemAvatar,
   ListItem,
   ListItemText,
 } from '@material-ui/core';
 
 // Icons
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { FavoriteBorder } from '@material-ui/icons';
 import SendIcon from '@material-ui/icons/Send';
 
 // Custom Components

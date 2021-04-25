@@ -4,7 +4,6 @@
 import useStyles from './MessageAll.styles';
 import {
   Avatar,
-  Box,
   Divider,
   Grid,
   ListItemAvatar,
@@ -14,10 +13,6 @@ import {
 
 function Message({ messageDetails, toUserId, currentUser, toUser }) {
   const classes = useStyles();
-
-  console.log('message:', messageDetails);
-  console.log('currentUser', currentUser);
-  console.log('toUser', toUser);
 
   return (
     // Conditionally render to or from based on what the user.id is
