@@ -40,9 +40,10 @@ const useStyles = makeStyles((theme) => ({
   },
   chatSendMessage: {
     margin: 10,
-    marginTop: 150,
+    marginTop: 30,
+    bottom: 50,
     padding: 10,
-    position: 'fixed',
+    position: 'relative',
   },
   chatSpacing: {
     margin: 10,
