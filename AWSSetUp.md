@@ -1,5 +1,5 @@
 # Contrive AWS Setup
-In order to get image upload functioning for the Contrive app, please follow the instructions in this document.  The necesary elements that you will set up are AWS S3, and the file-upload Dropzone.
+In order to have image upload functionality for the Contrive app, please follow the instructions in this document.  The necesary elements that you will set up are AWS S3, and the file-upload Dropzone.
 
 ## Installation 
 ``` $ npm install react-dropzone-s3-uploader ```
