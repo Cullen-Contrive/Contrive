@@ -78,7 +78,7 @@ In order to have image upload functionality for the Contrive app, please follow 
     6g. This next page has our access keys!
 ![image](https://user-images.githubusercontent.com/71994152/114346325-e3561a00-9b28-11eb-994f-d00c16fa041f.png)
 
-#### 7. Click [Show] for the Secret Access Key and copy and paste them into the .env file.
+#### 7. Click [Show] for the Secret Access Key and copy and paste them into the .env file of your local Contrive repository.
     7a. Copy and paste the URL of your bucket into the REACT_APP_S3_URL as well.
 
 ![image](https://user-images.githubusercontent.com/71994152/114347034-f7e6e200-9b29-11eb-9af4-1bf6412147c2.png)
