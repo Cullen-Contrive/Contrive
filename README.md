@@ -54,7 +54,11 @@ This code is commented in each individual file with the aim to make it accessibl
 - Jason Lin [Jason's Site](https://)
 - John Shands [John's Site](https://www.johnshands.com/)
 - McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
-- William Krug [William's Site](https://)
+- William Krug [William's Site](https://william-krug-portfolio.herokuapp.com/#/home)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
 
 Copyright (c) 2021 Aretha McDonald & Alexandria Watkins
 
@@ -78,4 +82,4 @@ SOFTWARE.
 
 ## Acknowledgement
 
-Thanks to [Prime Digital Academy](https://www.primeacademy.io/) who equipped us with the skills to make this application a reality.
+Thanks to Aretha McDonald and Alexandria Watkins for giving use the opportunity to develop this prototype for them. Thank you [Prime Digital Academy](https://www.primeacademy.io/) who equipped us with the skills to make this application a reality. The Cullen cohort for always having our backs and helping us every step of the way and Team Contrive for building one killer app.
