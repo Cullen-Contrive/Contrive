@@ -20,8 +20,6 @@ Before you get started, make sure you have the following software installed on y
 
 Create a new postgreSQL database named `contrive_db` and copy all text in the database.sql file saved in the root folder of this repository. Paste all the copied text as a SQL query (Postico was used for original database creation) and execute the queries sequentially (Note: DROP TABLE queries at the top of the document will not do anything on initial setup since there are no tables yet created, and these DROP TABLE queries should be used carefully, as they permanently delete tables and any stored data therein.) To load sample data, copy all text in the dummyData.sql file saved in the root folder and paste the copied text as a SQL query. Execute the queries sequentially to load the sample data.
 
-### Location Database:
-
 ## Setting up AWS S3 Bucket
 
 Refer to the AWSSetUp.md documentation on how to get started with an AWS S3 Bucket.
