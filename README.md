@@ -49,15 +49,12 @@ Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an A
 
 ## Development Setup Instructions
 
-How do you get your application up and running? This is a step by step list for how another developer could get this project up and running. The good target audience in terms of knowledge, would be a fellow Primer from another cohort being able to spin up this project. Note that you do not need a paragraph here to intro Installation. It should be step-by-step.
-
-If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
-
-1. Create a database named `contrive_db` (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section).
+1. Create a database named `contrive_db` (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database)).
 2. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
 
-   1. The queries in the `database.sql` file are set up to create all the necessary tables (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section).
-   2. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section).
+   1. The queries in the `database.sql` file are set up to create all the necessary tables (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database)).
+
+   2. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database)).
 
 3. Create a `.env` file in the root directory and edit it as follows:
 
@@ -67,7 +64,9 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
    SERVER_SESSION_SECRET = superDuperSecret;
    ```
 
-   While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Secure Password Generator](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning. 2. Paste the following lines into the file for db setup and deployment options:
+   While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Secure Password Generator](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+
+   2. Paste the following lines into the file for db setup and deployment options:
 
    ```javascript
    PGDATABASE = contrive_db;
@@ -91,6 +90,7 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
 6. Run `npm run server` in your terminal.
 7. Run `npm run client` in your terminal.
 8. The `npm run client` command will open up a new browser tab for you!
+
    1. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
 ## Lay of the Land
@@ -106,38 +106,61 @@ This code is commented in each individual file with the aim to make it accessibl
 
 ## Usage
 
-1. New Users can click **REGISTER** as either a Planner or a Vendor from the _Welcome_ page.
+1. New Users can **REGISTER** as either a Planner or a Vendor from the _Welcome_ page.
+
    1. _Planners_ have one registration page.
+
    2. _Vendors_ have two registration pages.
+
 2. Existing users can **LOGIN** with their credentials from the _Welcome_ page.
 3. Once logged in, the navigation bar along the bottom of the screen allows travel through the site.
+
    1. **Discover** (compass icon) takes the user to the _Discover Contrive_ page where they can learn about current events and how to use the site.
       **NOTE:** currently a static page, waiting for future enhancements.
+
    2. **Search** (magnifying glass icon) takes the user to _The Network_ page where they can search for vendors.
+
       1. All vendors on the app are listed when no search criteria is entered. By using the drop downs and search bar, the list of vendors can be refined and filtered.
+
       2. Profile information about a vendor can be found by clicking on their respective card in the search results.
          **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
+
    3. **Plan** (plus icon) takes the user to the _Create Event_ page where they can create a new event.
       **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
    4. **Messages** (chat icon) takes the user to the _Messages_ page where they can view a list of all their message threads
+
       1. Clicking on any thread will show the details of the thread and allow the new messages in the thread to be created.
+
    5. **Menu** (hamburger icon) opens the side navigation drawer. The user's name and profile picture will be displayed at the top of the drawer along with the following links:
+
       1. **My Profile** allows the users to view, and edit, their profile.
          **NOTE:** this link currently only shows for _Vendors_ and needs to be implemented for all other user types.
+
       2. **My Network** allows the user to see all other users they have chosen to be apart of their network.
          **NOTE:** currently a placeholder for future features.
+
       3. **My Events** list view of all of the users' events.
          **NOTE:** currently a placeholder for future features.
+
       4. **My Calendar** calendar view of all of the users' events.
          **NOTE:** currently a placeholder for future features.
+
       5. **Inspiration** allows a _Planner_ to get ideas for their event (think Pinterest)
          **NOTE:** currently a placeholder for future features.
+
       6. **Admin Portal** takes the _Admin_ to the _Admin Portal_ page where they can remove users from the system.
+
       7. **LOG OUT** logs the user out of the app and redirects them to the _Welcome_ page.
+
 4. _Profile Page_ shows the information the user entered when registering for the app.
+
    1. An action bar is displayed that will link to email, messages (in app feature), phone, location, and website if the information was provided by the user during registration.
+
    2. _Vendors_ can see their ratings score (future enhancement).
+
    3. If a user navigates to their own profile page, they will have the option to edit the page.
+
+5. To become an admin (at current time), register as a _Planner_ and manually change the `type` value from `planner` to `admin` in the "users" table in the db.
 
 ## Authors
 
