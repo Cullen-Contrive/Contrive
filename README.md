@@ -9,50 +9,89 @@
 
 _Duration: 2 Week Sprint_
 
-Directly above this is how long it took you to develop the project. Your project description goes here. What problem did you solve? How did you solve it?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam at massa in faucibus. Etiam volutpat, risus non mollis convallis, velit nisi pulvinar mi, eu faucibus orci nisi eget nibh. Integer a velit pretium, volutpat arcu eleifend, fringilla elit. Cras erat sapien, convallis venenatis tellus vitae, feugiat dictum felis.
-
-Suspendisse euismod volutpat aliquet. Maecenas vulputate mauris in pellentesque facilisis. Phasellus varius malesuada semper. Cras sollicitudin diam mollis maximus aliquam.
+Contrive is an event management software platform that connects Event Planners with their local Vendors. With enhanced search features, Planners can find the types of Vendors they most want to do business with and can easily connect with them utilizing the messaging feature.
 
 To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
 
-Contrive is an event management software platform that connects Event Planners with their local Vendors. With enhanced search features, Planners can find the types of Vendors they most want to do business with and can easily connect with them utilizing the message feature.
+## Screen Shot
 
-## Built with:
-
-JS, HTML, CSS, React, Material-UI, Moment.js, Redux, Redux-Sagas, Node, Express, Passport, Socket.io, AWS, Postico and PostgreSQL (a full list of dependencies can be found in `package.json`).
+![Welcome Page]()
+![The Network (Search)]()
+![All Messages]()
+![Message Thread]()
 
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
 
+- [ASW](https://aws.amazon.com/)
+- [Express](https://expressjs.com/)
+- [Material-UI](https://material-ui.com/)
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
+- [Passport](http://www.passportjs.org/)
+- [Postico](https://eggerapps.at/postico/)
+- [PostrgeSQL](https://www.postgresql.org/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Redux-Sagas](https://redux-saga.js.org/)
+- [Socket.io](https://socket.io/)
 
 ## Create database and table
 
 ### Application Database:
 
-Create a new postgreSQL database named `contrive_db` and copy all text in the database.sql file saved in the root folder of this repository. Paste all the copied text as a SQL query (Postico was used for original database creation) and execute the queries sequentially (Note: DROP TABLE queries at the top of the document will not do anything on initial setup since there are no tables yet created, and these DROP TABLE queries should be used carefully, as they permanently delete tables and any stored data therein.) To load sample data, copy all text in the dummyData.sql file saved in the root folder and paste the copied text as a SQL query. Execute the queries sequentially to load the sample data.
+Create a new postgreSQL database named `contrive_db` and copy all text in the `database.sql` file saved in the root folder of this repository. Paste all the copied text as a SQL query ([Postico](https://eggerapps.at/postico/) was used for original database creation) and execute the queries sequentially (Note: DROP TABLE queries at the top of the document will not do anything on initial setup since there are no tables yet created, and these DROP TABLE queries should be used carefully, as they permanently delete tables and any stored data therein.) To load sample data, copy all text in the `dummyData.sql` file saved in the root folder and paste the copied text as a SQL query. Execute the queries sequentially to load the sample data.
 
 ## Setting up AWS S3 Bucket
 
-Refer to the AWSSetUp.md documentation on how to get started with an AWS S3 Bucket.
+Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an AWS S3 Bucket.
 
 ## Development Setup Instructions
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+How do you get your application up and running? This is a step by step list for how another developer could get this project up and running. The good target audience in terms of knowledge, would be a fellow Primer from another cohort being able to spin up this project. Note that you do not need a paragraph here to intro Installation. It should be step-by-step.
+
+If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
+
+1. Create a database named `contrive_db` (see **Application Database** [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section above).
+2. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
+
+   1. The queries in the `database.sql` file are set up to create all the necessary tables (see **Application Database** section above).
+   2. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see **Application Database** section above).
+
+3. Create a `.env` file in the root directory and edit it as follows:
+
+   1. Paste this line into the file:
+
+   ```javascript
+   SERVER_SESSION_SECRET = superDuperSecret;
+   ```
+
+   While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Secure Password Generator](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning. 2. Paste the following lines into the file for db setup and deployment options:
+
+   ```javascript
+   PGDATABASE = contrive_db;
+   PGPORT = 5432;
+   ```
+
+   3. Paste the following lines into the file for ASW setup:
+
+   ```javascript
+   AWS_ACCESS_KEY_ID = xx;
+   AWS_SECRET_ACCESS_KEY = xx;
+   REACT_APP_S3_URL = xx;
+   AWS_S3_BUCKET = xx;
+   AWS_S3_REGION = xx;
+   ```
+
+   You will need to enter your own values for `xx` after the `=` sign for each key value pair. Refer to step 7 in [AWSSetUp](./AWSSetUp.md).
+
+4. Start PostgreSQL if not already running by using the `brew services start postgresql` command in your terminal.
+5. Open up your editor of choice and run an `npm install`.
+6. Run `npm run server` in your terminal.
+7. Run `npm run client` in your terminal.
+8. The `npm run client` command will open up a new browser tab for you!
+   1. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
 ## Lay of the Land
 
@@ -65,13 +104,69 @@ Directory Structure:
 
 This code is commented in each individual file with the aim to make it accessible.
 
+## Usage
+
+1. New Users can click **REGISTER** as either a Planner or a Vendor from the _Welcome_ page.
+   1. _Planners_ have one registration page.
+   2. _Vendors_ have two registration pages.
+2. Existing users can **LOGIN** with their credentials from the _Welcome_ page.
+3. Once logged in, the navigation bar along the bottom of the screen allows travel through the site.
+   1. **Discover** (compass icon) takes the user to the _Discover Contrive_ page where they can learn about current events and how to use the site.
+      **NOTE:** currently a static page, waiting for future enhancements.
+   2. **Search** (magnifying glass icon) takes the user to _The Network_ page where they can search for vendors.
+      1. All vendors on the app are listed when no search criteria is entered. By using the drop downs and search bar, the list of vendors can be refined and filtered.
+      2. Profile information about a vendor can be found by clicking on their respective card in the search results.
+         **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
+   3. **Plan** (plus icon) takes the user to the _Create Event_ page where they can create a new event.
+      **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
+   4. **Messages** (chat icon) takes the user to the _Messages_ page where they can view a list of all their message threads
+      1. Clicking on any thread will show the details of the thread and allow the new messages in the thread to be created.
+   5. **Menu** (hamburger icon) opens the side navigation drawer. The user's name and profile picture will be displayed at the top of the drawer along with the following links:
+      1. **My Profile** allows the users to view, and edit, their profile.
+         **NOTE:** this link currently only shows for _Vendors_ and needs to be implemented for all other user types.
+      2. **My Network** allows the user to see all other users they have chosen to be apart of their network.
+         **NOTE:** currently a placeholder for future features.
+      3. **My Events** list view of all of the users' events.
+         **NOTE:** currently a placeholder for future features.
+      4. **My Calendar** calendar view of all of the users' events.
+         **NOTE:** currently a placeholder for future features.
+      5. **Inspiration** allows a _Planner_ to get ideas for their event (think Pinterest)
+         **NOTE:** currently a placeholder for future features.
+      6. **Admin Portal** takes the _Admin_ to the _Admin Portal_ page where they can remove users from the system.
+      7. **LOG OUT** logs the user out of the app and redirects them to the _Welcome_ page.
+4. _Profile Page_ shows the information the user entered when registering for the app.
+   1. An action bar is displayed that will link to email, messages (in app feature), phone, location, and website if the information was provided by the user during registration.
+   2. _Vendors_ can see their ratings score (future enhancement).
+   3. If a user navigates to their own profile page, they will have the option to edit the page.
+
 ## Authors
 
-- Dusty Meyers [Dusty's Site](https://)
-- Jason Lin [Jason's Site](https://github.com/jasonwl1995)
-- John Shands [John's Site](https://www.johnshands.com/)
-- McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
-- William Krug [William's Site](https://william-krug-portfolio.herokuapp.com/#/home)
+- [Dusty Meyers](https://dustymeyers.com)
+- [Jason Lin](https://github.com/jasonwl1995)
+- [John Shands](https://www.johnshands.com/)
+- [McKynlee Westman](https://mckynlee.github.io/about/)
+- [William Krug](https://william-krug-portfolio.herokuapp.com/#/home)
+
+## Built with:
+
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [ASW](https://aws.amazon.com/)
+- [Express](https://expressjs.com/)
+- [Material-UI](https://material-ui.com/)
+- [Node.js](https://nodejs.org/en/)
+- [Nodemon](https://nodemon.io/)
+- [Passport](http://www.passportjs.org/)
+- [Postico](https://eggerapps.at/postico/)
+- [PostrgeSQL](https://www.postgresql.org/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Redux-Sagas](https://redux-saga.js.org/)
+- [Socket.io](https://socket.io/)
+- [SweetAlert2](https://sweetalert2.github.io/)
+
+A full list of dependencies can be found in the `package.json` file in the root directory.
 
 ## License
 
@@ -100,72 +195,3 @@ SOFTWARE.
 ## Acknowledgement
 
 Thanks to Aretha McDonald and Alexandria Watkins for giving use the opportunity to develop this prototype for them. Thank you [Prime Digital Academy](https://www.primeacademy.io/) who equipped us with the skills to make this application a reality. The Cullen cohort for always having our backs and helping us every step of the way and Team Contrive for building one killer app.
-
-(View Raw will give you the markdown that you can copy to your repos!)
-
-# PROJECT NAME
-
-## Description
-
-_Duration: 2 Week Sprint_
-
-Directly above this is how long it took you to develop the project. Your project description goes here. What problem did you solve? How did you solve it?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam at massa in faucibus. Etiam volutpat, risus non mollis convallis, velit nisi pulvinar mi, eu faucibus orci nisi eget nibh. Integer a velit pretium, volutpat arcu eleifend, fringilla elit. Cras erat sapien, convallis venenatis tellus vitae, feugiat dictum felis.
-
-Suspendisse euismod volutpat aliquet. Maecenas vulputate mauris in pellentesque facilisis. Phasellus varius malesuada semper. Cras sollicitudin diam mollis maximus aliquam.
-
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
-
-## Screen Shot
-
-Include one or two screen shots of your project here (optional). Remove if unused.
-
-### Prerequisites
-
-Link to software that is required to install the app (e.g. node).
-
-- [Node.js](https://nodejs.org/en/)
-- List other prerequisites here
-
-## Installation
-
-How do you get your application up and running? This is a step by step list for how another developer could get this project up and running. The good target audience in terms of knowledge, would be a fellow Primer from another cohort being able to spin up this project. Note that you do not need a paragraph here to intro Installation. It should be step-by-step.
-
-If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
-
-1. Create a database named `your database name`,
-2. The queries in the `tables.sql` file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using Postico to run those queries as that was used to create the queries,
-3. Open up your editor of choice and run an `npm install`
-4. Run `npm run server` in your terminal
-5. Run `npm run client` in your terminal
-6. The `npm run client` command will open up a new browser tab for you!
-
-## Usage
-
-How does someone use this application? Tell a user story here.
-
-1. xxx
-2. xxx
-3. xxx
-4. xxx
-5. xxx
-6. xxx
-
-## Built With
-
-List technologies and frameworks here
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-_Note, include this only if you have a license file. GitHub will generate one for you if you want!_
-
-## Acknowledgement
-
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
-
-## Support
-
-If you have suggestions or issues, please email me at [youremail@whatever.com](www.google.com)
