@@ -77,7 +77,6 @@ function App() {
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
-
         {user.id && <ContriveHeader />}
         {user.id && <Nav />}
 
