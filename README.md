@@ -41,24 +41,59 @@ Before you get started, make sure you have the following software installed on y
 
 ### Application Database:
 
-Create a new postgreSQL database named `contrive_db` and copy all text in the database.sql file saved in the root folder of this repository. Paste all the copied text as a SQL query (Postico was used for original database creation) and execute the queries sequentially (Note: DROP TABLE queries at the top of the document will not do anything on initial setup since there are no tables yet created, and these DROP TABLE queries should be used carefully, as they permanently delete tables and any stored data therein.) To load sample data, copy all text in the dummyData.sql file saved in the root folder and paste the copied text as a SQL query. Execute the queries sequentially to load the sample data.
+Create a new postgreSQL database named `contrive_db` and copy all text in the `database.sql` file saved in the root folder of this repository. Paste all the copied text as a SQL query ([Postico](https://eggerapps.at/postico/) was used for original database creation) and execute the queries sequentially (Note: DROP TABLE queries at the top of the document will not do anything on initial setup since there are no tables yet created, and these DROP TABLE queries should be used carefully, as they permanently delete tables and any stored data therein.) To load sample data, copy all text in the `dummyData.sql` file saved in the root folder and paste the copied text as a SQL query. Execute the queries sequentially to load the sample data.
 
 ## Setting up AWS S3 Bucket
 
-Refer to the AWSSetUp.md documentation on how to get started with an AWS S3 Bucket.
+Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an AWS S3 Bucket.
 
 ## Development Setup Instructions
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+How do you get your application up and running? This is a step by step list for how another developer could get this project up and running. The good target audience in terms of knowledge, would be a fellow Primer from another cohort being able to spin up this project. Note that you do not need a paragraph here to intro Installation. It should be step-by-step.
+
+If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
+
+1. Create a database named `contrive_db` (see **Application Database** section above).
+2. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
+
+   2a. The queries in the `database.sql` file are set up to create all the necessary tables (see **Application Database** section above).
+
+   2b. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see **Application Database** section above).
+
+3. Create a `.env` file in the root directory and edit it as follows:
+   3a. Paste this line into the file:
+
+   ```javascript
+   SERVER_SESSION_SECRET = superDuperSecret;
+   ```
+
+   While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Secure Password Generator](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+
+   3b. Paste the following lines into the file for db setup and deployment options:
+
+   ```javascript
+   PGDATABASE = contrive_db;
+   PGPORT = 5432;
+   ```
+
+   3c. Paste the following lines into the file for ASW setup:
+
+   ```javascript
+   AWS_ACCESS_KEY_ID = xx;
+   AWS_SECRET_ACCESS_KEY = xx;
+   REACT_APP_S3_URL = xx;
+   AWS_S3_BUCKET = xx;
+   AWS_S3_REGION = xx;
+   ```
+
+   You will need to enter your own values for `xx` after the `=` sign for each key value pair. Refer to step 7 in [AWSSetUp](./AWSSetUp.md).
+
+4. Start PostgreSQL if not already running by using the `brew services start postgresql` command in your terminal.
+5. Open up your editor of choice and run an `npm install`.
+6. Run `npm run server` in your terminal.
+7. Run `npm run client` in your terminal.
+8. The `npm run client` command will open up a new browser tab for you!
+   8a. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
 ## Lay of the Land
 
@@ -127,26 +162,6 @@ Thanks to Aretha McDonald and Alexandria Watkins for giving use the opportunity 
 
 (View Raw will give you the markdown that you can copy to your repos!)
 
-### Prerequisites
-
-Link to software that is required to install the app (e.g. node).
-
-- [Node.js](https://nodejs.org/en/)
-- List other prerequisites here
-
-## Installation
-
-How do you get your application up and running? This is a step by step list for how another developer could get this project up and running. The good target audience in terms of knowledge, would be a fellow Primer from another cohort being able to spin up this project. Note that you do not need a paragraph here to intro Installation. It should be step-by-step.
-
-If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
-
-1. Create a database named `your database name`,
-2. The queries in the `tables.sql` file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using Postico to run those queries as that was used to create the queries,
-3. Open up your editor of choice and run an `npm install`
-4. Run `npm run server` in your terminal
-5. Run `npm run client` in your terminal
-6. The `npm run client` command will open up a new browser tab for you!
-
 ## Usage
 
 How does someone use this application? Tell a user story here.
@@ -175,3 +190,7 @@ Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped m
 ## Support
 
 If you have suggestions or issues, please email me at [youremail@whatever.com](www.google.com)
+
+```
+
+```
