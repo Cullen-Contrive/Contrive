@@ -8,15 +8,7 @@ import SearchResultDetails from './SearchResultDetails';
 
 // MATERIAL UI
 import useStyles from './Search.styles';
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Grid,
-  Typography,
-} from '@material-ui/core';
+import { Avatar, Card, Grid, Typography } from '@material-ui/core';
 
 function SearchResults({ hasMadeSearchRequest }) {
   const dispatch = useDispatch();
@@ -45,9 +37,7 @@ function SearchResults({ hasMadeSearchRequest }) {
             {searchResults[0].id !== 0 ? (
               <SearchResultDetails key={i} vendor={vendor} />
             ) : hasMadeSearchRequest !== 0 ? (
-              <div key={i}>
-                No search results, please broaden your search.
-              </div>
+              <div key={i}>No search results, please broaden your search.</div>
             ) : (
               // If no search has been made, default to displaying all vendors on page
               allVendors.map((eachVendor, i) => {
@@ -60,31 +50,33 @@ function SearchResults({ hasMadeSearchRequest }) {
                     }
                   >
                     <Card className={classes.cardSize} variant="outlined">
-                      {/* <CardContent> */}
-                        <Grid
-                          className={classes.cardInteriorWrapper}
-                          container 
-                          spacing={4} 
-                          direction="column" 
-                          alignItems="center" 
-                          justify="space-between"
-                        >
-                          <Grid item>
-                            <Typography variant="body1" align="center" className={classes.resultCardHeader}>
-                              <strong>{eachVendor.companyName}</strong>
-                            </Typography>
-                          </Grid>
-
-                          <Grid item>
-                            <Avatar
-                              alt={eachVendor.companyName}
-                              className={classes.imgSize}
-                              src={eachVendor.profilePic}
-                              variant="rounded"
-                            />
-                          </Grid>
+                      <Grid
+                        className={classes.cardInteriorWrapper}
+                        container
+                        spacing={4}
+                        direction="column"
+                        alignItems="center"
+                        justify="space-between"
+                      >
+                        <Grid item>
+                          <Typography
+                            variant="body1"
+                            align="center"
+                            className={classes.resultCardHeader}
+                          >
+                            <strong>{eachVendor.companyName}</strong>
+                          </Typography>
                         </Grid>
-                      {/* </CardContent> */}
+
+                        <Grid item>
+                          <Avatar
+                            alt={eachVendor.companyName}
+                            className={classes.imgSize}
+                            src={eachVendor.profilePic}
+                            variant="rounded"
+                          />
+                        </Grid>
+                      </Grid>
                     </Card>
                   </Grid>
                 );

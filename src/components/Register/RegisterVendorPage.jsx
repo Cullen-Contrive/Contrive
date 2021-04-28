@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { useHistory } from 'react-router-dom';
-import RegisterVendorForm from '../RegisterForm/RegisterVendorForm';
+import RegisterVendorForm from '../Register/RegisterVendorForm';
 
 // Material-UI
 import {

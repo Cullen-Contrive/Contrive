@@ -6,7 +6,9 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   cors: {
-    origin: 'http://localhost:3000', // this likely needs to be changed to wherever the origin requests are coming from
+    // required: Cors is required for other browsers including Firefox
+    origin: 'http://localhost:3000', // required: used for proxying requests coming from client-side.
+    // Cannot access this port without specifically being from client-side.
     methods: ['GET', 'POST'],
   },
 });
@@ -17,7 +19,6 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const userDetailsRouter = require('./routes/user.details.router');
-const awsRouter = require('./routes/aws.router');
 const eventRouter = require('./routes/event.router');
 const eventTypesRouter = require('./routes/event.types.router');
 const messageRouter = require('./routes/message.router');
@@ -27,7 +28,7 @@ const vendorTypesRouter = require('./routes/vendorTypes.router');
 const searchRouter = require('./routes/search.router');
 const plannerRouter = require('./routes/planner.router');
 
-// TODO AWS const
+// AWS uploader
 const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
 
 // AWS Configuration //
@@ -65,7 +66,6 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/user/details', userDetailsRouter);
-app.use('/api/aws', awsRouter);
 app.use('/api/event', eventRouter);
 app.use('/api/types', eventTypesRouter);
 app.use('/api/message', messageRouter);
@@ -81,9 +81,13 @@ app.use(express.static('build'));
 // App Set //
 const PORT = process.env.PORT || 5000;
 
-//Whenever someone connects this gets executed
+// Whenever someone connects this gets executed
+// socket.io used for scalability. If a chat can have more than
+// two users, socket.io will be able to track all users within a room
+// then we can decide whether or not to post those messages to database.
+
 io.on('connection', (socket) => {
-  console.log('a user connected!!!!!!!');
+  console.log('A user connected!');
 
   socket.on('disconnect', () => {
     console.log('User has disconnected!');
