@@ -1,11 +1,10 @@
 // Import Libraries
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // Import Styling
 import useStyles from './Nav.styles';
-import './Nav.css';
 
 // Material-UI Components
 import {
