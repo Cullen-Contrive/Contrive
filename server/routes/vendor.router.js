@@ -6,7 +6,9 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-// ROUTES AT /api/vendor/all
+/**
+ * GET route for /api/vendor/all
+ */
 router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlText = `
   SELECT
@@ -64,8 +66,13 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
     });
 });
 
+/**
+ * GET route for /api/vendor/id
+ */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
+
+  console.log('req.params', req.params);
 
   const sqlText = `
   SELECT
@@ -113,12 +120,14 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.send(dbRes.rows[0]);
     })
     .catch((err) => {
-      console.error('SERVER - GET at /api/vendor an error occurred', err);
+      console.error('SERVER - GET at /api/vendor/id an error occurred', err);
       res.sendStatus(500);
     });
 });
 
-// this route updates a vendor profile
+/**
+ * GET route for /api/vendor/update
+ */
 router.put('/update', rejectUnauthenticated, async (req, res) => {
   console.log('POST /api/vendor/update here is what we got:', req.body);
   const connection = await pool.connect();

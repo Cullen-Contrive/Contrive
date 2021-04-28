@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
   pool
     .query(queryText)
     .then((result) => {
-      // console.log('retrieve special features list is:', result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
