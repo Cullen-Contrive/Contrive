@@ -108,12 +108,14 @@ function App() {
 
             <ProtectedRoute
               path="/vendor/:id" // url will look like "/vendor/2"
+              exact
             >
               <VendorProfile />
             </ProtectedRoute>
 
             <ProtectedRoute
-              path="/vendor/edit/:id" // url will look like "/vendor/2"
+              path="/vendor/edit/:id" // url will look like "/vendor/edit/2"
+              exact
             >
               <EditVendorProfile />
             </ProtectedRoute>
@@ -126,35 +128,19 @@ function App() {
               <DiscoverPage />
             </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows Discover else shows LoginPage
-              exact
-              path="/events/create"
-            >
+            <ProtectedRoute exact path="/events/create">
               <CreateEvent />
             </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows Discover else shows LoginPage
-              exact
-              path="/my/events"
-            >
+            <ProtectedRoute exact path="/my/events">
               <MyEvents />
             </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows Discover else shows LoginPage
-              exact
-              path="/events/confirmation"
-            >
+            <ProtectedRoute exact path="/events/confirmation">
               <EventCreatedConfirmation />
             </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows Search else shows LoginPage
-              exact
-              path="/search"
-            >
+            <ProtectedRoute exact path="/search">
               <SearchNetwork />
             </ProtectedRoute>
 
@@ -186,9 +172,6 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/discover"
-              // - else shows RegisterPage at "/registration"
               exact
               path="/registration/vendor"
               authRedirect="/discover"
