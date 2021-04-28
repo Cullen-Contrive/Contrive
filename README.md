@@ -53,11 +53,11 @@ How do you get your application up and running? This is a step by step list for 
 
 If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
 
-1. Create a database named `contrive_db` (see **Application Database** [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section above).
+1. Create a database named `contrive_db` (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section).
 2. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
 
-   1. The queries in the `database.sql` file are set up to create all the necessary tables (see **Application Database** section above).
-   2. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see **Application Database** section above).
+   1. The queries in the `database.sql` file are set up to create all the necessary tables (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section).
+   2. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section).
 
 3. Create a `.env` file in the root directory and edit it as follows:
 
