@@ -1,7 +1,5 @@
-# contrive-aws-setup
-In order to get image upload functioning for contrive app, please follow the following instructions to get AWS S3 set up for full functionality.
-
-This components provide either a file-upload Dropzone for users to upload their profile pictures, company logos, and event photos.
+# Contrive AWS Setup
+In order to have image upload functionality for the Contrive app, please follow the instructions in this document.  The necesary elements that you will set up are AWS S3, and the file-upload Dropzone.
 
 ## Installation 
 ``` $ npm install react-dropzone-s3-uploader ```
@@ -19,7 +17,7 @@ This components provide either a file-upload Dropzone for users to upload their 
     
     3c. Name your bucket
     
-    3d. Select a region (whatever would be closest to your location) and remember what you selected
+    3d. Select a region (whatever would be closest to your location) and remember what you selected to use in step #9
     
     3e. For now, disregard all the other options and leave the default selections - scroll to the bottom of the page and click Create Bucket
     
@@ -80,8 +78,8 @@ This components provide either a file-upload Dropzone for users to upload their 
     6g. This next page has our access keys!
 ![image](https://user-images.githubusercontent.com/71994152/114346325-e3561a00-9b28-11eb-994f-d00c16fa041f.png)
 
-#### 7. Click [Show] for the Secret Access Key and copy and paste them into the .env file.
-    7a. Copy and paste the your URL of your bucket into the REACT_APP_S3_URL as well.
+#### 7. Click [Show] for the Secret Access Key and copy and paste them into the .env file in the root folder of your local Contrive repository.
+    7a. Copy and paste the URL of your bucket into the REACT_APP_S3_URL as well.
 
 ![image](https://user-images.githubusercontent.com/71994152/114347034-f7e6e200-9b29-11eb-9af4-1bf6412147c2.png)
 
