@@ -1,6 +1,6 @@
 # Contrive AWS Setup
 
-In order to have image upload functionality for the Contrive app, please follow the instructions in this document. The necesary elements that you will set up are AWS S3, and the file-upload Dropzone.
+In order to have image upload functionality for the Contrive app, please follow the instructions in this document. The necessary elements that you will set up are AWS S3, and the file-upload Dropzone.
 
 ## Installation
 
@@ -108,6 +108,27 @@ In order to have image upload functionality for the Contrive app, please follow 
 NOW YOU CAN TEST!!
 Drag an image to the uploader and it should make a POST request to your bucket, and a GET request to get the preview.
 Check your bucket on AWS as well to see that the image has been uploaded.
+
+## Pricing
+#### Startup
+At the startup, you may use the AWS Free Tier, upon sign-up new AWS customers receive 5GB of Amazon S3 storage in the S3 Standard storage class; 20,000 GET Requests; 2,000 PUT, COPY, POST, or LIST Requests; and 15GB of Data Transfer Out each month for one year.
+
+#### Static Costs
+Once getting out of AWS Free Tier, there is base costs for a couple of factors while using S3, Storage, request and data retrievals, data transfer, and other optional features such as management and analytics, replication and S3 Object Lambda.
+
+For general storage (calculated monthly), every 100 GB is $2.30 for the first 50 TB, then it is $2.20 for the next 450 TB , and down to $2.10 for anything over 500 TB.
+
+PUT and POST - Whenever a user adds/updates a picture to your Bucket, it is a post request, every 1000 posts is $0.005.
+GET - Whenever a user goes to a profile page or uses the search functionality that returns a picture from your Bucket, it creates a GET request, every 1000 gets is $0.0004.
+
+More Information on other features can be found at https://aws.amazon.com/s3/pricing/
+
+#### Estimates
+We are estimating about 10 images on average per user and each image is limited to 10 MB per image, thought most images will be around 1 MB.
+
+For every 10000 users there will be an estimated 100 GB of images which would sit at $2.30 a month.
+
+AWS pricing calculator can be found at https://calculator.aws/#/createCalculator/S3?nc2=h_ql_pr_calc
 
 #### Support
 
