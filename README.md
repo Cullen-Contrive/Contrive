@@ -118,11 +118,11 @@ This code is commented in each individual file with the aim to make it accessibl
 
 ## Authors
 
-- Dusty Meyers [Dusty's Site](https://dustymeyers.com)
-- Jason Lin [Jason's Site](https://github.com/jasonwl1995)
-- John Shands [John's Site](https://www.johnshands.com/)
-- McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
-- William Krug [William's Site](https://william-krug-portfolio.herokuapp.com/#/home)
+- [Dusty Meyers](https://dustymeyers.com)
+- [Jason Lin](https://github.com/jasonwl1995)
+- [John Shands](https://www.johnshands.com/)
+- [McKynlee Westman](https://mckynlee.github.io/about/)
+- [William Krug](https://william-krug-portfolio.herokuapp.com/#/home)
 
 ## Built with:
 
