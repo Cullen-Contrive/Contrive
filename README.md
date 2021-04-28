@@ -106,22 +106,38 @@ This code is commented in each individual file with the aim to make it accessibl
 
 ## Usage
 
-1. New Users can click **REGISTER** as either a Planner or a Vendor.
+1. New Users can click **REGISTER** as either a Planner or a Vendor from the _Welcome_ page.
    1. _Planners_ have one registration page.
    2. _Vendors_ have two registration pages.
-2. Existing users can **LOGIN** with their credentials.
+2. Existing users can **LOGIN** with their credentials from the _Welcome_ page.
 3. Once logged in, the navigation bar along the bottom of the screen allows travel through the site.
    1. **Discover** (compass icon) takes the user to the _Discover Contrive_ page where they can learn about current events and how to use the site.
-   2. **Search** (magnifying glass icon) takes the user to _The Network_ page where they can search for vendors and view vendor profiles by clicking on the selected vendor.
-      **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
+      **NOTE:** currently a static page, waiting for future enhancements.
+   2. **Search** (magnifying glass icon) takes the user to _The Network_ page where they can search for vendors.
+      1. All vendors on the app are listed when no search criteria is entered. By using the drop downs and search bar, the list of vendors can be refined and filtered.
+      2. Profile information about a vendor can be found by clicking on their respective card in the search results.
+         **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
    3. **Plan** (plus icon) takes the user to the _Create Event_ page where they can create a new event.
       **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
    4. **Messages** (chat icon) takes the user to the _Messages_ page where they can view a list of all their message threads
       1. Clicking on any thread will show the details of the thread and allow the new messages in the thread to be created.
-   5. **Menu** (hamburger icon) opens the
-4. xxx
-5. xxx
-6. xxx
+   5. **Menu** (hamburger icon) opens the side navigation drawer. The user's name and profile picture will be displayed at the top of the drawer along with the following links:
+      1. **My Profile** allows the users to view, and edit, their profile.
+         **NOTE:** this link currently only shows for _Vendors_ and needs to be implemented for all other user types.
+      2. **My Network** allows the user to see all other users they have chosen to be apart of their network.
+         **NOTE:** currently a placeholder for future features.
+      3. **My Events** list view of all of the users' events.
+         **NOTE:** currently a placeholder for future features.
+      4. **My Calendar** calendar view of all of the users' events.
+         **NOTE:** currently a placeholder for future features.
+      5. **Inspiration** allows a _Planner_ to get ideas for their event (think Pinterest)
+         **NOTE:** currently a placeholder for future features.
+      6. **Admin Portal** takes the _Admin_ to the _Admin Portal_ page where they can remove users from the system.
+      7. **LOG OUT** logs the user out of the app and redirects them to the _Welcome_ page.
+4. _Profile Page_ shows the information the user entered when registering for the app.
+   1. An action bar is displayed that will link to email, messages (in app feature), phone, location, and website if the information was provided by the user during registration.
+   2. _Vendors_ can see their ratings score (future enhancement).
+   3. If a user navigates to their own profile page, they will have the option to edit the page.
 
 ## Authors
 
