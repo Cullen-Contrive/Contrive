@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 // Import Styling
 import useStyles from './Nav.styles';
-import './Nav.css';
 
 // Material-UI Components
 import {

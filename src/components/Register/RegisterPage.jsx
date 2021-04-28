@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useHistory } from 'react-router-dom';
-import RegisterForm from '../RegisterForm/RegisterForm';
+import RegisterForm from '../Register/RegisterForm';
 
 // Material-UI
 import {
@@ -15,22 +15,9 @@ function RegisterPage() {
 
   return (
     <Grid>
-
       <Grid item container xs={12}>
         <RegisterForm />
       </Grid>
-
-      {/* Moved this Button to RegisterForm */}
-      {/* <Grid item container xs={12} justify="center"> */}
-      {/* <Button color="secondary" variant="contained"
-          type="button"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Login
-        </Button> */}
-      {/* </Grid> */}
     </Grid>
   );
 }
