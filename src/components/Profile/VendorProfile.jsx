@@ -31,6 +31,8 @@ function VendorProfile() {
     fetchVendorPhotos();
   }, []);
 
+  console.log('params', params);
+
   const fetchVendorDetails = () => {
     dispatch({
       type: 'FETCH_SINGLE_VENDOR',
@@ -48,7 +50,6 @@ function VendorProfile() {
   return (
     // pass props to children
     <Grid className={classes.vendorProfileContainer}>
-
       <ProfileName
         name={vendorDetails.companyName}
         certified={vendorDetails.certified}

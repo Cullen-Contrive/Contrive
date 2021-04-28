@@ -72,6 +72,8 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
 
+  console.log('req.params', req.params);
+
   const sqlText = `
   SELECT
   "users"."username",
@@ -118,7 +120,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.send(dbRes.rows[0]);
     })
     .catch((err) => {
-      console.error('SERVER - GET at /api/vendor an error occurred', err);
+      console.error('SERVER - GET at /api/vendor/id an error occurred', err);
       res.sendStatus(500);
     });
 });
