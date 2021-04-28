@@ -6,6 +6,16 @@ Contrive is an event management software platform that connects Event Planners w
 
 JS, HTML, CSS, React, Material-UI, Moment.js, Redux, Redux-Sagas, Node, Express, Passport, Socket.io, AWS, Postico and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
+## Screen Shots
+
+### Landing Page & The Network
+Contrive features a unique login page for users to login to there accounts from. __The Network__ is Contrive's search feature that gives the ability for users to search both by vendor type, special features vendors advertise, and name information.
+![Contrive Landing Page](./ReadMeImgs/landingPage.png) !["The Network" search feature](./ReadMeImgs/networkSearch.gif)
+
+### Contrive's Messaging Feature
+Contrive creates the ability for planners and vendors to communicate with each other and store those conversations in an easy to read space.
+![Display of all user related messages](./ReadMeImgs/allMessages.png) ![Display of a conversation between to users in Messages](./ReadMeImgs/messagingConversation.png)
+
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
@@ -14,7 +24,6 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
 
 ### Application Database:
 
@@ -50,7 +59,7 @@ This code is commented in each individual file with the aim to make it accessibl
 
 ## Authors
 
-- Dusty Meyers [Dusty's Site](https://)
+- Dusty Meyers [Dusty's Site](https://dustymeyers.com)
 - Jason Lin [Jason's Site](https://github.com/jasonwl1995)
 - John Shands [John's Site](https://www.johnshands.com/)
 - McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
