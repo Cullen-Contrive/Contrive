@@ -127,6 +127,7 @@ This code is commented in each individual file with the aim to make it accessibl
 
    3. **Plan** (plus icon) takes the user to the _Create Event_ page where they can create a new event.
       **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
+
    4. **Messages** (chat icon) takes the user to the _Messages_ page where they can view a list of all their message threads
 
       1. Clicking on any thread will show the details of the thread and allow the new messages in the thread to be created.
