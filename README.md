@@ -56,13 +56,13 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
 1. Create a database named `contrive_db` (see **Application Database** [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section above).
 2. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
 
-   - The queries in the `database.sql` file are set up to create all the necessary tables (see **Application Database** section above).
+   1. The queries in the `database.sql` file are set up to create all the necessary tables (see **Application Database** section above).
 
-   - The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see **Application Database** section above).
+   2. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see **Application Database** section above).
 
 3. Create a `.env` file in the root directory and edit it as follows:
 
-   - Paste this line into the file:
+   1. Paste this line into the file:
 
    ```javascript
    SERVER_SESSION_SECRET = superDuperSecret;
@@ -70,14 +70,14 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
 
    While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Secure Password Generator](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
 
-   - Paste the following lines into the file for db setup and deployment options:
+   2. Paste the following lines into the file for db setup and deployment options:
 
    ```javascript
    PGDATABASE = contrive_db;
    PGPORT = 5432;
    ```
 
-   - Paste the following lines into the file for ASW setup:
+   3. Paste the following lines into the file for ASW setup:
 
    ```javascript
    AWS_ACCESS_KEY_ID = xx;
@@ -94,7 +94,7 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
 6. Run `npm run server` in your terminal.
 7. Run `npm run client` in your terminal.
 8. The `npm run client` command will open up a new browser tab for you!
-   - If a new browser doesn't open, navigate to `localhost:3000` in the browser.
+   1. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
 ## Lay of the Land
 
