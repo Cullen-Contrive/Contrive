@@ -57,7 +57,6 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
 2. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
 
    1. The queries in the `database.sql` file are set up to create all the necessary tables (see **Application Database** section above).
-
    2. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see **Application Database** section above).
 
 3. Create a `.env` file in the root directory and edit it as follows:
@@ -68,9 +67,7 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
    SERVER_SESSION_SECRET = superDuperSecret;
    ```
 
-   While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Secure Password Generator](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-
-   2. Paste the following lines into the file for db setup and deployment options:
+   While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Secure Password Generator](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning. 2. Paste the following lines into the file for db setup and deployment options:
 
    ```javascript
    PGDATABASE = contrive_db;
@@ -109,9 +106,19 @@ This code is commented in each individual file with the aim to make it accessibl
 
 ## Usage
 
-1. xxx
-2. xxx
-3. xxx
+1. New Users can click **REGISTER** as either a Planner or a Vendor.
+   1. _Planners_ have one registration page.
+   2. _Vendors_ have two registration pages.
+2. Existing users can **LOGIN** with their credentials.
+3. Once logged in, the navigation bar along the bottom of the screen allows travel through the site.
+   1. **Discover** (compass icon) takes the user to the _Discover Contrive_ page where they can learn about current events and how to use the site.
+   2. **Search** (magnifying glass icon) takes the user to _The Network_ page where they can search for vendors and view vendor profiles by clicking on the selected vendor.
+      **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
+   3. **Plan** (plus icon) takes the user to the _Create Event_ page where they can create a new event.
+      **NOTE:** This link is only available to _Planners_ and _Admin_ roles.
+   4. **Messages** (chat icon) takes the user to the _Messages_ page where they can view a list of all their message threads
+      1. Clicking on any thread will show the details of the thread and allow the new messages in the thread to be created.
+   5. **Menu** (hamburger icon) opens the
 4. xxx
 5. xxx
 6. xxx
