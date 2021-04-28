@@ -20,17 +20,22 @@ To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.he
 ![All Messages]()
 ![Message Thread]()
 
-## Built with:
-
-JS, HTML, CSS, React, Material-UI, Moment.js, Redux, Redux-Sagas, Node, Express, Passport, Socket.io, AWS, Postico and PostgreSQL (a full list of dependencies can be found in `package.json`).
-
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
 
+- [ASW](https://aws.amazon.com/)
+- [Express](https://expressjs.com/)
+- [Material-UI](https://material-ui.com/)
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
+- [Passport](http://www.passportjs.org/)
+- [Postico](https://eggerapps.at/postico/)
+- [PostrgeSQL](https://www.postgresql.org/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Redux-Sagas](https://redux-saga.js.org/)
+- [Socket.io](https://socket.io/)
 
 ## Create database and table
 
@@ -73,6 +78,24 @@ This code is commented in each individual file with the aim to make it accessibl
 - John Shands [John's Site](https://www.johnshands.com/)
 - McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
 - William Krug [William's Site](https://william-krug-portfolio.herokuapp.com/#/home)
+
+## Built with:
+
+JS, HTML, CSS, React, Material-UI, Moment.js, Redux, Redux-Sagas, Node, Express, Passport, Socket.io, AWS, Postico and PostgreSQL (a full list of dependencies can be found in `package.json`).
+
+- [ASW](https://aws.amazon.com/)
+- [Express](https://expressjs.com/)
+- [Material-UI](https://material-ui.com/)
+- [Node.js](https://nodejs.org/en/)
+- [Nodemon](https://nodemon.io/)
+- [Passport](http://www.passportjs.org/)
+- [Postico](https://eggerapps.at/postico/)
+- [PostrgeSQL](https://www.postgresql.org/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Redux-Sagas](https://redux-saga.js.org/)
+- [Socket.io](https://socket.io/)
+- [SweetAlert2](https://sweetalert2.github.io/)
 
 ## License
 
