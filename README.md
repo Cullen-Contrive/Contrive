@@ -53,15 +53,16 @@ How do you get your application up and running? This is a step by step list for 
 
 If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
 
-1. Create a database named `contrive_db` (see **Application Database** section above).
+1. Create a database named `contrive_db` (see **Application Database** [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database) section above).
 2. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
 
-   2a. The queries in the `database.sql` file are set up to create all the necessary tables (see **Application Database** section above).
+   - The queries in the `database.sql` file are set up to create all the necessary tables (see **Application Database** section above).
 
-   2b. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see **Application Database** section above).
+   - The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see **Application Database** section above).
 
 3. Create a `.env` file in the root directory and edit it as follows:
-   3a. Paste this line into the file:
+
+   - Paste this line into the file:
 
    ```javascript
    SERVER_SESSION_SECRET = superDuperSecret;
@@ -69,14 +70,14 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
 
    While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Secure Password Generator](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
 
-   3b. Paste the following lines into the file for db setup and deployment options:
+   - Paste the following lines into the file for db setup and deployment options:
 
    ```javascript
    PGDATABASE = contrive_db;
    PGPORT = 5432;
    ```
 
-   3c. Paste the following lines into the file for ASW setup:
+   - Paste the following lines into the file for ASW setup:
 
    ```javascript
    AWS_ACCESS_KEY_ID = xx;
@@ -93,7 +94,7 @@ If your application has secret keys (for example -- Twilio), make sure you tell 
 6. Run `npm run server` in your terminal.
 7. Run `npm run client` in your terminal.
 8. The `npm run client` command will open up a new browser tab for you!
-   8a. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
+   - If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
 ## Lay of the Land
 
@@ -106,9 +107,18 @@ Directory Structure:
 
 This code is commented in each individual file with the aim to make it accessible.
 
+## Usage
+
+1. xxx
+2. xxx
+3. xxx
+4. xxx
+5. xxx
+6. xxx
+
 ## Authors
 
-- Dusty Meyers [Dusty's Site](https://)
+- Dusty Meyers [Dusty's Site](https://dustymeyers.com)
 - Jason Lin [Jason's Site](https://github.com/jasonwl1995)
 - John Shands [John's Site](https://www.johnshands.com/)
 - McKynlee Westman [McKynlee's Site](https://mckynlee.github.io/about/)
@@ -116,8 +126,9 @@ This code is commented in each individual file with the aim to make it accessibl
 
 ## Built with:
 
-JS, HTML, CSS, React, Material-UI, Moment.js, Redux, Redux-Sagas, Node, Express, Passport, Socket.io, AWS, Postico and PostgreSQL (a full list of dependencies can be found in `package.json`).
-
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [ASW](https://aws.amazon.com/)
 - [Express](https://expressjs.com/)
 - [Material-UI](https://material-ui.com/)
@@ -131,6 +142,8 @@ JS, HTML, CSS, React, Material-UI, Moment.js, Redux, Redux-Sagas, Node, Express,
 - [Redux-Sagas](https://redux-saga.js.org/)
 - [Socket.io](https://socket.io/)
 - [SweetAlert2](https://sweetalert2.github.io/)
+
+A full list of dependencies can be found in the `package.json` file in the root directory.
 
 ## License
 
@@ -159,38 +172,3 @@ SOFTWARE.
 ## Acknowledgement
 
 Thanks to Aretha McDonald and Alexandria Watkins for giving use the opportunity to develop this prototype for them. Thank you [Prime Digital Academy](https://www.primeacademy.io/) who equipped us with the skills to make this application a reality. The Cullen cohort for always having our backs and helping us every step of the way and Team Contrive for building one killer app.
-
-(View Raw will give you the markdown that you can copy to your repos!)
-
-## Usage
-
-How does someone use this application? Tell a user story here.
-
-1. xxx
-2. xxx
-3. xxx
-4. xxx
-5. xxx
-6. xxx
-
-## Built With
-
-List technologies and frameworks here
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-_Note, include this only if you have a license file. GitHub will generate one for you if you want!_
-
-## Acknowledgement
-
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
-
-## Support
-
-If you have suggestions or issues, please email me at [youremail@whatever.com](www.google.com)
-
-```
-
-```
