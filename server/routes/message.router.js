@@ -5,6 +5,9 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
+/**
+ * GET route for /api/message/all
+ */
 router.get('/all', rejectUnauthenticated, async (req, res) => {
   // GET ROUTE - Gets all messages for currently logged-in user
   const userId = req.user.id; // logged-in user's id
@@ -44,10 +47,7 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
         res.sendStatus(500);
         return;
       });
-
   } else {
-    // console.log('ITS A VENDOR! ID:', userId);
-
     // Array to hold all individualCommunicator objects
     const communicationList = [];
 
@@ -80,7 +80,6 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
       // capture individual user information in individualCommunicator object
       const allOtherUsers = dbRes.rows;
       for (let otherUser of allOtherUsers) {
-
         // Object to hold each individual "other user's" details
         let individualCommunicator = {
           otherUserId: 0,
@@ -101,58 +100,57 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
           // console.log('11111111111111.2: individualCommunicator AFTER FIRST QUERY:', individualCommunicator);
 
           // use each other user's id to get the most recent message between them and the logged-in user
-          let messageInfo = await connection.query(`
+          let messageInfo = await connection.query(
+            `
             SELECT "messages"."message", to_char("date", 'DD MON YYYY HH:MI AM') AS "dateReceived" 
             FROM "messages" 
             WHERE "messages"."fromUser" IN ($1, $2) AND "messages"."toUser" IN ($1, $2)
             ORDER BY "dateReceived"  DESC
             LIMIT 1;
-            `, [userId, otherUser.id]);
+            `,
+            [userId, otherUser.id]
+          );
           // console.log('messageInfo.rows:', messageInfo.rows);
 
           // Add message information to individualCommunicator object (only if a message was returned)
           if (messageInfo.rows[0].message !== '') {
             individualCommunicator.message = messageInfo.rows[0].message;
-            individualCommunicator.messageDate = messageInfo.rows[0].dateReceived;
+            individualCommunicator.messageDate =
+              messageInfo.rows[0].dateReceived;
             // console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
           }
 
-          // Add each individualCommunicator object to an array 
+          // Add each individualCommunicator object to an array
           communicationList.push(individualCommunicator);
           // console.log('communicationList after BOTH QUERIES:', communicationList);
 
           await connection.query('COMMIT');
         }
       }
-      // After looping through each of the other user Id's and retrieving their most recent 
+      // After looping through each of the other user Id's and retrieving their most recent
       // message with logged-in user, send this array of info back to the client
       res.send(communicationList);
-    }
-
-    // Send an error to the terminal if the above doesn't function properly
-    catch (err) {
+    } catch (err) {
+      // Send an error to the terminal if the above doesn't function properly
       console.error(
         'SERVER - GET at /api/message/all for VENDOR MESSAGES - an error occurred',
         err
       );
       res.sendStatus(500);
-    }
-
-    finally {
+    } finally {
       // Finally runs whether the `try` block succeeded or not to release our connection
-      connection.release()
+      connection.release();
     }
   }
 }); // end get All messages for one user
 
-
-
+/**
+ * GET route for /api/message/id
+ */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   // GET ROUTE - Gets Messages between two users
   const userId = req.user.id;
-  console.log('userId', userId);
   const otherUser = req.params.id;
-  console.log('otherUser', otherUser);
 
   const queryText = `SELECT "fromUser", "toUser", "message", 
   to_char("date", 'DD MON YYYY HH:MI AM') AS "dateReceived"
@@ -174,7 +172,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 }); // end get conversation thread between two users
 
-
+/**
+ * POST route for /api/message
+ */
 router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
   INSERT INTO "messages" ("fromUser", 
@@ -198,9 +198,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       console.error('SERVER - GET at /api/message', err);
       res.sendStatus(500);
     });
-});
+}); // end POST to /api/message
 
-
+/**
+ * POST route for /api/message/bulk
+ */
 router.post('/bulk', rejectUnauthenticated, async (req, res) => {
   try {
     const queryText = `
@@ -225,6 +227,6 @@ router.post('/bulk', rejectUnauthenticated, async (req, res) => {
     console.error('SERVER - POST - at /api/message/bulk - an error occurred');
     res.sendStatus(500);
   }
-});
+}); // end POST to /api/message/bulk
 
 module.exports = router;

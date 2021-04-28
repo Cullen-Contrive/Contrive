@@ -19,7 +19,6 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const userDetailsRouter = require('./routes/user.details.router');
-const awsRouter = require('./routes/aws.router');
 const eventRouter = require('./routes/event.router');
 const eventTypesRouter = require('./routes/event.types.router');
 const messageRouter = require('./routes/message.router');
@@ -29,7 +28,7 @@ const vendorTypesRouter = require('./routes/vendorTypes.router');
 const searchRouter = require('./routes/search.router');
 const plannerRouter = require('./routes/planner.router');
 
-// TODO AWS const
+// AWS uploader
 const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
 
 // AWS Configuration //
@@ -67,7 +66,6 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/user/details', userDetailsRouter);
-app.use('/api/aws', awsRouter);
 app.use('/api/event', eventRouter);
 app.use('/api/types', eventTypesRouter);
 app.use('/api/message', messageRouter);
