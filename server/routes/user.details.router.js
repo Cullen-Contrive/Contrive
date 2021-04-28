@@ -6,7 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 /**
- * GET route for /api/user/details/ 
+ * GET route for /api/user/details/
  * yields all messages linked with the logged in user
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
@@ -93,7 +93,10 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.send(dbRes.rows[0]);
     })
     .catch((err) => {
-      console.error('SERVER - GET - an error occurred getting user details');
+      console.error(
+        'SERVER - GET - an error occurred getting user details',
+        err
+      );
       res.sendStatus(500);
     });
 });

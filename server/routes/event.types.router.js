@@ -10,7 +10,6 @@ const {
  */
 router.get('/', (req, res) => {
   // Used for grabbing all types of events to display a list of options for user
-  console.log('events');
   const queryText = `
   SELECT * 
   FROM "types_of_event";`;

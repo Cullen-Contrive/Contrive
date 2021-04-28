@@ -3,7 +3,6 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader';
-import { useParams } from 'react-router-dom';
 
 // Calls function to set user uploaded image url onto database
 function ImageUpload(props) {
@@ -39,9 +38,7 @@ function ImageUpload(props) {
 
   return (
     <DropzoneS3Uploader
-      // children={innerDropElement}
       onFinish={handleFinishedUpload}
-      // style={dropzoneStyle}
       s3Url={s3Url}
       maxSize={1024 * 1024 * 5}
       upload={uploadOptions}
