@@ -3,9 +3,7 @@
 
 // Material-UI
 import useStyles from './Profile.styles';
-import { Grid, Box, Typography, Avatar } from '@material-ui/core';
-// CheckCircleIcon is set up for eventual vendor certification
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { Grid, Typography, Avatar } from '@material-ui/core';
 
 import starsImg from '../Images/stars.jpg';
 
@@ -30,12 +28,14 @@ function ProfileName({ name, certified, profilePhoto }) {
       <Grid item xs={5}>
         <center>
           {profilePhoto ? (
-            <Avatar className={classes.profilePicAvatarPreview}
-              alt={name} src={profilePhoto} />
+            <Avatar
+              className={classes.profilePicAvatarPreview}
+              alt={name}
+              src={profilePhoto}
+            />
           ) : (
             <Avatar>A</Avatar>
           )}
-
         </center>
       </Grid>
     </Grid>

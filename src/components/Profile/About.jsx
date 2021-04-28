@@ -1,17 +1,16 @@
 // This component feeds into the VendorProfile page and
 // handles all the expanding/collapsing accordions of vendor information
 
-import clsx from 'clsx';
-
 //Material-UI
 import useStyles from './Profile.styles';
 import {
-  Accordion, AccordionSummary,
-  AccordionDetails, Grid,
-  Typography
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Grid,
+  Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 
 function About({
   description,
@@ -22,7 +21,6 @@ function About({
   city,
   state,
 }) {
-
   // Classes for styling
   const classes = useStyles();
 
@@ -37,9 +35,7 @@ function About({
         aria-controls="vendor-about-content"
         id="vendor-about-header"
       >
-        <Typography
-          className={classes.inlineBlock}
-        >
+        <Typography className={classes.inlineBlock}>
           <strong>About</strong>
         </Typography>
       </AccordionSummary>
