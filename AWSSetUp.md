@@ -130,6 +130,34 @@ For every 10000 users there will be an estimated 100 GB of images which would si
 
 AWS pricing calculator can be found at https://calculator.aws/#/createCalculator/S3?nc2=h_ql_pr_calc
 
-#### Support
+## HEROKU SETUP
+To set up Heroku, type in your terminal
+$ heroku create
 
-If you have suggestions or issues, please email me at jasonwl_1995@yahoo.com.
+In a browser go to https://devcenter.heroku.com/articles/s3-upload-node and scroll down to Heroku Setup
+
+![image](https://user-images.githubusercontent.com/71994152/116499225-478b1480-a871-11eb-9b61-27c7a59d9c05.png)
+
+and copy:
+$ heroku config:set AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy Insert your own keys and execute in the terminal
+
+To double check, you can go to Heroku.com and click into your app. Go to settings, and under the Config option, click the Reveal Config Vars button. Your keys should be there.
+
+Now we need to add postgres to our Heroku app. In the terminal, paste: $ heroku addons:create heroku-postgresql:hobby-dev
+You can go back to the app on Heroku and in the Reveal Config Vars, the new database information should be there.
+
+Back in the code, in our ImageUpload component, we need to update the location of the server. We can just updated the location of your server in the uploadOptions to be an empty object and remove the uploadOptions variable
+
+![image](https://user-images.githubusercontent.com/71994152/116499478-dc8e0d80-a871-11eb-8118-5c2906e67824.png)
+
+Next, we’re going to update this to use an environment variable, instead of harding that s3Url information directly to the component.
+Go to your .env file and add 1 more variables, REACT_APP_S3_URL (REACT_APP is required, the rest is for your chosing), and update it with the correct information (example: 'https://contrive.s3.amazonaws.com')
+
+![image](https://user-images.githubusercontent.com/71994152/116499920-f845e380-a872-11eb-9572-3b6ef2110e5f.png)
+
+Back in the component, update the s3Url variable to point to that new .env variable, like the image below:
+![image](https://user-images.githubusercontent.com/71994152/116499988-2c210900-a873-11eb-8517-1885a8f58162.png)
+
+(you will need to restart your client and server to get this working!)
+Then push to Git and then Heroku $ git push heroku main
+Once it has successfully deployed, refresh your heroku app and try to upload an image SUCCESS!!
