@@ -73,6 +73,11 @@ The [Heroku](https://www.heroku.com/) website GUI can simplify several of the st
 
 ![Select "New" to create new app](./ReadMeImgs/herokuPricing.png)
 
+The Contrive Heroku is currently set up under the "Hobby-Dev" setting, which is free of charge.  This setting offers full functionality, but often takes 30 seconds to load when the app is opened, and limits database storage to 10,000 rows.
+
+If you want you app to not take 30 seconds to spin up the first time someone goes to it, you will need to pay $7/month for a heroku dyno.
+
+If you want your app to hold 10,000 users (which might translate to a million rows of total SQL information) then you will need to pay $9/month for a million database rows.
 
 ## Resources
 
