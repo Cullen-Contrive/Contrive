@@ -38,14 +38,6 @@ In order to control the name of your Heroku application in as few steps as possi
 1. In terminal, type `heroku addons:create heroku-postgresql:hobby-dev` to set up Postgresql on your Heroku project
 2. Next, type `heroku pg:push contrive_db DATABASE_URL` to copy your database contents up to Heroku. `contrive_db` is the actual name of your database. `DATABASE_URL` is a heroku config variable created by the Add On. Do not replace it with something else, just type: `DATABASE_URL`. 
 
-> Note: You'll need to commit and push each time you make a change that you want to deploy to Heroku. Automatic deployments are covered in [a later section](#gui-and-automatic-deployment) 
-
-```
-git add .
-git commit -m "MESSAGE"
-git push heroku master
-```
-
 Lastly, open terminal and type `heroku open`, which should show you your deployed site!
 
 > Note: It is best to fully test your code locally before deploying to Heroku. Bugs are much harder to troubleshoot on a live website.
@@ -57,6 +49,19 @@ Lastly, open terminal and type `heroku open`, which should show you your deploye
 - `heroku config` - Show basic app info
 - `heroku restart` - Sometimes it helps to turn things off an on again
 - `heroku open` - Opens the website for your project in the browser
+
+
+## Manually Deploying Updates
+
+- You will need to commit and push each time you make a change that you want to deploy to Heroku. Automatic deployments are covered in [a later section](#gui-and-automatic-deployment) 
+
+- Each time you are ready to deploy a change, run the following commands in your repo terminal:
+
+```
+git add .
+git commit -m "MESSAGE"
+git push heroku master
+```
 
 
 ## GUI and Automatic Deployment
