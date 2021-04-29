@@ -57,7 +57,6 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
   pool
     .query(sqlText)
     .then((dbRes) => {
-      console.log('SERVER - GET request at /api/vendor/all successful');
       res.send(dbRes.rows);
     })
     .catch((err) => {
@@ -71,8 +70,6 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
-
-  console.log('req.params', req.params);
 
   const sqlText = `
   SELECT
@@ -116,7 +113,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(sqlText, [userId])
     .then((dbRes) => {
-      console.log('SERVER - GET request at /api/vendor/id successful');
       res.send(dbRes.rows[0]);
     })
     .catch((err) => {
@@ -129,7 +125,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
  * GET route for /api/vendor/update
  */
 router.put('/update', rejectUnauthenticated, async (req, res) => {
-  console.log('POST /api/vendor/update here is what we got:', req.body);
   const connection = await pool.connect();
 
   const userId = req.user.id;
@@ -141,8 +136,6 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
   for (let serviceType of req.body.serviceTypes) {
     updatedServiceTypes.push(serviceType.id);
   }
-  console.log('user id:', userId);
-  console.log('updatedSpecialFeatures', updatedSpecialFeatures);
 
   const sqlTextVendors = `
     UPDATE "vendors"
@@ -185,8 +178,6 @@ router.put('/update', rejectUnauthenticated, async (req, res) => {
     INSERT INTO "vendors_services" ("vendorUserId", "serviceId")
     VALUES ${insertSerializer(req.body.serviceTypes)}
   `;
-
-  console.log('sqlTextInsertUserFeatures', sqlTextInsertVendorFeatures);
 
   const updateValuesVendors = [
     req.body.companyName,
