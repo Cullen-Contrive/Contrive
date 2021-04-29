@@ -31,8 +31,6 @@ function ImageUpload(props) {
 
   const uploadOptions = {
     server: 'http://localhost:5000',
-    // Works with or without, used to assign url query params, can look up later
-    // signingUrlQueryParams: {uploadType: 'avatar'},
   };
 
   const s3Url = process.env.REACT_APP_S3_URL;
