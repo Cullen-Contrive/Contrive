@@ -47,7 +47,6 @@ function EditVendorServiceTypes({ vendor, editProfileElement }) {
         }
       }
     }
-    // console.log('serviceTypes is now:', serviceTypes);
     editProfileElement('serviceTypes', serviceTypes)
   }
 
