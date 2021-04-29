@@ -5,7 +5,6 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import io from 'socket.io-client';
 import Swal from 'sweetalert2';
 
 // Material UI
@@ -29,25 +28,15 @@ import Message from './Message';
 
 function MessageConversation() {
   const classes = useStyles();
-  const socketRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-
-  const [message, setMessage] = useState('');
-  const ENDPOINT = 'http://localhost:4000'; // Ideally, this value will be set in a .env when deployed
 
   const existingMessages = useSelector((store) => store.chat.chatReducer);
   const currentUser = useSelector((store) => store.user);
   const toUser = useSelector((store) => store.otherUserDetails);
 
   useEffect(() => {
-    socketRef.current = io.connect(ENDPOINT);
-    // Join the chat room
-    socketRef.current.emit('join', {
-      name: currentUser.firstName + currentUser.lastName,
-      room: 'Room Code - 4576',
-    });
     // Fetch current messages
     fetchMessages();
     fetchToUserDetails();
@@ -94,7 +83,6 @@ function MessageConversation() {
       },
     });
     setMessage('');
-    socketRef.current.emit('send message', messageObject);
   };
 
   const goBack = () => {
