@@ -17,10 +17,12 @@ To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.he
 
 ### Landing Page & The Network
 Contrive features a unique login page for users to login to there accounts from. __The Network__ is Contrive's search feature that gives the ability for users to search both by vendor type, special features vendors advertise, and name information.
+
 ![Contrive Landing Page](./ReadMeImgs/landingPage.png) !["The Network" search feature](./ReadMeImgs/networkSearch.gif)
 
 ### Contrive's Messaging Feature
 Contrive creates the ability for planners and vendors to communicate with each other and store those conversations in an easy to read space.
+
 ![Display of all user related messages](./ReadMeImgs/allMessages.png) ![Display of a conversation between to users in Messages](./ReadMeImgs/messagingConversation.png)
 
 ## Prerequisites
@@ -187,6 +189,16 @@ This code is commented in each individual file with the aim to make it accessibl
 - [SweetAlert2](https://sweetalert2.github.io/)
 
 A full list of dependencies can be found in the `package.json` file in the root directory.
+
+## Known Bugs:
+
+- __Vendor Registration__, if their username is already taken, they are not routed back to the first registration page.
+- __Login__, if user inputs wrong password, footer appears in the password field.
+- __Create Event__, Date picker has a rendering bug. Label appears in the input field.
+- __My Events__, events are not able to delete. No backend route setup.
+- __Edit Vendor__, any logged in user can route to an Edit Vendor page if they know the url.
+- __All Messages__, all messages ordered backwards by date. Preview message for each conversation is also the first message sent in the conversations.
+- __My Calendar & My Network__, currently route to 404.
 
 ## License
 
