@@ -19,19 +19,17 @@ import ContriveHeader from '../Header/ContriveHeader';
 import CreateEvent from '../Event/CreateEvent';
 import EventCreatedConfirmation from '../Event/EventCreatedConfirmation';
 import Footer from '../Footer/Footer';
-import AboutPage from '../AboutPage/AboutPage';
 import Message from '../MessageAll/MessageConversation';
 import MessagesList from '../MessageAll/MessagesList';
 import MyEvents from '../Event/MyEvents';
-import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
+import RegisterPage from '../Register/RegisterPage';
 import DiscoverPage from '../DiscoverPage/DiscoverPage';
 import SearchNetwork from '../SearchNetwork/SearchNetwork';
 import StyleGuide from '../StyleGuide/StyleGuide';
 import VendorProfile from '../Profile/VendorProfile';
-import RegisterVendorPage from '../RegisterPage/RegisterVendorPage';
+import RegisterVendorPage from '../Register/RegisterVendorPage';
 
 import './App.css';
 
@@ -77,24 +75,14 @@ function App() {
     <ThemeProvider theme={contriveTheme}>
       <CssBaseline />
       <Router>
-
         {user.id && <ContriveHeader />}
         {user.id && <Nav />}
 
         <div>
           <Switch>
-            {/* Visiting localhost:3000 will redirect to localhost:3000/welcome, 
+            {/* Visiting localhost:3000 will redirect to localhost:3000/welcome,
             which redirects to localhost:3000/discover if user is already logged in (see below) */}
             <Redirect exact from="/" to="/welcome" />
-
-            {/* Visiting localhost:3000/about will show the about page. */}
-            <Route
-              // shows AboutPage at all times (logged in or not)
-              exact
-              path="/about"
-            >
-              <AboutPage />
-            </Route>
 
             {/* Visiting localhost:3000/styleGuide will show the styleGuide used for this page.
             This route should be removed/inaccessible by users for production.*/}
@@ -118,30 +106,16 @@ function App() {
               <Message />
             </ProtectedRoute>
 
-            {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/user"
-            >
-              <UserPage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
               path="/vendor/:id" // url will look like "/vendor/2"
+              exact
             >
               <VendorProfile />
             </ProtectedRoute>
 
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
+              path="/vendor/edit/:id" // url will look like "/vendor/edit/2"
               exact
-              path="/vendor/edit/:id" // url will look like "/vendor/2"
             >
               <EditVendorProfile />
             </ProtectedRoute>
@@ -154,35 +128,19 @@ function App() {
               <DiscoverPage />
             </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows Discover else shows LoginPage
-              exact
-              path="/events/create"
-            >
+            <ProtectedRoute exact path="/events/create">
               <CreateEvent />
             </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows Discover else shows LoginPage
-              exact
-              path="/my/events"
-            >
+            <ProtectedRoute exact path="/my/events">
               <MyEvents />
             </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows Discover else shows LoginPage
-              exact
-              path="/events/confirmation"
-            >
+            <ProtectedRoute exact path="/events/confirmation">
               <EventCreatedConfirmation />
             </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows Search else shows LoginPage
-              exact
-              path="/search"
-            >
+            <ProtectedRoute exact path="/search">
               <SearchNetwork />
             </ProtectedRoute>
 
@@ -214,9 +172,6 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/discover"
-              // - else shows RegisterPage at "/registration"
               exact
               path="/registration/vendor"
               authRedirect="/discover"
