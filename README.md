@@ -13,12 +13,15 @@ Contrive is an event management software platform that connects Event Planners w
 
 To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
 
-## Screen Shot
+## Screen Shots
 
-![Welcome Page]()
-![The Network (Search)]()
-![All Messages]()
-![Message Thread]()
+### Landing Page & The Network
+Contrive features a unique login page for users to login to there accounts from. __The Network__ is Contrive's search feature that gives the ability for users to search both by vendor type, special features vendors advertise, and name information.
+![Contrive Landing Page](./ReadMeImgs/landingPage.png) !["The Network" search feature](./ReadMeImgs/networkSearch.gif)
+
+### Contrive's Messaging Feature
+Contrive creates the ability for planners and vendors to communicate with each other and store those conversations in an easy to read space.
+![Display of all user related messages](./ReadMeImgs/allMessages.png) ![Display of a conversation between to users in Messages](./ReadMeImgs/messagingConversation.png)
 
 ## Prerequisites
 
@@ -29,7 +32,6 @@ Before you get started, make sure you have the following software installed on y
 - [Postico](https://eggerapps.at/postico/)
 - [PostrgeSQL](https://www.postgresql.org/)
 
-## Create database and table
 
 ### Application Database:
 
