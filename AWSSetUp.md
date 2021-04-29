@@ -142,17 +142,10 @@ To double check, you can go to Heroku.com and click into your app. Go to setting
 Now we need to add postgres to our Heroku app. In the terminal, paste: $ heroku addons:create heroku-postgresql:hobby-dev
 You can go back to the app on Heroku and in the Reveal Config Vars, the new database information should be there.
 
-Back in the code, in our ImageUpload component, we need to update the location of the server. We can just updated the location of your server in the uploadOptions to be an empty object and remove the uploadOptions variable
-
-![image](https://user-images.githubusercontent.com/71994152/116499478-dc8e0d80-a871-11eb-8118-5c2906e67824.png)
-
 Next, we’re going to update this to use an environment variable, instead of harding that s3Url information directly to the component.
 Go to your .env file and add 1 more variables, REACT_APP_S3_URL (REACT_APP is required, the rest is for your chosing), and update it with the correct information (example: 'https://contrive.s3.amazonaws.com')
 
 ![image](https://user-images.githubusercontent.com/71994152/116499920-f845e380-a872-11eb-9572-3b6ef2110e5f.png)
-
-Back in the component, update the s3Url variable to point to that new .env variable, like the image below:
-![image](https://user-images.githubusercontent.com/71994152/116499988-2c210900-a873-11eb-8517-1885a8f58162.png)
 
 (you will need to restart your client and server to get this working!)
 Then push to Git and then Heroku $ git push heroku main

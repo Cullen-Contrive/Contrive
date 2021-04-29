@@ -28,10 +28,6 @@ function ImageUpload(props) {
     }
   };
 
-  // const uploadOptions = {
-  //   server: process.env.AWS_S3_SERVER,
-  // };
-
   const s3Url = process.env.REACT_APP_S3_URL;
 
   return (
