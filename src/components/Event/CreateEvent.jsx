@@ -42,22 +42,8 @@ function CreateEvent() {
     dispatch({ type: 'FETCH_TYPES_OF_EVENT' });
   }, []);
 
-  console.log('user:', planner);
-
   // handles form submission and creating event
   const handleFormSubmission = () => {
-    // console.log('handling form submission');
-    // console.log('dateofevent:', dateOfEvent);
-    // console.log('timeofevent:', timeOfEvent);
-    // console.log('address:', address);
-    // console.log('city:', city);
-    // console.log('state:', state);
-    // console.log('zip:', zip);
-    // console.log('numberofattendees:', numberOfAttendees);
-    // console.log('description:', description);
-    // console.log('plannerUserId', planner.id);
-    // console.log('typeofevent:', typeOfEvent);
-
     // TODO: Add validation for checking inputs coming in and do not dispatch unless
     // fields are filled out
     dispatch({
