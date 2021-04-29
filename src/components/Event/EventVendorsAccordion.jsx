@@ -17,9 +17,7 @@ function EventVendorsAccordion() {
 
   // Bring in all vendors to display upon page load:
   let allVendors = useSelector((store) => store.allVendors);
-  console.log('allVendors', allVendors);
   let someVendors = allVendors.slice(0, 0 + 5);
-  console.log('some vendors', someVendors);
   function vendors() {
     for (let i = 0; i < 3; i++) {
       return <h1>Hello World</h1>;

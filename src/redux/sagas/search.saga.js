@@ -18,12 +18,10 @@ function* fetchMatchingVendors(action) {
     searchTerm = action.payload.searchTermInput;
   }
 
-  console.log('start of fetchMatchingVendors', vendorTypeSelection, specialFeatureSelection, searchTerm);
 
   try {
     const response = yield axios.get(`/api/search/typeId=${vendorTypeSelection}/featureId=${specialFeatureSelection}/searchTerm=${searchTerm}`);
 
-    // yield put({ type: 'SET_MATCHING_VENDORS', payload: response.data });
     yield put({ type: 'SET_SEARCH_RESULTS', payload: response.data });
 
   } catch (error) {

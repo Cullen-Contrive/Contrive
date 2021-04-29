@@ -37,16 +37,6 @@ function RegisterForm() {
   const [website, setWebsite] = useState('');
   const [userType, setUserType] = useState('');
 
-  // console.log('====================================');
-  // console.log('username:', username);
-  // console.log('password:', password);
-  // console.log('firstName:', firstName);
-  // console.log('lastName:', lastName);
-
-  // console.log('website:', website);
-  // console.log('userType:', userType);
-  // console.log('====================================');
-
   // Bring in any errors stored in the reducer:
   const errors = useSelector((store) => store.errors);
   const profilePic = useSelector(store => store.profilePic);

@@ -152,3 +152,8 @@ CREATE TABLE "my_network_users" (
   "userId" INT REFERENCES "users" ON DELETE CASCADE
 );
 
+-- Add Admin User
+INSERT INTO "users"
+("username", "firstName", "lastName", "profilePic", "password", "type")
+VALUES
+('admin@contrive.com', 'Contrive', '', 'https://trello-attachments.s3.amazonaws.com/606b2735fb112c58bbc368bd/500x500/7dccd4782b0d37da67d5226e729a6772/CONTRIVE_update2.png', '$2a$10$GoLEVEfdugtGJxO/yJz1buXeR2JkS23p/GgLoKCAjRBnFO9Ia2uVu', 'admin');

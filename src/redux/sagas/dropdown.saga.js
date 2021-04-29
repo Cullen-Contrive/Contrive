@@ -8,8 +8,7 @@ function* dropdownSaga() {
 }
 
 function* fetchVendorTypes(action) {
-  // const data = action.payload
-  // console.log("inside fetchVendorTypes all", data);
+
   try {
     const response = yield axios.get(`/api/vendortypes`);
 
@@ -20,9 +19,7 @@ function* fetchVendorTypes(action) {
 }
 
 function* fetchSpecialFeatures(action) {
-  // const data = action.payload
-  // console.log('start of fetchSpecialFeatures', data);
-
+  
   try {
     const response = yield axios.get(`/api/specialfeatures`);
 
