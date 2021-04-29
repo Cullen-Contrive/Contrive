@@ -233,7 +233,6 @@ router.post('/types', rejectUnauthenticated, (req, res) => {
   "events_types" 
   ("eventId", "typeId")
   VALUES ($1, $2);`;
-  console.log('in POST types', req.body);
   const eventId = req.body.eventId.id;
   const typeId = req.body.typeId;
   pool

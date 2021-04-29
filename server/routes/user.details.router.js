@@ -36,7 +36,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [userId])
     .then((dbRes) => {
-      console.log('SERVER - GET - user details by current user successful!');
       res.send(dbRes.rows[0]);
     })
     .catch((err) => {
@@ -89,7 +88,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [otherUserId])
     .then((dbRes) => {
-      console.log('SERVER - GET - user details by id successful!');
       res.send(dbRes.rows[0]);
     })
     .catch((err) => {
