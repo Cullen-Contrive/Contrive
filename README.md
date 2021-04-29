@@ -92,6 +92,11 @@ Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an A
 
    1. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
+
+## Deploying to Heroku
+
+The Contrive app has already been deployed to Heroku for you: [https://contrive.herokuapp.com/](https://contrive.herokuapp.com/).  See [HerokuDeplyment](./HerokuDeployment.md) for full deployment instructions.
+
 ## Lay of the Land
 
 Directory Structure:
