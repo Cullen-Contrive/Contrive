@@ -2,6 +2,7 @@
 
 This application has already been deployed to Heroku for Contrive's convenience.  We will need Contrive to share their Heroku account so that we can pass ownership to them.  We have also included the necessary steps to deploy this repository to Heroku (which have already been completed), for Contrive's information.
 
+
 ### Heroku Prerequisite
 
 1. Sign up for an account on [Heroku.com](https://www.heroku.com/)
@@ -11,6 +12,7 @@ This application has already been deployed to Heroku for Contrive's convenience.
 
 > Note: Your project will need to have a git repository to deploy to Heroku, which you create when you pull the GitHub repository down to your local machine. [More information on cloning a GitHub repository here] (https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 **Keep in mind you CAN NOT pull from Heroku. This is not a replacement for GitHub!**
+
 
 ### Heroku Setup
 #### (These steps have already been completed for Contrive's convenience.)
@@ -28,6 +30,7 @@ In order to control the name of your Heroku application in as few steps as possi
 3. Type `git remote -v` to ensure it added successfully
 4. In terminal, type `git push heroku master`
 5. Your website is now live! However... we also need to set up the database
+
 
 ### Postgresql on Heroku
 #### (These steps have already been completed for Contrive's convenience.)
@@ -47,12 +50,14 @@ Lastly, open terminal and type `heroku open`, which should show you your deploye
 
 > Note: It is best to fully test your code locally before deploying to Heroku. Bugs are much harder to troubleshoot on a live website.
 
+
 ### Miscellaneous
 
 - `heroku logs` - Display error logs
 - `heroku config` - Show basic app info
 - `heroku restart` - Sometimes it helps to turn things off an on again
 - `heroku open` - Opens the website for your project in the browser
+
 
 ## GUI and Automatic Deployment
 
@@ -61,6 +66,7 @@ The [Heroku](https://www.heroku.com/) website GUI can simplify several of the st
 1. In [your list of Heroku apps](https://dashboard.heroku.com/apps), select your application.
 2. Under the `Deploy` tab, in the `Deployment Method` section, select `Github`. Connect to the `Github` repository with your application by searching for the name of your repository.
 3. In the `Manual Deploy` section, click `Deploy Branch` to deploy for the first time.
+
 
 ## Resources
 
