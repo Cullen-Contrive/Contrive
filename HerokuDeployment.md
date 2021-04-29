@@ -19,8 +19,13 @@ const PORT = process.env.PORT || 5000;
 
 In order to control the name of your Heroku application in as few steps as possible, We recommend creating a Heroku App first, then integrate it with your git project, but you can also do this in reverse order.  We have written our recommendation, but you can find alternative solutions [here] (https://devcenter.heroku.com/articles/git#creating-a-heroku-remote). 
 
-1. In terminal, navigate to your project folder and type `heroku create`
-2. Login in if prompted
+1. Login to your Heroku account, and select the "New" dropdown + "Create new app" in the top right corner. ****ADD IMAGE HERE
+In terminal, navigate to your project folder and type `heroku create`
+
+
+
+
+
 3. Type `git remote -v` to ensure it added successfully
 4. In terminal, type `git push heroku master`
 5. Our website is now live! However... we also have a database
