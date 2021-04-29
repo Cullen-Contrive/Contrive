@@ -86,20 +86,6 @@ In order to have image upload functionality for the Contrive app, please follow 
 
 ![image](https://user-images.githubusercontent.com/71994152/114347034-f7e6e200-9b29-11eb-9af4-1bf6412147c2.png)
 
-#### 8. Go to the ImageUpload component in the application and open ImageUpload.jsx.
-
-    8a. Update this code as needed.
-    8b. Change (server: 'http://localhost:5000') as needed to the website you deploy to.
-
-![image](https://user-images.githubusercontent.com/71994152/114349980-3088ba80-9b2e-11eb-8e0b-8a497efd4487.png)
-
-#### 9. Go to the server.js component in the application.
-
-    9a. Scroll down and find // AWS Configuration //
-    9b. Adjust (bucket: 'your-bucket-name') and (region: 'your-region-number') to match your bucket name and region selected.
-
-![image](https://user-images.githubusercontent.com/71994152/114349937-28307f80-9b2e-11eb-9099-238ed345de49.png)
-
 ## 10. Set up completed
 
 NOW YOU CAN TEST!!
