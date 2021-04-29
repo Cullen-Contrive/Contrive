@@ -31,11 +31,9 @@ function MessagesList() {
   }, [])
 
   const viewConversation = (messengerId) => {
-    console.log('in viewConversation, messengerId:', messengerId);
     history.push(`/message/${messengerId}`);
   }
 
-  console.log('list of conversations:', conversations);
 
   return (
     <>

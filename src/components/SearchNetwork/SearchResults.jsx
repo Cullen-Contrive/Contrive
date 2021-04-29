@@ -27,7 +27,6 @@ function SearchResults({ hasMadeSearchRequest }) {
 
   // Bring in search results from reducer:
   let searchResults = useSelector((store) => store.search);
-  // console.log('searchResults in component:', searchResults);
 
   return (
     <Grid container item spacing={3} className={classes.searchResultsContainer}>

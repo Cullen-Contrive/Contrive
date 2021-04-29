@@ -31,8 +31,6 @@ function VendorProfile() {
     fetchVendorPhotos();
   }, []);
 
-  console.log('params', params);
-
   const fetchVendorDetails = () => {
     dispatch({
       type: 'FETCH_SINGLE_VENDOR',

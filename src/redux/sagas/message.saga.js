@@ -19,7 +19,6 @@ function* fetchAllMessages() {
     // Fetches all messages from server/db based on req.user.id
     // req.user.id is accessed via the server
     const response = yield axios.get('/api/message/all');
-    console.log('CLIENT - SAGAS - fetch all messages successful');
 
     yield put({ type: 'SET_ALL_MESSAGES', payload: response.data });
   } catch (err) {

@@ -38,7 +38,7 @@ function EditVendorProfile() {
 
   // As input values change, update the vendor reducer
   const editProfileElement = (reducerKey, newKeyValue) => {
-    console.log('newKeyValue', newKeyValue)
+
     dispatch({
       type: 'SET_VENDOR',
       payload: {

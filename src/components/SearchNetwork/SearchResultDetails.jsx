@@ -6,24 +6,23 @@ import useStyles from './Search.styles';
 import { Avatar, Grid, Typography, Card } from '@material-ui/core';
 
 function SearchResultDetails({ vendor }) {
-  // console.log('vendor:', vendor);
   const history = useHistory();
   const classes = useStyles();
 
   return (
-    <Grid 
+    <Grid
       item
-      xs={6} 
+      xs={6}
       // className={classes.gridContainer}
       onClick={() => history.push(`/vendor/${vendor.vendorUserId}`)}
     >
       <Card className={classes.cardSize} variant="outlined">
         <Grid
           className={classes.cardInteriorWrapper}
-          container 
-          spacing={4} 
-          direction="column" 
-          alignItems="center" 
+          container
+          spacing={4}
+          direction="column"
+          alignItems="center"
           justify="space-between"
         >
           <Grid item>
