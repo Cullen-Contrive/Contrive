@@ -62,22 +62,6 @@ The [Heroku](https://www.heroku.com/) website GUI can simplify several of the st
 2. Under the `Deploy` tab, in the `Deployment Method` section, select `Github`. Connect to the `Github` repository with your application by searching for the name of your repository.
 3. In the `Manual Deploy` section, click `Deploy Branch` to deploy for the first time.
 
-## Connect Postico to your Heroku Database
-
-If you would like to edit your database, you can connect to your Heroku database directly from Postico. 
-
-1. In [your list of Heroku apps](https://dashboard.heroku.com/apps), select your application.
-2. Under `Resources` or in the `Configure Add-Ons` section, select `Heroku Postgres`.
-3. Select the `Settings` tab and click `View Credentials`
-4. Open Postico and select `New Favorite`.
-5. In the new Postico favorite, update the following to match Heroku:
-  - Host
-  - User
-  - Database
-  - Password
-  - Port
-6. Click `Connect` and you should have access to your database directly from Postico!
-
 ## Resources
 
 More detailed instructions can be found here: 
