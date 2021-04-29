@@ -82,6 +82,7 @@ In order to have image upload functionality for the Contrive app, please follow 
 #### 7. Click [Show] for the Secret Access Key and copy and paste them into the .env file in the root folder of your local Contrive repository.
 
     7a. Copy and paste the URL of your bucket into the REACT_APP_S3_URL as well.
+    7b. Insert your bucket name and region in AWS_S3_BUCKET=xx AWS_S3_REGION=xx-xx-#
 
 ![image](https://user-images.githubusercontent.com/71994152/114347034-f7e6e200-9b29-11eb-9af4-1bf6412147c2.png)
 
