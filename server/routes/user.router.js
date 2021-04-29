@@ -43,23 +43,6 @@ router.post('/register', (req, res, next) => {
   // Vendors_services table info:
   const servicesArray = req.body.vendorTypes;
 
-  // console.log('username:', username);
-  // console.log('firstName', firstName);
-  // console.log('lastName', lastName);
-  // console.log('profilePic', profilePic);
-  // console.log('password', password);
-  // console.log('website', website);
-  // console.log('type', type);
-  // console.log('companyAddress:', companyAddress);
-  // console.log('city:', city);
-  // console.log('state', state);
-  // console.log('zip', zip);
-  // console.log('companyName', companyName);
-  // console.log('phone', phone);
-  // console.log('description:', description);
-  console.log('servicesArray', servicesArray);
-  console.log('featuresArray', featuresArray);
-
   const queryText = `INSERT INTO "users" ("username", "firstName", "lastName", 
   "profilePic", "password", "address", "city", "state", "zip", "type", "website")
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`;
@@ -80,7 +63,6 @@ router.post('/register', (req, res, next) => {
     ])
     .then((dbRes) => {
       if (type === 'vendor') {
-        // console.log('dbRes:', dbRes);
         const vendorUserId = dbRes.rows[0].id;
         const sqlQuery = `INSERT INTO "vendors" 
           ("vendorUserId", "companyName", "description", "additionalInfo", "phone")
@@ -96,9 +78,7 @@ router.post('/register', (req, res, next) => {
             phone,
           ])
           .then((dbRes) => {
-            // console.log('dbRes:', dbRes);
             const vendorUserId = dbRes.rows[0].vendorUserId;
-            // console.log('vendorUserId for vendors_features:', vendorUserId);
 
             const featureSqlText = `INSERT INTO "vendors_features"
               ("vendorUserId", "featureId")
@@ -140,7 +120,6 @@ router.post('/register', (req, res, next) => {
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
-  console.log('!!****&&&&&!!!!!!!!! req.body:', req.body);
   res.sendStatus(200);
 });
 
