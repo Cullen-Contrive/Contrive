@@ -36,7 +36,6 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
     pool
       .query(plannerQueryText, [userId])
       .then((dbRes) => {
-        // console.log('SERVER - GET - at /api/message/all - received a response');
         res.send(dbRes.rows);
       })
       .catch((err) => {
@@ -97,7 +96,6 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
           individualCommunicator.firstName = otherUser.firstName;
           individualCommunicator.lastName = otherUser.lastName;
           individualCommunicator.profilePic = otherUser.profilePic;
-          // console.log('11111111111111.2: individualCommunicator AFTER FIRST QUERY:', individualCommunicator);
 
           // use each other user's id to get the most recent message between them and the logged-in user
           let messageInfo = await connection.query(
@@ -110,19 +108,16 @@ router.get('/all', rejectUnauthenticated, async (req, res) => {
             `,
             [userId, otherUser.id]
           );
-          // console.log('messageInfo.rows:', messageInfo.rows);
 
           // Add message information to individualCommunicator object (only if a message was returned)
           if (messageInfo.rows[0].message !== '') {
             individualCommunicator.message = messageInfo.rows[0].message;
             individualCommunicator.messageDate =
               messageInfo.rows[0].dateReceived;
-            // console.log('individualCommunicator AFTER SECOND QUERY:', individualCommunicator);
           }
 
           // Add each individualCommunicator object to an array
           communicationList.push(individualCommunicator);
-          // console.log('communicationList after BOTH QUERIES:', communicationList);
 
           await connection.query('COMMIT');
         }
@@ -163,7 +158,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [userId, otherUser])
     .then((dbRes) => {
-      console.log('SERVER - GET at /api/message/id - received a response');
       res.send(dbRes.rows);
     })
     .catch((err) => {
@@ -191,7 +185,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       req.body.message,
     ])
     .then((dbRes) => {
-      console.log('SERVER - GET - at /api/message - received a response');
       res.sendStatus(201);
     })
     .catch((err) => {

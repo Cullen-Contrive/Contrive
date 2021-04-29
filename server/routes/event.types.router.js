@@ -16,7 +16,6 @@ router.get('/', (req, res) => {
   pool
     .query(queryText)
     .then((dbRes) => {
-      console.log('SERVER - GET at /api/event/types successful!');
       res.send(dbRes.rows);
     })
     .catch((err) => {

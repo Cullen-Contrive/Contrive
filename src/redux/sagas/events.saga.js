@@ -16,7 +16,6 @@ function* fetchSingleEvent(action) {
 function* fetchAllEvents() {
   try {
     const response = yield axios.get('/api/event');
-    // console.log('fetching all events');
     // console.table('events:', response.data);
     yield put({ type: 'SET_ALL_EVENTS', payload: response.data });
   } catch (err) {
@@ -27,7 +26,6 @@ function* fetchAllEvents() {
 function* fetchTypesOfEvent() {
   try {
     const response = yield axios.get('/api/types');
-    console.log('fetching types of events', response.data);
     yield put({ type: 'SET_TYPES_OF_EVENTS', payload: response.data });
   } catch (err) {
     console.error('Get all types of events request failed', err);
@@ -52,7 +50,6 @@ function* addEvent(action) {
     // onComplete -> function
     // }
     const response = yield axios.post('/api/event', action.payload);
-    console.log('response.data', response.data);
     if (action.payload.photos) {
       yield put({
         type: 'ADD_PHOTO_TO_EVENT',
@@ -76,7 +73,6 @@ function* addPhotoToEvent(action) {
     // expected photos -> array of Image URLs
     // expected eventId -> integer
     // }
-    console.log('addPhotoToEvent', action.payload);
     yield axios.post('/api/event/photos', action.payload);
   } catch (err) {
     console.error('Post photo to event request failed', err);

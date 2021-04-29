@@ -17,7 +17,7 @@ import {
   TextField,
   Typography, // replace html5 elements dealing with text, <h1>, <h2>, <h3>, <p>, etc...
   Chip,
-  Box
+  Box,
 } from '@material-ui/core';
 
 function RegisterVendorForm() {
@@ -31,10 +31,10 @@ function RegisterVendorForm() {
   const errors = useSelector((store) => store.errors);
 
   // Bring in info held from first Registration Page:
-  const vendorInfo = useSelector(store => store.user)
-  const profilePic = useSelector(store => store.profilePic);
+  const vendorInfo = useSelector((store) => store.user);
+  const profilePic = useSelector((store) => store.profilePic);
 
-  // Bring in special feature and vendor type options 
+  // Bring in special feature and vendor type options
   const features = useSelector((store) => store.features);
   const services = useSelector((store) => store.vendorTypes);
 
@@ -51,22 +51,6 @@ function RegisterVendorForm() {
   const [specialFeatureNames, setSpecialFeatureNames] = useState([]);
   const [vendorTypeNames, setVendorTypeNames] = useState([]);
 
-
-  // Ensure that the proper info is being captured:
-  // console.log('====================================');
-  // console.log('companyName:', companyName);
-  // console.log('companyAddress:', companyAddress);
-  // console.log('city:', city);
-  // console.log('state:', state);
-  // console.log('zip:', zip);
-  // console.log('companyDescription:', companyDescription);
-  // console.log('additionalInfo:', additionalInfo);
-  // console.log('phone:', phone);
-  // console.log('specialFeatureNames:', specialFeatureNames);
-  // console.log('vendorTypeNames:', vendorTypeNames);
-  // console.log('====================================');
-
-
   const handleFeatureSelection = (event) => {
     // Convert feature names (needed as value for rendering Chips) info feature ID's:
     const selectedIdList = [];
@@ -76,7 +60,6 @@ function RegisterVendorForm() {
 
       for (let selectedOption of event.target.value) {
         if (feature.name === selectedOption) {
-
           selectedIdList.push(feature.id);
           // console.log('selectedIdList Feature:', selectedIdList);
         }
@@ -90,7 +73,6 @@ function RegisterVendorForm() {
     setSpecialFeatureNames(event.target.value);
   };
 
-
   const handleVendorTypeSelection = (event) => {
     // Convert service names (needed as value for rendering Chips) info service ID's:
     const selectedIdList = [];
@@ -100,7 +82,6 @@ function RegisterVendorForm() {
 
       for (let selectedOption of event.target.value) {
         if (service.name === selectedOption) {
-
           selectedIdList.push(service.id);
           // console.log('selectedIdList Service:', selectedIdList);
         }
@@ -113,7 +94,6 @@ function RegisterVendorForm() {
     // Keep all selected services as the value of the service dropdown, so they render as chips:
     setVendorTypeNames(event.target.value);
   };
-
 
   /////////////////// REGISTER VENDOR //////////////////////////////////
   const registerUser = (event) => {
@@ -129,7 +109,7 @@ function RegisterVendorForm() {
     vendorInfo.additionalInfo = additionalInfo;
     vendorInfo.phone = phone;
 
-    console.log("vendor info", vendorInfo);
+    console.log('vendor info', vendorInfo);
 
     dispatch({
       type: 'REGISTER',
@@ -137,15 +117,14 @@ function RegisterVendorForm() {
     });
   }; // end registerUser
 
-
   return (
-    <Grid 
-      item 
+    <Grid
+      item
       className={classes.registerFormContainer}
-      component={Paper} 
+      component={Paper}
       container
       justify="center"
-      spacing={3} 
+      spacing={3}
     >
       <Grid item xs={12}>
         <Typography variant="h2" component="h2" align="center">
@@ -295,7 +274,11 @@ function RegisterVendorForm() {
             renderValue={(selected) => (
               <div className={classes.chips}>
                 {selected.map((feature) => (
-                  <Chip key={feature} label={feature} className={classes.chip} />
+                  <Chip
+                    key={feature}
+                    label={feature}
+                    className={classes.chip}
+                  />
                 ))}
               </div>
             )}
@@ -325,7 +308,11 @@ function RegisterVendorForm() {
             renderValue={(selected) => (
               <div className={classes.chips}>
                 {selected.map((featureValue) => (
-                  <Chip key={featureValue} label={featureValue} className={classes.chip} />
+                  <Chip
+                    key={featureValue}
+                    label={featureValue}
+                    className={classes.chip}
+                  />
                 ))}
               </div>
             )}
@@ -343,12 +330,12 @@ function RegisterVendorForm() {
 
       {errors.registrationMessage && (
         <Grid item xs={12}>
-          <Typography 
+          <Typography
             align="center"
-            className="alert" 
-            component="h3" 
+            className="alert"
+            component="h3"
             role="alert"
-            variant="h3" 
+            variant="h3"
           >
             {errors.registrationMessage}
           </Typography>
@@ -357,15 +344,15 @@ function RegisterVendorForm() {
 
       <Grid
         className={classes.registerFormButtonContainer}
-        container 
-        item 
+        container
+        item
         justify="space-evenly"
         xs={12}
       >
         <Grid item>
           <Button
             className={classes.registerFormButton}
-            color="secondary" 
+            color="secondary"
             variant="contained"
             type="button"
             onClick={() => {
@@ -379,7 +366,7 @@ function RegisterVendorForm() {
         <Grid item>
           <Button
             className={classes.registerFormButton}
-            color="primary" 
+            color="primary"
             variant="contained"
             onClick={registerUser}
           >
