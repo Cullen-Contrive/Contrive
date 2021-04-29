@@ -72,7 +72,7 @@ Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an A
    PGPORT = 5432;
    ```
 
-   3. Paste the following lines into the file for ASW setup:
+   3. Paste the following lines into the file for AWS setup:
 
    ```javascript
    AWS_ACCESS_KEY_ID = xx;
