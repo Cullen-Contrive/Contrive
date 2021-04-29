@@ -190,6 +190,16 @@ This code is commented in each individual file with the aim to make it accessibl
 
 A full list of dependencies can be found in the `package.json` file in the root directory.
 
+## Known Bugs:
+
+- __Vendor Registration__, if their username is already taken, they are not routed back to the first registration page.
+- __Login__, if user inputs wrong password, footer appears in the password field.
+- __Create Event__, Date picker has a rendering bug. Label appears in the input field.
+- __My Events__, events are not able to delete. No backend route setup.
+- __Edit Vendor__, any logged in user can route to an Edit Vendor page if they know the url.
+- __All Messages__, all messages ordered backwards by date. Preview message for each conversation is also the first message sent in the conversations.
+- __My Calendar & My Network__, currently route to 404.
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
