@@ -13,31 +13,25 @@ Contrive is an event management software platform that connects Event Planners w
 
 To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
 
-## Screen Shot
+## Screen Shots
 
-![Welcome Page]()
-![The Network (Search)]()
-![All Messages]()
-![Message Thread]()
+### Landing Page & The Network
+Contrive features a unique login page for users to login to there accounts from. __The Network__ is Contrive's search feature that gives the ability for users to search both by vendor type, special features vendors advertise, and name information.
+![Contrive Landing Page](./ReadMeImgs/landingPage.png) !["The Network" search feature](./ReadMeImgs/networkSearch.gif)
+
+### Contrive's Messaging Feature
+Contrive creates the ability for planners and vendors to communicate with each other and store those conversations in an easy to read space.
+![Display of all user related messages](./ReadMeImgs/allMessages.png) ![Display of a conversation between to users in Messages](./ReadMeImgs/messagingConversation.png)
 
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
 
-- [ASW](https://aws.amazon.com/)
 - [Express](https://expressjs.com/)
-- [Material-UI](https://material-ui.com/)
 - [Node.js](https://nodejs.org/en/)
-- [Nodemon](https://nodemon.io/)
-- [Passport](http://www.passportjs.org/)
 - [Postico](https://eggerapps.at/postico/)
 - [PostrgeSQL](https://www.postgresql.org/)
-- [React](https://reactjs.org/)
-- [Redux](https://redux.js.org/)
-- [Redux-Sagas](https://redux-saga.js.org/)
-- [Socket.io](https://socket.io/)
 
-## Create database and table
 
 ### Application Database:
 
@@ -49,14 +43,16 @@ Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an A
 
 ## Development Setup Instructions
 
-1. Create a database named `contrive_db` (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database)).
-2. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
+1. Fork and Clone this repo and open it inside your code editor of choice.
+2. Create a database named `contrive_db` (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database)).
+
+3. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using [Postico](https://eggerapps.at/postico/) to run the queries as that was used to create the queries.
 
    1. The queries in the `database.sql` file are set up to create all the necessary tables (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database)).
 
    2. The queries in the `dummyData.sql` file are set up to populate the needed data to allow the application to run correctly (see [Application Database](https://github.com/Cullen-Contrive/Contrive#application-database)).
 
-3. Create a `.env` file in the root directory and edit it as follows:
+4. Create a `.env` file in the root directory and edit it as follows:
 
    1. Paste this line into the file:
 
@@ -85,11 +81,11 @@ Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an A
 
    You will need to enter your own values for `xx` after the `=` sign for each key value pair. Refer to step 7 in [AWSSetUp](./AWSSetUp.md).
 
-4. Start PostgreSQL if not already running by using the `brew services start postgresql` command in your terminal.
-5. Open up your editor of choice and run an `npm install`.
-6. Run `npm run server` in your terminal.
-7. Run `npm run client` in your terminal.
-8. The `npm run client` command will open up a new browser tab for you!
+5. Start PostgreSQL if not already running by using the `brew services start postgresql` command in your terminal.
+6. Open up your editor of choice and run an `npm install`.
+7. Run `npm run server` in your terminal.
+8. Run `npm run client` in your terminal.
+9. The `npm run client` command will open up a new browser tab for you!
 
    1. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
@@ -173,11 +169,11 @@ This code is commented in each individual file with the aim to make it accessibl
 
 ## Built with:
 
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [AWS](https://aws.amazon.com/)
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [ASW](https://aws.amazon.com/)
 - [Express](https://expressjs.com/)
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Material-UI](https://material-ui.com/)
 - [Node.js](https://nodejs.org/en/)
 - [Nodemon](https://nodemon.io/)
