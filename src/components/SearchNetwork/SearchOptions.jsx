@@ -23,7 +23,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 function SearchOptions({
   searchInput,
-  setSearchInput 
+  setSearchInput
 }) {
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -41,7 +41,6 @@ function SearchOptions({
   // -1 is an id that will NOT be found in our database, so we know it is an non-selection on each dropdown.
   // The searchTermInput is for a company name, so we set the initial value to 37423573209, which is unlikely to ever be input as a search term
   const [selections, setSelections] = useState({ typeId: -1, featureId: -1, searchTermInput: 37423573209 });
-  console.log('selections at start:', selections);
 
   // Function to set the value corresponding with selected vendor type in dropdown:
   const handleTypeSelection = (evt) => {
@@ -126,7 +125,7 @@ function SearchOptions({
             </Select>
           </FormControl>
         </Grid>
-        
+
         <Grid item xs={6}>
           <FormControl fullWidth>
             <InputLabel id="special-features">
@@ -157,12 +156,12 @@ function SearchOptions({
       <Grid container item className={classes.searchContainer} justify="center" spacing={1}>
         <Grid item xs={8}>
           <FormControl>
-            <div  className={classes.search}>
+            <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
 
-              <InputBase 
+              <InputBase
                 type="search"
                 fullWidth={true}
                 key="searchBar"
@@ -186,7 +185,7 @@ function SearchOptions({
           </Button>
         </Grid>
       </Grid>
-      
+
       <SearchResults hasMadeSearchRequest={hasMadeSearchRequest} />
     </Grid>
   );

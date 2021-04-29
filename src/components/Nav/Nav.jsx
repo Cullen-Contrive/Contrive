@@ -98,7 +98,6 @@ function Nav() {
 
   // Handles menu icon change when nav bar icons are clicked
   const handleChange = (event, newValue) => {
-    console.log('handleChange Nav', newValue);
     setValue(newValue);
     if (newValue === 'menu') {
       return toggleDrawer(true);
@@ -108,7 +107,6 @@ function Nav() {
 
   // Opens Menu Drawer
   const toggleDrawer = (open) => {
-    console.log('toggleDrawer');
 
     setState(open);
   };

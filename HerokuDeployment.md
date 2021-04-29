@@ -68,10 +68,15 @@ The [Heroku](https://www.heroku.com/) website GUI can simplify several of the st
 3. In the `Manual Deploy` section, click `Deploy Branch` to deploy for the first time.
 
 
+## Pricing
+- [Full Heroku pricing details](https://www.heroku.com/pricing)
+
+![Select "New" to create new app](./ReadMeImgs/herokuPricing.png)
+
+
 ## Resources
 
 More detailed instructions can be found here: 
 
-- Deployment Videos [https://drive.google.com/drive/u/1/folders/0B9sCDSmGi72ZN2hpR1Etbl9qb2c](https://drive.google.com/drive/u/1/folders/0B9sCDSmGi72ZN2hpR1Etbl9qb2c)
 - [https://devcenter.heroku.com/articles/git](https://devcenter.heroku.com/articles/git)
 - [https://devcenter.heroku.com/articles/heroku-postgresql](https://devcenter.heroku.com/articles/heroku-postgresql)
