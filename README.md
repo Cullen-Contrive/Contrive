@@ -1,4 +1,3 @@
-![MIT LICENSE](https://img.shields.io/github/license/Cullen-Contrive/Contrive.svg?style=flat-square)
 ![REPO SIZE](https://img.shields.io/github/repo-size/Cullen-Contrive/Contrive.svg?style=flat-square)
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/Cullen-Contrive/Contrive.svg?style=flat-square)
 ![FORKS](https://img.shields.io/github/forks/Cullen-Contrive/Contrive.svg?style=social)
@@ -92,10 +91,9 @@ Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an A
 
    1. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
-
 ## Deploying to Heroku
 
-The Contrive app has already been deployed to Heroku for you: [https://contrive.herokuapp.com/](https://contrive.herokuapp.com/).  See [HerokuDeplyment](./HerokuDeployment.md) for full deployment instructions.
+The Contrive app has already been deployed to Heroku for you: [https://contrive.herokuapp.com/](https://contrive.herokuapp.com/). See [HerokuDeplyment](./HerokuDeployment.md) for full deployment instructions.
 
 ## Lay of the Land
 
@@ -205,30 +203,6 @@ A full list of dependencies can be found in the `package.json` file in the root 
 - **Edit Vendor**, any logged in user can route to an Edit Vendor page if they know the url.
 - **All Messages**, all messages ordered backwards by date. Preview message for each conversation is also the first message sent in the conversations.
 - **My Calendar & My Network**, currently route to 404.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-Copyright (c) 2021 Aretha McDonald & Alexandria Watkins
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 ## Acknowledgement
 
