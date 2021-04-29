@@ -23,8 +23,6 @@ function MyEvents() {
     });
   }, []);
 
-  console.log('myEvents:', myEvents);
-
   return (
     <Grid container>
       <Grid item xs={12}>
