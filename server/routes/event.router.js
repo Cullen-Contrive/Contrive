@@ -10,7 +10,6 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Grabs all events
-  console.log('all');
   const queryText = `
   SELECT 
   "events"."id",
@@ -54,7 +53,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [userId])
     .then((dbRes) => {
-      console.log('SERVER - GET events at /api/event successful!');
       res.send(dbRes.rows);
     })
     .catch((err) => {
@@ -71,7 +69,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   // Grabs an event by id
-  console.log('get by id');
   const queryText = `
   SELECT 
   "events"."id",
@@ -115,7 +112,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [eventId])
     .then((dbRes) => {
-      console.log('SERVER - GET events at /api/event/id successful!');
       // send back an object rather than an array because return should be only one value
       res.send(dbRes.rows[0]);
     })
@@ -170,7 +166,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       description,
     ])
     .then((dbRes) => {
-      console.log('SERVER - POST - event creation successful!');
       res.send(dbRes.rows[0]); // send back id
     })
     .catch((err) => {
@@ -197,9 +192,6 @@ router.post('/photos', rejectUnauthenticated, async (req, res) => {
         pool.query(queryText, [photoURL, eventId])
       )
     );
-    console.log(
-      'SERVER - POST - at /api/event/photos added photos successfully!'
-    );
     res.sendStatus(201);
   } catch (err) {
     res.sendStatus(500);
@@ -224,9 +216,6 @@ router.post('/vendors', rejectUnauthenticated, async (req, res) => {
         pool.query(queryText, [vendorId, eventId])
       )
     );
-    console.log(
-      'SERVER - POST - at /api/event/vendors added vendors successfully!'
-    );
     res.sendStatus(201);
   } catch (err) {
     await connection.query('ROLLBACK');
@@ -250,10 +239,6 @@ router.post('/types', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [eventId, typeId])
     .then((dbRes) => {
-      console.log(
-        'SERVER - POST - at /api/event/types added an event type successfully!'
-      );
-      console.table(dbRes.rows);
       res.sendStatus(200);
     })
     .catch((err) => {
@@ -279,10 +264,6 @@ router.delete('/types', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [eventId])
     .then((dbRes) => {
-      console.log(
-        'SERVER - DELETE - at /api/event/types deleted an event type successfully!'
-      );
-      console.table(dbRes.rows);
       res.sendStatus(200);
     })
     .catch((err) => {
@@ -309,10 +290,6 @@ router.delete('/vendors', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [vendorUserId, eventId])
     .then((dbRes) => {
-      console.log(
-        'SERVER - DELETE - at /api/event/vendors deleted a vendor successfully!'
-      );
-      console.table(dbRes.rows);
       res.sendStatus(200);
     })
     .catch((err) => {
@@ -368,8 +345,6 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       eventId,
     ])
     .then((dbRes) => {
-      console.log('SERVER - PUT updating event by id successful!');
-      console.table(dbRes.rows);
       res.sendStatus(200);
     })
     .catch((err) => {
