@@ -1,4 +1,3 @@
-![MIT LICENSE](https://img.shields.io/github/license/Cullen-Contrive/Contrive.svg?style=flat-square)
 ![REPO SIZE](https://img.shields.io/github/repo-size/Cullen-Contrive/Contrive.svg?style=flat-square)
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/Cullen-Contrive/Contrive.svg?style=flat-square)
 ![FORKS](https://img.shields.io/github/forks/Cullen-Contrive/Contrive.svg?style=social)
@@ -11,16 +10,18 @@ _Duration: 2 Week Sprint_
 
 Contrive is an event management software platform that connects Event Planners with their local Vendors. With enhanced search features, Planners can find the types of Vendors they most want to do business with and can easily connect with them utilizing the messaging feature.
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
+To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://contrive.herokuapp.com/)
 
 ## Screen Shots
 
 ### Landing Page & The Network
-Contrive features a unique login page for users to login to there accounts from. __The Network__ is Contrive's search feature that gives the ability for users to search both by vendor type, special features vendors advertise, and name information.
+
+Contrive features a unique login page for users to login to there accounts from. **The Network** is Contrive's search feature that gives the ability for users to search both by vendor type, special features vendors advertise, and name information.
 
 ![Contrive Landing Page](./ReadMeImgs/landingPage.png) !["The Network" search feature](./ReadMeImgs/networkSearch.gif)
 
 ### Contrive's Messaging Feature
+
 Contrive creates the ability for planners and vendors to communicate with each other and store those conversations in an easy to read space.
 
 ![Display of all user related messages](./ReadMeImgs/allMessages.png) ![Display of a conversation between to users in Messages](./ReadMeImgs/messagingConversation.png)
@@ -33,7 +34,6 @@ Before you get started, make sure you have the following software installed on y
 - [Node.js](https://nodejs.org/en/)
 - [Postico](https://eggerapps.at/postico/)
 - [PostrgeSQL](https://www.postgresql.org/)
-
 
 ### Application Database:
 
@@ -71,7 +71,7 @@ Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an A
    PGPORT = 5432;
    ```
 
-   3. Paste the following lines into the file for ASW setup:
+   3. Paste the following lines into the file for AWS setup:
 
    ```javascript
    AWS_ACCESS_KEY_ID = xx;
@@ -91,10 +91,9 @@ Refer to [AWSSetUp](./AWSSetUp.md) documentation on how to get started with an A
 
    1. If a new browser doesn't open, navigate to `localhost:3000` in the browser.
 
-
 ## Deploying to Heroku
 
-The Contrive app has already been deployed to Heroku for you: [https://contrive.herokuapp.com/](https://contrive.herokuapp.com/).  See [HerokuDeplyment](./HerokuDeployment.md) for full deployment instructions.
+The Contrive app has already been deployed to Heroku for you: [https://contrive.herokuapp.com/](https://contrive.herokuapp.com/). See [HerokuDeplyment](./HerokuDeployment.md) for full deployment instructions.
 
 ## Lay of the Land
 
@@ -197,37 +196,13 @@ A full list of dependencies can be found in the `package.json` file in the root 
 
 ## Known Bugs:
 
-- __Vendor Registration__, if their username is already taken, they are not routed back to the first registration page.
-- __Login__, if user inputs wrong password, footer appears in the password field.
-- __Create Event__, Date picker has a rendering bug. Label appears in the input field.
-- __My Events__, events are not able to delete. No backend route setup.
-- __Edit Vendor__, any logged in user can route to an Edit Vendor page if they know the url.
-- __All Messages__, all messages ordered backwards by date. Preview message for each conversation is also the first message sent in the conversations.
-- __My Calendar & My Network__, currently route to 404.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-Copyright (c) 2021 Aretha McDonald & Alexandria Watkins
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+- **Vendor Registration**, if their username is already taken, they are not routed back to the first registration page.
+- **Login**, if user inputs wrong password, footer appears in the password field.
+- **Create Event**, Date picker has a rendering bug. Label appears in the input field.
+- **My Events**, events are not able to delete. No backend route setup.
+- **Edit Vendor**, any logged in user can route to an Edit Vendor page if they know the url.
+- **All Messages**, all messages ordered backwards by date. Preview message for each conversation is also the first message sent in the conversations.
+- **My Calendar & My Network**, currently route to 404.
 
 ## Acknowledgement
 
