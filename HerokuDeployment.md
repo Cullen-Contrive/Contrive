@@ -1,5 +1,7 @@
 # Heroku
 
+This application has already been deployed to Heroku for Contrive's convenience.  We will need Contrive to share their Heroku account so that we can pass ownership to them.  We have also included the necessary steps to deploy this repository to Heroku (which have already been completed), for Contrive's information.
+
 ### Heroku Prerequisite
 
 1. Sign up for an account on [Heroku.com](https://www.heroku.com/)
@@ -8,8 +10,10 @@
 3. Authenticate by typing `heroku login` in Terminal (this will open your browser for you to authenticate login)
 
 > Note: Your project will need to have a git repository to deploy to Heroku, which you create when you pull the GitHub repository down to your local machine. [More information on cloning a GitHub repository here] (https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+**Keep in mind you CAN NOT pull from Heroku. This is not a replacement for GitHub!**
 
 ### Heroku Setup
+#### (These steps have already been completed for Contrive's convenience.)
 
 Before you deploy, verify that your `PORT` in your server.js file is configured correctly as:
 
@@ -19,95 +23,25 @@ const PORT = process.env.PORT || 5000;
 
 In order to control the name of your Heroku application in as few steps as possible, We recommend creating a Heroku App first, then integrate it with your git project, but you can also do this in reverse order.  We have written our recommendation, but you can find alternative solutions [here] (https://devcenter.heroku.com/articles/git#creating-a-heroku-remote). 
 
-1. Login to your Heroku account, and select the "New" dropdown + "Create new app" in the top right corner. ****ADD IMAGE HERE
-In terminal, navigate to your project folder and type `heroku create`
-
-
-
-
-
+1. Login to your Heroku account, and select the "New" dropdown + "Create new app" in the top right corner. ![Select "New" to create new app](./ReadMeImgs/herokuAddNew.png)
+2. In your local terminal, navigate to your project folder and execute command `heroku create`.
 3. Type `git remote -v` to ensure it added successfully
 4. In terminal, type `git push heroku master`
-5. Our website is now live! However... we also have a database
+5. Your website is now live! However... we also need to set up the database
 
 ### Postgresql on Heroku
+#### (These steps have already been completed for Contrive's convenience.)
 
 1. In terminal, type `heroku addons:create heroku-postgresql:hobby-dev` to set up Postgresql on your Heroku project
-2. Next, type `heroku pg:push your_database DATABASE_URL` to copy your database contents up to Heroku. `your_database` is the actual name of your database (e.g. `koala_holla_`). `DATABASE_URL` is a heroku config variable created by the Add On. Do not replace it with something else, just type: `DATABASE_URL`. For example, if you were deploying the `koala_holla` database, you should type `heroku pg:push koala_holla DATABASE_URL`
-3. Update or create a module for your pg-pool configuration to the following code that will convert the heroku `DATABASE_URL` into a pool config object. The only line you should have to change is `database: process.env.DATABASE_NAME || 'your_database'`. Change `your_database` to the actual name of your database. (e.g. `database: process.env.DATABASE_NAME || 'koala_holla'`:
+2. Next, type `heroku pg:push contrive_db DATABASE_URL` to copy your database contents up to Heroku. `contrive_db` is the actual name of your database. `DATABASE_URL` is a heroku config variable created by the Add On. Do not replace it with something else, just type: `DATABASE_URL`. 
 
-**modules/pool.js**
-
-```JavaScript
-/**
-* You'll need to use environment variables in order to deploy your
-* pg-pool configuration to Heroku.
-* It will look something like this:
-**/
-/* the only line you likely need to change is
- database: 'prime_app',
- change `prime_app` to the name of your database, and you should be all set!
-*/
-
-const pg = require('pg');
-const url = require('url');
-
-let config = {};
-
-// We need a different pg configuration if we're running
-// on Heroku, vs if we're running locally.
-//
-// Heroku gives us a process.env.DATABASE_URL variable,
-// so if that's set, we know we're on heroku.
-if (process.env.DATABASE_URL) {
-  config = {
-    // We use the DATABASE_URL from Heroku to connect to our DB
-    connectionString: process.env.DATABASE_URL,
-    // Heroku also requires this special `ssl` config
-    ssl: { rejectUnauthorized: false },
-  };
-} else {
-  // If we're not on heroku, configure PG to use our local database
-  config = {
-    host: 'localhost',
-    port: 5432,
-    database: 'prime_app', // CHANGE THIS LINE to match your local database name!
-  };
-}
-
-// this creates the pool that will be shared by all other modules
-const pool = new pg.Pool(config);
-
-// the pool will log when it connects to the database
-pool.on('connect', () => {
-  console.log('Postgesql connected');
-});
-
-// the pool with emit an error on behalf of any idle clients
-// it contains if a backend error or network partition happens
-pool.on('error', (err) => {
-  console.log('Unexpected error on idle client', err);
-  process.exit(-1);
-});
-
-module.exports = pool;
-```
-
-When you need a pool, use the following code:
-
-```JavaScript
-var pool = require('../modules/pool.js');
-```
-
-Next, commit your changes and push them to Heroku:
+> Note: You'll need to commit and push each time you make a change that you want to deploy to Heroku. Automatic deployments are covered in [a later section](#gui-and-automatic-deployment) 
 
 ```
 git add .
 git commit -m "MESSAGE"
 git push heroku master
 ```
-
-> Note: You'll need to commit and push each time you make a change that you want to deploy to Heroku. Automatic deployments are covered in [a later section](#gui-and-automatic-deployment) **Keep in mind you CAN NOT pull from Heroku. This is not a replacement for GitHub!**
 
 Lastly, open terminal and type `heroku open`, which should show you your deployed site!
 
@@ -118,7 +52,7 @@ Lastly, open terminal and type `heroku open`, which should show you your deploye
 - `heroku logs` - Display error logs
 - `heroku config` - Show basic app info
 - `heroku restart` - Sometimes it helps to turn things off an on again
-- `heroku open` - Opens the website for you project in the browser
+- `heroku open` - Opens the website for your project in the browser
 
 ## GUI and Automatic Deployment
 

@@ -17,10 +17,12 @@ To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.he
 
 ### Landing Page & The Network
 Contrive features a unique login page for users to login to there accounts from. __The Network__ is Contrive's search feature that gives the ability for users to search both by vendor type, special features vendors advertise, and name information.
+
 ![Contrive Landing Page](./ReadMeImgs/landingPage.png) !["The Network" search feature](./ReadMeImgs/networkSearch.gif)
 
 ### Contrive's Messaging Feature
 Contrive creates the ability for planners and vendors to communicate with each other and store those conversations in an easy to read space.
+
 ![Display of all user related messages](./ReadMeImgs/allMessages.png) ![Display of a conversation between to users in Messages](./ReadMeImgs/messagingConversation.png)
 
 ## Prerequisites
