@@ -83,10 +83,10 @@ VALUES
 
 
 --Add Admin User
-INSERT INTO "users"
-("username", "firstName", "lastName", "profilePic", "password", "type")
-VALUES
-('admin@contrive.com', 'Contrive', '', 'https://trello-attachments.s3.amazonaws.com/606b2735fb112c58bbc368bd/500x500/7dccd4782b0d37da67d5226e729a6772/CONTRIVE_update2.png', '$2a$10$GoLEVEfdugtGJxO/yJz1buXeR2JkS23p/GgLoKCAjRBnFO9Ia2uVu', 'admin');
+--INSERT INTO "users"
+--("username", "firstName", "lastName", "profilePic", "password", "type")
+--VALUES
+--('admin@contrive.com', 'Contrive', '', 'https://trello-attachments.s3.amazonaws.com/606b2735fb112c58bbc368bd/500x500/7dccd4782b0d37da67d5226e729a6772/CONTRIVE_update2.png', '$2a$10$GoLEVEfdugtGJxO/yJz1buXeR2JkS23p/GgLoKCAjRBnFO9Ia2uVu', 'admin');
 
 --USERS_PHOTOS:
 --Fill users_photos with fake user's profile photos:
