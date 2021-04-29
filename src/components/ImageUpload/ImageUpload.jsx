@@ -28,9 +28,9 @@ function ImageUpload(props) {
     }
   };
 
-  const uploadOptions = {
-    server: 'http://localhost:5000',
-  };
+  // const uploadOptions = {
+  //   server: process.env.AWS_S3_SERVER,
+  // };
 
   const s3Url = process.env.REACT_APP_S3_URL;
 
@@ -39,7 +39,7 @@ function ImageUpload(props) {
       onFinish={handleFinishedUpload}
       s3Url={s3Url}
       maxSize={1024 * 1024 * 5}
-      upload={uploadOptions}
+      upload={''}
     />
   );
 }
