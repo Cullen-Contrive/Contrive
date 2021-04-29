@@ -1,6 +1,6 @@
 # Heroku
 
-This application has already been deployed to Heroku for Contrive's convenience.  We will need Contrive to share their Heroku account so that we can pass ownership to them.  We have also included the necessary steps to deploy this repository to Heroku (which have already been completed), for Contrive's information.
+This application has already been deployed to Heroku for Contrive's convenience, and can we seen at [https://contrive.herokuapp.com/](https://contrive.herokuapp.com/).  We will need Contrive to share their Heroku account so that we can pass ownership to them.  We have also included the necessary steps to deploy this repository to Heroku (which have already been completed), for Contrive's information.
 
 
 ### Heroku Prerequisite
