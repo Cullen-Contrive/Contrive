@@ -26,10 +26,10 @@ const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
 app.use(
   '/s3',
   UploaderS3Router({
-    // bucket: 'cullen-contrive', // required
-    // region: 'us-east-2', // optional
-    bucket: process.env.AWS_S3_BUCKET,           // required
-    region: process.env.AWS_S3_REGION,           // optional
+    bucket: 'cullen-contrive', // required
+    region: 'us-east-2', // optional
+    // bucket: process.env.AWS_S3_BUCKET,           // required
+    // region: process.env.AWS_S3_REGION,           // optional
     headers: {
       'Access-Control-Allow-Origin': '*',
     }, // optional
