@@ -2,6 +2,11 @@
 
 This application has already been deployed to Heroku for Contrive's convenience, and can be seen at [https://contrive.herokuapp.com/](https://contrive.herokuapp.com/).  We will need Contrive to share their Heroku account so that we can pass ownership to them.  We have also included the necessary steps to deploy this repository to Heroku (which have already been completed), for Contrive's information.
 
+Contrive's first actions for this handoff:
+1. Create a Heroku account (see Heroku Prerequisite below).
+2. Share the email address of your account with the Cullen-Contrive team.
+3. Accept the transfer of the application (see Heroku Transfer below)
+
 
 ### Heroku Prerequisite
 
@@ -42,6 +47,14 @@ In order to control the name of your Heroku application in as few steps as possi
 Lastly, open terminal and type `heroku open`, which should show you your deployed site!
 
 > Note: It is best to fully test your code locally before deploying to Heroku. Bugs are much harder to troubleshoot on a live website.
+
+
+### Heroku Transfer
+
+The Cullen-Contrive team will be transferring the deployed contrive app to you by following the instructions found [here](https://devcenter.heroku.com/articles/transferring-apps).  The most important thing we need from Contrive is to accept the transfer once it is initiated:
+
+Note: the contrive app is currently in a free mode on Heroku, so no bills will be transferred to you.
+![Accept the contrive app transfer](./ReadMeImgs/herokuTransfer.png)
 
 
 ### Miscellaneous
