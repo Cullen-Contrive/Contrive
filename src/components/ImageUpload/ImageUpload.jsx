@@ -10,7 +10,6 @@ function ImageUpload(props) {
   let handleFinishedUpload = (info) => {
     console.log('File uploaded with filename: ', info.filename);
     console.log('Access it on s3 at: ', info.fileUrl);
-
     if (props.page === 'AddProfilePic') {
       dispatch({
         type: 'SET_PROFILE_PIC',
